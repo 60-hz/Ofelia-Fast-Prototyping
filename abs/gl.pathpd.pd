@@ -1,0 +1,49 @@
+#N canvas 345 70 838 687 12;
+#X obj 31 24 inlet;
+#X obj 31 666 outlet;
+#X obj 90 22 inlet;
+#X obj 160 22 inlet;
+#X obj 230 22 inlet;
+#X obj 300 22 inlet;
+#X msg 90 48 width \$1;
+#X msg 160 48 height \$1;
+#X msg 230 48 resw \$1;
+#X msg 300 48 resh \$1;
+#X text 689 639 RI;
+#X obj 31 75 ofelia d plane-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local width \, height \, resw \, resh \, drawmode
+\, strokeweight = args[1] \, args[2] \, args[3] \, args[4] \, args[5]
+\, args[6] \; local position \, orientation \, scale = ofVec3f(0 \,
+0 \, 0) \, ofVec3f(0 \, 0 \, 0) \, ofVec3f(1 \, 1 \, 1) \; \; function
+M.new() \; ofWindow.addListener("setup" \, this) \; if args[1] == nil
+then width = 100 end \; if args[2] == nil then height = 100 end \;
+if args[3] == nil then resw = 10 end \; if args[4] == nil then resh
+= 10 end \; if args[5] == nil then drawmode = "fill" end \; if args[6]
+== nil then strokeweight = 1 end \; M.setup() \; end \; \; function
+M.free() \; ofWindow.removeListener("setup" \, this) end \; \; function
+M.setup() \; plane\$0 = ofPlanePrimitive() end \; \; function M.resw(float)
+resw=float end \; function M.resh(float) resh=float end \; function
+M.width(float) width=float end \; function M.height(float) height=float
+end \; function M.draw(string) drawmode=string end \; function M.stroke(float)
+strokeweight=float end \; function M.position(list) position = ofVec3f(list[1]
+\, list[2] \, list[3]) end \; function M.orientation(list) orientation
+= ofVec3f(list[1] \, list[2] \, list[3]) end \; function M.scale(list)
+scale = ofVec3f(list[1] \, list[2] \, list[3]) end \; \; function M.bang()
+\; ofSetLineWidth(strokeweight) \; plane\$0:setPosition (position:vec3())
+\; plane\$0:setOrientation (orientation:vec3()) \; plane\$0:setScale
+(scale:vec3()) \; plane\$0:set(width \, height \, math.abs(resw) \,
+math.abs(resh) \, OF_PRIMITIVE_TRIANGLE_STRIP) \; if drawmode == "fill"
+then plane\$0:draw() end \; if drawmode == "point" then plane\$0:drawVertices()
+end \; if drawmode == "line" then plane\$0:drawWireframe() end \; return
+anything \; end \;;
+#X f 98;
+#X connect 0 0 11 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 8 0;
+#X connect 5 0 9 0;
+#X connect 6 0 11 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 0;
+#X connect 9 0 11 0;
+#X connect 11 0 1 0;

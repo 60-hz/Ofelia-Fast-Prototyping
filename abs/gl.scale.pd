@@ -1,0 +1,27 @@
+#N canvas 493 149 503 464 12;
+#X obj 40 16 inlet;
+#X obj 40 409 outlet;
+#X obj 121 16 inlet;
+#X obj 191 15 inlet;
+#X obj 263 15 inlet;
+#X msg 191 36 y \$1;
+#X msg 121 36 x \$1;
+#X msg 263 36 z \$1;
+#X text 447 386 RI;
+#X obj 40 73 ofelia d scale-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local x \, y \, z = args[1] \, args[2] \, args[3]
+\; function M.new() \; if args[1] == nil then x = 1 end \; if args[2]
+== nil then y = 1 end \; if args[3] == nil then z = 1 end \; end \;
+function M.x(float) x=float end \; function M.y(float) y=float end
+\; function M.z(float) z=float end \; \; function M.list(mylist) \;
+x=mylist[1] \; y=mylist[2] \; z=mylist[3] \; end \; \; function M.bang()
+\; ofScale(x \, y \, z) \; return (anything) \; end \;;
+#X f 61;
+#X connect 0 0 9 0;
+#X connect 2 0 6 0;
+#X connect 3 0 5 0;
+#X connect 4 0 7 0;
+#X connect 5 0 9 0;
+#X connect 6 0 9 0;
+#X connect 7 0 9 0;
+#X connect 9 0 1 0;

@@ -1,0 +1,35 @@
+#N canvas 477 90 764 688 12;
+#X obj 16 612 outlet;
+#X obj 16 5 inlet;
+#X text 704 608 RI;
+#X obj 116 5 inlet;
+#X obj 206 5 inlet;
+#X msg 206 26 depth \$1;
+#X msg 116 27 order \$1;
+#X obj 16 50 ofelia d draw\$0 \; local log = ofLog("ofDraw") \; local
+canvas = ofCanvas(this) \; local outlet = ofOutlet(this) \; local order
+\, enabled \, styleAuto \, matrixAuto \, depth = 1 \, true \, true
+\, true \, 1 \; \; function M.new() \; local args = canvas:getArgs()
+\; if #args == 0 then M.float(1 \, 1) \; elseif #args == 1 then M.float(args[1])
+\; elseif #args == 2 then \; order \, depth = M.float(args[1]) \, args[2]
+\; elseif #args == 4 then \; order \, depth \, styleAuto \, matrixAuto
+= M.float(args[1]) \, args[2] ~= 0 \, args[3] ~= 0 \, args[4] ~= 0
+\; elseif #args ~= 0 then \; log:error("requires 1 \, 2 or 4 creation
+arguments") \; end \; end \; \; function M.order(f) order = f ofWindow.addListener("draw"
+\, this \, order) end \; function M.float(f) enabled = ofToBool(f)
+M.order(f) end \; function M.styleAuto(b) styleAuto = b ~= 0 end \;
+function M.matrixAuto(b) matrixAuto = b ~= 0 end \; \; function M.setAuto(b)
+\; M.setStyleAuto(b) \; M.setMatrixAuto(b) end \; \; function M.depth(f)
+depth = f end \; \; function M.free() \; ofWindow.removeListener("draw"
+\, this) end \; \; function M.draw() \; if not enabled then return
+end \; ofSetDepthTest(ofToBool(depth)) \; if styleAuto then ofPushStyle()
+end \; if matrixAuto then ofPushMatrix() end \; outlet:outletBang(0)
+if matrixAuto then ofPopMatrix() end \; if styleAuto then ofPopStyle()
+\; end \; end;
+#X f 101;
+#X connect 1 0 7 0;
+#X connect 3 0 6 0;
+#X connect 4 0 5 0;
+#X connect 5 0 7 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 0;

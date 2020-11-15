@@ -1,0 +1,45 @@
+#N canvas 377 179 1068 755 12;
+#X obj 47 835 outlet;
+#X obj 47 789 list trim;
+#X obj 98 835 outlet;
+#X obj 15 763 t a a;
+#X obj 47 812 route bang;
+#X obj 15 859 ofelia f tex-\$0 \; tex\$0:unbind() \;;
+#X f 66;
+#X msg 200 41 noisescale \$1;
+#X msg 310 40 noisevel \$1;
+#X obj 15 5 inlet;
+#X obj 200 5 inlet;
+#X obj 310 5 inlet;
+#X obj 15 65 ofelia d tex-\$0 \; local canvas = ofCanvas(this) \; local
+args = canvas:getArgs() \; local width \, height \, type \, noiseScale
+\, noiseVel = 10 \, 10 \, 0 \, 1 \, 1 \; local tex\$0 = ofImage() \;
+\; function M.new() \; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("update"
+\, this) \; ofWindow.addListener("exit" \, this) \; if args[1] == nil
+then width = 10 end \; if args[2] == nil then height = 10 end \; if
+args[3] == nil then mode = 0 end \; M.setup() \; end \; \; function
+M.free() \; ofWindow.removeListener("setup" \, this) \; ofWindow.removeListener("draw"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+M.setup() \; ofEnableArbTex() \; ofEnableNormalizedTexCoords() \; tex\$0:allocate(width
+\, height \, type) \; end \; \; function M.allocate(list) tex\$0:allocate(list[1]
+\, list[2] \, list[3]) end \; function M.noisescale(f) noiseScale =
+f end \; function M.noisevel(f) noiseVel = f end \; \; function M.bang()
+\; local pixels = tex\$0:getPixels() \; local w = tex\$0:getWidth()
+\; local h = tex\$0:getHeight() \; for y=0 \, h-1 do \; for x=0 \,
+w-1 do \; local i = y * w + x \; local noiseValue = ofNoise(x * noiseScale
+\, y * noiseScale \, noiseVel) \; pixels:setColor(i \, ofColor(255
+* noiseValue)) \; end \; end \; tex\$0:update() \; tex\$0:bind() \;
+return(anything) \; end \; \; function M.exit() \; tex\$0:clear() \;
+end;
+#X f 101;
+#X connect 1 0 4 0;
+#X connect 3 0 5 0;
+#X connect 3 1 1 0;
+#X connect 4 0 0 0;
+#X connect 4 1 2 0;
+#X connect 6 0 11 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 0;
+#X connect 9 0 6 0;
+#X connect 10 0 7 0;
+#X connect 11 0 3 0;

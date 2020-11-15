@@ -1,0 +1,70 @@
+#N canvas 155 23 1075 755 12;
+#X obj 21 14 inlet;
+#X obj 22 808 outlet;
+#X obj 80 12 inlet;
+#X obj 150 12 inlet;
+#X obj 220 12 inlet;
+#X obj 290 12 inlet;
+#X msg 80 38 width \$1;
+#X msg 150 38 height \$1;
+#X obj 360 12 inlet;
+#X obj 430 12 inlet;
+#X msg 220 38 depth \$1;
+#X msg 290 38 resw \$1;
+#X msg 360 38 resh \$1;
+#X msg 430 38 resd \$1;
+#X text 988 750 RI;
+#X obj 21 80 ofelia d \$0-box \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local width \, height \, depth \, resw \, resh
+\, resd \, drawmode \, strokeweight \, debug \, normalsize = args[1]
+\, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \,
+args[8] \, 0 \, 1 \; local position \, orientation \, scale \, lookat
+= ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; \;
+function M.new() \; ofWindow.addListener("setup" \, this) \; if args[1]
+== nil then width = 100 end \; if args[2] == nil then height = 100
+end \; if args[3] == nil then depth = 100 end \; if args[4] == nil
+then resw = 5 end \; if args[5] == nil then resh = 5 end \; if args[6]
+== nil then resd = 5 end \; if args[7] == nil then drawmode = "fill"
+end \; if args[8] == nil then strokeweight = 1 end \; M.setup() \;
+end \; \; function M.free() \; ofWindow.removeListener("setup" \, this)
+end \; \; function M.setup() \; box\$0 = ofBoxPrimitive() \; box\$0:set(width
+\, height \, depth \, math.abs(resw) \, math.abs(resh) \, math.abs(resd))
+\; box\$0:setPosition(position:vec3()) box\$0:setOrientation(orientation:vec3())
+box\$0:setScale(scale:vec3()) \; end \; \; function M.list(l) M.width(l[1])
+M.height(l[2]) M.depth(l[3]) M.resw(l[4]) M.resh(l[5]) M.resd(l[6])
+M.draw(l[7]) M.stroke(l[8]) end \; function M.width(f) width = f box\$0:setWidth(f)
+end \; function M.height(f) height = f box\$0:setHeight(f) end \; function
+M.depth(f) depth = f box\$0:setDepth(f) end \; function M.resw(f) resw
+= f box\$0:setResolutionWidth(f) end \; function M.resh(f) resh = f
+box\$0:setResolutionHeight(f) end \; function M.resd(f) resd = f box\$0:setResolutionDepth(f)
+end \; function M.draw(s) drawmode = s end \; function M.stroke(f)
+strokeweight = f end \; function M.normalsize(float) normalsize=float
+end \; function M.debug(f) debug = f end \; function M.position(l)
+position:set (l[1] \, l[2] \, l[3]) box\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation:set (l[1] \, l[2] \, l[3])
+box\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale:set (l[1] \, l[2] \, l[3]) box\$0:setScale(scale:vec3()) end
+\; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3] box\$0:lookAt(lookat:vec3())
+end \; function M.texture(f) if f > 0 then box\$0:enableTextures()
+else box\$0:disableTextures() end end \; function M.texturemap(l) box\$0:mapTexCoords(l[1]
+\, l[2] \, l[3] \, l[4]) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
+\; if drawmode == "fill" then box\$0:drawFaces() end \; if drawmode
+== "point" then box\$0:drawVertices() end \; if drawmode == "line"
+then box\$0:drawWireframe() end \; if drawmode == "normal" then box\$0:drawNormals(normalsize)
+end \; if debug > 0 then box\$0:drawAxes(debug*100) end \; return (anything)
+\; end \;;
+#X f 144;
+#X connect 0 0 15 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 10 0;
+#X connect 5 0 11 0;
+#X connect 6 0 15 0;
+#X connect 7 0 15 0;
+#X connect 8 0 12 0;
+#X connect 9 0 13 0;
+#X connect 10 0 15 0;
+#X connect 11 0 15 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 15 0 1 0;

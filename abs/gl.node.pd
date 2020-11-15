@@ -1,0 +1,95 @@
+#N canvas 299 -877 919 855 12;
+#X obj 11 4 inlet;
+#X obj 70 2 inlet;
+#X obj 140 2 inlet;
+#X obj 220 2 inlet;
+#X obj 300 2 inlet;
+#X text 794 735 RI;
+#X obj 11 822 ofelia f myNode-\$0 \; node\$0:restoreTransformGL() \;
+;
+#X msg 70 28 tx \$1;
+#X msg 140 28 ty \$1;
+#X msg 220 28 tz \$1;
+#X msg 300 28 ox \$1;
+#X obj 370 2 inlet;
+#X obj 440 2 inlet;
+#X msg 370 28 oy \$1;
+#X msg 440 28 oz \$1;
+#X obj 502 2 inlet;
+#X obj 572 2 inlet;
+#X obj 642 2 inlet;
+#X msg 502 28 sx \$1;
+#X msg 572 28 sy \$1;
+#X msg 642 28 sz \$1;
+#X obj 43 796 outlet;
+#X obj 43 750 list trim;
+#X obj 94 796 outlet;
+#X obj 11 724 t a a;
+#X obj 43 773 route bang;
+#X text 356 727 Todo \; get more useful data...;
+#X obj 11 55 ofelia d myNode-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local debug = 0 \; local position \, orientation
+\, scale = ofVec3f(0 \, 0 \, 0) \, ofVec3f(0 \, 0 \, 0) \, ofVec3f(1
+\, 1 \, 1) \; \; function M.new() \; ofWindow.addListener("setup" \,
+this) \; if args[1] == nil then position.x = 0 else position.x = args[1]
+end \; if args[2] == nil then position.y = 0 else position.y = args[2]
+end \; if args[3] == nil then position.z = 0 else position.z = args[3]
+end \; if args[4] == nil then orientation.x = 0 else orientation.x
+= args[4] end \; if args[5] == nil then orientation.y = 0 else orientation.y
+= args[5] end \; if args[6] == nil then orientation.z = 0 else orientation.z
+= args[6] end \; if args[7] == nil then scale.x = 1 else scale.x =
+args[7] end \; if args[8] == nil then scale.y = 1 else scale.y = args[8]
+end \; if args[9] == nil then scale.z = 1 else scale.z = args[9] end
+\; M.setup() \; end \; function M.free() \; ofWindow.removeListener("setup"
+\, this) end \; function M.setup() \; node\$0 = ofNode() \; node\$0:setPosition(position:vec3())
+node\$0:setOrientation(orientation:vec3()) node\$0:setScale(scale:vec3())
+\; end \; \; function M.list(l) M.width(l[1]) M.height(l[2]) M.columns(l[3])
+M.rows(l[4]) M.draw(l[5]) M.stroke(l[6]) end \; function M.tx(f) position.x
+= f node\$0:setPosition(position:vec3()) end \; function M.ty(f) position.y
+= f node\$0:setPosition(position:vec3()) end \; function M.tz(f) position.z
+= f node\$0:setPosition(position:vec3()) end \; function M.ox(f) orientation.x
+= f node\$0:setOrientation(orientation:vec3()) end \; function M.oy(f)
+orientation.y = f node\$0:setOrientation(orientation:vec3()) end \;
+function M.oz(f) orientation.z = f node\$0:setOrientation(orientation:vec3())
+end \; function M.sx(f) scale.x = f node\$0:setScale(scale:vec3())
+end \; function M.sy(f) scale.y = f node\$0:setScale(scale:vec3())
+end \; function M.sz(f) scale.z = f node\$0:setScale(scale:vec3())
+end \; function M.move(l) node\$0:move(l[1] \, l[2] \, l[3]) end \;
+function M.debug(f) debug = f end \; function M.position(l) position.x=l[1]
+position.y=l[2] position.z=l[3] node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation.x=l[1] orientation.y=l[2]
+orientation.z=l[3] node\$0:setOrientation(orientation:vec3()) end \;
+function M.scale(l) scale.x=l[1] scale.y=l[2] scale.z=l[3] node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
+node\$0:lookAt(lookat:vec3()) end \; function M.get() return ofTable
+(node\$0:getX() \, node\$0:getY() \, node\$0:getZ() \, node\$0:getPitchDeg()
+\, node\$0:getRollDeg())end \; \; function M.bang() \; if debug ==
+1 then ofDisableLighting() node\$0:draw() end if _lighting == 1 then
+ofEnableLighting() end \; node\$0:transformGL() \; return anything
+\; end \;;
+#X f 136;
+#X connect 0 0 27 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 9 0;
+#X connect 4 0 10 0;
+#X connect 7 0 27 0;
+#X connect 8 0 27 0;
+#X connect 9 0 27 0;
+#X connect 10 0 27 0;
+#X connect 11 0 13 0;
+#X connect 12 0 14 0;
+#X connect 13 0 27 0;
+#X connect 14 0 27 0;
+#X connect 15 0 18 0;
+#X connect 16 0 19 0;
+#X connect 17 0 20 0;
+#X connect 18 0 27 0;
+#X connect 19 0 27 0;
+#X connect 20 0 27 0;
+#X connect 22 0 25 0;
+#X connect 24 0 6 0;
+#X connect 24 1 22 0;
+#X connect 25 0 21 0;
+#X connect 25 1 23 0;
+#X connect 27 0 24 0;

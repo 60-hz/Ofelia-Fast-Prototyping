@@ -1,0 +1,12 @@
+#N canvas 79 363 521 300 12;
+#X obj 66 56 inlet;
+#X obj 178 155 outlet;
+#X obj 66 144 t a a;
+#X obj 178 82 ofelia d \; function M.bang() \; ofDisableLighting()
+\; return (anything) end \;;
+#X obj 66 209 ofelia d \; function M.bang() \; if _lighting > 0 then
+ofEnableLighting() \; return (anything) end end \;;
+#X connect 0 0 2 0;
+#X connect 2 0 4 0;
+#X connect 2 1 3 0;
+#X connect 3 0 1 0;

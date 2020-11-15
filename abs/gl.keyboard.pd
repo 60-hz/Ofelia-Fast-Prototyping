@@ -1,0 +1,28 @@
+#N canvas 273 50 814 728 12;
+#X obj 32 5 inlet;
+#X obj 32 718 outlet;
+#X obj 32 38 ofelia d \$0keyboard \; local log = ofLog("ofKeyPressed")
+\; local canvas = ofCanvas(this) \; local order \, enabled = 50 \,
+true \; \; function M.new() \; local args = canvas:getArgs() \; if
+#args == 1 then \; order = args[1] \; elseif #args == 2 then \; order
+\, enabled = args[1] \, args[2] ~= 0 \; elseif #args ~= 0 then \; log:error("requires
+1 \, 2 or 3 creation arguments") \; end \; ofWindow.addListener("keyPressed"
+\, this \, order) \; end \; \; function M.setOrder(f) \; order = f
+\; ofWindow.addListener("keyPressed" \, this \, order) end \; function
+M.setEnabled(b) enabled = b ~= 0 end \; \; function M.free() \; ofWindow.removeListener("keyPressed"
+\, this) \; end \; \; function M.keyPressed(e) \; if not enabled then
+\; return \; end \; if e.key == 57357 then return ("Up") \; elseif
+e.key == 57359 then return ("Down") \; elseif e.key == 57356 then return
+("Left") \; elseif e.key == 57358 then return ("Right") \; elseif e.key
+== 8 then return ("Return") \; elseif e.key == 9 then return ("Tab")
+\; elseif e.key == 13 then return ("Enter") \; elseif e.key == 32 then
+return ("Space") \; elseif e.key == 3680 then return ("L_Shift") \;
+elseif e.key == 3681 then return ("R_Shift") \; elseif e.key == 3682
+then return ("Ctrl") \; elseif e.key == 3684 then return ("L_alt")
+\; elseif e.key == 3685 then return ("R_alt") \; elseif e.key == 3686
+then return ("L_cmd") \; elseif e.key == 3687 then return ("R_cmd")
+\; elseif e.key == 27 then return ("Esc") \; else return (utf8.char(e.key))
+end \; end;
+#X f 115;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

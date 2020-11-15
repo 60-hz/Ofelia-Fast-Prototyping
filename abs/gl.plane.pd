@@ -1,0 +1,60 @@
+#N canvas 347 23 870 755 12;
+#X obj 31 24 inlet;
+#X obj 31 784 outlet;
+#X obj 90 22 inlet;
+#X obj 160 22 inlet;
+#X obj 240 22 inlet;
+#X obj 320 22 inlet;
+#X msg 90 48 width \$1;
+#X msg 160 48 height \$1;
+#X msg 240 48 columns \$1;
+#X msg 320 48 rows \$1;
+#X text 814 775 RI;
+#X obj 31 75 ofelia d plane-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local width \, height \, columns \, rows \, drawmode
+\, strokeweight \, debug \, normalsize = args[1] \, args[2] \, args[3]
+\, args[4] \, args[5] \, args[6] \, 0 \, 10 \; local position \, orientation
+\, scale \, lookat = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1)
+\, ofVec3f() \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then width = 100 end \; if args[2] ==
+nil then height = 100 end \; if args[3] == nil then columns = 10 end
+\; if args[4] == nil then rows = 10 end \; if args[5] == nil then drawmode
+= "fill" end \; if args[6] == nil then strokeweight = 1 end \; M.setup()
+\; end \; \; function M.free() \; ofWindow.removeListener("setup" \,
+this) end \; \; function M.setup() \; plane\$0 = ofPlanePrimitive()
+plane\$0:enableNormals() \; plane\$0:set(width \, height \, math.abs(columns)
+\, math.abs(rows) \, OF_PRIMITIVE_TRIANGLE_STRIP) \; plane\$0:setPosition(position:vec3())
+plane\$0:setOrientation(orientation:vec3()) plane\$0:setScale(scale:vec3())
+\; end \; \; function M.list(l) M.width(l[1]) M.height(l[2]) M.columns(l[3])
+M.rows(l[4]) M.draw(l[5]) M.stroke(l[6]) end \; function M.width(f)
+width = f plane\$0:setWidth (f) end \; function M.height(f) height
+= f plane\$0:setHeight (f) end \; function M.columns(f) columns = f
+plane\$0:setColumns (math.abs(f)) end \; function M.rows(f) rows =
+f plane\$0:setRows (math.abs(f)) end \; function M.draw(s) drawmode
+= s end \; function M.stroke(f) strokeweight=f end \; function M.normalsize(float)
+normalsize=float end \; function M.debug(f) debug = f end \; function
+M.position(l) position.x=l[1] position.y=l[2] position.z=l[3] plane\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation.x=l[1] orientation.y=l[2]
+orientation.z=l[3] plane\$0:setOrientation(orientation:vec3()) end
+\; function M.scale(l) scale.x=l[1] scale.y=l[2] scale.z=l[3] plane\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
+plane\$0:lookAt(lookat:vec3()) end \; function M.texture(f) if f >
+0 then plane\$0:enableTextures() else plane\$0:disableTextures() end
+end \; function M.texturemap(l) plane\$0:mapTexCoords(l[1] \, l[2]
+\, l[3] \, l[4]) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
+\; if drawmode == "fill" then plane\$0:draw() end \; if drawmode ==
+"point" then plane\$0:drawVertices() end \; if drawmode == "line" then
+plane\$0:drawWireframe() end \; if drawmode == "normal" then plane\$0:drawNormals(normalsize)
+end \; if debug > 0 then plane\$0:drawAxes(debug*100) end \; return
+anything \; end \;;
+#X f 115;
+#X connect 0 0 11 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 8 0;
+#X connect 5 0 9 0;
+#X connect 6 0 11 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 0;
+#X connect 9 0 11 0;
+#X connect 11 0 1 0;
