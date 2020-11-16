@@ -6,6 +6,6 @@ Requires [Ofelia](https://github.com/cuinjune/Ofelia) V4.0.0 library to work (he
 
 Many thanks to Zack Lee for making this great PureData library.
 
-Note: under windows there light have some problem that will be fixed soon.
+Note: under windows there might be some problem that will be fixed soon.
 
 ![alt text](data/screen.png)
