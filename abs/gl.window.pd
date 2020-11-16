@@ -29,7 +29,7 @@ if create == "create" or create == 1 then M.create() end \; if create
 == "fullscreen" or create == 2 then M.create() M.fullscreen(1) end
 end \; function M.free() \; ofWindow.removeListener("setup" \, this)
 ofWindow.removeListener("draw" \, this) ofWindow.removeListener("update"
-\, this) end \; \; function M.setup() \; ofSetBackgroundAuto(true)
+\, this)window:destroy() end \; \; function M.setup() \; ofSetBackgroundAuto(true)
 \; ofSetWindowPosition (posX \, posY) \; ofSetWindowShape(sizeX \,
 sizeY) \; ofSetFrameRate(fps) \; ofSetBackgroundColor(60) \; ofSetDataPathRoot
 ".." \; ofSetBackgroundAuto(autoclear) \; if type (_maincamera) ==
