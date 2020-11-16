@@ -22,10 +22,10 @@ matrixAuto = b ~= 0 end \; \; function M.setAuto(b) \; M.setStyleAuto(b)
 \; M.setMatrixAuto(b) end \; \; function M.depth(f) depth = f end \;
 \; function M.free() \; ofWindow.removeListener("draw" \, this) end
 \; \; function M.draw() \; if enabled == 0 then return end \; if depth
-== 1 then ofSetDepthTest(true) end \; if styleAuto then ofPushStyle()
-end \; if matrixAuto then ofPushMatrix() end \; outlet:outletBang(0)
-if matrixAuto then ofPopMatrix() end \; if styleAuto then ofPopStyle()
-\; end \; end;
+== 1 then ofSetDepthTest(true) else ofSetDepthTest(false) end \; if
+styleAuto then ofPushStyle() end \; if matrixAuto then ofPushMatrix()
+end \; outlet:outletBang(0) if matrixAuto then ofPopMatrix() end \;
+if styleAuto then ofPopStyle() \; end \; end;
 #X f 101;
 #X connect 1 0 7 0;
 #X connect 3 0 6 0;
