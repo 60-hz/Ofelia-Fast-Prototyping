@@ -10,12 +10,12 @@ execution order priority matters:, f 86;
 #X text 192 134 -> rendering priority set by draw order;
 #X text 193 122 depthTest "Off": Easier for 2d;
 #X text 190 103 -> rendering priority set by Z-position;
-#N canvas 201 512 484 231 GUI_ON_SCREEN 1;
+#N canvas 201 512 484 231 GUI_ON_SCREEN 0;
 #X obj 27 144 gl.rectangle;
 #X obj 215 103 gl.camera, f 30;
 #X obj 27 48 spigot;
 #X obj 244 33 tgl 15 0 empty empty activateme 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 26 192 gl.text GUI center;
 #X obj 27 117 gl.color 0 0 0 100;
 #X obj 244 11 inlet;
@@ -37,7 +37,7 @@ execution order priority matters:, f 86;
 #X connect 11 0 5 0;
 #X restore 455 254 pd GUI_ON_SCREEN;
 #X obj 455 232 tgl 15 0 empty empty ActivateGUI 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X msg 49 127 0;
 #X floatatom 34 88 5 0 0 2 Draw-Order - -;
 #X msg 115 125 depth \$1;
