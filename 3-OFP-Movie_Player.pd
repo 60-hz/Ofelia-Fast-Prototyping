@@ -1,4 +1,4 @@
-#N canvas 155 46 549 657 12;
+#N canvas 702 61 549 657 12;
 #X declare -path abs;
 #X declare -lib ofelia;
 #X floatatom 66 539 5 0 0 0 - - -;
@@ -26,7 +26,7 @@
 #X msg 199 253 speed 2;
 #X floatatom 212 369 5 0 0 0 - - -;
 #X floatatom 285 553 5 0 0 0 totalframe - -;
-#X text 102 416 get method:;
+#X text 131 416 get method:;
 #X obj 26 593 gl.box 200 200 200 5 5 5;
 #X obj 212 432 unpack 0 0 0 0 0 0;
 #X floatatom 212 466 5 0 0 0 isloaded - -;
@@ -55,6 +55,7 @@
 #X text 356 3 Path and lib;
 #X obj 65 510 mod 359;
 #X text 255 368 Go to frame... (might need to pause before);
+#X text 231 411 (windows user might not be able to use loop 2);
 #X connect 0 0 1 2;
 #X connect 1 0 25 0;
 #X connect 2 0 30 0;
