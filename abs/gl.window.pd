@@ -1,4 +1,4 @@
-#N canvas 329 128 951 613 12;
+#N canvas 329 23 951 613 12;
 #X obj 8 14 inlet;
 #X obj 8 958 outlet;
 #X text 808 912 RI;
@@ -40,15 +40,15 @@ end \; function M.framerate(f) fps = f ofSetFrameRate(fps) end \; function
 M.dimen(list) if ofWindow.exists then ofSetWindowShape(list[1] \, list[2])
 end end \; function M.position(list) if ofWindow.exists then ofSetWindowPosition
 (list[1] \, list[2]) end end \; function M.orientation(l) if ofWindow.exists
-then ofSetOrientation (1+l[1] \, ofToBool(l[2])) end end \; function
-M.color(bgcolor) if ofWindow.exists then ofSetBackgroundColor(bgcolor[1]
-\, bgcolor[2] \, bgcolor[3]) end end \; function M.cursor(float) if
-ofWindow.exists then if float > 0 then ofShowCursor() else ofHideCursor()
-end end end \; function M.lighting(float) \; if ofWindow.exists then
-if float > 0 then ofEnableLighting() _lighting = 1 else ofDisableLighting()
-_lighting = 0 end end end \; function M.fullscreen(float) if ofWindow.exists
-then ofSetFullscreen(ofToBool(float)) end end \; function M.autoclear(float)
-autoclear = ofToBool(float) if ofWindow.exists then ofSetBackgroundAuto(autoclear)
+then ofSetOrientation (1+l[1] \, (l[2]~=0)) end end \; function M.color(bgcolor)
+if ofWindow.exists then ofSetBackgroundColor(bgcolor[1] \, bgcolor[2]
+\, bgcolor[3]) end end \; function M.cursor(float) if ofWindow.exists
+then if float > 0 then ofShowCursor() else ofHideCursor() end end end
+\; function M.lighting(float) \; if ofWindow.exists then if float >
+0 then ofEnableLighting() _lighting = 1 else ofDisableLighting() _lighting
+= 0 end end end \; function M.fullscreen(float) if ofWindow.exists
+then ofSetFullscreen(float~=0) end end \; function M.autoclear(float)
+autoclear = (float ~= 0) if ofWindow.exists then ofSetBackgroundAuto(autoclear)
 end end \; function M.clear(l) if ofWindow.exists then ofClear(l[1]
 \, l[2] \, l[3]) end end \; function M.get() if ofWindow.exists then
 width = ofGetWindowWidth() height = ofGetWindowHeight() \; framerate

@@ -44,7 +44,7 @@ light\$0:setPosition(position:vec3()) end \; function M.orientation(l)
 orientation.x=l[1] orientation.y=l[2] orientation.z=l[3] light\$0:setOrientation(orientation:vec3())
 end \; function M.scale(l) scale.x=l[1] scale.y=l[2] scale.z=l[3] light\$0:setScale(scale:vec3())
 end \; function M.smooth(f) smooth = f end \; function M.debug(f) debug
-= f end \; \; function M.bang() \; ofSetSmoothLighting(ofToBool(smooth))
+= f end \; \; function M.bang() \; ofSetSmoothLighting(smooth ~= 0)
 \; if debug == 1 then ofDisableLighting() light\$0:draw() if _lighting
 == 1 then ofEnableLighting() end end \; return(anything) \; end \;
 function M.free() \; light\$0:disable() ofWindow.removeListener("setup"

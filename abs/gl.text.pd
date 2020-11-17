@@ -41,9 +41,9 @@ end if align == "left" then posX=0 end if align == "right" then posX
 font\$0:setLetterSpacing(f) end \; function M.lineheight(f) font\$0:setLineHeight(f)
 end \; function M.spacesize(f) font\$0:setSpaceSize(f) end \; function
 M.direction(f) font\$0:setDirection(f) end \; function M.aliasing(f)
-antialias = (ofToBool(f)) M.load() end \; function M.simplify(f) simplify
+antialias = (f ~= 0) M.load() end \; function M.simplify(f) simplify
 = f M.load() end \; function M.dpi(f) dpi = (f) M.load() end \; function
-M.fullchar(f) fullchar = (ofToBool(f)) M.load() end \; function M.debug(f)
+M.fullchar(f) fullchar = (f ~= 0) M.load() end \; function M.debug(f)
 debug = f end \; function M.position(l) position:set (l[1] \, l[2]
 \, l[3]) node\$0:setPosition(position:vec3()) end \; function M.orientation(l)
 orientation:set (l[1] \, l[2] \, l[3]) node\$0:setOrientation(orientation:vec3())

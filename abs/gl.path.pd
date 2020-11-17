@@ -18,12 +18,12 @@ path\$0:clear() end \; function M.close(string) path\$0:close() end
 M.color(list) path\$0:setColor(ofColor(list[1] \, list[2] \, list[3]))
 end \; function M.fillcolor(list) path\$0:setFillColor(ofColor(list[1]
 \, list[2] \, list[3])) end \; function M.strokecolor(list) path\$0:setStrokeColor(ofColor(list[1]
-\, list[2] \, list[3])) end \; function M.filled(float) path\$0:setFilled(ofToBool(float))
+\, list[2] \, list[3])) end \; function M.filled(float) path\$0:setFilled(float ~= 0)
 end \; function M.mode(float) mode = float path\$0:setMode(mode) end
 \; function M.outline() path\$0:hasOutline() end \; function M.tessellate()
 path\$0:tessellate() end \; function M.outline() path\$0:hasOutline()
 end \; function M.polywinding(float) path\$0:setPolyWindingMode(float)
-end \; function M.useshapecolor(float) path\$0:setUseShapeColor(ofToBool(float))
+end \; function M.useshapecolor(float) path\$0:setUseShapeColor(float ~= 0)
 end \; function M.simplify(float) path\$0:simplify(float) end \; function
 M.circleresolution(float) path\$0:setCircleResolution(float) end \;
 function M.curveresolution(float) path\$0:setCircleResolution(float)

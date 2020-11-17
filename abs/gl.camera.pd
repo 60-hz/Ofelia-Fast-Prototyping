@@ -54,7 +54,7 @@ else _maincamera:disableOrtho() end end \; function M.fov(float) fov
 f end \; function M.reset() M.position(ofTable(0 \, 0 \, 400))M.orientation(ofTable(0
 \, 0 \, 0)) M.fov(60) M.ortho(0) M.vflip(0) end \; function M.gridsteps(f)
 gridsteps = math.abs(f) end \; function M.gridsize(f) gridsize = f
-end \; function M.vflip(float) _maincamera:setVFlip(ofToBool(float))
+end \; function M.vflip(float) _maincamera:setVFlip(float~=0)
 end \; function M.aspectratio(f) _maincamera:setAspectRatio(f) end
 \; function M.farclip(f) _maincamera:setFarClip(f) end \; function
 M.lensoffset(l) _maincamera:setLensOffset(ofVec2f(l[1] \, l[2]):vec2())end
