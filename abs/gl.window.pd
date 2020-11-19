@@ -1,5 +1,5 @@
-#N canvas 329 23 951 613 12;
-#X obj 8 14 inlet;
+#N canvas 329 84 951 694 12;
+#X obj 66 3 inlet;
 #X obj 8 958 outlet;
 #X text 808 912 RI;
 #X text 400 754 - Pb: crash when re-create with gl.camera;
@@ -14,7 +14,9 @@
 #X text 46 807 ofcamera rendering order is betwween 0 and 1000 Rendring
 < 0 and > 1000 will be out of camera (useful for designing GUI), f
 121;
-#X obj 8 54 ofelia d window \; \; local c = ofCanvas(this) \; local
+#X obj 66 26 s _win;
+#X obj 8 13 r _win;
+#X obj 8 54 ofelia d window-\$0 \; \; local c = ofCanvas(this) \; local
 window = ofWindow() \; local args = c:getArgs() \; local sizeX \, sizeY
 \, fps \, create \, autoclear \, posX \, posY \, lighting = args[1]
 \, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \;
@@ -28,33 +30,33 @@ M.new() \; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("draw"
 if create == "create" or create == 1 then M.create() end \; if create
 == "fullscreen" or create == 2 then M.create() M.fullscreen(1) end
 end \; function M.free() \; ofWindow.removeListener("setup" \, this)
-ofWindow.removeListener("draw" \, this) ofWindow.removeListener("update"
-\, this)window:destroy() end \; \; function M.setup() \; ofSetBackgroundAuto(true)
-\; ofSetWindowPosition (posX \, posY) \; ofSetWindowShape(sizeX \,
-sizeY) \; ofSetFrameRate(fps) \; ofSetBackgroundColor(60) \; ofSetDataPathRoot
-".." \; ofSetBackgroundAuto(autoclear) \; if type (_maincamera) ==
-"nil" then _maincamera = ofCamera() end \; if type (_c_position) ==
-"nil" then _maincamera:setPosition(0 \, 0 \, 400) end end \; \; function
-M.create() window:create() end \; function M.destroy() window:destroy()
-end \; function M.framerate(f) fps = f ofSetFrameRate(fps) end \; function
-M.dimen(list) if ofWindow.exists then ofSetWindowShape(list[1] \, list[2])
-end end \; function M.position(list) if ofWindow.exists then ofSetWindowPosition
-(list[1] \, list[2]) end end \; function M.orientation(l) if ofWindow.exists
-then ofSetOrientation (1+l[1] \, (l[2]~=0)) end end \; function M.color(bgcolor)
-if ofWindow.exists then ofSetBackgroundColor(bgcolor[1] \, bgcolor[2]
-\, bgcolor[3]) end end \; function M.cursor(float) if ofWindow.exists
-then if float > 0 then ofShowCursor() else ofHideCursor() end end end
-\; function M.lighting(float) \; if ofWindow.exists then if float >
-0 then ofEnableLighting() _lighting = 1 else ofDisableLighting() _lighting
-= 0 end end end \; function M.fullscreen(float) if ofWindow.exists
-then ofSetFullscreen(float~=0) end end \; function M.autoclear(float)
-autoclear = (float ~= 0) if ofWindow.exists then ofSetBackgroundAuto(autoclear)
-end end \; function M.clear(l) if ofWindow.exists then ofClear(l[1]
-\, l[2] \, l[3]) end end \; function M.get() if ofWindow.exists then
-width = ofGetWindowWidth() height = ofGetWindowHeight() \; framerate
-= ofGetFrameRate() return ofTable (width \, height \, framerate) end
-end \; \; function M.draw() \; ofPushView() \; _maincamera:beginCamera()
-\; end \;;
-#X f 123;
+ofWindow.removeListener("draw" \, this) window:destroy() end \; \;
+function M.setup() \; ofSetBackgroundAuto(true) \; ofSetWindowPosition
+(posX \, posY) \; ofSetWindowShape(sizeX \, sizeY) \; ofSetFrameRate(fps)
+\; ofSetBackgroundColor(60) \; ofSetDataPathRoot ".." \; ofSetBackgroundAuto(autoclear)
+\; if type (_maincamera) == "nil" then _maincamera = ofCamera() end
+\; if type (_c_position) == "nil" then _maincamera:setPosition(0 \,
+0 \, 400) end end \; \; function M.create() window:create() end \;
+function M.destroy() window:destroy() end \; function M.framerate(f)
+fps = f ofSetFrameRate(fps) end \; function M.dimen(list) if ofWindow.exists
+then ofSetWindowShape(list[1] \, list[2]) end end \; function M.position(list)
+if ofWindow.exists then ofSetWindowPosition (list[1] \, list[2]) end
+end \; function M.orientation(l) if ofWindow.exists then ofSetOrientation
+(1+l[1] \, (l[2]~=0)) end end \; function M.color(bgcolor) if ofWindow.exists
+then ofSetBackgroundColor(bgcolor[1] \, bgcolor[2] \, bgcolor[3]) end
+end \; function M.cursor(float) if ofWindow.exists then if float >
+0 then ofShowCursor() else ofHideCursor() end end end \; function M.lighting(float)
+\; if ofWindow.exists then if float > 0 then ofEnableLighting() _lighting
+= 1 else ofDisableLighting() _lighting = 0 end end end \; function
+M.fullscreen(float) if ofWindow.exists then ofSetFullscreen(float~=0)
+end end \; function M.autoclear(float) autoclear = (float ~= 0) if
+ofWindow.exists then ofSetBackgroundAuto(autoclear) end end \; function
+M.clear(l) if ofWindow.exists then ofClear(l[1] \, l[2] \, l[3]) end
+end \; function M.get() if ofWindow.exists then width = ofGetWindowWidth()
+height = ofGetWindowHeight() \; framerate = ofGetFrameRate() return
+ofTable (width \, height \, framerate) end end \; \; function M.draw()
+\; ofPushView() \; _maincamera:beginCamera() \; end \;;
+#X f 131;
 #X connect 0 0 8 0;
-#X connect 8 0 1 0;
+#X connect 9 0 10 0;
+#X connect 10 0 1 0;
