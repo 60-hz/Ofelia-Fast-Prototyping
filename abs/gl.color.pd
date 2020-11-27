@@ -1,4 +1,4 @@
-#N canvas 511 412 714 652 12;
+#N canvas 116 113 714 652 12;
 #X obj 31 24 inlet;
 #X obj 90 22 inlet;
 #X obj 160 22 inlet;
@@ -25,13 +25,13 @@ local c = ofCanvas(this) \; local args = c:getArgs() \; local color
 M.r(f) color.r = f end \; function M.g(f) color.g = f end \; function
 M.b(f) color.b = f end \; function M.a(f) color.a = f end \; function
 M.b(f) color:setBrightness(f) end \; function M.s(f) color:setSaturation(f)
-end \; function M.h(f) color:setHue(f) end \; function M.hex(s) color:setHex(s)
-end \; function M.hsb(l) color:setHsb(l[1] \, l[2] \, l[3] \, l[4])
-end \; function M.list(mylist) \; color.r=mylist[1] \; color.g=mylist[2]
-\; color.b=mylist[3] \; color.a=mylist[4] \; if mylist[4] == nil then
-a = 255 end end \; function M.get() return ofTable (color.r \, color.g
-\, color.b \, color.a \, color:getHue() \, color:getSaturation() \,
-color:getBrightness() \, color:getHex())end \; \; function M.bang()
+end \; function M.h(f) color:setHue(f) end \; function M.hex(s) color:setHex(tonumber(s:gsub("#"
+\, "") \, 16)) end \; function M.hsb(l) color:setHsb(l[1] \, l[2] \,
+l[3] \, l[4]) end \; function M.list(mylist) \; color.r=mylist[1] \;
+color.g=mylist[2] \; color.b=mylist[3] \; color.a=mylist[4] \; if mylist[4]
+== nil then a = 255 end end \; function M.get() return ofTable (color.r
+\, color.g \, color.b \, color.a \, color:getHue() \, color:getSaturation()
+\, color:getBrightness() \, color:getHex())end \; \; function M.bang()
 \; ofSetColor(color) \; return anything \; end \;;
 #X f 93;
 #X connect 0 0 15 0;
