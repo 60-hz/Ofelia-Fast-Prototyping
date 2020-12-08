@@ -1,0 +1,26 @@
+#N canvas 327 250 1090 427 12;
+#X obj 23 13 inlet;
+#X obj 23 561 outlet;
+#X obj 742 569 outlet;
+#X obj 763 13 inlet;
+#X obj 763 55 s \$0-of;
+#X msg 763 34 order \$1;
+#X obj 23 57 ofelia d -c12 \$0-of \; local log = ofLog("ofDragged")
+\; local canvas = ofCanvas(this) \; local outlet = ofOutlet(this) \;
+local order \, enabled = 50 \, true \; \; function ofelia.new() \;
+local args = canvas:getArgs() \; if #args == 1 then \; order = args[1]
+\; elseif #args == 2 then \; order \, enabled = args[1] \, args[2]
+~= 0 \; elseif #args ~= 0 then \; log:error("requires 1 or 2 creation
+arguments") \; end \; ofWindow.addListener("dragged" \, this \, order)
+\; end \; \; function ofelia.float(b) \; enabled = b ~= 0 \; end \;
+\; function ofelia.order(f) \; order = f \; ofWindow.addListener("dragged"
+\, this \, order) \; end \; \; function ofelia.free() \; ofWindow.removeListener("dragged"
+\, this) \; end \; \; function ofelia.dragged(e) \; if not enabled
+then \; return \; end \; outlet:outletList(1 \, ofTable(e.position.x
+\, e.position.y)) \; outlet:outletList(0 \, e.files) \; end;
+#X f 103;
+#X connect 0 0 6 0;
+#X connect 3 0 5 0;
+#X connect 5 0 4 0;
+#X connect 6 0 1 0;
+#X connect 6 1 2 0;
