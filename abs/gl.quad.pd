@@ -1,4 +1,4 @@
-#N canvas 344 23 870 755 12;
+#N canvas 401 23 870 755 12;
 #X obj 31 24 inlet;
 #X obj 31 734 outlet;
 #X obj 90 22 inlet;
@@ -15,21 +15,21 @@
 -100 \, 0) \; p3 = ofVec3f(-100 \, -100 \, 0) \; t0 = ofVec2f(0.0 \,
 1.0) \; t1 = ofVec2f(1.0 \, 1.0) \; t2 = ofVec2f(1.0 \, 0.0) \; t3
 = ofVec2f(0.0 \, 0.0) \; c1 = ofVec4f(1 \, 0 \, 0 \, 1) \; color =
-ofFloatColor(1 \, 0 \, 0) \; c1 = ofFloatColor() \; function M.new()
-\; ofWindow.addListener("setup" \, this) \; M.setup() \; end \; function
-M.free() \; ofWindow.removeListener("setup" \, this) end \; \; function
-M.setup() \; mesh:setMode(OF_PRIMITIVE_TRIANGLE_FAN) \; mesh:addVertex(p0:vec3())
-\; mesh:addColor(color) \; mesh:addTexCoord(t0:vec2()) \; mesh:addVertex(p1:vec3())
-\; mesh:addColor(color) \; mesh:addTexCoord(t1:vec2()) \; mesh:addVertex(p2:vec3())
-\; mesh:addColor(c1) \; mesh:addTexCoord(t2:vec2()) \; mesh:addVertex(p3:vec3())
-\; mesh:addTexCoord(t3:vec2()) \; mesh:addIndex(0) \; mesh:addIndex(1)
-\; mesh:addIndex(2) \; mesh:addIndex(1) \; mesh:addIndex(2) \; mesh:addIndex(3)
-\; end \; function M.corner0(l) p0.x = l[1] p0.y = l[2] mesh:setVertex(0
-\, p0:vec3()) end \; function M.corner1(l) p1.x = l[1] p1.y = l[2]
-mesh:setVertex(1 \, p1:vec3()) end \; function M.corner2(l) p2.x =
-l[1] p2.y = l[2] mesh:setVertex(2 \, p2:vec3()) end \; function M.corner3(l)
-p3.x = l[1] p3.y = l[2] mesh:setVertex(3 \, p3:vec3()) end \; \; function
-M.bang() \; mesh:draw() \; end \;;
+ofFloatColor(1 \, 1 \, 1) \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; M.setup() \; end \; function M.free() \; ofWindow.removeListener("setup"
+\, this) end \; \; function M.setup() \; mesh:setMode(OF_PRIMITIVE_TRIANGLE_FAN)
+\; mesh:addVertex(p0:vec3()) \; mesh:addColor(color) \; mesh:addTexCoord(t0:vec2())
+\; mesh:addVertex(p1:vec3()) \; mesh:addColor(color) \; mesh:addTexCoord(t1:vec2())
+\; mesh:addVertex(p2:vec3()) \; mesh:addColor(color) \; mesh:addTexCoord(t2:vec2())
+\; mesh:addVertex(p3:vec3()) \; mesh:addColor(color) \; mesh:addTexCoord(t3:vec2())
+\; mesh:addIndex(0) \; mesh:addIndex(1) \; mesh:addIndex(2) \; mesh:addIndex(1)
+\; mesh:addIndex(2) \; mesh:addIndex(3) \; end \; function M.corner0(l)
+p0.x = l[1] p0.y = l[2] mesh:setVertex(0 \, p0:vec3()) end \; function
+M.corner1(l) p1.x = l[1] p1.y = l[2] mesh:setVertex(1 \, p1:vec3())
+end \; function M.corner2(l) p2.x = l[1] p2.y = l[2] mesh:setVertex(2
+\, p2:vec3()) end \; function M.corner3(l) p3.x = l[1] p3.y = l[2]
+mesh:setVertex(3 \, p3:vec3()) end \; \; function M.bang() \; mesh:draw()
+\; end \;;
 #X f 115;
 #X connect 0 0 11 0;
 #X connect 2 0 7 0;
