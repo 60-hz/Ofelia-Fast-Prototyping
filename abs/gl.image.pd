@@ -24,16 +24,17 @@ end \; function M.crop(l) image\$0:crop(l[1] \, l[2] \, l[3] \, l[4])
 end \; function M.cropfrom(l) image\$0:cropfrom(image\$0 \, l[1] \,
 l[2] \, l[3] \, l[4]) end \; function M.drawsubsection(l) image\$0:drawSubsection(l[1]
 \, l[2] \, l[3] \, l[4] \, l[5] \, l[6]) end \; function M.update()
-image\$0:update()end \; function M.open(string) filename = string \;
-if ofWindow.exists then ofDisableArbTex() image\$0:clear() \; loaded
-= image\$0:load(filename) end \; if loaded then print("loaded " ..
-filename) end \; end \; function M.save(string) \; if ofWindow.exists
-then \; saved = image\$0:save(string) end if saved then print("saved
-" .. string) end \; end \; function M.get() return ofTable (loaded
-\, image\$0:getWidth() \, image\$0:getHeight() \, image\$0:getImageType()
-\, image\$0:getTexture() \, image\$0:getPixels())end \; \; function
-M.bang() \; if drawimage == 1 then image\$0:draw(X \, Y \, Z \, H \,
-W) end \; image\$0:bind() \; return(anything) \; end \;;
+image\$0:update()end \; function M.open(string) ofSetDataPathRoot(ofCanvas(this
+\, 1):getDir()) filename = string \; if ofWindow.exists then ofDisableArbTex()
+image\$0:clear() \; loaded = image\$0:load(filename) end \; if loaded
+then print("loaded " .. filename) end \; end \; function M.save(string)
+\; if ofWindow.exists then \; saved = image\$0:save(string) end if
+saved then print("saved " .. string) end \; end \; function M.get()
+return ofTable (loaded \, image\$0:getWidth() \, image\$0:getHeight()
+\, image\$0:getImageType() \, image\$0:getTexture() \, image\$0:getPixels())end
+\; \; function M.bang() \; if drawimage == 1 then image\$0:draw(X \,
+Y \, Z \, H \, W) end \; image\$0:bind() \; return(anything) \; end
+\;;
 #X f 103;
 #X connect 0 0 8 0;
 #X connect 2 0 7 0;
