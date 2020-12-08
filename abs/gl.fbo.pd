@@ -1,4 +1,4 @@
-#N canvas 453 33 771 745 12;
+#N canvas 346 33 771 745 12;
 #X obj 15 10 inlet;
 #X obj 61 772 outlet;
 #X obj 15 620 list trim;
@@ -24,10 +24,11 @@ end \; if args[2] == nil then height = 256 else height = args[2] end
 \, this) \; end \; \; function M.setup() \; if ofWindow.exists then
 fbo\$0:allocate(width \, height \, type) fbo\$0:beginFbo() ofClear(clear)
 fbo\$0:endFbo() end end \; \; function M.allocate(l) width=l[1] height=l[2]
-fbo\$0:allocate(width \, height \, type) fbo\$0:beginFbo() ofClear(0
-\, 0 \, 0 \, 255) fbo\$0:endFbo() end \; function M.clear() if ofWindow.exists
-then fbo\$0:clear() end end \; function M.autoclear(f) autoclear =
-f end \; function M.fill(l) clear.r=l[1] clear.g=l[2] clear.b=l[3]
+fbo\$0:allocate(width \, height \, type) end \; function M.garbage(l)
+width=l[1] height=l[2] fbo\$0:allocate(width \, height \, type) fbo\$0:beginFbo()
+ofClear(0 \, 0 \, 0 \, 255) fbo\$0:endFbo() end \; function M.clear()
+if ofWindow.exists then fbo\$0:clear() end end \; function M.autoclear(f)
+autoclear = f end \; function M.fill(l) clear.r=l[1] clear.g=l[2] clear.b=l[3]
 clear.a=l[4] fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo() end \;
 function M.updatetexture() fbo\$0:updateTexture() end \; function M.draw(list)
 fbo\$0:draw(list[1] \, list[2] \, list[3]) end \; function M.crop(l)
