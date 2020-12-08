@@ -11,35 +11,6 @@
 #X obj 15 828 ofelia f videoplayer-\$0 \; videoplayer\$0:unbind() \;
 ;
 #X f 66;
-#X obj 15 44 ofelia d videoplayer-\$0 \; local canvas = ofCanvas(this)
-\; local args = canvas:getArgs() \; videoplayer\$0 = ofVideoPlayer()
-\; local filename \, start \, loop = args[1] \, args[2] \, args[3]
-\; local loaded = 0 \; \; function M.new() \; ofWindow.addListener("setup"
-\, this) \; if args[1] == nil then print("No file loaded") else M.open(filename)
-end \; if args[2] == 1 then M.play() end \; if args[3] == nil then
-loop = 0 end end \; \; function M.free() \; ofWindow.removeListener("setup"
-\, this) \; videoplayer\$0:close() end \; \; function M.setup() videoplayer\$0:close()
-videoplayer\$0:load(filename) end \; \; function M.open(string) filename
-= string \; if ofWindow.exists then \; videoplayer\$0:close() \; videoplayer\$0:load(filename)
-\; if (videoplayer\$0:isLoaded()) then \; print("loaded " .. filename)
-\; videoplayer\$0:update() end end \; end \; function M.update() videoplayer\$0:update()
-end \; function M.play() videoplayer\$0:play() end \; function M.stop()
-videoplayer\$0:stop() end \; function M.pause() videoplayer\$0:setPaused(true)
-end \; function M.speed(float) videoplayer\$0:setSpeed(float) end \;
-function M.frame(float) videoplayer\$0:setFrame(float) end \; function
-M.position(float) videoplayer\$0:setPosition(float) end \; function
-M.volume(float) videoplayer\$0:setVolume(float) end \; function M.loop(float)
-loop = float end \; function M.close() videoplayer\$0:close() end \;
-function M.get() return ofTable (videoplayer\$0:isLoaded() \, videoplayer\$0:isPlaying()
-\, ofClamp(videoplayer\$0:getCurrentFrame() \, 0 \, videoplayer\$0:getTotalNumFrames())
-\, videoplayer\$0:getTotalNumFrames() \, videoplayer\$0:getWidth()
-\, videoplayer\$0:getHeight() \, videoplayer\$0:getDuration()) \; end
-\; \; function M.bang() \; if loop == 0 then videoplayer\$0:setLoopState(OF_LOOP_NONE)
-end \; if loop == 1 then videoplayer\$0:setLoopState(OF_LOOP_NORMAL)
-end \; if loop == 2 then videoplayer\$0:setLoopState(OF_LOOP_PALINDROME)
-end \; videoplayer\$0:update() \; videoplayer\$0:bind() \; return(anything)
-\; end \;;
-#X f 92;
 #N canvas 0 23 563 185 Notes 0;
 #X text 32 117 https://forum.openframeworks.cc/t/autoplay-behaviour-of-ofvideoplayer/35905
 ;
@@ -51,12 +22,41 @@ frame (temp fix is to do ofClamp), f 71;
 #X text 15 95 - Always autoplay after loading a file pb (OSX but not
 on windows):, f 70;
 #X restore 187 10 pd Notes;
-#X connect 0 0 10 0;
+#X obj 15 44 ofelia d videoplayer-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; videoplayer\$0 = ofVideoPlayer()
+\; local filename \, start \, loop = args[1] \, args[2] \, args[3]
+\; local loaded = 0 \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then print("No file loaded") else M.open(filename)
+end \; if args[2] == 1 then M.play() end \; if args[3] == nil then
+loop = 0 end end \; \; function M.free() \; ofWindow.removeListener("setup"
+\, this) \; videoplayer\$0:close() end \; \; function M.setup() videoplayer\$0:close()
+videoplayer\$0:load(filename) end \; \; function M.open(string) ofSetDataPathRoot(ofCanvas(this
+\, 1):getDir()) filename = string \; if ofWindow.exists then \; videoplayer\$0:close()
+\; videoplayer\$0:load(filename) \; if (videoplayer\$0:isLoaded())
+then \; print("loaded " .. filename) \; videoplayer\$0:update() end
+end \; end \; function M.update() videoplayer\$0:update() end \; function
+M.play() videoplayer\$0:play() end \; function M.stop() videoplayer\$0:stop()
+end \; function M.pause() videoplayer\$0:setPaused(true) end \; function
+M.speed(float) videoplayer\$0:setSpeed(float) end \; function M.frame(float)
+videoplayer\$0:setFrame(float) end \; function M.position(float) videoplayer\$0:setPosition(float)
+end \; function M.volume(float) videoplayer\$0:setVolume(float) end
+\; function M.loop(float) loop = float end \; function M.close() videoplayer\$0:close()
+end \; function M.get() return ofTable (videoplayer\$0:isLoaded() \,
+videoplayer\$0:isPlaying() \, ofClamp(videoplayer\$0:getCurrentFrame()
+\, 0 \, videoplayer\$0:getTotalNumFrames()) \, videoplayer\$0:getTotalNumFrames()
+\, videoplayer\$0:getWidth() \, videoplayer\$0:getHeight() \, videoplayer\$0:getDuration())
+\; end \; \; function M.bang() \; if loop == 0 then videoplayer\$0:setLoopState(OF_LOOP_NONE)
+end \; if loop == 1 then videoplayer\$0:setLoopState(OF_LOOP_NORMAL)
+end \; if loop == 2 then videoplayer\$0:setLoopState(OF_LOOP_PALINDROME)
+end \; videoplayer\$0:update() \; videoplayer\$0:bind() \; return(anything)
+\; end \;;
+#X f 92;
+#X connect 0 0 11 0;
 #X connect 2 0 7 0;
 #X connect 3 0 6 0;
 #X connect 5 0 9 0;
 #X connect 5 1 3 0;
 #X connect 6 0 1 0;
 #X connect 6 1 4 0;
-#X connect 7 0 10 0;
-#X connect 10 0 5 0;
+#X connect 7 0 11 0;
+#X connect 11 0 5 0;
