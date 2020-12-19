@@ -1,0 +1,28 @@
+#N canvas 565 117 626 290 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X floatatom 75 146 5 0 0 0 - - -;
+#X text 74 131 valueX;
+#X floatatom 123 146 5 0 0 0 - - -;
+#X text 122 131 valueY;
+#X floatatom 171 146 5 0 0 0 - - -;
+#X text 170 131 valueZ;
+#X obj 27 99 of.draw;
+#X text 412 175 Single axis;
+#X text 449 145 list of xyz;
+#X obj 343 210 of.scale 2 1 1, f 21;
+#X msg 343 145 1 2 3;
+#X msg 363 175 x 4;
+#X text 25 30 Scale X \, Y \, Z;
+#X obj 462 45 declare -lib ofelia;
+#X obj 406 19 of.window 500 500 30 create;
+#X obj 27 241 of.box 100 100 100 1 1 1 line;
+#X obj 27 178 of.scale 1 1 1, f 21;
+#X connect 1 0 17 1;
+#X connect 3 0 17 2;
+#X connect 5 0 17 3;
+#X connect 7 0 17 0;
+#X connect 11 0 10 0;
+#X connect 12 0 10 0;
+#X connect 17 0 16 0;

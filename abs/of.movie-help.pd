@@ -1,0 +1,87 @@
+#N canvas 423 78 638 623 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X floatatom 70 453 5 0 0 0 - - -;
+#X obj 30 492 of.rotate;
+#X msg 62 134 play;
+#X msg 62 159 pause;
+#X msg 138 157 frame \$1;
+#X floatatom 138 134 5 0 0 0 - - -;
+#X msg 62 184 stop;
+#X msg 62 234 get;
+#X obj 281 115 openpanel;
+#X obj 281 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 30 93 of.draw;
+#X obj 30 538 of.sphere 500 100 line;
+#X floatatom 233 418 5 0 0 0 isplaying - -;
+#X floatatom 258 448 5 0 0 0 currentframe - -;
+#X floatatom 307 505 5 0 0 0 width - -;
+#X floatatom 332 535 5 0 0 0 height - -;
+#X text 348 144 absolute paths;
+#X msg 138 205 speed 2;
+#X floatatom 209 291 5 0 0 0 - - -;
+#X floatatom 282 475 5 0 0 0 totalframe - -;
+#X text 106 338 get method:;
+#X obj 30 515 of.box 200 200 200 5 5 5;
+#X floatatom 209 388 5 0 0 0 isloaded - -;
+#X obj 467 42 declare -lib ofelia;
+#X obj 411 16 of.window 500 500 30 create;
+#X msg 282 194 volume 1;
+#X msg 281 144 open \$1;
+#X msg 62 210 close;
+#X msg 138 181 loop 1;
+#X msg 138 228 speed -1;
+#X text 356 194 sound volume 0 -1;
+#X floatatom 280 238 5 0 0 0 - - -;
+#X msg 280 258 position \$1;
+#X floatatom 356 560 5 0 0 0 duration - -;
+#X obj 209 364 unpack 0 0 0 0 0 0 0, f 21;
+#X text 428 180 open relative paths;
+#X text 324 236 position from 0 to 1;
+#X text 28 47 Arguments: file \, autostart \, loopmode;
+#X obj 283 219 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X text 303 93 load a file...;
+#X text 253 317 -> don't forget to make a special encoding (like PhotoJPG/Animation/Mjpeg
+codec or set every frame ad keyframe in your video exporter., f 55
+;
+#X text 252 292 Go to frame... (windows user might need to "pause"
+or "play" before), f 55;
+#X text 28 15 A simple movie player (windows user might need to install
+"k-lite codec pack" to read movies), f 52;
+#X obj 30 319 of.movie ../data/video.mov;
+#X msg 281 169 open ../data/video.mov;
+#X connect 1 0 2 2;
+#X connect 2 0 22 0;
+#X connect 3 0 44 0;
+#X connect 4 0 44 0;
+#X connect 5 0 44 0;
+#X connect 6 0 5 0;
+#X connect 7 0 44 0;
+#X connect 8 0 44 0;
+#X connect 9 0 27 0;
+#X connect 10 0 9 0;
+#X connect 11 0 44 0;
+#X connect 18 0 44 0;
+#X connect 19 0 44 1;
+#X connect 22 0 12 0;
+#X connect 26 0 44 0;
+#X connect 27 0 44 0;
+#X connect 28 0 44 0;
+#X connect 29 0 44 0;
+#X connect 30 0 44 0;
+#X connect 32 0 33 0;
+#X connect 33 0 44 0;
+#X connect 35 0 23 0;
+#X connect 35 1 13 0;
+#X connect 35 2 14 0;
+#X connect 35 3 20 0;
+#X connect 35 4 15 0;
+#X connect 35 5 16 0;
+#X connect 35 6 34 0;
+#X connect 39 0 32 0;
+#X connect 44 0 2 0;
+#X connect 44 1 35 0;
+#X connect 45 0 44 0;

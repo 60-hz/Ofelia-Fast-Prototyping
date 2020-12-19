@@ -1,0 +1,18 @@
+#N canvas 521 280 637 291 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X obj 406 19 of.window 500 500 30 create;
+#X obj 40 108 of.draw;
+#X text 21 47 (arguments: order \, enable);
+#X obj 93 146 of.keyboard;
+#X msg 93 199 text \$1;
+#X obj 40 232 of.text Type-here center;
+#X text 186 145 -> focus the of.window and type;
+#X symbolatom 93 169 10 0 0 0 - - -;
+#X text 21 19 Keyboard output in the of.window;
+#X connect 3 0 7 0;
+#X connect 5 0 9 0;
+#X connect 6 0 7 0;
+#X connect 9 0 6 0;

@@ -2,11 +2,11 @@
 #X declare -path abs;
 #X declare -lib ofelia;
 #X floatatom 96 496 5 0 0 0 - - -;
-#X obj 29 520 gl.rotate, f 15;
-#X obj 29 181 gl.draw;
-#X obj 29 573 gl.plane 200 200 5 5;
-#X obj 29 548 gl.sphere 500 100 line;
-#X obj 29 372 gl.image data/background.jpg;
+#X obj 29 520 of.rotate, f 15;
+#X obj 29 181 of.draw;
+#X obj 29 573 of.plane 200 200 5 5;
+#X obj 29 548 of.sphere 500 100 line;
+#X obj 29 372 of.image data/background.jpg;
 #X text 242 378 arguments= relative path;
 #X text 54 259 png with alpha channel;
 #X obj 358 43 declare -path abs;
@@ -16,7 +16,7 @@
 1;
 #X msg 207 43 fullscreen \$1;
 #X msg 208 65 color 0 64 128;
-#X obj 21 110 gl.window 640 480 30 1;
+#X obj 21 110 of.window 640 480 30 1;
 #X text 11 1 Windows creation;
 #X msg 208 87 dimen 320 240;
 #X text 25 153 Rendering;
@@ -43,7 +43,7 @@
 \, get, f 69;
 #X text 52 213 open image relative to patch and get infos;
 #X msg 84 68 destroy;
-#X obj 84 21 gl.keyboard;
+#X obj 84 21 of.keyboard;
 #X obj 84 43 select Esc;
 #X obj 29 401 t b b, f 10;
 #X text 356 3 Path and lib;

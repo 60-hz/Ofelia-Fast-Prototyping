@@ -1,0 +1,49 @@
+#N canvas 116 113 714 652 12;
+#X obj 31 24 inlet;
+#X obj 90 22 inlet;
+#X obj 160 22 inlet;
+#X obj 230 22 inlet;
+#X obj 300 22 inlet;
+#X msg 90 48 r \$1;
+#X msg 160 48 g \$1;
+#X msg 230 48 b \$1;
+#X msg 300 48 a \$1;
+#X text 466 622 RI;
+#X text 149 589 Todo: add HSB with arguments;
+#X obj 31 626 outlet;
+#X obj 31 580 list trim;
+#X obj 98 626 outlet;
+#X obj 31 603 route bang;
+#X obj 31 75 ofelia d color-\$0 \; local log = ofLog("of.color") \;
+local c = ofCanvas(this) \; local args = c:getArgs() \; local color
+= ofColor() \; \; function M.new() \; if args[1] == nil then color.r
+= 255 else color.r = args[1] end \; if args[2] == nil then color.g
+= 255 else color.g = args[2] end \; if args[3] == nil then color.b
+= 255 else color.b = args[3] end \; if args[4] == nil then color.a
+= 255 else color.a = args[4] end \; if #args == 1 then \; log:error("requires
+3 (rgb) or 4 (rgba) creation argument") \; end \; end \; \; function
+M.r(f) color.r = f end \; function M.g(f) color.g = f end \; function
+M.b(f) color.b = f end \; function M.a(f) color.a = f end \; function
+M.b(f) color:setBrightness(f) end \; function M.s(f) color:setSaturation(f)
+end \; function M.h(f) color:setHue(f) end \; function M.hex(s) color:setHex(tonumber(s:gsub("#"
+\, "") \, 16)) end \; function M.hsb(l) color:setHsb(l[1] \, l[2] \,
+l[3] \, l[4]) end \; function M.list(mylist) \; color.r=mylist[1] \;
+color.g=mylist[2] \; color.b=mylist[3] \; color.a=mylist[4] \; if mylist[4]
+== nil then a = 255 end end \; function M.get() return ofTable (color.r
+\, color.g \, color.b \, color.a \, color:getHue() \, color:getSaturation()
+\, color:getBrightness() \, color:getHex())end \; \; function M.bang()
+\; ofSetColor(color) \; return anything \; end \;;
+#X f 93;
+#X connect 0 0 15 0;
+#X connect 1 0 5 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 4 0 8 0;
+#X connect 5 0 15 0;
+#X connect 6 0 15 0;
+#X connect 7 0 15 0;
+#X connect 8 0 15 0;
+#X connect 12 0 14 0;
+#X connect 14 0 11 0;
+#X connect 14 1 13 0;
+#X connect 15 0 12 0;

@@ -1,0 +1,72 @@
+#N canvas 311 -877 1101 855 12;
+#X obj 21 14 inlet;
+#X obj 90 12 inlet;
+#X obj 220 12 inlet;
+#X text 988 750 RI;
+#X text 437 39 https://forum.openframeworks.cc/t/extrude-text-into-3d/6938/2
+, f 72;
+#X text 310 24 TODO:;
+#X text 297 40 - 3d extrusion text :;
+#X obj 21 847 outlet;
+#X obj 21 801 list trim;
+#X obj 72 847 outlet;
+#X obj 21 824 route bang;
+#X msg 90 38 letterspace \$1;
+#X obj 21 64 ofelia d \$0-box \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local font\$0 = ofTrueTypeFont() \; local text
+\, fontname \, fontsize \, antialias \, fullchar \, contours \, simplify
+\, dpi \, drawmode \, posX \, posY \, align \, debug = "of.text" \,
+"font.ttf" \, 32 \, true \, true \, true \, 0 \, 96 \, "pix" \, 0 \,
+0 \, "left" \, 0 \; local position \, orientation \, scale = ofVec3f()
+\, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then text = "of.text" else text = args[1]
+end \; if args[2] == nil then align = "left" else align = args[2] end
+\; if args[3] == nil then fontsize = 32 else fontsize = args[3] end
+\; M.setup() end \; \; function M.free() \; ofWindow.removeListener("setup"
+\, this) end \; \; function M.setup() M.open(fontname) \; mesh\$0 =
+ofMesh() mesh\$0 = font\$0:getStringMesh(text \, 0 \, 0 \, false) posY
+= 0-font\$0:stringHeight(text)/2 \; node\$0 = ofNode() node\$0:setPosition(position:vec3())
+node\$0:setOrientation(orientation:vec3()) node\$0:setScale(scale:vec3())
+M.align(align) end \; \; function M.open(s) ofSetDataPathRoot(ofCanvas(this
+\, 1):getDir()) fontname = s if (io.type(io.open(fontname \, "r")))
+then M.load() end end \; function M.draw(s) drawmode = s end \; function
+M.text(l) if type(l) == "table" then text = (table.concat (l \, " "))
+else text = l end M.align(align) end \; function M.load() font\$0:load(fontname
+\, fontsize \, antialias \, fullchar \, contours \, simplify \, dpi)
+if font\$0:isLoaded() then print ("loaded " .. fontname) end end \;
+function M.fontsize(f) fontsize = f M.load() end \; function M.align(s)
+align = s if align == "center" then posX = 0-font\$0:stringWidth(text)/2
+end if align == "left" then posX=0 end if align == "right" then posX
+= 0-font\$0:stringWidth(text) end end \; function M.letterspace(f)
+font\$0:setLetterSpacing(f) end \; function M.lineheight(f) font\$0:setLineHeight(f)
+end \; function M.spacesize(f) font\$0:setSpaceSize(f) end \; function
+M.direction(f) font\$0:setDirection(f) end \; function M.aliasing(f)
+antialias = (f ~= 0) M.load() end \; function M.simplify(f) simplify
+= f M.load() end \; function M.dpi(f) dpi = (f) M.load() end \; function
+M.fullchar(f) fullchar = (f ~= 0) M.load() end \; function M.debug(f)
+debug = f end \; function M.position(l) position:set (l[1] \, l[2]
+\, l[3]) node\$0:setPosition(position:vec3()) end \; function M.orientation(l)
+orientation:set (l[1] \, l[2] \, l[3]) node\$0:setOrientation(orientation:vec3())
+end \; function M.scale(l) scale:set (l[1] \, l[2] \, l[3]) node\$0:setScale(scale:vec3())
+end \; function M.get() return ofTable (loaded \, font\$0:isLoaded()
+\, string.len(text) \, font\$0:stringWidth(text) \, font\$0:stringHeight(text)
+\, font\$0:getNumCharacters()) end \; \; function M.bang() \; node\$0:transformGL()
+\; if drawmode == "pix" then font\$0:drawString(text \, posX \, posY)
+end \; if drawmode == "shape" then font\$0:drawStringAsShapes(text
+\, posX \, posY+(fontsize/32*25)) end \; if drawmode == "line" then
+ofNoFill() ofScale(1 \, -1 \, 1) font\$0:drawStringAsShapes(text \,
+posX \, posY+(fontsize/20*25)) ofFill() end \; if drawmode == "mesh"
+then mesh\$0:draw() end \; node\$0:restoreTransformGL() \; if debug
+== 1 then ofDisableLighting() node\$0:draw() end if _lighting == 1
+then ofEnableLighting() end \; return (anything) \; end \;;
+#X f 150;
+#X msg 220 38 dpi \$1;
+#X connect 0 0 12 0;
+#X connect 1 0 11 0;
+#X connect 2 0 13 0;
+#X connect 8 0 10 0;
+#X connect 10 0 7 0;
+#X connect 10 1 9 0;
+#X connect 11 0 12 0;
+#X connect 12 0 8 0;
+#X connect 13 0 12 0;

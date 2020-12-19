@@ -2,9 +2,9 @@
 #X declare -path abs;
 #X declare -lib ofelia;
 #X floatatom 61 472 5 0 0 0 - - -;
-#X obj 29 507 gl.rotate;
-#X obj 29 168 gl.draw;
-#X obj 29 535 gl.sphere 500 100 line;
+#X obj 29 507 of.rotate;
+#X obj 29 168 of.draw;
+#X obj 29 535 of.sphere 500 100 line;
 #X obj 96 398 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 123 294 dimen 640 480;
@@ -22,9 +22,9 @@
 #X text 176 412 height;
 #X text 164 267 get informations to right outlet;
 #X text 231 294 change pixel size;
-#X obj 29 340 gl.videoin;
+#X obj 29 340 of.videoin;
 #X text 186 204 Open device ID;
-#X obj 29 560 gl.box 200 200 200 5 5 5;
+#X obj 29 560 of.box 200 200 200 5 5 5;
 #X obj 29 408 t a b;
 #X obj 61 444 f;
 #X text 185 173 list devices?;
@@ -35,11 +35,11 @@
 1;
 #X msg 207 43 fullscreen \$1;
 #X msg 208 65 color 0 64 128;
-#X obj 21 110 gl.window 640 480 30 1;
+#X obj 21 110 of.window 640 480 30 1;
 #X text 11 1 Windows creation;
 #X msg 208 87 dimen 320 240;
 #X msg 84 68 destroy;
-#X obj 84 21 gl.keyboard;
+#X obj 84 21 of.keyboard;
 #X obj 84 43 select Esc;
 #X text 356 3 Path and lib;
 #X obj 136 444 mod 359;

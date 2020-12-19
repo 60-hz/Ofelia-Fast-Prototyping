@@ -1,0 +1,48 @@
+#N canvas 457 142 620 490 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X floatatom 69 361 5 0 0 0 - - -;
+#X obj 29 390 of.rotate;
+#X obj 29 101 of.draw;
+#X obj 29 443 of.plane 200 200 5 5;
+#X obj 29 418 of.sphere 500 100 line;
+#X obj 96 331 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 123 207 dimen 640 480;
+#X msg 123 105 listdev;
+#X msg 124 170 close;
+#X msg 125 240 get;
+#X msg 123 137 open 0;
+#X text 125 272 Args: Camera ID \, width heigth;
+#X text 180 171 close device;
+#X floatatom 136 330 5 0 0 0 - - -;
+#X floatatom 177 330 5 0 0 0 - - -;
+#X text 93 345 open;
+#X text 133 345 width;
+#X text 176 345 height;
+#X text 165 240 get informations to right outlet;
+#X text 231 207 change pixel size;
+#X obj 29 273 of.videoin;
+#X obj 462 45 declare -lib ofelia;
+#X obj 406 19 of.window 500 500 30 create;
+#X obj 96 299 unpack 0 0 0;
+#X text 28 23 A simple Video grabber (experimental \, need more work...)
+;
+#X text 28 43 Arguments : deviceID \, width \, height;
+#X text 186 137 Open device ID;
+#X text 185 106 Get a device list (need a way to catch ID);
+#X connect 1 0 2 2;
+#X connect 2 0 5 0;
+#X connect 3 0 21 0;
+#X connect 5 0 4 0;
+#X connect 7 0 21 0;
+#X connect 8 0 21 0;
+#X connect 9 0 21 0;
+#X connect 10 0 21 0;
+#X connect 11 0 21 0;
+#X connect 21 0 2 0;
+#X connect 21 1 24 0;
+#X connect 24 0 6 0;
+#X connect 24 1 14 0;
+#X connect 24 2 15 0;

@@ -1,0 +1,35 @@
+#N canvas 521 280 637 329 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X obj 406 19 of.window 500 500 30 create;
+#X obj 378 131 of.draw;
+#X text 21 19 Mouse position in world / screen mode;
+#X obj 378 235 of.plane;
+#X obj 448 157 of.mouse, f 18;
+#X msg 448 189 position \$1 \$2 0;
+#X obj 51 125 of.mouse, f 18;
+#X floatatom 174 167 5 0 0 0 - - -;
+#X text 217 165 1 = left clic;
+#X text 217 175 2 = middle clic;
+#X text 217 185 3 = right clic;
+#X floatatom 51 208 5 0 0 1 X - -;
+#X floatatom 118 207 5 0 0 1 Y - -;
+#X obj 51 166 unpack 0 0;
+#X text 59 145 XY;
+#X text 21 37 Arguments: draw-order \, enable;
+#N canvas 109 383 450 153 Coordinate 0;
+#X text 21 15 Like of.draw:;
+#X text 20 35 if draw order is between 0 and 1000 = normalized mode
+(center coordinate = 0 \, 0 \, 0);
+#X text 21 75 if draw order is < 0 and > 1000 = pixel based coordinate
+mode (center is top left \, easier for screen GUI);
+#X restore 296 45 pd Coordinate;
+#X connect 3 0 5 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X connect 8 0 15 0;
+#X connect 8 1 9 0;
+#X connect 15 0 13 0;
+#X connect 15 1 14 0;

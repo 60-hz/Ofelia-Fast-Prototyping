@@ -2,7 +2,7 @@
 #X declare -path abs;
 #X declare -lib ofelia;
 #X floatatom 66 539 5 0 0 0 - - -;
-#X obj 26 570 gl.rotate;
+#X obj 26 570 of.rotate;
 #X msg 142 181 play;
 #X msg 142 206 pause;
 #X msg 199 205 frame \$1;
@@ -13,8 +13,8 @@
 #X obj 278 204 openpanel;
 #X obj 278 182 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 29 201 gl.draw;
-#X obj 26 616 gl.sphere 500 100 line;
+#X obj 29 201 of.draw;
+#X obj 26 616 of.sphere 500 100 line;
 #X text 385 299 Ok;
 #X floatatom 236 496 5 0 0 0 isplaying - -;
 #X floatatom 261 526 5 0 0 0 currentframe - -;
@@ -27,12 +27,12 @@
 #X floatatom 212 369 5 0 0 0 - - -;
 #X floatatom 285 553 5 0 0 0 totalframe - -;
 #X text 131 416 get method:;
-#X obj 26 593 gl.box 200 200 200 5 5 5;
+#X obj 26 593 of.box 200 200 200 5 5 5;
 #X obj 212 432 unpack 0 0 0 0 0 0;
 #X floatatom 212 466 5 0 0 0 isloaded - -;
 #X text 384 332 No file;
 #X text 26 172 Rendering;
-#X obj 26 397 gl.movie data/video.mov 1 2;
+#X obj 26 397 of.movie data/video.mov 1 2;
 #X obj 26 443 t a b;
 #X obj 65 464 i;
 #X obj 65 487 + 1;
@@ -46,11 +46,11 @@
 1;
 #X msg 207 43 fullscreen \$1;
 #X msg 208 65 color 0 64 128;
-#X obj 21 110 gl.window 640 480 30 1;
+#X obj 21 110 of.window 640 480 30 1;
 #X text 11 1 Windows creation;
 #X msg 208 87 dimen 320 240;
 #X msg 84 68 destroy;
-#X obj 84 21 gl.keyboard;
+#X obj 84 21 of.keyboard;
 #X obj 84 43 select Esc;
 #X text 356 3 Path and lib;
 #X obj 65 510 mod 359;
