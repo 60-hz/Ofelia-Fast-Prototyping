@@ -1,0 +1,195 @@
+#N canvas 566 39 648 726 12;
+#X declare -lib ofelia;
+#X declare -stdpath internals;
+#X obj 40 238 of.draw;
+#X msg 232 264 mode \$1;
+#X msg 233 349 draw line;
+#X msg 233 371 draw fill;
+#X msg 233 473 smoothnormals \$1;
+#X floatatom 233 446 5 0 0 0 - - -;
+#X msg 232 497 get;
+#X obj 205 557 unpack 0 0 0 0 0;
+#X floatatom 205 580 5 0 0 0 Vertices - -;
+#X floatatom 232 614 5 0 0 0 Colors - -;
+#X floatatom 259 641 5 0 0 0 Indices - -;
+#X floatatom 286 596 5 0 0 0 Normals - -;
+#X floatatom 314 662 5 0 0 0 Texcoords - -;
+#X obj 56 443 r mesh;
+#N canvas 430 241 793 655 Add_to_mesh 1;
+#X msg 27 165 \; mesh addtriangle 1 2 3;
+#X obj 29 31 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 29 92 \; mesh addvertex \$1 \$2 \$3;
+#X msg 27 205 \; mesh addtriangle 4 5 6;
+#X msg 27 245 \; mesh addtriangle 7 8 9;
+#X msg 27 285 \; mesh addtriangle 10 11 12;
+#X msg 27 387 \; mesh addindex \$1;
+#X obj 264 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 264 209 metro 40;
+#X obj 264 188 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 264 291 \; mesh addcolor \$1 \$2 \$3 \$4;
+#X obj 265 384 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 265 358 metro 40;
+#X obj 265 337 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 265 440 \; mesh addtexcoord \$1 \$2;
+#X floatatom 27 357 5 0 0 0 - - -;
+#X obj 29 60 random.list -10 10 3;
+#X obj 264 260 random.list 0 1 4;
+#X obj 265 409 random.list 0 1 2;
+#X msg 477 129 \; mesh addvertex -10 10 0;
+#X msg 477 91 \; mesh addvertex 10 -10 0;
+#X msg 477 53 \; mesh addvertex -10 -10 0;
+#X msg 481 225 \; mesh addvertex 10 10 0;
+#X msg 481 185 \; mesh addvertex -10 10 0;
+#X msg 481 265 \; mesh addvertex 10 -10 0;
+#X text 469 29 A simple square is made by 2 triangles:;
+#X text 284 234 add new vertex color;
+#X text 379 274 r g b a;
+#X text 148 75 x y z;
+#X text 54 26 add new vertex position;
+#X connect 1 0 16 0;
+#X connect 7 0 17 0;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 11 0 18 0;
+#X connect 12 0 11 0;
+#X connect 13 0 12 0;
+#X connect 15 0 6 0;
+#X connect 16 0 2 0;
+#X connect 17 0 10 0;
+#X connect 18 0 14 0;
+#X restore 378 242 pd Add_to_mesh;
+#N canvas 721 49 407 443 Remove_from_mesh 0;
+#X floatatom 91 100 5 0 0 0 - - -;
+#X floatatom 91 230 5 0 0 0 - - -;
+#X floatatom 89 36 5 0 0 0 - - -;
+#X msg 89 68 \; mesh removecolor \$1;
+#X msg 91 135 \; mesh removevertex \$1;
+#X msg 91 195 \; mesh removenormal \$1;
+#X msg 91 255 \; mesh removeindex \$1;
+#X msg 91 315 \; mesh removetextcoord \$1;
+#X floatatom 91 290 5 0 0 0 - - -;
+#X floatatom 91 170 5 0 0 0 - - -;
+#X connect 0 0 4 0;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 8 0 7 0;
+#X connect 9 0 5 0;
+#X restore 378 268 pd Remove_from_mesh;
+#X obj 379 403 r mesh;
+#X obj 379 426 print;
+#X floatatom 129 264 5 0 0 0 - - -;
+#X obj 40 302 of.rotate -90, f 19;
+#X msg 233 321 stroke \$1;
+#X floatatom 233 291 5 0 0 0 - - -;
+#X msg 233 395 draw point;
+#N canvas 771 332 460 428 Models_examples 0;
+#X msg 20 110 \; mesh open data/penguin.ply;
+#X text 17 5 Loads a mesh from a file located at the provided path
+into the mesh. This will replace any existing data within the mesh.
+It expects that the file will be in the PLY Format. It will only load
+meshes saved in the PLY ASCII format \; the binary format is not supported.
+Triangle faces.;
+#X obj 263 153 openpanel;
+#X msg 263 177 open \$1;
+#X obj 263 201 s mesh;
+#X obj 263 125 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 20 254 \; mesh open data/circle.ply;
+#X text 18 237 big circle;
+#X msg 20 150 \; mesh open data/teapot.ply;
+#X msg 20 190 \; mesh open data/torusknot.ply;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 2 0;
+#X restore 378 344 pd Models_examples;
+#N canvas 618 327 555 437 Primitives_examples 0;
+#X msg 18 55 \; mesh prim ofSpherePrimitive 10 4;
+#X msg 18 95 \; mesh prim ofBoxPrimitive 10 10 10;
+#X msg 18 135 \; mesh prim ofConePrimitive 10 10 10 10 10 0;
+#X text 350 182 pb: cap need to set as bool;
+#X msg 18 255 \; mesh prim ofIcosahedron 1;
+#X text 274 220 ?;
+#X text 205 261 ?;
+#X text 283 303 not working?;
+#X msg 18 295 \; mesh append ofBoxPrimitive 10 10 10;
+#X msg 18 15 \; mesh prim ofPlanePrimitive 10 10 10 10 0;
+#X msg 18 175 \; mesh prim ofCylinderPrimitive 10 10 10 10 10;
+#X msg 18 215 \; mesh prim oficospherePrimitive 10;
+#X restore 378 319 pd Primitives_examples;
+#X obj 9 0 cnv 15 600 200 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 155 declare -lib ofelia;
+#X text 16 172 https://openframeworks.cc/documentation/3d/ofMesh/,
+f 51;
+#N canvas 426 414 313 276 Clear_from_mesh 0;
+#X msg 22 7 \; mesh clear;
+#X msg 21 51 \; mesh clearcolors;
+#X msg 21 95 \; mesh clearindices;
+#X msg 21 139 \; mesh clearvertices;
+#X msg 21 182 \; mesh clearnormals;
+#X msg 21 226 \; mesh cleartexcoords;
+#X restore 378 295 pd Clear_from_mesh;
+#N canvas 139 431 450 300 Set 0;
+#X obj 27 141 metro 40;
+#X obj 27 120 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 23 41 5 0 0 0 - - -;
+#X msg 23 66 \; mesh setcolor 0.5 0.5 0.5 1;
+#X msg 27 169 \; mesh setcolor 1 1 1 0.5;
+#X text 65 40 bug!;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X restore 378 368 pd Set;
+#X text 14 12 An of.mesh represents a set of vertices in 3D spaces
+\, and normals at those points \, colors at those points \, and texture
+coordinates at those points. Each of these different properties is
+stored in a vector. Vertices are passed to your graphics card and your
+graphics card fill in the spaces in between them in a processing usually
+called the rendering pipeline. The rendering pipeline goes more or
+less like this: - Say how you're going to connect all the points. -
+Make some points. - Say that you're done making points.;
+#X obj 422 176 declare -stdpath internals;
+#X obj 474 123 of.window 1;
+#X msg 233 420 draw normal;
+#X obj 40 270 of.depth 1;
+#X obj 40 396 of.scale 10 10 10;
+#X text 129 245 Rotate;
+#X obj 232 238 hradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X msg 372 471 setupindicesauto;
+#X msg 58 333 open data/wood.jpg;
+#X obj 40 363 of.image data/penguin.jpg;
+#X obj 40 525 of.mesh data/penguin.ply;
+#X connect 0 0 34 0;
+#X connect 1 0 41 0;
+#X connect 2 0 41 0;
+#X connect 3 0 41 0;
+#X connect 4 0 41 0;
+#X connect 5 0 4 0;
+#X connect 6 0 41 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 7 2 10 0;
+#X connect 7 3 11 0;
+#X connect 7 4 12 0;
+#X connect 13 0 41 0;
+#X connect 16 0 17 0;
+#X connect 18 0 19 1;
+#X connect 19 0 40 0;
+#X connect 20 0 41 0;
+#X connect 21 0 20 0;
+#X connect 22 0 41 0;
+#X connect 33 0 41 0;
+#X connect 34 0 19 0;
+#X connect 35 0 41 0;
+#X connect 37 0 1 0;
+#X connect 38 0 41 0;
+#X connect 39 0 40 0;
+#X connect 40 0 35 0;
+#X connect 41 1 7 0;

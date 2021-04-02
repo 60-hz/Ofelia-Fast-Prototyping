@@ -1,0 +1,47 @@
+#N canvas 316 49 964 729 12;
+#X obj 31 24 inlet;
+#X obj 31 992 outlet;
+#X text 689 639 RI;
+#X obj 31 75 ofelia d path-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local mode = args[1] \; local position \, orientation
+\, scale = ofVec3f(0 \, 0 \, 0) \, ofVec3f(0 \, 0 \, 0) \, ofVec3f(1
+\, 1 \, 1) \; \; function M.new() \; ofWindow.addListener("setup" \,
+this) \; if args[1] == nil then mode = 0 else mode = 1 end \; M.setup()
+\; end \; \; function M.free() \; ofWindow.removeListener("setup" \,
+this) end \; \; function M.setup() \; if type (path\$0) == "nil" then
+path\$0 = ofPath() end end \; \; function M.resw(float) resw=float
+end \; function M.resh(float) resh=float end \; function M.width(float)
+width=float end \; function M.height(float) height=float end \; function
+M.append() path\$0:append() end \; function M.newsubpath(float) path\$0:newSubPath()
+end \; function M.clear(string) path\$0:clear() end \; function M.close(string)
+path\$0:close() end \; function M.stroke(float) path\$0:setStrokeWidth(float)
+end \; function M.color(l) path\$0:setColor(ofColor(table.unpack(l)))
+end \; function M.fillcolor(l) path\$0:setFillColor(ofColor(table.unpack(l)))
+end \; function M.strokecolor(l) path\$0:setStrokeColor(ofColor(table.unpack(l)))
+end \; function M.filled(float) path\$0:setFilled(float ~= 0) end \;
+function M.mode(float) mode = float path\$0:setMode(mode) end \; function
+M.outline() path\$0:hasOutline() end \; function M.tessellate() path\$0:tessellate()
+end \; function M.outline() path\$0:hasOutline() end \; function M.polywinding(float)
+path\$0:setPolyWindingMode(float) end \; function M.useshapecolor(float)
+path\$0:setUseShapeColor(float ~= 0) end \; function M.simplify(float)
+path\$0:simplify(float) end \; function M.circleresolution(float) path\$0:setCircleResolution(float)
+end \; function M.curveresolution(float) path\$0:setCircleResolution(float)
+end \; function M.rectangle(l) path\$0:rectangle(table.unpack(l)) end
+\; function M.rectrounded(l) path\$0:rectRounded(table.unpack(l)) end
+\; function M.circle(l) path\$0:circle(table.unpack(l)) end \; function
+M.triangle(l) path\$0:triangle(table.unpack(l)) end \; function M.ellipse(l)
+path\$0:ellipse(table.unpack(l)) end \; function M.arc(l) path\$0:arc(table.unpack(l))
+end \; function M.arcnegative(l) path\$0:arcNegative(table.unpack(l))
+end \; function M.moveto(l) path\$0:moveTo(table.unpack(l)) end \;
+function M.lineto(l) path\$0:lineTo(table.unpack(l)) end \; function
+M.curveto(l) path\$0:lineTo(table.unpack(l)) end \; function M.bezierto(l)
+path\$0:bezierTo(table.unpack(l)) end \; function M.quadbezierto(l)
+path\$0:quadBezierTo(table.unpack(l)) end \; function M.position(l)
+position:set (table.unpack(l)) path\$0:translate(position:vec3()) end
+\; function M.orientation(l) orientation:set (table.unpack(l)) path\$0:rotateDeg(1
+\, orientation:vec3()) end \; function M.scale(list) path\$0:scale(list[1]
+\, list[2]) end \; function M.get() path\$0:getCommands() end \; \;
+function M.bang() \; path\$0:draw() \; return anything \; end \;;
+#X f 137;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

@@ -1,0 +1,60 @@
+#N canvas 359 50 898 626 12;
+#X obj 31 14 inlet;
+#X obj 31 606 outlet;
+#X obj 93 14 inlet;
+#X obj 163 14 inlet;
+#X text 812 583 RI;
+#X obj 231 14 inlet;
+#X obj 301 14 inlet;
+#X obj 366 15 inlet;
+#X obj 436 15 inlet;
+#X msg 93 40 x1 \$1;
+#X msg 231 40 z1 \$1;
+#X msg 163 40 y1 \$1;
+#X msg 301 40 x2 \$1;
+#X msg 366 41 y2 \$1;
+#X msg 436 41 z2 \$1;
+#X obj 31 74 ofelia d rectangle-\$0 \; local c = ofCanvas(this) \;
+local args = c:getArgs() \; local node\$0 = ofNode() \; local start
+\, close \, strokeweight = ofVec3f(-100 \, 0 \, 0) \, ofVec3f(100 \,
+0 \, 0) \, 1 \; local position \, orientation \, scale \, lookat =
+ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; \; function
+M.new() \; if args[1] == nil then start.x = -100 else start.x = args[1]
+end \; if args[2] == nil then start.y = 0 else start.y = args[2] end
+\; if args[3] == nil then start.z = 0 else start.z = args[3] end \;
+if args[4] == nil then close.x = 100 else close.x = args[4] end \;
+if args[5] == nil then close.y = 0 else close.y = args[5] end \; if
+args[6] == nil then close.z = 0 else close.z = args[6] end \; if args[7]
+== nil then strokeweight = 1 else strokeweight = args[7] end \; end
+\; \; function M.x1(f) start.x = f end \; function M.y1(f) start.y
+= f end \; function M.z1(f) start.z = f end \; function M.x2(f) close.x
+= f end \; function M.y2(f) close.y = f end \; function M.z2(f) close.z
+= f end \; function M.stroke(f) strokeweight = f end \; function M.list(l)
+start.x = l[1] start.y = l[2] start.z = l[3] close.x = l[4] close.y
+= l[5] close.z = l[6] strokeweight = l[7] end \; function M.debug(f)
+debug = f end \; function M.position(l) position.x=l[1] position.y=l[2]
+position.z=l[3] node\$0:setPosition(position:vec3()) end \; function
+M.orientation(l) orientation.x=l[1] orientation.y=l[2] orientation.z=l[3]
+node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale.x=l[1] scale.y=l[2] scale.z=l[3] node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
+node\$0:lookAt(lookat:vec3()) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
+\; node\$0:transformGL() \; ofDrawLine(start.x \, start.y \, start.z
+\, close.x \, close.y \, close.z) \; node\$0:restoreTransformGL() \;
+if debug == 1 then node\$0:draw() end \; return anything \; end \;
+;
+#X f 121;
+#X connect 0 0 15 0;
+#X connect 2 0 9 0;
+#X connect 3 0 11 0;
+#X connect 5 0 10 0;
+#X connect 6 0 12 0;
+#X connect 7 0 13 0;
+#X connect 8 0 14 0;
+#X connect 9 0 15 0;
+#X connect 10 0 15 0;
+#X connect 11 0 15 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 1 0;

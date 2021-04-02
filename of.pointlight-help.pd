@@ -1,0 +1,92 @@
+#N canvas 577 56 703 637 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 470 11 declare -lib ofelia;
+#X floatatom 78 158 5 0 0 0 - - -;
+#X msg 58 130 active \$1;
+#X obj 58 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 79 208 5 0 10 0 - - -;
+#X msg 79 231 attenuation \$1;
+#X msg 113 379 debug \$1;
+#X obj 446 98 of.draw;
+#X obj 26 84 of.draw;
+#X obj 113 357 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 130 406 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 130 432 smooth \$1;
+#X msg 413 29 lighting \$1;
+#X obj 413 11 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 413 51 of.window 640 480 30 create;
+#X text 148 402 light smothing (default 1), f 29;
+#X text 16 19 Create a point light;
+#X floatatom 487 163 5 0 0 0 size - -;
+#X floatatom 569 164 5 0 0 0 geo - -;
+#X msg 461 406 ambient \$1 0.5 0.3;
+#X floatatom 461 346 5 0 0 0 - - -;
+#X text 135 358 show light source (also turn on lighting);
+#X text 121 206 light attenuation (default 1);
+#X text 76 105 light on/off (default 1);
+#X text 499 345 red ambient color;
+#X floatatom 461 378 5 0 0 0 - - -;
+#X msg 461 430 diffuse 0 0.2 \$1;
+#X msg 113 330 cutoff \$1;
+#X floatatom 113 307 5 0 0 0 - - -;
+#X floatatom 92 257 5 0 127 0 - - -;
+#X msg 92 280 spotconcentration \$1;
+#X msg 461 454 specular 0 1.5 0.5;
+#X text 499 375 Blue diffuse color;
+#X text 16 39 Arguments: active \, attenuation \, cutoff \, concentration
+\, smooth \, debug (default: 1 1 40 20 1 0);
+#X obj 26 488 of.pointlight;
+#X obj 446 129 of.translate 0 0 -200;
+#X obj 446 195 of.plane 400 400 100 100;
+#X floatatom 500 215 5 0 0 0 size - -;
+#X floatatom 555 216 5 0 0 0 geo - -;
+#X obj 446 247 of.sphere 100 50;
+#X text 505 96 draw objects;
+#X msg 78 181 position \$1 0 0;
+#X text 457 326 RGB color control:;
+#X text 25 539 More infos on lighting: https://openframeworks.cc/documentation/gl/ofLight/
+, f 81;
+#X text 117 159 position X (;
+#X text 25 508 Point light : Light comes from a single point and spreads
+outward evenly in all directions, f 81;
+#X text 588 452 (default 1 \, 1 \, 1);
+#X text 588 430 (default 1 \, 1 \, 1);
+#X text 598 407 (default 0.2 \, 0.2 \, 0.2);
+#X text 197 182 (default position to 0 \, 0 \, 0);
+#X connect 2 0 42 0;
+#X connect 3 0 35 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 35 0;
+#X connect 7 0 35 0;
+#X connect 8 0 36 0;
+#X connect 9 0 35 0;
+#X connect 10 0 7 0;
+#X connect 11 0 12 0;
+#X connect 12 0 35 0;
+#X connect 13 0 15 0;
+#X connect 14 0 13 0;
+#X connect 18 0 37 1;
+#X connect 18 0 37 2;
+#X connect 19 0 37 3;
+#X connect 19 0 37 4;
+#X connect 20 0 35 0;
+#X connect 21 0 20 0;
+#X connect 26 0 27 0;
+#X connect 27 0 35 0;
+#X connect 28 0 35 0;
+#X connect 29 0 28 0;
+#X connect 30 0 31 0;
+#X connect 31 0 35 0;
+#X connect 32 0 35 0;
+#X connect 36 0 37 0;
+#X connect 37 0 40 0;
+#X connect 38 0 40 1;
+#X connect 39 0 40 2;
+#X connect 42 0 35 0;

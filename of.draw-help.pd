@@ -1,0 +1,117 @@
+#N canvas 544 128 637 571 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X text 16 321 Depth 0 mode: Don't care about Depth \, only arguments
+execution order priority matters:, f 86;
+#N canvas 343 356 484 231 GUI_ON_SCREEN 0;
+#X obj 27 144 of.rectangle;
+#X obj 215 103 of.camera, f 30;
+#X obj 27 48 spigot;
+#X obj 230 33 tgl 15 0 empty empty activateme 17 7 0 10 -262144 -1
+-1 1 1;
+#X obj 26 192 of.text GUI center;
+#X obj 27 117 of.color 0 0 0 100;
+#X obj 230 11 inlet;
+#X floatatom 387 71 5 0 0 2 rotY - -;
+#X obj 313 8 inlet;
+#X obj 27 168 of.color 255 255 255 255;
+#X obj 27 75 of.translate 100 100 0;
+#X text 137 11 > 1000;
+#X obj 27 12 of.draw 1001 0;
+#X msg 215 73 reset;
+#X text 265 72 Reset Camera;
+#X obj 313 31 route reset;
+#X connect 0 0 9 0;
+#X connect 2 0 10 0;
+#X connect 3 0 2 1;
+#X connect 5 0 0 0;
+#X connect 6 0 3 0;
+#X connect 7 0 1 5;
+#X connect 8 0 15 0;
+#X connect 9 0 4 0;
+#X connect 10 0 5 0;
+#X connect 12 0 2 0;
+#X connect 13 0 1 0;
+#X connect 15 0 13 0;
+#X connect 15 1 7 0;
+#X restore 282 260 pd GUI_ON_SCREEN;
+#X obj 282 238 tgl 15 0 empty empty ActivateGUI 17 7 0 10 -262144 -1
+-1 1 1;
+#X msg 29 127 0;
+#X floatatom 14 88 5 0 0 2 Draw-Order - -;
+#X obj 44 209 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 27 109 disable;
+#X floatatom 391 237 5 0 0 2 rotY - -;
+#X obj 12 346 cnv 15 200 200 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X text 69 412 Red;
+#X obj 47 488 of.rectangle 200 200;
+#X obj 47 438 of.color 255 0 0 127;
+#X obj 47 463 of.translate -100 -50;
+#X obj 213 345 cnv 15 200 200 empty empty empty 20 12 0 14 -23169 -66577
+0;
+#X text 239 412 Green;
+#X obj 237 438 of.color 0 255 0 127;
+#X obj 237 464 of.translate 0;
+#X obj 237 488 of.rectangle 200 200;
+#X obj 414 345 cnv 15 200 200 empty empty empty 20 12 0 14 -18560 -66577
+0;
+#X text 439 412 Blue;
+#X obj 427 438 of.color 0 0 255 127;
+#X obj 427 488 of.rectangle 200 200;
+#X obj 427 463 of.translate 100 50;
+#X text 21 22 Start a new rendering with layering (order) at center
+;
+#X text 44 360 Order 1 \, depth 0;
+#X text 236 358 Order 2 \, depth 0;
+#X text 426 361 Order 3 \, depth 0;
+#X obj 74 138 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X text 96 136 0: OFF;
+#X text 96 167 2: ADD;
+#X text 96 182 3: SUBTRACT;
+#X text 96 197 4: MULTIPLY;
+#X text 96 212 5: SCREEN;
+#X text 96 152 1: ALPHA(Default);
+#X text 30 186 depth;
+#X text 21 47 Arguments: draw-order \, depthtest \, blend (default
+1 \, 1 \, 1);
+#X obj 518 19 of.window 1;
+#X obj 14 265 of.image data/rgb.jpg;
+#X obj 47 388 of.draw 1 0;
+#X obj 237 388 of.draw 2 0;
+#X obj 427 388 of.draw 3 0;
+#X obj 14 238 of.draw 4;
+#X obj 14 289 of.plane;
+#X text 96 117 blending:;
+#X text 220 91 depth "On" (default): Better for 3d;
+#X text 223 122 depth "Off": Easier for 2d;
+#X text 222 134 -> rendering priority set by DRAW ORDER;
+#X text 220 103 -> rendering priority set by Z-POSITION;
+#X text 222 159 Note: default order is 1 If order < 0 : Rendering is
+out of camera and point 0 \, 0 \, 0 is bottom left. If order > 1000
+: Rendering is out of camera on TOP (Nice for rendering GUI on screen):
+, f 65;
+#X msg 446 241 reset;
+#X text 450 224 cam;
+#X connect 4 0 3 0;
+#X connect 5 0 43 0;
+#X connect 6 0 43 0;
+#X connect 7 0 43 1;
+#X connect 9 0 3 1;
+#X connect 13 0 14 0;
+#X connect 14 0 12 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 22 0 24 0;
+#X connect 24 0 23 0;
+#X connect 29 0 43 2;
+#X connect 39 0 44 0;
+#X connect 40 0 13 0;
+#X connect 41 0 17 0;
+#X connect 42 0 22 0;
+#X connect 43 0 39 0;
+#X connect 51 0 3 1;

@@ -1,0 +1,37 @@
+#N canvas 305 23 885 592 12;
+#X obj 15 10 inlet;
+#X obj 15 759 outlet;
+#X obj 838 748 outlet;
+#X text 804 613 RI;
+#X obj 15 41 ofelia d -c12 grabscreen-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+local dir = canvas:getDir() .. "/../" \; local x \, y \, width \, height
+\, color = args[1] \, args[2] \, args[3] \, args[4] \; \; function
+M.new() \; ofWindow.addListener("setup" \, this) \; if args[1] == nil
+then x = 0 end \; if args[2] == nil then y = 0 end \; if args[3] ==
+nil then width = 0 end \; if args[4] == nil then height = 0 end \;
+local color = ofColor() \; grabscreen\$0 = ofImage() if ofWindow.exists
+then M.setup() end end \; \; function M.free() \; ofWindow.removeListener("setup"
+\, this) \; end \; \; function M.setup() \; if width == 0 then width
+= ofGetWidth() end \; if height == 0 then height = ofGetHeight() end
+\; grabscreen\$0:allocate(width \, height \, 1) \; end \; \; function
+M.grab() \; if ofWindow.exists then \; grabscreen\$0:grabScreen(x \,
+y \, width \, height) end end \; function M.dimen (l) width=l[1] height=l[2]
+end \; function M.allocate(list) grabscreen\$0:allocate(list[1] \,
+list[2] \, list[3]) end \; function M.clear() grabscreen\$0:clear()
+end \; function M.setimagetype(float) grabscreen\$0:setImageType(float)
+end \; function M.draw(list) grabscreen\$0:draw(list[1] \, list[2]
+\, list[3]) end \; function M.crop(l) grabscreen\$0:crop(l[1] \, l[2]
+\, l[3] \, l[4]) end \; function M.drawsubsection(l) grabscreen\$0:drawSubsection(l[1]
+\, l[2] \, l[3] \, l[4] \, l[5] \, l[6]) end \; function M.save(string)
+\; if ofWindow.exists then grabscreen\$0:save(dir .. string) end \;
+end \; function M.fill(list) \; grabscreen\$0:setColor(ofColor(list[1]
+\, list[2] \, list[3])) grabscreen\$0:update() end \; function M.clear()grabscreen\$0:clear()
+end \; function M.get() outlet:outletList(1 \, ofTable (grabscreen\$0:getWidth()
+\, grabscreen\$0:getHeight() \, grabscreen\$0:getImageType() \, grabscreen\$0:getTexture()
+\, grabscreen\$0:getPixels())) end \; \; function M.bang() \; grabscreen\$0:bind()
+\; outlet:outletBang(0) \; grabscreen\$0:unbind() \; end \;;
+#X f 118;
+#X connect 0 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 1 2 0;

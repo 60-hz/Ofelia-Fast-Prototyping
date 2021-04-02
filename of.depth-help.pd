@@ -1,0 +1,24 @@
+#N canvas 581 82 637 275 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X text 201 153 -> rendering priority set by draw order;
+#X text 202 141 depthTest "Off": Easier for 2d;
+#X text 199 122 -> rendering priority set by Z-position;
+#X text 199 110 depthTest "On" (default): Better for 3d;
+#X obj 518 19 of.window 1;
+#X obj 14 98 of.draw;
+#X obj 14 213 of.box, f 15;
+#X obj 109 149 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 22 47 Arguments: depthtest (default 1);
+#X obj 14 123 of.image data/image.jpg;
+#X text 128 147 on/off;
+#X text 21 22 Activate / desactivate Depth test (useful on 3d shape)
+;
+#X obj 14 176 of.depth 0, f 14;
+#X connect 7 0 11 0;
+#X connect 9 0 14 1;
+#X connect 11 0 14 0;
+#X connect 14 0 8 0;

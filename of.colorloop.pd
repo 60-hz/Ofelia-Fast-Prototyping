@@ -1,0 +1,29 @@
+#N canvas 146 147 801 599 12;
+#X obj 30 24 inlet;
+#X obj 536 37 inlet;
+#X obj 30 516 outlet;
+#X msg 536 63 cycle \$1;
+#X text 648 527 R.I;
+#X obj 30 101 ofelia d \; local c = ofCanvas(this) \; local args =
+c:getArgs() \; local color1 \, color2 = ofColor() \, ofColor() \; local
+cycle = 10 \; local i = 0 \; function M.new() \; if args[1] == nil
+then color1.r = 255 else color1.r = args[1] end \; if args[2] == nil
+then color1.g = 255 else color1.g = args[2] end \; if args[3] == nil
+then color1.b = 255 else color1.b = args[3] end \; if args[4] == nil
+then color1.a = 255 else color1.a = args[4] end \; if args[5] == nil
+then color2.r = 0 else color2.r = args[5] end \; if args[6] == nil
+then color2.g = 0 else color2.g = args[6] end \; if args[7] == nil
+then color2.b = 0 else color2.b = args[7] end \; if args[8] == nil
+then color2.a = 255 else color2.a = args[8] end \; if args[9] == nil
+then cycle = 10 else cycle = args[9] end \; end \; function M.cycle(f)
+cycle = f end \; function M.color1(l) color1:set(table.unpack(l)) end
+\; function M.color2(l) color2:set(table.unpack(l)) end \; function
+M.bang() \; i = i + 1 \; ofSetColor(ofLerp(color1.r \, color2.r \,
+i/cycle) \, ofLerp(color1.g \, color2.g \, i/cycle) \, ofLerp(color1.b
+\, color2.b \, i/cycle) \, ofLerp(color1.a \, color2.a \, i/cycle))
+\; if i > cycle then i = 0 end \; return anything \; end \;;
+#X f 92;
+#X connect 0 0 5 0;
+#X connect 1 0 3 0;
+#X connect 3 0 5 0;
+#X connect 5 0 2 0;

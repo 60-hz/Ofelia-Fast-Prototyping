@@ -1,0 +1,79 @@
+#N canvas 174 31 982 669 12;
+#X obj 31 -46 inlet;
+#X obj 31 589 outlet;
+#X text 862 583 RI;
+#X obj 345 -18 inlet~;
+#X obj 31 22 s \$0-resize;
+#X obj 238 5 s \$0-all;
+#X obj 31 50 r \$0-all;
+#X obj 82 1 s \$0-update;
+#X obj 134 23 s \$0-buffer;
+#N canvas 618 77 453 330 buffer 0;
+#X obj 20 20 inlet~;
+#X obj 20 127 tabwrite~ \$0-array;
+#X obj 99 86 metro 40;
+#X obj 20 235 array define \$0-array 100;
+#X obj 20 176 r \$0-resize;
+#X msg 20 199 resize \$1;
+#X obj 99 21 r \$0-update;
+#X obj 279 20 r \$0-buffer;
+#X msg 279 66 start;
+#X msg 334 67 stop;
+#X obj 152 43 r \$0-updatetime;
+#X obj 35 45 loadbang;
+#X obj 35 68 \$1;
+#X obj 179 135 loadbang;
+#X obj 179 158 \$2;
+#X obj 179 181 sel 0;
+#X connect 0 0 1 0;
+#X connect 2 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 6 0 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 9 0 1 0;
+#X connect 10 0 2 1;
+#X connect 11 0 12 0;
+#X connect 12 0 2 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 1 5 0;
+#X restore 345 8 pd buffer;
+#X obj 31 -21 route resize float buffer time;
+#X obj 186 46 s \$0-updatetime;
+#X obj 31 75 ofelia d rectangle-\$0 \; local c = ofCanvas(this) \;
+local args = c:getArgs() \; local node\$0 = ofNode() \; local array\$0
+= ofArray("\$0-array") \; local width \, height \, strokeweight = args[3]
+\, args[4] \, args[5] \; local position \, orientation \, scale \,
+lookat = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f()
+\; \; function M.new() \; if args[3] == nil then width = 100 end \;
+if args[4] == nil then height = 100 end \; if args[5] == nil then strokeweight
+= 1 end \; end \; \; function M.width(f) width = f end \; function
+M.height(f) height = f end \; function M.draw(s) drawmode = s end \;
+function M.stroke(f) strokeweight = f end \; function M.list(l) width
+= l[1] height = l[2] rectmode = l[3] drawmode = l[4] strokeweight =
+l[5] end \; function M.debug(f) debug = f end \; function M.position(l)
+position.x=l[1] position.y=l[2] position.z=l[3] node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation.x=l[1] orientation.y=l[2]
+orientation.z=l[3] node\$0:setOrientation(orientation:vec3()) end \;
+function M.scale(l) scale.x=l[1] scale.y=l[2] scale.z=l[3] node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
+node\$0:lookAt(lookat:vec3()) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
+\; node\$0:transformGL() \; local x \, y = -width/2 \, ofGetHeight()
+\; local w \, h = width/array\$0:getSize() \, height/2*-1 \; for i=1
+\, array\$0:getSize()-1 do \; ofDrawLine(x \, ofGetHeight()-(y+array\$0[i]*h)
+\, x+w \, ofGetHeight()-(y+array\$0[i+1]*h)) \; x=x+w \; end node\$0:restoreTransformGL()
+\; if debug == 1 then node\$0:draw() end \; return anything \; end
+\;;
+#X f 121;
+#X text 702 603 greatly inspired by Zack Lee;
+#X connect 0 0 10 0;
+#X connect 3 0 9 0;
+#X connect 6 0 12 0;
+#X connect 10 0 4 0;
+#X connect 10 1 7 0;
+#X connect 10 2 8 0;
+#X connect 10 3 11 0;
+#X connect 10 4 5 0;
+#X connect 12 0 1 0;

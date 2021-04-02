@@ -1,0 +1,26 @@
+#N canvas 363 178 803 637 12;
+#X obj 27 20 inlet;
+#X obj 27 547 outlet;
+#X obj 27 57 ofelia d material-\$0 \; local c = ofCanvas(this) \; local
+outlet = ofOutlet(this) \; material\$0 = ofMaterial() \; local args
+= c:getArgs() \; local active \, set \, ambient \, diffuse \, specular
+= args[1] \, args[2] \, args[3] \, args[4] \, args[5] \; local ambient
+\, diffuse \, specular \, emission \, shininess = ofFloatColor(0.2
+\, 0.2 \, 0.2) \, ofFloatColor() \, ofFloatColor() \, ofFloatColor(0
+\, 0 \, 0) \, 128 \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then shininess = 128 else shininess =
+args[1] end \; end \; function M.free() \; ofWindow.removeListener("setup"
+\, this) \; end \; \; function M.setup() \; end \; function M.ambient(l)
+ambient = ofFloatColor(l[1] \, l[2] \, l[3]) end \; function M.diffuse(l)
+diffuse.r = l[1] diffuse.g = l[2] diffuse.b = l[3] diffuse.a = l[4]
+end \; function M.emission(l) emission.r = l[1] emission.g = l[2] emission.b
+= l[3] end \; function M.specular(l) specular = ofFloatColor(l[1] \,
+l[2] \, l[3]) end \; function M.shininess(float) shininess = float
+end \; \; \; function M.bang() \; material\$0:beginMaterial() \; material\$0:setAmbientColor(ambient)
+\; material\$0:setDiffuseColor(diffuse) \; material\$0:setEmissiveColor(emission)
+\; material\$0:setSpecularColor(specular) \; material\$0:setShininess(ofClamp(shininess
+\, 0 \, 128)) \; outlet:outletBang(0) \; material\$0:endMaterial()
+\; end \;;
+#X f 110;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

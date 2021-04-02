@@ -1,0 +1,16 @@
+#N canvas 387 331 767 447 12;
+#X obj 35 15 inlet;
+#X obj 35 293 outlet;
+#X obj 153 15 inlet;
+#X msg 153 59 pass \$1;
+#X obj 35 89 ofelia d -c12 nolight-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+local pass = args[1] \; \; function M.pass(f) pass = f end \; function
+M.bang() \; if pass == 1 and _lighting == 1 then ofEnableLighting()
+else ofDisableLighting() end \; outlet:outletBang(0) \; if _lighting
+== 1 then ofEnableLighting() else ofDisableLighting() end end \;;
+#X f 71;
+#X connect 0 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;

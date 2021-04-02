@@ -1,0 +1,96 @@
+#N canvas 0 151 1280 626 12;
+#X obj 31 14 inlet;
+#X obj 31 826 outlet;
+#X obj 93 14 inlet;
+#X obj 163 14 inlet;
+#X text 812 583 RI;
+#X obj 231 14 inlet;
+#X obj 301 14 inlet;
+#X obj 366 15 inlet;
+#X obj 436 15 inlet;
+#X msg 93 40 x1 \$1;
+#X msg 231 40 z1 \$1;
+#X msg 163 40 y1 \$1;
+#X msg 301 40 x2 \$1;
+#X msg 366 41 y2 \$1;
+#X msg 436 41 z2 \$1;
+#X obj 497 16 inlet;
+#X obj 567 16 inlet;
+#X obj 635 16 inlet;
+#X obj 705 16 inlet;
+#X obj 770 17 inlet;
+#X obj 840 17 inlet;
+#X msg 497 42 x3 \$1;
+#X msg 567 42 y3 \$1;
+#X msg 635 42 z3 \$1;
+#X msg 705 42 x4 \$1;
+#X msg 770 43 y4 \$1;
+#X msg 840 43 z4 \$1;
+#X obj 31 74 ofelia d bezier-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local node\$0 = ofNode() \; local pt1 \, pt2
+\, pt3 \, pt4 \, strokeweight \, debug = ofVec3f(-100 \, 0 \, 0) \,
+ofVec3f(100 \, 0 \, 0) \, ofVec3f(-100 \, 0 \, 0) \, ofVec3f(100 \,
+0 \, 0) \, 1 \; local position \, orientation \, scale \, lookat \,
+drawmode = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f()
+\; \; function M.new() \; if args[1] == nil then pt1.x = 0 else pt1.x
+= args[1] end \; if args[2] == nil then pt1.y = 0 else pt1.y = args[2]
+end \; if args[3] == nil then pt1.z = 0 else pt1.z = args[3] end \;
+if args[4] == nil then pt2.x = 0 else pt2.x = args[4] end \; if args[5]
+== nil then pt2.y = 0 else pt2.y = args[5] end \; if args[6] == nil
+then pt2.z = 0 else pt2.z = args[6] end \; if args[7] == nil then pt3.x
+= 0 else pt3.z = args[7] end \; if args[8] == nil then pt3.y = 0 else
+pt3.z = args[8] end \; if args[9] == nil then pt3.z = 0 else pt3.z
+= args[9] end \; if args[10] == nil then pt3.x = 0 else pt3.z = args[10]
+end \; if args[11] == nil then pt3.y = 0 else pt3.z = args[11] end
+\; if args[12] == nil then pt3.z = 0 else pt3.z = args[12] end \; if
+args[13] == nil then drawmode = line else drawmode = args[13] end \;
+if args[14] == nil then strokeweight = 1 else strokeweight = args[14]
+end end \; \; function M.x1(f) pt1.x = f end \; function M.y1(f) pt1.y
+= f end \; function M.z1(f) pt1.z = f end \; function M.x2(f) pt2.x
+= f end \; function M.y2(f) pt2.y = f end \; function M.z2(f) pt2.z
+= f end \; function M.x3(f) pt3.x = f end \; function M.y3(f) pt3.y
+= f end \; function M.z3(f) pt3.z = f end \; function M.x4(f) pt4.x
+= f end \; function M.y4(f) pt4.y = f end \; function M.z4(f) pt4.z
+= f end \; function M.stroke(f) strokeweight = f end \; function M.draw(s)
+drawmode = s end \; function M.list(l) pt1.x = l[1] pt1.y = l[2] pt1.z
+= l[3] pt2.x = l[4] pt2.y = l[5] pt2.z = l[6] pt3.x = l[7] pt3.y =
+l[8] pt3.z = l[9] pt4.x = l[10] pt4.y = l[11] pt4.z = l[12] drawmode
+= l[13] strokeweight = l[14] end \; function M.debug(f) debug = f end
+\; function M.position(l) position.x=l[1] position.y=l[2] position.z=l[3]
+node\$0:setPosition(position:vec3()) end \; function M.orientation(l)
+orientation.x=l[1] orientation.y=l[2] orientation.z=l[3] node\$0:setOrientation(orientation:vec3())
+end \; function M.scale(l) scale.x=l[1] scale.y=l[2] scale.z=l[3] node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
+node\$0:lookAt(lookat:vec3()) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
+\; node\$0:transformGL() \; if drawmode == "line" then ofNoFill() end
+\; if debug == 1 then node\$0:draw() end \; ofDrawBezier(pt1.x \, pt1.y
+\, pt1.z \, pt2.x \, pt2.y \, pt2.z \, pt3.x \, pt3.y \, pt3.z \, pt4.x
+\, pt4.y \, pt4.z) \; node\$0:restoreTransformGL() \; ofFill() \; return
+anything \; end \;;
+#X f 121;
+#X connect 0 0 27 0;
+#X connect 2 0 9 0;
+#X connect 3 0 11 0;
+#X connect 5 0 10 0;
+#X connect 6 0 12 0;
+#X connect 7 0 13 0;
+#X connect 8 0 14 0;
+#X connect 9 0 27 0;
+#X connect 10 0 27 0;
+#X connect 11 0 27 0;
+#X connect 12 0 27 0;
+#X connect 13 0 27 0;
+#X connect 14 0 27 0;
+#X connect 15 0 21 0;
+#X connect 16 0 22 0;
+#X connect 17 0 23 0;
+#X connect 18 0 24 0;
+#X connect 19 0 25 0;
+#X connect 20 0 26 0;
+#X connect 21 0 27 0;
+#X connect 22 0 27 0;
+#X connect 23 0 27 0;
+#X connect 24 0 27 0;
+#X connect 25 0 27 0;
+#X connect 26 0 27 0;
+#X connect 27 0 1 0;

@@ -1,0 +1,41 @@
+#N canvas 281 29 898 626 12;
+#X obj 31 14 inlet;
+#X obj 31 606 outlet;
+#X obj 93 14 inlet;
+#X obj 163 14 inlet;
+#X text 812 583 RI;
+#X msg 93 40 width \$1;
+#X msg 163 40 height \$1;
+#X obj 31 75 ofelia d rectangle-\$0 \; local c = ofCanvas(this) \;
+local args = c:getArgs() \; local node\$0 = ofNode() \; local width
+\, height \, drawmode \, strokeweight \, rectmode = args[1] \, args[2]
+\, args[3] \, args[4] \, args[5] \; local position \, orientation \,
+scale \, lookat = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \,
+ofVec3f() \; \; function M.new() \; if args[1] == nil then width =
+100 end \; if args[2] == nil then height = 100 end \; if args[4] ==
+nil then strokeweight = 1 end \; if args[3] == "line" then drawmode
+= "line" end \; if args[5] == nil then rectmode = "center" end \; end
+\; \; function M.width(f) width = f end \; function M.height(f) height
+= f end \; function M.rectmode(s) rectmode = s end \; function M.draw(s)
+drawmode = s end \; function M.stroke(f) strokeweight = f end \; function
+M.list(l) width = l[1] height = l[2] rectmode = l[3] drawmode = l[4]
+strokeweight = l[5] end \; function M.debug(f) debug = f end \; function
+M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation:set (table.unpack(l))
+node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function
+M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+end \; \; function M.bang() \; ofSetLineWidth(strokeweight) \; if rectmode
+== "corner" then ofSetRectMode(OF_RECTMODE_CORNER) end \; if rectmode
+== "center" then ofSetRectMode(OF_RECTMODE_CENTER) end \; if drawmode
+== "line" then ofNoFill() end \; node\$0:transformGL() \; ofDrawRectangle(0
+\, 0 \, width \, height) \; node\$0:restoreTransformGL() \; if debug
+== 1 then node\$0:draw() end \; ofFill() \; return anything \; end
+\;;
+#X f 121;
+#X connect 0 0 7 0;
+#X connect 2 0 5 0;
+#X connect 3 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 7 0;
+#X connect 7 0 1 0;

@@ -1,0 +1,72 @@
+#N canvas 308 23 870 755 12;
+#X obj 31 4 inlet;
+#X obj 31 809 outlet;
+#X obj 90 2 inlet;
+#X obj 200 2 inlet;
+#X obj 310 2 inlet;
+#X obj 420 2 inlet;
+#X text 814 715 RI;
+#X msg 90 28 corner0 \$1 \$2;
+#X msg 200 28 corner1 \$1 \$2;
+#X msg 310 28 corner2 \$1 \$2;
+#X msg 420 28 corner3 \$1 \$2;
+#X text 673 813 R.I;
+#X obj 31 57 ofelia d quad-\$0 \; local mesh \, node\$0 = ofMesh()
+\, ofNode() \; local mode = OF_PRIMITIVE_TRIANGLE_FAN \; p0 = ofVec3f(-100
+\, 100 \, 0) p1 = ofVec3f(100 \, 100 \, 0) p2 = ofVec3f(100 \, -100
+\, 0) p3 = ofVec3f(-100 \, -100 \, 0) \; t0 = ofVec2f(1.0 \, 0.0) t1
+= ofVec2f(0.0 \, 0.0) t2 = ofVec2f(0.0 \, 1.0) t3 = ofVec2f(1.0 \,
+1.0) \; c0 = ofFloatColor() c1 = ofFloatColor() c2 = ofFloatColor()
+c3 = ofFloatColor() \; local drawmode \, strokeweight \, debug = "fill"
+\, 1 \, 0 \; local position \, orientation \, scale \, lookat = ofVec3f()
+\, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; function M.new()
+\; ofWindow.addListener("setup" \, this) \; M.setup() end \; function
+M.free() \; ofWindow.removeListener("setup" \, this) end \; \; function
+M.setup() \; mesh:setMode(mode) \; mesh:addVertex(p0:vec3()) mesh:addColor(c0)
+mesh:addTexCoord(t0:vec2()) \; mesh:addVertex(p1:vec3()) mesh:addColor(c1)
+mesh:addTexCoord(t1:vec2()) \; mesh:addVertex(p2:vec3()) mesh:addColor(c2)
+mesh:addTexCoord(t2:vec2()) \; mesh:addVertex(p3:vec3()) mesh:addColor(c3)
+mesh:addTexCoord(t3:vec2()) \; mesh:addIndex(0) mesh:addIndex(1) mesh:addIndex(2)
+mesh:addIndex(1) mesh:addIndex(2) mesh:addIndex(3) end \; function
+M.corner0(l) p0:set(table.unpack(l)) mesh:setVertex(0 \, p0:vec3())
+end \; function M.corner1(l) p1:set(table.unpack(l)) mesh:setVertex(1
+\, p1:vec3()) end \; function M.corner2(l) p2:set(table.unpack(l))
+mesh:setVertex(2 \, p2:vec3()) end \; function M.corner3(l) p3:set(table.unpack(l))
+mesh:setVertex(3 \, p3:vec3()) end \; function M.color0(l) c0:set(table.unpack(l))
+mesh:setColor(0 \, c0) end \; function M.color1(l) c1:set(table.unpack(l))
+mesh:setColor(1 \, c1) end \; function M.color2(l) c2:set(table.unpack(l))
+mesh:setColor(2 \, c2) end \; function M.color3(l) c3:set(table.unpack(l))
+mesh:setColor(3 \, c3) end \; function M.tex0(l) t0:set(table.unpack(l))
+mesh:setTexCoord(0 \, t0:vec2()) end \; function M.tex1(l) t1:set(table.unpack(l))
+mesh:setTexCoord(1 \, t1:vec2()) end \; function M.tex2(l) t2:set(table.unpack(l))
+mesh:setTexCoord(2 \, t2:vec2()) end \; function M.tex3(l) t3:set(table.unpack(l))
+mesh:setTexCoord(3 \, t3:vec2()) end \; function M.texture(f) if f
+> 0 then mesh:enableTextures() else mesh:disableTextures() end end
+\; function M.list(l) M.corner0 (ofTable(table.unpack(l \, 1 \, 3)))
+M.corner1 (ofTable(table.unpack(l \, 4 \, 6))) M.corner2 (ofTable(table.unpack(l
+\, 7 \, 9))) M.corner3 (ofTable(table.unpack(l \, 10 \, 12))) end \;
+function M.draw(s) drawmode = s end \; function M.debug(f) debug =
+f end \; function M.stroke(f) strokeweight = f end \; function M.mode(f)
+mode = f end \; function M.mode(f) mesh:setMode(f) end \; function
+M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation:set (table.unpack(l))
+node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function
+M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+end \; \; function M.bang() \; ofSetLineWidth(strokeweight) node\$0:transformGL()
+\; if drawmode == "fill" then mesh:drawFaces() end \; if drawmode ==
+"point" then mesh:drawVertices() end \; if drawmode == "line" then
+mesh:drawWireframe() end \; if debug > 0 then ofDisableLighting() node\$0:draw()
+end if _lighting == 1 then ofEnableLighting() end \; node\$0:restoreTransformGL()
+\; end \;;
+#X f 115;
+#X connect 0 0 12 0;
+#X connect 2 0 7 0;
+#X connect 3 0 8 0;
+#X connect 4 0 9 0;
+#X connect 5 0 10 0;
+#X connect 7 0 12 0;
+#X connect 8 0 12 0;
+#X connect 9 0 12 0;
+#X connect 10 0 12 0;
+#X connect 12 0 1 0;

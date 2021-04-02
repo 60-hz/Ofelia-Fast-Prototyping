@@ -1,0 +1,33 @@
+#N canvas 265 30 869 732 12;
+#X obj 27 -30 inlet;
+#X obj 27 795 outlet;
+#X text 544 747 RI, f 4;
+#X obj 27 7 ofelia d view-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local outlet = ofOutlet(this) \; view\$0 = ofEasyCam()
+\; local active \, distance \, sensitivity \, inertia \, drag \, ortho
+= args[1] \, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \;
+local debug = 1 \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then active = 1 end \; if args[2] ==
+nil then distance = 400 end \; if args[3] == nil then sensitivity =
+1 end \; if args[4] == nil then inertia = 0 end \; if args[5] == nil
+then drag = 0.5 end \; if args[6] == nil then ortho = 0 end \; M.setup()
+\; end \; function M.free() \; ofWindow.removeListener("setup" \, this)
+\; end \; \; function M.setup() \; view\$0:setAutoDistance(false) \;
+view\$0:setDistance(distance) \; view\$0:setRelativeYAxis(true) \;
+M.active(active) \; M.inertia(inertia) \; M.drag(drag) \; M.sensitivity(sensitivity)
+\; end \; \; function M.reset() view\$0:reset() view\$0:setDistance(400)
+ortho = 0 end \; function M.ortho(f) ortho = f end \; function M.active(float)
+active = float if active == 1 then view\$0:enableMouseInput() else
+view\$0:disableMouseInput() end end \; function M.distance(float) distance
+= float view\$0:setDistance(distance) end \; function M.inertia(float)
+inertia = float if inertia == 1 then view\$0:enableInertia() \; else
+view\$0:disableInertia() end end \; function M.drag(float) drag = float
+view\$0:setDrag(drag) end \; function M.sensitivity(float) \; view\$0:setRotationSensitivity(float
+\, float \, float) end \; function M.debug(float) debug = float end
+\; \; function M.bang() \; if ortho > 0 then view\$0:enableOrtho()
+end \; view\$0:beginCamera() \; outlet:outletBang(0) \; if debug >
+0 then ofDrawAxis(100*debug) end \; view\$0:disableOrtho() view\$0:endCamera()
+end \;;
+#X f 107;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

@@ -1,0 +1,48 @@
+#N canvas 130 46 808 732 12;
+#X obj 15 10 inlet;
+#X obj 15 793 outlet;
+#X obj 733 792 outlet;
+#X text 601 737 RI;
+#X msg 656 16 index \$1;
+#X obj 656 -6 inlet;
+#X obj 15 40 ofelia d -c12 image-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+local filename \, drawimage \, X \, Y \, Z \, H \, W \, index \, nb
+= args[1] \, 0 \, 0 \, 0 \, 0 \, 100 \, 100 \, 0 \, 1 \; local loaded
+\, saved \; local image\$0 = ofTable() \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then print("[of.image] : No file") else
+args[1] = filename end \; if args[2] == nil then nb = 1 else nb = args[2]
+end \; M.buffer(nb) \; M.setup() \; end \; \; function M.free() \;
+ofWindow.removeListener("setup" \, this) \; for i = 0 \, nb -1 do \;
+image\$0[i]:clear() \; end \; end \; \; function M.setup() \; if filename
+~= nil then M.open(ofTable(filename \, nb)) end \; end \; \; function
+M.allocate(list) image\$0:allocate(list[1] \, list[2] \, list[3]) end
+\; function M.clear() image\$0[index]:clear() end \; function M.setimagetype(float)
+image\$0[index]:setImageType(float) end \; function M.draw(l) drawimage
+=l[1] X=l[2] Y=l[3] Z=l[4] H=l[5] W=l[6] end \; function M.crop(l)
+image\$0[index]:crop(l[1] \, l[2] \, l[3] \, l[4]) end \; function
+M.cropfrom(l) image\$0[index]:cropfrom(image\$0 \, l[1] \, l[2] \,
+l[3] \, l[4]) end \; function M.drawsubsection(l) image\$0[index]:drawSubsection(l[1]
+\, l[2] \, l[3] \, l[4] \, l[5] \, l[6]) end \; function M.update()
+image\$0[index]:update()end \; function M.buffer(i) nb = i for i =
+0 \, nb -1 do \; image\$0[i] = ofImage() end end \; function M.open(l)
+ofSetDataPathRoot(ofCanvas(this \, 1):getDir()) if type(l) == "string"
+then filename = l loaded = image\$0[index]:load(filename) else filename
+= l[1] M.buffer(l[2]) \; for i = 0 \, nb -1 do \; if ofWindow.exists
+then ofDisableArbTex() image\$0[i]:clear() \; loaded = image\$0[i]:load(ofFile(filename):getEnclosingDirectory()
+.. i..".png") end \; end end if loaded then print("loaded " .. filename.."
+".."to " .. math.floor(nb -1)) end end \; function M.index(i) index
+= i % nb end \; function M.save(string) \; if ofWindow.exists then
+\; saved = image\$0[index]:save(string) end if saved then print("saved
+" .. string) end \; end \; function M.get() outlet:outletList(1 \,
+ofTable (loaded \, image\$0[index]:getWidth() \, image\$0[index]:getHeight()
+\, image\$0[index]:getImageType() \, image\$0[index]:getTexture() \,
+image\$0[index]:getPixels())) end \; \; function M.bang() \; if drawimage
+== 1 then image\$0:draw(X \, Y \, Z \, H \, W) end \; image\$0[index]:bind()
+\; outlet:outletBang(0) \; image\$0[index]:unbind() end \;;
+#X f 103;
+#X connect 0 0 6 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 1 0;
+#X connect 6 1 2 0;

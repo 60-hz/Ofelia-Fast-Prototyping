@@ -1,0 +1,15 @@
+#N canvas 53 359 494 399 12;
+#X obj 27 10 inlet;
+#X obj 27 316 outlet;
+#X obj 203 3 inlet;
+#X msg 203 26 cycle \$1;
+#X obj 27 53 ofelia d \$0-repeat \; local canvas = ofCanvas(this) \;
+local args = canvas:getArgs() \; local outlet = ofOutlet(this) \; local
+loop = 0 \; function M.new() \; if args[1] == nil then loop = 0 else
+loop = args[1] \; end end \; function M.cycle(f) \; loop = f \; end
+\; function M.bang() \; ofPushMatrix() \; for i = 0 \, loop do \; outlet:outletBang(0)
+\; end \; ofPopMatrix() \; end \;;
+#X connect 0 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;

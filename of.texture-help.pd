@@ -1,0 +1,193 @@
+#N canvas 590 121 690 486 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 233 528 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 462 45 declare -lib ofelia;
+#X text 32 123 open relative to patch;
+#X text 34 169 open png with alpha channel;
+#X text 232 556 0 = load fail;
+#X text 231 543 1 = load success;
+#X msg 181 388 get;
+#X floatatom 264 516 5 0 0 0 - - -;
+#X floatatom 296 496 5 0 0 0 - - -;
+#X floatatom 328 476 5 0 0 0 - - -;
+#X obj 233 450 unpack 0 0 0 0;
+#X text 215 388 get infos from right outlet;
+#X text 306 517 width;
+#X text 336 497 height;
+#X text 152 365 save to file;
+#X text 26 519 2: draw center plane;
+#X msg 37 239 open https://puredata.info/portal_css/Plone%20Default/logo.png
+, f 68;
+#X obj 38 315 openpanel;
+#X msg 38 338 open \$1;
+#X obj 38 294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 60 294 browse...;
+#X obj 518 19 of.window 1;
+#X msg 35 142 open data/wood.jpg;
+#N canvas 627 188 653 565 draw 0;
+#X floatatom 41 49 5 0 0 0 - - -;
+#X msg 70 134 drawsubsection 1 100 0 100 100 120 200;
+#X obj 74 165 of.mouse;
+#X text 242 70 active \, X \, Y \, Z \, width \, height;
+#X text 349 132 active \, posX \, posY \, witdh \, height \, cropfromX
+\, cropfromY \, posCropX \, posCropY, f 42;
+#X msg 76 291 anchorpoint \$1 \$1;
+#X floatatom 76 263 5 0 0 0 - - -;
+#X text 82 47 pos Z;
+#X text 117 263 change anchor point;
+#X text 361 186 active \, posX \, posY \, witdh \, height \, cropfromX
+\, cropfromY \, posCropX \, posCropY, f 42;
+#X msg 41 74 draw 1 0 -100 \$1 100 100;
+#X msg 74 190 drawsubsection 1 -100 100 200 100 \$1 \$2;
+#X msg 59 103 draw 0 0 0;
+#X msg 73 227 drawsubsection 0 0 0 0 0 0 0;
+#X text 288 227 Desactivate drawsubsection;
+#X text 149 103 Desactivate draw;
+#X obj 20 319 outlet;
+#X connect 0 0 10 0;
+#X connect 1 0 16 0;
+#X connect 2 0 11 0;
+#X connect 5 0 16 0;
+#X connect 6 0 5 0;
+#X connect 10 0 16 0;
+#X connect 11 0 16 0;
+#X connect 12 0 16 0;
+#X connect 13 0 16 0;
+#X restore 181 275 pd draw;
+#X obj 19 98 of.draw 1;
+#X text 259 73 The ofImage is a useful object for loading \, saving
+and drawing images. ofImage is a convenient class that lets you both
+draw images to the screen and manipulate their pixel data. The ofImage
+allows you to load an image from disk \, manipulate the pixels \, and
+create an OpenGL texture that you can display and manipulate on the
+graphics card. Loading a file into the ofImage allocates an ofPixels
+object and creates the ofTexture to display the pixels. ofImage uses
+a library called "freeImage" under the hood.;
+#X text 26 452 -> First outlet will apply image as Texture..., f 20
+;
+#N canvas 816 141 454 299 process 0;
+#X msg 39 138 crop 100 100 100 100;
+#X msg 39 164 cropfrom img 100 100 300 300;
+#X msg 40 35 setimagetype 0;
+#X msg 40 60 mirror 1 0;
+#X text 124 60 vertical \, horizontal;
+#X msg 40 85 rotate 1;
+#X msg 40 111 resize 10 10;
+#X text 124 85 rotate by 90°;
+#X text 144 111 resize width \, height;
+#X text 152 35 0= Grayscale \, 1 =rgb \, 2 = rgba;
+#X obj 8 211 outlet;
+#X text 245 163 to do...;
+#X text 190 138 width \, height \, posX \, posY (careful);
+#X connect 0 0 10 0;
+#X connect 1 0 10 0;
+#X connect 2 0 10 0;
+#X connect 3 0 10 0;
+#X connect 5 0 10 0;
+#X connect 6 0 10 0;
+#X restore 181 303 pd process;
+#N canvas 629 136 651 566 Get_&_Set_Pixels 0;
+#X floatatom 96 185 5 0 0 0 - - -;
+#X msg 305 209 update;
+#X obj 22 8 of.draw;
+#X obj 22 402 of.image;
+#X msg 226 377 clear;
+#X text 203 54 (0= Grayscale \, 1 =rgb \, 2 = rgba);
+#X msg 96 140 fill 0 0 0;
+#X msg 96 210 setpixel \$1 5 255 0 0 255;
+#X text 300 185 need after:;
+#X floatatom 96 234 5 0 0 0 - - -;
+#X msg 96 260 setpixel \$1 0 255 255 255 \, update;
+#X floatatom 99 289 5 0 0 0 - - -;
+#X obj 48 441 print pixels;
+#X msg 99 327 getpixel \$1 4;
+#X text 285 91 draw on screen (active \, posX \, posY \, width \, height)
+;
+#X text 205 39 PixWidths \, PixHeights \, colortype;
+#X text 273 377 clear all pixels = careful \, need re-allocate!;
+#X text 145 290 Get pixels to middle outlet;
+#X msg 86 90 draw 1 -200 -200 10 200 200;
+#X text 86 21 1/;
+#X text 96 67 2/;
+#X text 107 118 3/;
+#X text 183 141 fill all black (rgb or rgba if colortype =2);
+#N canvas 470 402 647 300 Work_with_alpha 0;
+#X obj 56 227 outlet;
+#X floatatom 85 106 5 0 0 0 - - -;
+#X msg 56 44 allocate 10 10 2 \, fill 200 0 0 50 \, draw 1 -150 -150
+10 300 300;
+#X text 55 20 allocate colortype =2 \, fill rgba (alpha = 50) \, draw
+300x300px, f 67;
+#X text 131 106 need after \, and update (carefull of the values!)
+;
+#X msg 85 132 setpixel \$1 0 255 255 255 150 \, update;
+#X text 241 153 alpha = 150;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 5 0 0 0;
+#X restore 227 346 pd Work_with_alpha;
+#X msg 71 44 allocate 10 10 1;
+#X text 140 182 Set pixels;
+#X text 142 234 need after \, and update (carefull of the values!)
+;
+#X connect 0 0 7 0;
+#X connect 1 0 3 0;
+#X connect 2 0 3 0;
+#X connect 3 1 12 0;
+#X connect 4 0 3 0;
+#X connect 6 0 3 0;
+#X connect 7 0 3 0;
+#X connect 9 0 10 0;
+#X connect 10 0 3 0;
+#X connect 11 0 13 0;
+#X connect 13 0 3 0;
+#X connect 18 0 3 0;
+#X connect 23 0 3 0;
+#X connect 24 0 3 0;
+#X restore 283 305 pd Get_&_Set_Pixels;
+#X msg 36 191 open data/transparency.png;
+#X msg 37 365 save export.png;
+#X text 38 220 works also with online files if connected to internet
+;
+#X text 28 22 A powerful Image loader using memory and gpu based pixels.
+;
+#X text 26 40 arg(6): path/file.ext draw posX posY posZ width height
+;
+#X obj 19 422 of.texture data/rgb.jpg;
+#X floatatom 271 330 5 0 0 0 - - -;
+#X obj 19 538 of.sphere;
+#X msg 273 352 warp \$1 \$1;
+#X floatatom 462 340 5 0 0 0 - - -;
+#X floatatom 458 274 5 0 0 0 - - -;
+#X msg 460 296 filter \$1 0;
+#X msg 468 397 disablemipmap;
+#X text 376 477 hasmipmap;
+#X msg 464 362 text \$1;
+#X connect 7 0 35 0;
+#X connect 11 0 1 0;
+#X connect 11 1 8 0;
+#X connect 11 2 9 0;
+#X connect 11 3 10 0;
+#X connect 17 0 35 0;
+#X connect 18 0 19 0;
+#X connect 19 0 35 0;
+#X connect 20 0 18 0;
+#X connect 23 0 35 0;
+#X connect 24 0 35 0;
+#X connect 25 0 35 0;
+#X connect 28 0 35 0;
+#X connect 30 0 35 0;
+#X connect 31 0 35 0;
+#X connect 35 0 37 0;
+#X connect 35 2 11 0;
+#X connect 36 0 38 0;
+#X connect 38 0 35 0;
+#X connect 39 0 44 0;
+#X connect 40 0 41 0;
+#X connect 41 0 35 0;
+#X connect 42 0 35 0;
+#X connect 44 0 35 0;

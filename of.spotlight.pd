@@ -1,0 +1,49 @@
+#N canvas 318 118 962 660 12;
+#X obj 27 20 inlet;
+#X obj 27 746 outlet;
+#X text 116 10 http://openframeworks.kr/doxygen/classof_light.html#a511fcf1d033fd005ecdd5d0eb9c5811f
+, f 100;
+#X text 378 30 https://forum.openframeworks.cc/t/understanding-oflight/26230/3
+, f 100;
+#X text 723 6 https://forum.openframeworks.cc/t/3-point-light-in-of/22075/2
+, f 100;
+#X obj 27 47 ofelia d light\$0 \; \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local active \, attenuation \, cutoff \, concentration
+\, smooth \, debug = args[1] \, args[2] \, args[3] \, args[4] \, args[5]
+\, args[6] \; local position \, orientation \, scale = ofVec3f(0 \,
+0 \, 0) \, ofVec3f(0 \, 0 \, 0) \, ofVec3f(1 \, 1 \, 1) \; local ambient
+\, diffuse \, specular = ofFloatColor(0.2 \, 0.2 \, 0.2) \, ofFloatColor()
+\, ofFloatColor () \; \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if args[1] == nil then active = 1 else active = args[1]
+end \; if args[2] == nil then attenuation = 1 end \; if args[3] ==
+nil then cutoff = 40 end \; if args[4] == nil then concentration =
+20 end \; if args[5] == nil then smooth = 1 end \; M.setup() end \;
+\; function M.setup() \; if ofWindow.exists then \; light\$0 = ofLight()
+\; light\$0:setSpotlight() \; light\$0:setPosition (position:vec3())
+light\$0:setOrientation (orientation:vec3()) light\$0:setScale (scale:vec3())
+\; light\$0:setAmbientColor(ambient) light\$0:setDiffuseColor(diffuse)
+light\$0:setSpecularColor(specular) \; M.active(active) M.attenuation(attenuation)
+M.cutoff(cutoff) M.spotconcentration(concentration) end end \; function
+M.active(value) active = value if active == 1 then light\$0:enable()
+\; else light\$0:disable() end end \; function M.ambient(l) ambient.r=l[1]
+ambient.g=l[2] ambient.b=l[3] light\$0:setAmbientColor(ambient) end
+\; function M.diffuse(l) diffuse.r=l[1] diffuse.g=l[2] diffuse.b=l[3]
+light\$0:setDiffuseColor(diffuse) end \; function M.specular(l) specular.r=l[1]
+specular.g=l[2] specular.b=l[3] light\$0:setSpecularColor(specular)
+end \; function M.cutoff(f) cutoff = f light\$0:setSpotlightCutOff(f)
+end \; function M.spotconcentration(f) concentration = f light\$0:setSpotConcentration(f)
+end \; function M.attenuation(f) attenuation = f light\$0:setAttenuation(f)
+end \; function M.position(l) position.x=l[1] position.y=l[2] position.z=l[3]
+light\$0:setPosition(position:vec3()) end \; function M.scale(l) scale.x=l[1]
+scale.y=l[2] scale.z=l[3] light\$0:setScale(scale:vec3()) end \; function
+M.smooth(f) smooth = f end \; function M.debug(f) debug = f _lighting
+= 1 end \; function M.orientation(l) orientation.x=l[1] orientation.y=l[2]
+orientation.z=l[3] light\$0:setOrientation(orientation:vec3()) end
+\; \; function M.bang() \; ofSetSmoothLighting(smooth ~= 0) \; if debug
+== 1 then ofDisableLighting() light\$0:draw() if _lighting == 1 then
+ofEnableLighting() end end \; return(anything) end \; function M.free()
+\; ofWindow.removeListener("setup" \, this) light\$0 = nil collectgarbage()
+\; end \;;
+#X f 134;
+#X connect 0 0 5 0;
+#X connect 5 0 1 0;

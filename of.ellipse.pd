@@ -1,0 +1,43 @@
+#N canvas 12 32 859 698 12;
+#X obj 31 14 inlet;
+#X obj 31 620 outlet;
+#X obj 93 14 inlet;
+#X obj 253 14 inlet;
+#X text 764 551 RI;
+#X msg 253 40 res \$1;
+#X obj 173 14 inlet;
+#X msg 93 40 width \$1;
+#X msg 173 40 height \$1;
+#X obj 31 75 ofelia d ellipse-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local node\$0 = ofNode() \; local width \, height
+\, res \, drawmode \, strokeweight \, debug = args[1] \, args[2] \,
+args[3] \, args[4] \, args[5] \; local position \, orientation \, scale
+= ofVec3f(0 \, 0 \, 0) \, ofVec3f(0 \, 0 \, 0) \, ofVec3f(1 \, 1 \,
+1) \; \; function M.new() \; if args[1] == nil then width = 100 end
+\; if args[2] == nil then height = 100 end \; if args[3] == nil then
+res = 20 end \; if args[4] == nil then drawmode = "fill" end \; if
+args[5] == nil then strokeweight = 1 end \; end \; \; function M.width(f)
+width=f end \; function M.height(f) height=f end \; function M.res(f)
+res=f end \; function M.draw(s) drawmode = s end \; function M.stroke(f)
+strokeweight = f end \; function M.list(l) width = l[1] height = l[2]
+res = l[3] drawmode = l[4] strokeweight = l[5] end \; function M.debug(f)
+debug = f end \; function M.position(l) position:set (table.unpack(l))
+node\$0:setPosition(position:vec3()) end \; function M.orientation(l)
+orientation:set (table.unpack(l)) node\$0:setOrientation(orientation:vec3())
+end \; function M.scale(l) scale:set (table.unpack(l)) node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+end \; \; function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode
+== "line" then ofNoFill() end \; node\$0:transformGL() \; ofSetCircleResolution(math.abs(res))
+\; ofDrawEllipse(position:vec3() \, width \, height) \; node\$0:restoreTransformGL()
+\; if debug == 1 then node\$0:draw() end \; ofFill() \; return anything
+\; end \;;
+#X f 108;
+#X text 717 630 RI;
+#X connect 0 0 9 0;
+#X connect 2 0 7 0;
+#X connect 3 0 5 0;
+#X connect 5 0 9 0;
+#X connect 6 0 8 0;
+#X connect 7 0 9 0;
+#X connect 8 0 9 0;
+#X connect 9 0 1 0;

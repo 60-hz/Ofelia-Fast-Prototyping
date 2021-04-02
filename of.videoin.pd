@@ -1,0 +1,29 @@
+#N canvas 563 46 717 732 12;
+#X obj 15 20 inlet;
+#X obj 15 834 outlet;
+#X obj 663 832 outlet;
+#X text 614 831 RI;
+#X obj 15 51 ofelia d -c12 video-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+video\$0 = ofVideoGrabber() \; local id \, width \, height = args[1]
+\, args[2] \, args[3] \; local opened \, devices \; \; function M.new()
+\; ofWindow.addListener("setup" \, this) \; if args[1] == nil then
+id = 0 end \; if args[2] == nil then width = 320 end \; if args[3]
+== nil then height = 240 end \; M.setup() \; end \; \; function M.free()
+\; video\$0:close() \; ofWindow.removeListener("setup" \, this) \;
+end \; function M.setup() \; if ofWindow.exists then \; video\$0:setDeviceID(id)
+\; video\$0:setup(width \, height) \; end \; end \; function M.dimen(list)
+\; video\$0:setup(list[1] \, list[2]) \; end \; function M.close()
+\; video\$0:close() \; end \; \; function M.listdev() \; devices =
+video\$0:listDevices() \; print(devices) \; end \; function M.open(float)
+\; video\$0:close() \; if ofWindow.exists then \; ofDisableArbTex()
+\; video\$0:setDeviceID(math.floor(float)) \; video\$0:setup(width
+\, height) \; end \; end \; function M.get() outlet:outletList(1 \,
+ofTable (video\$0:isInitialized() \, video\$0:getWidth() \, video\$0:getHeight()
+\, video\$0:getTexturePlanes())) \; end \; \; function M.bang() \;
+video\$0:update() \; video\$0:bind() \; outlet:outletBang(0) \; video\$0:unbind()
+\; end \;;
+#X f 93;
+#X connect 0 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 1 2 0;

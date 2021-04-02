@@ -1,0 +1,59 @@
+#N canvas 467 27 813 751 12;
+#X obj 31 14 inlet;
+#X obj 31 706 outlet;
+#X obj 93 14 inlet;
+#X obj 253 14 inlet;
+#X text 770 619 RI;
+#X obj 173 14 inlet;
+#X msg 93 40 x1 \$1;
+#X msg 253 40 x2 \$1;
+#X obj 313 14 inlet;
+#X obj 373 14 inlet;
+#X obj 433 14 inlet;
+#X msg 373 40 x3 \$1;
+#X msg 433 40 y3 \$1;
+#X msg 173 40 y1 \$1;
+#X msg 313 40 y2 \$1;
+#X obj 31 75 ofelia d triangle-\$0 \; local c = ofCanvas(this) \; local
+args = c:getArgs() \; local node\$0 = ofNode() \; local x1 \, y1 \,
+x2 \, y2 \, x3 \, y3 \, drawmode \, strokeweight \, debug = args[1]
+\, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \,
+args[8] \; local position \, orientation \, scale \, lookat = ofVec3f()
+\, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; \; function M.new()
+\; if args[1] == nil then x1 = -100 end \; if args[2] == nil then y1
+= -100 end \; if args[3] == nil then x2 = 100 end \; if args[4] ==
+nil then y2 = -100 end \; if args[5] == nil then x3 = 0 end \; if args[6]
+== nil then y3 = 100 end \; if args[7] == nil then drawmode = "fill"
+end \; if args[8] == nil then strokeweight = 1 end \; end \; \; function
+M.x1(float) x1=float end \; function M.y1(float) y1=float end \; function
+M.x2(float) x2=float end \; function M.y2(float) y2 = float end \;
+function M.x3(float) x3 = float end \; function M.y3(float) y3 = float
+end \; function M.draw(string) drawmode = string end \; function M.stroke(float)
+strokeweight = float end \; function M.list(list) x1 = list[1] y1 =
+list[2] x2 = list[3] y2 = list[4] x3 = list[5] y3 = list[6] dramode
+= list[7] strokeweight = list[8] end \; function M.debug(f) debug =
+f end \; function M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation:set (table.unpack(l))
+node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function
+M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+end \; \; function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode
+== "line" then ofNoFill()end \; node\$0:transformGL() \; ofDrawTriangle(x1
+\, y1 \, x2 \, y2 \, x3 \, y3) \; node\$0:restoreTransformGL() \; if
+debug == 1 then node\$0:draw() end \; ofFill() \; return anything \;
+end \;;
+#X f 109;
+#X connect 0 0 15 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
+#X connect 5 0 13 0;
+#X connect 6 0 15 0;
+#X connect 7 0 15 0;
+#X connect 8 0 14 0;
+#X connect 9 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 15 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 1 0;

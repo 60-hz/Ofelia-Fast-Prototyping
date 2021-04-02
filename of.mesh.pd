@@ -1,0 +1,65 @@
+#N canvas 418 120 827 578 12;
+#X text 317 904 DIY obj loader: https://github.com/section14/openframeworks-WaveFront-obj-loader/blob/master/waveFrontLoader.cpp
+;
+#X obj 15 10 inlet;
+#X obj 15 923 outlet;
+#X obj 15 877 list trim;
+#X obj 82 923 outlet;
+#X text 601 817 RI;
+#X obj 15 900 route bang;
+#X obj 15 40 ofelia d model-\$0 \; local canvas = ofCanvas(this) \;
+local args = canvas:getArgs() \; mesh\$0 = ofMesh() \; local filename
+\, drawmode \, strokeweight \, mode = args[1] \, args[2] \, args[3]
+\, args[4] \; local loaded \, saved \, debug \, t \, func = nil \,
+nil \, 0 \; \; function M.new() \; ofWindow.addListener("setup" \,
+this) \; if args[1] == nil then print("[gl.mesh] : No file") \; else
+args[1] = filename \; if args[2] == nil then drawmode = "fill" end
+\; if args[3] == nil then strokeweight = 1 end \; if args[4] == nil
+then mode = 0 end \; M.setup() end end \; \; function M.free() ofWindow.removeListener("setup"
+\, this) end \; function M.setup() if filename ~= nil then M.open(filename)
+end end \; function M.prim(a) func = a[1] t = a table.remove(t \, 1)
+mesh\$0 = _G[func](table.unpack(t)):getMesh() end \; function M.append(a)
+func = a[1] t = a table.remove(t \, 1) mesh\$0.append(_G[func](table.unpack(t)):getMesh()
+\, mesh\$0) print(table.unpack(t)) end \; function M.clear() image\$0:clear()
+end \; function M.open(string) ofSetDataPathRoot(ofCanvas(this \, 1):getDir())
+filename = string \; if ofWindow.exists then ofDisableArbTex() mesh\$0:clear()
+loaded = mesh\$0:load(filename) end \; if loaded then print("loaded
+" .. filename) end end \; function M.save(string) if ofWindow.exists
+then saved = mesh\$0:save(string) end if saved then print("saved "
+.. string) end end \; function M.draw(s) drawmode = s end \; function
+M.stroke(f) strokeweight = f end \; function M.normalsize(float) normalsize=float
+end \; function M.setupindicesauto() mesh\$0:setupIndicesAuto() end
+\; function M.addtriangle(l) mesh\$0:addTriangle(l[1] \, l[2] \, l[3])
+end \; function M.smoothnormals(f) mesh\$0:smoothNormals(f) end \;
+function M.addcolor(l) mesh\$0:addColor(ofFloatColor(table.unpack(l)))end
+\; function M.addtexcoord(l) mesh\$0:addTexCoord(ofVec2f(table.unpack(l)):vec2())end
+\; function M.addindex(f) mesh\$0:addIndex(f) end \; function M.addvertex(l)
+mesh\$0:addVertex(ofPoint(table.unpack(l)):vec3())end \; function M.addvertices(l)
+mesh\$0:addVertices(ofVec3f(table.unpack(l)):vec3() \, #l) end \; function
+M.setcolor(l) mesh\$0:setColor(1 \, ofFloatColor(table.unpack(l)))end
+\; function M.texture(f) if f > 0 then mesh\$0:enableTextures() else
+mesh\$0:disableTextures() end end \; function M.textcoord(l) mesh\$0:setTexCoord(l[1]
+\, l[2]) end \; function M.texturemap(l) mesh\$0:setTexCoord(l[1] \,
+l[2] \, l[3] \, l[4]) end \; function M.removevertex(i) mesh\$0:removeVertex(i)
+end \; function M.removecolor(i) mesh\$0:removeColor(i) end \; function
+M.removenormal(i) mesh\$0:removeNormal(i) end \; function M.removeindex(i)
+mesh\$0:removeIndex(i) end \; function M.settexcoord(l) mesh\$0:setTexCoord(0
+\, ofVec2f(table.unpack(l)):vec2()) end \; function M.removetexcoord(i)
+mesh\$0:removeTexCoord(i) end \; function M.mode(a) mode = a end \;
+function M.clear() mesh\$0:clear() end function M.clearcolors() mesh\$0:clearColors()
+end function M.clearindices() mesh\$0:clearIndices() end function M.cleartexcoords()
+mesh\$0:clearTexCoords() end \; function M.get() return ofTable (mesh\$0:getNumVertices()
+\, mesh\$0:getNumColors() \, mesh\$0:getNumIndices() \, mesh\$0:getNumNormals()
+\, mesh\$0:getNumTexCoords() \, mesh\$0:hasColors() \, mesh\$0:hasTexCoords()
+\, mesh\$0:hasNormals() \, mesh\$0:hasVertices() \, mesh\$0:hasIndices())end
+\; \; function M.bang() \; mesh\$0:setMode(mode) \; ofSetLineWidth(strokeweight)
+\; if drawmode == "fill" then mesh\$0:drawFaces() end \; if drawmode
+== "point" then mesh\$0:drawVertices() end \; if drawmode == "line"
+then mesh\$0:drawWireframe() end \; if debug > 0 then mesh\$0:drawAxes(debug*100)
+end \; return(anything) \; end \;;
+#X f 140;
+#X connect 1 0 7 0;
+#X connect 3 0 6 0;
+#X connect 6 0 2 0;
+#X connect 6 1 4 0;
+#X connect 7 0 3 0;

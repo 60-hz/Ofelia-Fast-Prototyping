@@ -1,0 +1,58 @@
+#N canvas 688 -826 1068 755 12;
+#X obj 14 978 outlet;
+#X msg 200 -9 noisescale \$1;
+#X msg 310 -10 noisevel \$1;
+#X obj 15 -45 inlet;
+#X obj 200 -45 inlet;
+#X obj 310 -45 inlet;
+#X obj 442 979 outlet;
+#X obj 884 979 outlet;
+#X obj 13 7 ofelia d -c13 noise-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+local width \, height \, type \, noiseScale \, noiseVel = 10 \, 10
+\, 0 \, 1 \, 1 \; local noise\$0 = ofImage() tex\$0 = ofTexture() tex\$0
+= noise\$0:getTexture() \; \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; ofWindow.addListener("update" \, this) \; ofWindow.addListener("exit"
+\, this) \; if args[1] == nil then width = 10 end \; if args[2] ==
+nil then height = 10 end \; if args[3] == nil then type = 0 else type
+= args[3] end \; if ofWindow.exists then M.setup() end end \; \; function
+M.free() \; ofWindow.removeListener("setup" \, this) \; ofWindow.removeListener("update"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; function
+M.exit() \; noise\$0:clear() \; end \; function M.setup() \; ofEnableArbTex()
+\; ofEnableNormalizedTexCoords() \; noise\$0:allocate(width \, height
+\, type) \; tex\$0:allocate(width \, height \, GL_RGB) \; end \; \;
+function M.allocate(l) noise\$0:allocate(table.unpack(l)) end \; function
+M.noisescale(f) noiseScale = f M.generate() end \; function M.filter(f)
+if f < 1 then tex\$0:setTextureMinMagFilter(GL_NEAREST \, GL_NEAREST)
+else tex\$0:setTextureMinMagFilter(GL_LINEAR \, GL_LINEAR) end end
+\; function M.warp() tex\$0:setTextureWrap(GL_REPEAT \, GL_REPEAT)
+end \; function M.noisevel(f) noiseVel = f M.generate() end \; function
+M.clear() noise\$0:clear() end \; function M.fill(l) noise\$0:setColor(ofColor(table.unpack(l)))
+image\$0:update() end \; function M.setimagetype(float) noise\$0:setImageType(float)
+end \; function M.anchorpoint(l) noise\$0:setAnchorPoint(table.unpack(l))
+end \; function M.mirror(l) noise\$0:mirror(l[1]==1 \, l[2]==1) end
+\; function M.rotate(i) noise\$0:rotate90(i) end \; function M.resize(l)
+noise\$0:resize(l[1] \, l[2]) end \; function M.crop(l) noise\$0:crop(table.unpack(l))
+end \; function M.cropfrom(l) noise0:cropfrom(image\$0 \, l[1] \, l[2]
+\, l[3] \, l[4]) end \; function M.update() noise\$0:update()end \;
+function M.setpixel(l) noise\$0:setColor(l[1] \, l[2] \, ofColor(table.unpack(l
+\, 3 \, #l))) end \; function M.getpixel(l) local p = noise\$0:getColor(l[1]
+\, l[2]) outlet:outletList(1 \, ofTable( p.r \, p.g \, p.b \, p.a))
+end \; function M.get() outlet:outletList(2 \, ofTable(noise\$0:getWidth()
+\, noise\$0:getHeight() \, noise\$0:getImageType())) end \; function
+M.generate() \; local pixels = noise\$0:getPixels() \; local w = noise\$0:getWidth()
+\; local h = noise\$0:getHeight() \; local x \, y=0 \, 0 \; for y=0
+\, h-1 do \; for x=0 \, w-1 do \; local i = y * w + x \; local noiseValue
+= ofNoise(x * noiseScale \, y * noiseScale \, noiseVel) \; pixels:setColor(i
+\, ofColor(255 * noiseValue)) end end noise\$0:update() end \; function
+M.bang() \; noise\$0:update() tex\$0:bind() \; outlet:outletBang(0)
+\; tex\$0:unbind() \; end \;;
+#X f 125;
+#X connect 1 0 8 0;
+#X connect 2 0 8 0;
+#X connect 3 0 8 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X connect 8 0 0 0;
+#X connect 8 1 6 0;
+#X connect 8 2 7 0;

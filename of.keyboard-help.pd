@@ -1,0 +1,37 @@
+#N canvas 521 209 637 389 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X obj 40 108 of.draw;
+#X text 21 47 (arguments: order \, enable);
+#X obj 94 143 of.keyboard;
+#X msg 94 196 text \$1;
+#X obj 40 272 of.text Type-here center;
+#X text 187 142 -> focus the of.window and type;
+#X symbolatom 94 166 10 0 0 0 - - -;
+#X text 21 19 Keyboard output in the of.window;
+#X obj 518 19 of.window 1;
+#N canvas 440 103 621 385 Write_in_patch 0;
+#X obj 308 123 list append;
+#X obj 308 147 list;
+#X obj 83 37 of.draw;
+#X obj 262 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 258 61 clear;
+#X obj 308 25 key;
+#X obj 83 201 of.text Type-in-patch;
+#X obj 83 99 of.translate -200 150 0;
+#X connect 0 0 1 0;
+#X connect 1 0 0 1;
+#X connect 1 0 6 0;
+#X connect 2 0 7 0;
+#X connect 3 0 1 0;
+#X connect 5 0 0 0;
+#X connect 7 0 6 0;
+#X restore 437 237 pd Write_in_patch;
+#X text 157 195 -> change the text;
+#X connect 2 0 6 0;
+#X connect 4 0 8 0;
+#X connect 5 0 6 0;
+#X connect 8 0 5 0;

@@ -1,0 +1,88 @@
+#N canvas 233 23 1047 755 12;
+#X obj 27 15 inlet;
+#X obj 153 16 inlet;
+#X obj 213 16 inlet;
+#X obj 263 16 inlet;
+#X obj 323 16 inlet;
+#X obj 383 16 inlet;
+#X msg 102 44 tX \$1;
+#X msg 153 44 tY \$1;
+#X msg 213 44 tZ \$1;
+#X msg 263 44 rX \$1;
+#X msg 323 44 rY \$1;
+#X msg 383 44 rZ \$1;
+#X text 597 636 RI, f 3;
+#X obj 27 793 outlet;
+#X obj 102 16 inlet;
+#N canvas 0 23 476 208 Notes 0;
+#X text 23 173 https://forum.openframeworks.cc/t/how-to-find-out-translated-coordinate-in-the-middle-of-draw/24866
+;
+#X text 22 119 - How to find out translated coordinate in the middle
+of draw() -> allows translate / rotate to change current camera _c_position/rotation
+?;
+#X text 22 29 - Camera default point 0 \, 0 \, 0 at center and render
+order is 0 (from [of.window]) - Rendering order < 0 and > 1000 will
+be out of camera with default openframeworks starting point 0 \, 0
+\, 0 at BOTTOM LEFT because openGL texture is reversed);
+#X restore 683 35 pd Notes;
+#X obj 27 73 ofelia d camera-\$0 \; local c = ofCanvas(this) \; local
+v = ofVec3f(0 \, 1 \, 0) \; local args = c:getArgs() \; local debug
+\, ortho \, gridsteps \, gridsize \, fov = 0 \, 0 \, 10 \, 100 \, 60
+\; \; function M.new() \; ofWindow.addListener("setup" \, this \, -1)
+\; if type (_c_position) == "nil" then _c_position = ofVec3f(0 \, 0
+\, 400) end \; if type (_c_orientation) == "nil" then _c_orientation
+= ofVec3f() end \; if type (_c_lookat) == "nil" then _c_lookat = ofVec3f()
+end \; if args[1] ~= nil then _c_position.x = args[1] end \; if args[2]
+~= nil then _c_position.y = args[2] end \; if args[3] ~= nil then _c_position.z
+= args[3] end \; if args[4] ~= nil then _c_orientation.x = args[4]
+end \; if args[5] ~= nil then _c_orientation.y = args[5] end \; if
+args[6] ~= nil then _c_orientation.z = args[6] end \; if args[7] ~=
+nil then fov = args[7] end \; M.setup() end \; function M.free() \;
+ofWindow.removeListener("setup" \, this) end \; \; function M.setup()
+\; if type (_maincamera) == "nil" then _maincamera = ofCamera() end
+\; _maincamera:setPosition(_c_position:vec3()) _maincamera:setOrientation(_c_orientation:vec3())
+_maincamera:setFov(fov) end \; \; function M.tX(float) _c_position.x
+= float _maincamera:setPosition(_c_position:vec3()) end \; function
+M.tY(float) _c_position.y = float _maincamera:setPosition(_c_position:vec3())
+end \; function M.tZ(float) _c_position.z = float _maincamera:setPosition(_c_position:vec3())
+end \; function M.rX(float) _c_orientation.x = float _maincamera:setOrientation(_c_orientation:vec3())
+end \; function M.rY(float) _c_orientation.y = float _maincamera:setOrientation(_c_orientation:vec3())
+end \; function M.rZ(float) _c_orientation.z = float _maincamera:setOrientation(_c_orientation:vec3())
+end \; function M.ortho(float) ortho = float if ortho > 0 then _maincamera:enableOrtho()
+else _maincamera:disableOrtho() end end \; function M.fov(float) fov
+= float _maincamera:setFov(fov) end \; function M.debug(f) debug =
+f end \; function M.reset() M.position(ofTable(0 \, 0 \, 400))M.orientation(ofTable(0
+\, 0 \, 0)) M.fov(60) M.ortho(0) M.vflip(0) end \; function M.gridsteps(f)
+gridsteps = math.abs(f) end \; function M.gridsize(f) gridsize = f
+end \; function M.vflip(float) _maincamera:setVFlip(float~=0) end \;
+function M.aspectratio(f) _maincamera:setAspectRatio(f) end \; function
+M.farclip(f) _maincamera:setFarClip(f) end \; function M.lensoffset(l)
+_maincamera:setLensOffset(ofVec2f(l[1] \, l[2]):vec2())end \; function
+M.nearclip(f) _maincamera:setNearClip(f) end \; function M.position(l)
+_c_position:set (l[1] \, l[2] \, l[3]) _maincamera:setPosition(_c_position:vec3())
+end \; function M.orientation(l) _c_orientation:set (l[1] \, l[2] \,
+l[3]) _maincamera:setOrientation(_c_orientation:vec3()) end \; function
+M.lookat(l) _c_lookat:set (l[1] \, l[2] \, l[3]) _maincamera:lookAt(_c_lookat:vec3()
+\, v:vec3()) end \; function M.orbit(l) _maincamera:orbitDeg(l[1] \,
+l[2] \, l[3] \, ofVec3f(l[4] \, l[5] \, l[6]):vec3())end \; function
+M.list(l) _c_position.x=l[1] _c_position.y=l[2] _c_position.z=l[3]
+_c_orientation.x=l[4] _c_orientation.y=l[5] _c_orientation.z=l[6] _maincamera:setPosition(_c_position:vec3())
+_maincamera:setOrientation(_c_orientation:vec3()) M.fov(l[7]) end \;
+\; function M.bang() \; if debug == 1 then ofDisableLighting() ofDrawGrid
+(gridsize \, gridsteps \, false) \; if _lighting == 1 then ofEnableLighting()
+end end \; return anything \; end \;;
+#X f 138;
+#X connect 0 0 16 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 9 0;
+#X connect 4 0 10 0;
+#X connect 5 0 11 0;
+#X connect 6 0 16 0;
+#X connect 7 0 16 0;
+#X connect 8 0 16 0;
+#X connect 9 0 16 0;
+#X connect 10 0 16 0;
+#X connect 11 0 16 0;
+#X connect 14 0 6 0;
+#X connect 16 0 13 0;

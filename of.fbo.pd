@@ -1,0 +1,41 @@
+#N canvas 346 33 881 745 12;
+#X obj 15 0 inlet;
+#X obj 15 681 outlet;
+#X text 695 651 RI;
+#X obj 430 684 outlet;
+#X obj 845 682 outlet;
+#X obj 15 30 ofelia d -c13 fbo-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+fbo\$0 = ofFbo() \; local width \, height \, type \, autoclear = 256
+\, 256 \, GL_RGBA \, 1 \; local clear = ofColor(0 \, 0 \, 0 \, 255)
+\; \; function M.new() \; ofWindow.addListener("setup" \, this) \;
+if args[1] == nil then width = 256 else width = args[1] end \; if args[2]
+== nil then height = 256 else height = args[2] end \; if args[3] ==
+nil then atoclear = 1 else autoclear = args[3] end \; M.setup() end
+\; \; function M.free() \; ofWindow.removeListener("setup" \, this)
+\; end \; \; function M.setup() \; if ofWindow.exists then fbo\$0:allocate(width
+\, height \, type) fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo()
+end end \; \; function M.allocate(l) width=l[1] height=l[2] fbo\$0:allocate(width
+\, height \, type) end \; function M.garbage(l) width=l[1] height=l[2]
+fbo\$0:allocate(width \, height \, type) fbo\$0:beginFbo() ofClear(0
+\, 0 \, 0 \, 255) fbo\$0:endFbo() end \; function M.clear() if ofWindow.exists
+then fbo\$0:clear() end end \; function M.autoclear(f) autoclear =
+f end \; function M.fill(l) clear.r=l[1] clear.g=l[2] clear.b=l[3]
+clear.a=l[4] fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo() end \;
+function M.updatetexture() fbo\$0:updateTexture() end \; function M.draw(list)
+fbo\$0:draw(list[1] \, list[2] \, list[3]) end \; function M.crop(l)
+fbo\$0:crop(l[1] \, l[2] \, l[3] \, l[4]) end \; function M.cropfrom(l)
+fbo\$0:cropfrom(image\$0 \, l[1] \, l[2] \, l[3] \, l[4]) end \; function
+M.drawsubsection(l) fbo\$0:drawSubsection(l[1] \, l[2] \, l[3] \, l[4]
+\, l[5] \, l[6]) end \; function M.get() outlet:outletList(2 \, ofTable
+(fbo\$0:isAllocated() \, fbo\$0:getWidth() \, fbo\$0:getHeight() \,
+fbo\$0:getNumTextures())) end \; \; function M.bang() \; ofPushMatrix()
+\; fbo\$0:beginFbo() \; ofTranslate(width*0.5 \, height*0.5 \, 0) \;
+if autoclear == 1 and ofWindow.exists then ofClear(clear) end \; outlet:outletBang(0)
+\; fbo\$0:endFbo() \; ofPopMatrix() \; fbo\$0:getTexture():bind() \;
+outlet:outletBang(1) \; fbo\$0:getTexture():unbind() \; end \;;
+#X f 119;
+#X connect 0 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 3 0;
+#X connect 5 2 4 0;

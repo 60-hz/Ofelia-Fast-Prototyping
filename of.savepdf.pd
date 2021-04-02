@@ -1,0 +1,33 @@
+#N canvas 171 340 1075 438 12;
+#X obj 21 14 inlet;
+#X obj 22 338 outlet;
+#X obj 80 12 inlet;
+#X obj 150 12 inlet;
+#X obj 250 12 inlet;
+#X obj 320 12 inlet;
+#X text 988 280 RI;
+#X msg 80 38 save \$1;
+#X msg 150 38 multipage \$1;
+#X msg 250 38 b3d \$1;
+#X msg 320 38 outputsize \$1 \$2 \$3 \$4;
+#X obj 21 80 ofelia d \; local oneshot \, save \, multipage \, b3d
+\, outputsize = false \, "screenshot.pdf" \, false \, false \, ofRectangle(0
+\, 0 \, ofGetWidth() \, ofGetHeight()) \; local outlet = ofOutlet(this)
+\; function M.bang() \; if oneshot then print("export") \; ofBeginSaveScreenAsPDF(save
+\, multipage \, b3d \, outputsize) \; end \; outlet:outletBang(0) if
+oneshot then \; ofEndSaveScreenAsPDF() \; oneshot = false \; end \;
+function M.save(s) save = s oneshot = true end \; function M.multipage(f)
+multipage = f ~= 0 print (multipage) end \; function M.b3d(f) b3d =
+f ~= 0 print (b3d) end \; function M.outputsize(l) outputsize = ofRectangle(l[1]
+\, l[2] \, l[3] \, l[4]) end \; end;
+#X f 144;
+#X connect 0 0 11 0;
+#X connect 2 0 7 0;
+#X connect 3 0 8 0;
+#X connect 4 0 9 0;
+#X connect 5 0 10 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 0;
+#X connect 9 0 11 0;
+#X connect 10 0 11 0;
+#X connect 11 0 1 0;

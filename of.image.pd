@@ -1,0 +1,52 @@
+#N canvas 343 23 937 755 12;
+#X obj 15 0 inlet;
+#X obj 15 877 outlet;
+#X obj 475 870 outlet;
+#X text 669 874 RI;
+#X obj 886 874 outlet;
+#X obj 15 30 ofelia d -c13 image-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+local filename \, dimg \, dsimg = args[1] \, ofTable() \, ofTable()
+\; local loaded \, saved \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; if type(image\$0) == "nil" then image\$0 = ofImage() end
+\; if args[1] == nil then print("[of.image] : No file") else args[1]
+= filename end \; if args[2] == 1 then dimg[1] = 1 end \; if args[3]
+== nil then dimg[2] = 0 else dimg[2] = args[3] end \; if args[4] ==
+nil then dimg[3] = 0 else dimg[3] = args[4] end \; if args[5] == nil
+then dimg[4] = 100 else dimg[4] = args[5] end \; if args[6] == nil
+then dimg[5] = 100 else dimg[5] = args[6] end \; M.setup() \; end \;
+\; function M.free() \; ofWindow.removeListener("setup" \, this) end
+\; function M.setup() \; if filename ~= nil then M.open(filename) end
+end \; \; function M.grab(f) if ofWindow.exists then image\$0:grabScreen(table.unpack(f))
+end end \; function M.allocate(list) image\$0:allocate(list[1] \, list[2]
+\, list[3]) end \; function M.clear() image\$0:clear() end \; function
+M.fill(l) image\$0:setColor(ofColor(table.unpack(l))) image\$0:update()
+end \; function M.setimagetype(float) image\$0:setImageType(float)
+end \; function M.draw(l) dimg = ofTable(table.unpack(l)) end \; function
+M.drawsubsection(l) dsimg = ofTable(table.unpack(l)) end \; function
+M.anchorpoint(l) image\$0:setAnchorPoint(table.unpack(l)) end \; function
+M.mirror(l) image\$0:mirror(l[1]==1 \, l[2]==1) end \; function M.rotate(i)
+image\$0:rotate90(i) end \; function M.resize(l) image\$0:resize(l[1]
+\, l[2]) end \; function M.crop(l) image\$0:crop(table.unpack(l)) end
+\; function M.cropfrom(l) image\$0:cropfrom(image\$0 \, l[1] \, l[2]
+\, l[3] \, l[4]) end \; function M.update() image\$0:update()end \;
+function M.open(s) ofSetDataPathRoot(ofCanvas(this \, 1):getDir())
+filename = s \; if ofWindow.exists then ofDisableArbTex() image\$0:clear()
+\; loaded = image\$0:load(filename) end \; if loaded then print("loaded
+" .. filename) end end \; function M.save(string) \; if ofWindow.exists
+then \; saved = image\$0:save(string) end if saved then print("saved
+" .. string) end end \; function M.setpixel(l) image\$0:setColor(l[1]
+\, l[2] \, ofColor(table.unpack(l \, 3 \, #l))) end \; function M.getpixel(l)
+local p = image\$0:getColor(l[1] \, l[2]) outlet:outletList(1 \, ofTable(
+p.r \, p.g \, p.b \, p.a)) end \; function M.get() outlet:outletList(2
+\, ofTable(loaded \, image\$0:getWidth() \, image\$0:getHeight() \,
+image\$0:getImageType() \, image\$0:getTexture() \, image\$0:getPixels()))
+end \; \; function M.bang() \; if dimg[1] == 1 then image\$0:draw(table.unpack(dimg
+\, 2 \, #dimg)) end \; if dsimg[1] == 1 then image\$0:drawSubsection(table.unpack(dsimg
+\, 2 \, #dsimg)) end \; image\$0:bind() \; outlet:outletBang(0) \;
+image\$0:unbind() end \;;
+#X f 132;
+#X connect 0 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 2 0;
+#X connect 5 2 4 0;

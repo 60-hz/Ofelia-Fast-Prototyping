@@ -1,0 +1,100 @@
+#N canvas 577 57 703 594 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X floatatom 78 158 5 0 0 0 - - -;
+#X msg 58 130 active \$1;
+#X obj 58 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 79 208 5 0 10 0 - - -;
+#X msg 79 231 attenuation \$1;
+#X msg 113 379 debug \$1;
+#X obj 113 357 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 130 406 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 130 432 smooth \$1;
+#X text 148 402 light smothing (default 1), f 29;
+#X msg 461 406 ambient \$1 0.5 0.3;
+#X floatatom 461 346 5 0 0 0 - - -;
+#X text 135 358 show light source (also turn on lighting);
+#X text 121 206 light attenuation (default 1);
+#X text 76 105 light on/off (default 1);
+#X text 499 345 red ambient color;
+#X floatatom 461 378 5 0 0 0 - - -;
+#X msg 461 430 diffuse 0 0.2 \$1;
+#X msg 113 330 cutoff \$1;
+#X floatatom 113 307 5 0 0 0 - - -;
+#X floatatom 92 257 5 0 127 0 - - -;
+#X msg 92 280 spotconcentration \$1;
+#X msg 461 454 specular 0 1.5 0.5;
+#X text 499 375 Blue diffuse color;
+#X text 457 326 color control:;
+#X text 16 39 Arguments: active \, attenuation \, cutoff \, concentration
+\, smooth \, debug (default: 1 1 40 20 1 0);
+#X msg 78 181 orientation 0 \$1 0;
+#X obj 470 11 declare -lib ofelia;
+#X msg 413 29 lighting \$1;
+#X obj 413 11 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 487 153 5 0 0 0 size - -;
+#X floatatom 569 154 5 0 0 0 geo - -;
+#X obj 446 129 of.translate 0 0 -200;
+#X obj 446 185 of.plane 400 400 100 100;
+#X floatatom 500 215 5 0 0 0 size - -;
+#X floatatom 555 216 5 0 0 0 geo - -;
+#X obj 446 247 of.sphere 100 50;
+#X text 535 96 draw objects;
+#X text 117 159 orientation Y;
+#X obj 26 488 of.arealight;
+#X msg 218 450 area \$1 100;
+#X floatatom 218 426 5 0 0 0 - - -;
+#X text 16 19 Create an area light;
+#X text 25 549 More infos on lighting: https://openframeworks.cc/documentation/gl/ofLight/
+, f 81;
+#X text 25 509 area lights allow to define a light that has some area
+as opposed to a point light which has infinitesimal size. Need opengl
+version 3 or more when creating the opengl context, f 81;
+#X floatatom 259 154 5 0 0 0 - - -;
+#X text 298 155 Position X;
+#X msg 259 177 position \$1 0 0;
+#X obj 413 51 of.window 1;
+#X obj 446 98 of.draw 1 1;
+#X obj 26 84 of.draw 2;
+#X obj 217 337 loadbang;
+#X connect 1 0 27 0;
+#X connect 2 0 40 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 40 0;
+#X connect 6 0 40 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 40 0;
+#X connect 11 0 40 0;
+#X connect 12 0 11 0;
+#X connect 17 0 18 0;
+#X connect 18 0 40 0;
+#X connect 19 0 40 0;
+#X connect 20 0 19 0;
+#X connect 21 0 22 0;
+#X connect 22 0 40 0;
+#X connect 23 0 40 0;
+#X connect 27 0 40 0;
+#X connect 29 0 49 0;
+#X connect 30 0 29 0;
+#X connect 31 0 34 1;
+#X connect 31 0 34 2;
+#X connect 32 0 34 3;
+#X connect 32 0 34 4;
+#X connect 33 0 34 0;
+#X connect 34 0 37 0;
+#X connect 35 0 37 1;
+#X connect 36 0 37 2;
+#X connect 41 0 40 0;
+#X connect 42 0 41 0;
+#X connect 46 0 48 0;
+#X connect 48 0 40 0;
+#X connect 50 0 33 0;
+#X connect 51 0 40 0;
+#X connect 52 0 7 0;
