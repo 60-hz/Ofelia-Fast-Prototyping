@@ -19,7 +19,7 @@
 #X text 59 125 XY;
 #X text 21 37 Arguments: draw-order \, enable;
 #X obj 518 19 of.window 1;
-#N canvas 566 217 510 263 Pixel-Coordinate 1;
+#N canvas 566 217 510 263 Pixel-Coordinate 0;
 #X text 21 15 Like of.draw:;
 #X text 20 35 if draw order is between 0 and 1000 = normalized mode
 (center coordinate = 0 \, 0 \, 0);

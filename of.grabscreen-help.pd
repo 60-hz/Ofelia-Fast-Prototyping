@@ -9,8 +9,6 @@
 #X floatatom 198 402 5 0 0 0 height - -;
 #X floatatom 239 430 5 0 0 0 type - -;
 #X obj 462 45 declare -lib ofelia;
-#X obj 31 527 of.draw;
-#X obj 30 103 of.draw 2;
 #X msg 62 134 grab;
 #X msg 363 157 clear;
 #X obj 158 337 unpack 0 0 0;
@@ -19,7 +17,7 @@
 #X msg 62 232 save screengrab.jpg;
 #X text 96 266 get infos from right outlet;
 #X text 216 232 save to file;
-#X text 95 525 this is a simple example shape to grab something...
+#X text 115 525 this is a simple example shape to grab something...
 ;
 #X text 36 448 Texture on a geo:;
 #X text 180 202 fill with color;
@@ -52,20 +50,22 @@
 #X msg 133 296 setup;
 #X text 296 468 2 = rgba;
 #X obj 30 319 of.grabscreen;
+#X obj 30 103 of.draw 1;
+#X obj 31 527 of.draw 2;
 #X connect 1 0 2 2;
-#X connect 2 0 37 0;
-#X connect 3 0 48 0;
-#X connect 8 0 14 0;
-#X connect 9 0 48 0;
-#X connect 10 0 48 0;
-#X connect 11 0 48 0;
-#X connect 12 0 4 0;
-#X connect 12 1 5 0;
-#X connect 12 2 6 0;
-#X connect 15 0 48 0;
-#X connect 32 0 48 0;
-#X connect 36 0 48 0;
-#X connect 40 0 48 0;
-#X connect 46 0 48 0;
-#X connect 48 0 2 0;
-#X connect 48 1 12 0;
+#X connect 2 0 35 0;
+#X connect 3 0 46 0;
+#X connect 8 0 46 0;
+#X connect 9 0 46 0;
+#X connect 10 0 4 0;
+#X connect 10 1 5 0;
+#X connect 10 2 6 0;
+#X connect 13 0 46 0;
+#X connect 30 0 46 0;
+#X connect 34 0 46 0;
+#X connect 38 0 46 0;
+#X connect 44 0 46 0;
+#X connect 46 0 2 0;
+#X connect 46 1 10 0;
+#X connect 47 0 46 0;
+#X connect 48 0 12 0;

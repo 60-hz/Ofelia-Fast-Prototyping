@@ -100,7 +100,7 @@ a library called "freeImage" under the hood.;
 #X connect 5 0 10 0;
 #X connect 6 0 10 0;
 #X restore 181 303 pd process;
-#N canvas 629 136 651 566 Get_&_Set_Pixels 1;
+#N canvas 629 136 651 566 Get_&_Set_Pixels 0;
 #X floatatom 96 185 5 0 0 0 - - -;
 #X msg 305 209 update;
 #X obj 22 8 of.draw;

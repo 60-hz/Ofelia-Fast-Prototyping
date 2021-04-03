@@ -19,11 +19,11 @@ end \; if args[2] == nil then attenuation = 1 end \; if args[3] ==
 nil then cutoff = 40 end \; if args[4] == nil then concentration =
 20 end \; if args[5] == nil then smooth = 1 end \; M.setup() end \;
 \; function M.setup() \; if ofWindow.exists then \; light\$0 = ofLight()
-\; light\$0:setAreaLight(100 \, 100) \; light\$0:setPosition (position:vec3())
+light\$0:setAreaLight(100 \, 100) \; light\$0:setPosition (position:vec3())
 light\$0:setOrientation (orientation:vec3()) light\$0:setScale (scale:vec3())
 \; light\$0:setAmbientColor(ambient) light\$0:setDiffuseColor(diffuse)
-light\$0:setSpecularColor(specular) end \; M.active(active) M.attenuation(attenuation)
-M.cutoff(cutoff) M.spotconcentration(concentration) end \; function
+light\$0:setSpecularColor(specular) \; M.active(active) M.attenuation(attenuation)
+M.cutoff(cutoff) M.spotconcentration(concentration) end end \; \; function
 M.active(value) active = value if active == 1 then light\$0:enable()
 \; else light\$0:disable() end end \; function M.ambient(l) ambient.r=l[1]
 ambient.g=l[2] ambient.b=l[3] light\$0:setAmbientColor(ambient) end
