@@ -15,15 +15,15 @@
 #X text 412 175 Single axis;
 #X text 449 145 list of xyz;
 #X obj 27 89 of.draw;
-#X obj 27 241 of.rectangle 100 100 center line;
 #X obj 462 45 declare -lib ofelia;
 #X text 28 42 Arguments: positionX \, positionY \, positionZ;
 #X obj 518 19 of.window 1;
 #X text 28 22 Translation matrix;
+#X obj 27 241 of.rectangle 100 100 line;
 #X connect 1 0 7 1;
 #X connect 3 0 7 2;
 #X connect 5 0 7 3;
-#X connect 7 0 14 0;
+#X connect 7 0 18 0;
 #X connect 9 0 8 0;
 #X connect 10 0 8 0;
 #X connect 13 0 7 0;
