@@ -32,6 +32,8 @@
 #X obj 27 301 of.rectangle 100 100 line 1 center, f 37;
 #X text 24 40 Args: width \, height \, drawmode \, strokewidth \, rectmode
 ;
+#X text 28 321 Note: no texture coordinates are implemented yet \,
+so use of.plane to use texture;
 #X connect 1 0 27 0;
 #X connect 2 0 13 0;
 #X connect 3 0 27 0;
