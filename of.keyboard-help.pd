@@ -12,7 +12,8 @@
 #X symbolatom 94 166 10 0 0 0 - - -;
 #X text 21 19 Keyboard output in the of.window;
 #X obj 518 19 of.window 1;
-#N canvas 440 103 621 385 Write_in_patch 0;
+#X text 157 195 -> change the text;
+#N canvas 440 103 621 385 Type_in_patch 0;
 #X obj 308 123 list append;
 #X obj 308 147 list;
 #X obj 83 37 of.draw;
@@ -29,8 +30,7 @@
 #X connect 3 0 1 0;
 #X connect 5 0 0 0;
 #X connect 7 0 6 0;
-#X restore 437 237 pd Write_in_patch;
-#X text 157 195 -> change the text;
+#X restore 39 316 pd Type_in_patch;
 #X connect 2 0 6 0;
 #X connect 4 0 8 0;
 #X connect 5 0 6 0;
