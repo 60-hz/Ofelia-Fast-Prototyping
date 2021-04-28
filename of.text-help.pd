@@ -1,15 +1,15 @@
-#N canvas 522 86 745 649 12;
+#N canvas 514 81 745 649 12;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 27 89 of.draw;
 #X floatatom 172 385 5 0 0 2 letterspace - -;
 #X floatatom 318 385 5 0 0 2 fontsize - -;
 #X text 68 108 style;
-#X text 309 104 transformation;
+#X text 309 103 transformation;
 #X msg 51 175 draw line;
-#X msg 79 325 fontsize 54;
-#X msg 314 295 aliasing \$1;
-#X obj 314 274 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 87 321 fontsize 54;
+#X msg 311 315 aliasing \$1;
+#X obj 311 294 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X floatatom 517 154 5 0 0 0 - - -;
 #X msg 51 150 draw pix;
@@ -19,8 +19,8 @@
 1;
 #X msg 517 231 lineheight \$1;
 #X floatatom 517 207 5 0 0 0 - - -;
-#X msg 79 351 get;
-#X obj 318 546 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 310 345 get;
+#X obj 318 546 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X text 317 574 0 = load fail;
 #X text 316 561 1 = load success;
@@ -47,11 +47,11 @@
 #X text 24 42 Args: text \, align \, fontsize, f 32;
 #X msg 310 147 orientation 65 0 0;
 #X msg 51 126 draw shape;
-#X text 112 351 get data to right outlet;
+#X text 343 345 get data to right outlet;
 #X text 558 249 -> careful: reimport and calculate font data!, f 24
 ;
-#X text 53 218 change font;
-#X msg 310 126 position 0 100 100;
+#X text 53 222 change font;
+#X msg 310 125 position 0 100 100;
 #X obj 27 411 of.text mytext center, f 42;
 #N canvas 85 247 484 187 Notes 0;
 #X text 36 48 The object try to find a default file "font.ttf" in the
@@ -74,6 +74,10 @@ empty font);
 #X msg 52 244 open data/Minipax.ttf;
 #X text 25 20 Draw a Text with any font;
 #X text 311 228 new string (allows comma etc);
+#X msg 446 212 text;
+#X text 443 192 empty;
+#X msg 311 272 111 107;
+#X text 370 270 unicode codepoint;
 #X connect 1 0 47 0;
 #X connect 2 0 47 1;
 #X connect 3 0 47 2;
@@ -111,3 +115,4 @@ empty font);
 #X connect 57 0 47 0;
 #X connect 58 0 47 0;
 #X connect 59 0 47 0;
+#X connect 64 0 47 0;
