@@ -1,4 +1,4 @@
-#N canvas 617 134 533 625 12;
+#N canvas 666 133 533 625 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -43,13 +43,18 @@ windows), f 68;
 #X obj 35 364 of.window 1 640 480 30;
 #X text 26 41 Arguments: init \, width \, height \, framerate \, autoclear
 \, posX \, posY, f 68;
-#X obj 37 481 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
+#X obj 37 491 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 43 481 of.draw;
-#X obj 43 521 of.triangle;
-#X text 12 441 To draw something inside of.window \, connect of.draw
+#X obj 43 491 of.draw;
+#X obj 43 531 of.triangle;
+#X text 12 461 To draw something inside of.window \, connect of.draw
 to of.triangle:, f 68;
 #X obj 496 16 declare -lib ofelia;
+#X msg 104 337 title myWindow;
+#X msg 252 334 vsync 1;
+#X text 320 334 activate vertical sync;
+#X text 31 422 sizeX \, sizeY \, \, framerate \, window mode \, orientation
+;
 #X connect 1 0 33 0;
 #X connect 2 0 33 0;
 #X connect 4 0 33 0;
@@ -68,3 +73,4 @@ to of.triangle:, f 68;
 #X connect 23 0 33 0;
 #X connect 24 0 33 0;
 #X connect 33 0 3 0;
+#X connect 40 0 33 0;

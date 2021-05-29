@@ -3,13 +3,22 @@
 #X obj 709 7 inlet;
 #X obj 8 958 outlet;
 #X text 808 932 RI;
-#X obj 72 890 ofelia d window-\$0 \; function M.new() ofWindow.addListener("draw"
+#X obj 74 911 ofelia d window-\$0 \; function M.new() ofWindow.addListener("draw"
 \, this \, 1000) end \; function M.free() ofWindow.removeListener("draw"
 \, this) end \; function M.draw() ofPopView() _maincamera:endCamera()
 \; end;
 #X f 100;
 #X obj 709 30 s _win;
 #X obj 8 13 r _win;
+#N canvas 0 23 861 166 NOTE 0;
+#X text 13 65 https://forum.openframeworks.cc/t/ofcamera-and-inverted-texture-mapped-image/26398
+, f 87;
+#X text 14 14 ofcamera rendering order is betwween 0 and 1000 Render
+< 0 and > 1000 is drawn out of camera (useful for designing GUI),
+f 121;
+#X text 15 45 Note: Pixel Coordinate is reversed in openGl;
+#X restore 77 12 pd NOTE;
+#X obj 496 16 declare -lib ofelia;
 #X obj 8 54 ofelia d window-\$0 \; \; local c = ofCanvas(this) \; local
 window = ofWindow() \; local args = c:getArgs() \; local init \, sizeX
 \, sizeY \, fps \, autoclear \, posX \, posY \, lighting = args[1]
@@ -30,37 +39,29 @@ end end \; \; function M.free() \; ofWindow.removeListener("setup"
 (posX \, posY) \; ofSetWindowShape(sizeX \, sizeY) \; ofSetFrameRate(fps)
 \; ofSetBackgroundColor(60) \; ofSetDataPathRoot ".." \; ofSetBackgroundAuto(autoclear
 ~= 0) \; end \; \; function M.create() window:create() end \; function
-M.destroy() window:destroy() end \; function M.framerate(f) fps = f
-ofSetFrameRate(fps) end \; function M.dimen(list) if ofWindow.exists
-then ofSetWindowShape(list[1] \, list[2]) end end \; function M.position(list)
-if ofWindow.exists then ofSetWindowPosition (list[1] \, list[2]) end
-end \; function M.orientation(l) if ofWindow.exists then ofSetOrientation
-(1+l[1] \, (l[2]~=0)) end end \; function M.color(bgcolor) if ofWindow.exists
-then ofSetBackgroundColor(bgcolor[1] \, bgcolor[2] \, bgcolor[3]) end
-end \; function M.cursor(float) if ofWindow.exists then if float >
-0 then ofShowCursor() else ofHideCursor() end end end \; function M.lighting(float)
-\; if ofWindow.exists then if float > 0 then ofEnableLighting() _lighting
-= 1 else ofDisableLighting() _lighting = 0 end end end \; function
-M.fullscreen(float) if ofWindow.exists then ofSetFullscreen(float~=0)
-end end \; function M.autoclear(float) autoclear = (float ~= 0) if
-ofWindow.exists then ofSetBackgroundAuto(autoclear) end end \; function
-M.clear(l) if ofWindow.exists then ofClear(table.unpack(l)) end end
-\; function M.glversion(l) window:setGLVersion(l[1] \, l[2]) end \;
-function M.glesversion(f) window:setGLVersion(f) end \; function M.get()
-if ofWindow.exists then width = ofGetWindowWidth() height = ofGetWindowHeight()
-\; framerate = ofGetFrameRate() return ofTable (width \, height \,
-framerate) end end \; \; function M.draw() \; ofPushView() \; _maincamera:beginCamera()
-\; end \;;
+M.destroy() window:destroy() end \; function M.title(s) ofSetWindowTitle(s)
+end \; function M.framerate(f) fps = f ofSetFrameRate(fps) end \; function
+M.vsync(f) ofSetVerticalSync(f ~= 0) end \; function M.dimen(list)
+if ofWindow.exists then ofSetWindowShape(list[1] \, list[2]) end end
+\; function M.position(list) if ofWindow.exists then ofSetWindowPosition
+(list[1] \, list[2]) end end \; function M.orientation(l) if ofWindow.exists
+then ofSetOrientation (1+l[1] \, (l[2]~=0)) end end \; function M.color(bgcolor)
+if ofWindow.exists then ofSetBackgroundColor(bgcolor[1] \, bgcolor[2]
+\, bgcolor[3]) end end \; function M.cursor(float) if ofWindow.exists
+then if float > 0 then ofShowCursor() else ofHideCursor() end end end
+\; function M.lighting(float) \; if ofWindow.exists then if float >
+0 then ofEnableLighting() _lighting = 1 else ofDisableLighting() _lighting
+= 0 end end end \; function M.fullscreen(float) if ofWindow.exists
+then ofSetFullscreen(float~=0) end end \; function M.autoclear(float)
+autoclear = (float ~= 0) if ofWindow.exists then ofSetBackgroundAuto(autoclear)
+end end \; function M.clear(l) if ofWindow.exists then ofClear(table.unpack(l))
+end end \; function M.glversion(l) window:setGLVersion(l[1] \, l[2])
+end \; function M.glesversion(f) window:setGLVersion(f) end \; function
+M.get() if ofWindow.exists then return ofTable (ofGetWindowWidth()
+\, ofGetWindowHeight() \, ofGetFrameRate() \, ofGetWindowMode() \,
+ofGetOrientation()) end end \; \; function M.draw() \; ofPushView()
+\; _maincamera:beginCamera() \; end \;;
 #X f 131;
-#N canvas 0 23 861 166 NOTE 0;
-#X text 13 65 https://forum.openframeworks.cc/t/ofcamera-and-inverted-texture-mapped-image/26398
-, f 87;
-#X text 14 14 ofcamera rendering order is betwween 0 and 1000 Render
-< 0 and > 1000 is drawn out of camera (useful for designing GUI),
-f 121;
-#X text 15 45 Note: Pixel Coordinate is reversed in openGl;
-#X restore 77 12 pd NOTE;
-#X obj 496 16 declare -lib ofelia;
 #X connect 0 0 4 0;
-#X connect 5 0 6 0;
-#X connect 6 0 1 0;
+#X connect 5 0 8 0;
+#X connect 8 0 1 0;
