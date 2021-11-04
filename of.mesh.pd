@@ -12,10 +12,10 @@ local args = canvas:getArgs() \; mesh\$0 = ofMesh() \; local filename
 \, drawmode \, strokeweight \, mode = args[1] \, args[2] \, args[3]
 \, args[4] \; local loaded \, saved \, debug \, t \, func = nil \,
 nil \, 0 \; \; function M.new() \; ofWindow.addListener("setup" \,
-this) \; if args[1] == nil then print("[gl.mesh] : No file") \; else
-args[1] = filename \; if args[2] == nil then drawmode = "fill" end
-\; if args[3] == nil then strokeweight = 1 end \; if args[4] == nil
-then mode = 0 end \; M.setup() end end \; \; function M.free() ofWindow.removeListener("setup"
+this) \; if args[1] == nil then print("[gl.mesh] : No file") else args[1]
+= filename end \; if args[2] == nil then drawmode = "fill" end \; if
+args[3] == nil then strokeweight = 1 end \; if args[4] == nil then
+mode = 0 end \; M.setup() end \; \; function M.free() ofWindow.removeListener("setup"
 \, this) end \; function M.setup() if filename ~= nil then M.open(filename)
 end end \; function M.prim(a) func = a[1] t = a table.remove(t \, 1)
 mesh\$0 = _G[func](table.unpack(t)):getMesh() end \; function M.append(a)

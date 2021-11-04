@@ -1,0 +1,17 @@
+#N canvas 403 155 817 397 12;
+#X obj 16 301 outlet;
+#X obj 16 5 inlet;
+#X text 704 698 RI;
+#X obj 169 3 inlet;
+#X msg 169 25 blend \$1;
+#X obj 16 50 ofelia d draw\$0 \; local log = ofLog("ofBlend") \; local
+canvas = ofCanvas(this) \; local args = canvas:getArgs() \; local outlet
+= ofOutlet(this) \; local blend = 1 \; \; function M.new() \; if args[1]
+== nil then blend = 1 else blend = args[1] end \; end \; function M.blend(f)
+blend = f end \; \; function M.bang() \; ofEnableBlendMode(blend) \;
+outlet:outletBang(0) \; ofDisableBlendMode() \; end \;;
+#X f 101;
+#X connect 1 0 5 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;

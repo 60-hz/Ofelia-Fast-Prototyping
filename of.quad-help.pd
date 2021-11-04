@@ -15,7 +15,7 @@
 #X msg 111 98 draw fill;
 #X text 128 81 style;
 #X msg 450 239 debug \$1;
-#X obj 450 218 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 450 218 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 505 181 ...;
 #X text 470 216 Show center axis;
@@ -40,7 +40,6 @@
 #X text 22 35 (default 1 \, 0);
 #X text 146 35 (default 0 \, 0);
 #X text 272 35 (default 0 \, 1);
-#X msg 279 112 tex2 0 1;
 #X text 394 35 (default 1 \, 1);
 #X text 22 15 Top left;
 #X text 272 15 Bottom right;
@@ -51,13 +50,16 @@
 #X floatatom 392 79 5 0 0 0 - - -;
 #X text 394 15 Bottom left;
 #X text 147 174 Note: The Y is reverted (0 on top);
+#X msg 279 112 tex2 \$1 1;
+#X floatatom 279 79 5 0 0 0 - - -;
 #X connect 1 0 2 0;
 #X connect 2 0 0 0;
-#X connect 6 0 0 0;
-#X connect 11 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 0 0;
 #X connect 12 0 0 0;
-#X connect 13 0 0 0;
-#X connect 14 0 13 0;
+#X connect 13 0 12 0;
+#X connect 16 0 0 0;
+#X connect 17 0 16 0;
 #X restore 108 297 pd Texture_coord;
 #N canvas 374 178 460 249 Color 0;
 #X obj 30 169 outlet;

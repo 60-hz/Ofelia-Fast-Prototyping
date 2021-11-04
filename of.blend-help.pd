@@ -1,0 +1,29 @@
+#N canvas 544 128 619 450 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X obj 67 128 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X text 89 126 0: OFF;
+#X text 89 157 2: ADD;
+#X text 89 172 3: SUBTRACT;
+#X text 89 187 4: MULTIPLY;
+#X text 89 202 5: SCREEN;
+#X text 89 142 1: ALPHA(Default);
+#X obj 518 19 of.window 1;
+#X obj 14 265 of.image data/rgb.jpg;
+#X obj 14 231 of.blend;
+#X obj 14 346 of.image data/image.jpg;
+#X obj 14 382 of.plane 200 200;
+#X obj 14 289 of.plane 200 200;
+#X obj 14 88 of.draw;
+#X text 21 22 Change blending mode;
+#X text 21 47 Arguments: blending mode;
+#X text 69 107 blending mode:;
+#X connect 2 0 11 1;
+#X connect 10 0 14 0;
+#X connect 11 0 10 0;
+#X connect 12 0 13 0;
+#X connect 14 0 12 0;
+#X connect 15 0 11 0;

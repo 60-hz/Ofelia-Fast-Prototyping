@@ -10,7 +10,7 @@ execution order priority matters:, f 86;
 #X obj 215 103 of.camera, f 30;
 #X obj 27 48 spigot;
 #X obj 230 33 tgl 15 0 empty empty activateme 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 26 192 of.text GUI center;
 #X obj 27 117 of.color 0 0 0 100;
 #X obj 230 11 inlet;
@@ -38,7 +38,7 @@ execution order priority matters:, f 86;
 #X connect 15 1 7 0;
 #X restore 282 260 pd GUI_ON_SCREEN;
 #X obj 282 238 tgl 15 0 empty empty ActivateGUI 17 7 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X msg 29 127 0;
 #X floatatom 14 88 5 0 0 2 Draw-Order - -;
 #X obj 44 209 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -85,7 +85,6 @@ execution order priority matters:, f 86;
 #X obj 237 388 of.draw 2 0;
 #X obj 427 388 of.draw 3 0;
 #X obj 14 238 of.draw 4;
-#X obj 14 289 of.plane;
 #X text 96 117 blending:;
 #X text 220 91 depth "On" (default): Better for 3d;
 #X text 223 122 depth "Off": Easier for 2d;
@@ -97,6 +96,7 @@ out of camera and point 0 \, 0 \, 0 is bottom left. If order > 1000
 , f 65;
 #X msg 446 241 reset;
 #X text 450 224 cam;
+#X obj 14 289 of.box;
 #X connect 4 0 3 0;
 #X connect 5 0 43 0;
 #X connect 6 0 43 0;
@@ -109,9 +109,9 @@ out of camera and point 0 \, 0 \, 0 is bottom left. If order > 1000
 #X connect 22 0 24 0;
 #X connect 24 0 23 0;
 #X connect 29 0 43 2;
-#X connect 39 0 44 0;
+#X connect 39 0 52 0;
 #X connect 40 0 13 0;
 #X connect 41 0 17 0;
 #X connect 42 0 22 0;
 #X connect 43 0 39 0;
-#X connect 51 0 3 1;
+#X connect 50 0 3 1;

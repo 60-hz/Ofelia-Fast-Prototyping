@@ -1,76 +1,112 @@
-#N canvas 666 133 533 625 12;
+#N canvas 642 84 638 625 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X msg 35 108 create;
-#X msg 51 147 destroy;
-#X obj 35 397 print;
-#X msg 246 108 cursor \$1;
-#X obj 246 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 51 134 destroy;
+#X obj 35 407 print;
+#X msg 286 108 cursor \$1;
+#X obj 286 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 247 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 287 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 247 150 lighting \$1;
-#X obj 247 174 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 287 150 lighting \$1;
+#X obj 287 174 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 247 192 fullscreen \$1;
-#X msg 248 263 color 0 64 128;
-#X msg 248 297 get;
-#X text 360 147 activate lighting;
-#X text 370 193 go fullscreen;
-#X text 51 130 Close window;
-#X text 35 84 Make Window;
-#X text 61 170 Window size;
-#X obj 247 217 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 287 192 fullscreen \$1;
+#X msg 288 263 color 0 64 128;
+#X msg 288 292 get;
+#X text 390 147 activate lighting;
+#X text 400 193 go fullscreen;
+#X obj 287 217 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 247 235 autoclear \$1;
-#X msg 79 224 position 100 100;
-#X text 370 236 autoclear the buffer;
-#X msg 96 255 framerate 30;
-#X obj 104 289 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+#X msg 287 235 autoclear \$1;
+#X msg 73 224 position 100 100;
+#X msg 86 255 framerate 30;
+#X obj 91 286 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
 #X msg 62 189 dimen 320 240;
-#X msg 104 311 orientation \$1 0;
-#X text 290 296 get current size and framerate;
+#X msg 91 308 orientation \$1 0;
+#X text 330 291 get current size and framerate;
 #X text 360 107 show / hide cursor in window;
-#X text 26 21 Make a new gl window context (Note: same object for all
+#X text 19 20 Make a new gl window context (Note: same object for all
 windows), f 68;
-#X text 370 262 background color;
-#X msg 250 362 glversion 3 2;
-#X text 355 361 set openGL version;
-#X text 355 391 set openGLES version;
-#X msg 250 392 glesversion 2;
-#X obj 35 364 of.window 1 640 480 30;
-#X text 26 41 Arguments: init \, width \, height \, framerate \, autoclear
-\, posX \, posY, f 68;
+#X text 400 262 background color;
+#X obj 35 374 of.window 1 640 480 30;
 #X obj 37 491 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 43 491 of.draw;
-#X obj 43 531 of.triangle;
+#X obj 46 491 of.draw;
+#X obj 46 531 of.triangle;
 #X text 12 461 To draw something inside of.window \, connect of.draw
 to of.triangle:, f 68;
-#X obj 496 16 declare -lib ofelia;
-#X msg 104 337 title myWindow;
-#X msg 252 334 vsync 1;
-#X text 320 334 activate vertical sync;
-#X text 31 422 sizeX \, sizeY \, \, framerate \, window mode \, orientation
+#X obj 472 14 declare -lib ofelia;
+#X msg 124 337 title myWindow;
+#X msg 288 315 vsync 1;
+#X text 348 311 activate vertical sync;
+#X msg 288 338 clear;
+#N canvas 892 443 200 181 Gl_Version 0;
+#X msg 30 61 glversion 3 2;
+#X text 135 60 set openGL version;
+#X text 135 90 set openGLES version;
+#X msg 30 91 glesversion 2;
+#X restore 413 367 pd Gl_Version;
+#X text 334 339 clear buffer;
+#X text 380 236 autoclear the buffer (default 1);
+#X msg 114 107 1;
+#X msg 139 135 0;
+#X text 89 106 or;
+#X text 110 133 or;
+#X text 61 170 Window size (width height);
+#X text 35 84 Window state;
+#X text 19 40 Arguments: window-state \, width \, height \, framerate
+\, autoclear \, posX \, posY, f 78;
+#X obj 365 491 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#N canvas 609 203 547 369 Buffer_mouse 0;
+#X obj 48 130 of.window;
+#X msg 48 95 autoclear \$1;
+#X obj 48 44 inlet;
+#X obj 214 86 of.draw 0;
+#X obj 213 274 of.circle 10;
+#X obj 214 12 of.mouse;
+#X obj 213 214 of.color 255 255 255 100;
+#X obj 214 54 t b a b, f 15;
+#X obj 214 169 of.rectangle 640 480;
+#X msg 265 244 position \$1 \$2 0;
+#X obj 48 69 == 0;
+#X obj 214 131 of.color 60 60 60 40;
+#X connect 1 0 0 0;
+#X connect 2 0 10 0;
+#X connect 3 0 11 0;
+#X connect 5 0 7 0;
+#X connect 6 0 4 0;
+#X connect 7 0 3 0;
+#X connect 7 1 9 0;
+#X connect 8 0 6 0;
+#X connect 9 0 4 0;
+#X connect 10 0 1 0;
+#X connect 11 0 8 0;
+#X restore 365 516 pd Buffer_mouse;
+#X text 81 408 sizeX \, sizeY \, framerate \, window mode \, orientation
 ;
-#X connect 1 0 33 0;
-#X connect 2 0 33 0;
-#X connect 4 0 33 0;
+#X connect 1 0 25 0;
+#X connect 2 0 25 0;
+#X connect 4 0 25 0;
 #X connect 5 0 4 0;
 #X connect 6 0 7 0;
-#X connect 7 0 33 0;
+#X connect 7 0 25 0;
 #X connect 8 0 9 0;
-#X connect 9 0 33 0;
-#X connect 10 0 33 0;
-#X connect 11 0 33 0;
-#X connect 17 0 18 0;
-#X connect 18 0 33 0;
-#X connect 19 0 33 0;
-#X connect 21 0 33 0;
-#X connect 22 0 24 0;
-#X connect 23 0 33 0;
-#X connect 24 0 33 0;
-#X connect 33 0 3 0;
-#X connect 40 0 33 0;
+#X connect 9 0 25 0;
+#X connect 10 0 25 0;
+#X connect 11 0 25 0;
+#X connect 14 0 15 0;
+#X connect 15 0 25 0;
+#X connect 16 0 25 0;
+#X connect 17 0 25 0;
+#X connect 18 0 20 0;
+#X connect 19 0 25 0;
+#X connect 20 0 25 0;
+#X connect 25 0 3 0;
+#X connect 31 0 25 0;
+#X connect 34 0 25 0;
+#X connect 45 0 46 0;
