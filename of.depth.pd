@@ -1,4 +1,4 @@
-#N canvas 449 139 764 437 12;
+#N canvas 459 267 764 437 12;
 #X obj 15 381 outlet;
 #X obj 16 5 inlet;
 #X text 704 328 RI;
@@ -7,7 +7,7 @@
 #X obj 16 50 ofelia d depth\$0 \; local log = ofLog("ofDepth") \; local
 canvas = ofCanvas(this) \; local args = canvas:getArgs() \; local outlet
 = ofOutlet(this) \; local depth = 0 \; \; function M.new() \; if #args
-== 0 then depth = 1 else depth = args[1] \; end \; end \; function
+== 0 then depth = 0 else depth = args[1] \; end \; end \; function
 M.depth(f) \; depth = f \; end \; \; function M.free() \; ofWindow.removeListener("draw"
 \, this) end \; \; function M.bang() \; ofSetDepthTest(depth ~= 0)
 \; outlet:outletBang(0) \; end;

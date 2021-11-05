@@ -1,4 +1,4 @@
-#N canvas 243 23 936 755 12;
+#N canvas 13 -847 936 755 12;
 #X obj 15 3 inlet;
 #X obj 15 867 outlet;
 #X obj 94 2 inlet;
@@ -47,8 +47,8 @@ end \; if (videoplayer\$0:isLoaded()) then print("loaded " .. filename)end
 M.play() if speed > 0 then videoplayer\$0:setPosition(min) else videoplayer\$0:setPosition(max)
 end \; videoplayer\$0:setSpeed(speed) videoplayer\$0:play() end \;
 function M.stop() videoplayer\$0:stop() end \; function M.pause() videoplayer\$0:setPaused(true)
-end \; function M.resume() videoplayer\$0:play() end \; function M.speed(f)
-speed = f if videoplayer\$0:isPlaying() then videoplayer\$0:setSpeed(speed)
+end \; function M.resume() videoplayer\$0:setPaused(false) end \; function
+M.speed(f) speed = f if videoplayer\$0:isPlaying() then videoplayer\$0:setSpeed(speed)
 else videoplayer\$0:setPaused(true) end end \; function M.frame(float)
 videoplayer\$0:setFrame(float) end \; function M.range(list) min =
 list[1] max = list[2] if videoplayer\$0:isPlaying() then videoplayer\$0:setPosition(min)
@@ -64,11 +64,11 @@ end \; \; function M.bang() \; if loop == 0 then videoplayer\$0:setLoopState(OF_
 end \; if loop == 1 then videoplayer\$0:setLoopState(OF_LOOP_NORMAL)
 end \; if loop == 2 then videoplayer\$0:setLoopState(OF_LOOP_PALINDROME)
 end \; videoplayer\$0:update() \; if speed > 0 and videoplayer\$0:getPosition()
->= max then videoplayer\$0:setPosition(min) if loop == 0 then videoplayer\$0:setPaused(true)
-end end \; if speed < 0 and videoplayer\$0:getPosition() <= min then
-videoplayer\$0:setPosition(max) if loop == 0 then videoplayer\$0:setPaused(true)
-end end \; videoplayer\$0:bind() \; outlet:outletBang(0) \; videoplayer\$0:unbind()
-\; end \;;
+>= max then videoplayer\$0:setPaused(true) if loop == 1 then videoplayer\$0:setPosition(min)
+videoplayer\$0:setPaused(false) end end \; if speed < 0 and videoplayer\$0:getPosition()
+<= min then videoplayer\$0:setPaused(true) if loop == 1 then videoplayer\$0:setPosition(max)
+videoplayer\$0:setPaused(false) end end \; videoplayer\$0:bind() \;
+outlet:outletBang(0) \; videoplayer\$0:unbind() \; end \;;
 #X f 126;
 #X connect 0 0 7 0;
 #X connect 2 0 4 0;

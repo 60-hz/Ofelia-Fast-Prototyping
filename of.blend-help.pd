@@ -4,8 +4,7 @@
 0;
 #X obj 462 45 declare -lib ofelia;
 #X obj 67 128 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144 -1
--1 0;
-#X text 89 126 0: OFF;
+-1 2;
 #X text 89 157 2: ADD;
 #X text 89 172 3: SUBTRACT;
 #X text 89 187 4: MULTIPLY;
@@ -19,11 +18,19 @@
 #X obj 14 289 of.plane 200 200;
 #X obj 14 88 of.draw;
 #X text 21 22 Change blending mode;
-#X text 21 47 Arguments: blending mode;
 #X text 69 107 blending mode:;
-#X connect 2 0 11 1;
-#X connect 10 0 14 0;
-#X connect 11 0 10 0;
-#X connect 12 0 13 0;
-#X connect 14 0 12 0;
-#X connect 15 0 11 0;
+#X text 21 47 Arguments: blending mode (default 1);
+#X obj 14 317 of.color 255 255 255 200;
+#X text 89 126 0: OFF (no transparency);
+#X text 141 290 put it on a plane;
+#X text 195 317 add Alpha;
+#X text 177 265 load an image;
+#X text 189 347 load another image;
+#X text 141 381 put it on a plane;
+#X connect 2 0 10 1;
+#X connect 9 0 13 0;
+#X connect 10 0 9 0;
+#X connect 11 0 12 0;
+#X connect 13 0 18 0;
+#X connect 14 0 10 0;
+#X connect 18 0 11 0;
