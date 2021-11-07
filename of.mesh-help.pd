@@ -229,7 +229,7 @@ Make some points. - Say that you're done making points.;
 #X obj 40 363 of.image data/penguin.jpg;
 #X obj 40 525 of.mesh data/penguin.ply;
 #X obj 40 302 of.view, f 10;
-#N canvas 0 23 292 249 local_transformation 1;
+#N canvas 0 23 292 249 local_transformation 0;
 #X msg 37 49 position 0 100 -100;
 #X msg 37 92 scale 1 2 2;
 #X text 36 27 transformation;
@@ -245,7 +245,7 @@ Make some points. - Say that you're done making points.;
 1;
 #X text 516 563 not implemented;
 #X obj 40 270 of.depth 0;
-#X obj 107 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 107 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X connect 0 0 42 0;
 #X connect 1 0 35 0;
