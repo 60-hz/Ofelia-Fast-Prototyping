@@ -20,6 +20,7 @@
 #X obj 27 168 of.rotate 1 1 20, f 21;
 #X obj 518 19 of.window 1;
 #X obj 27 241 of.rectangle 100 100 line;
+#X text 38 198 -> all sub-tree shapes will be rotated, f 25;
 #X connect 1 0 16 1;
 #X connect 3 0 16 2;
 #X connect 5 0 16 3;

@@ -21,7 +21,6 @@
 #X msg 190 116 position 0 100 -100;
 #X msg 190 159 scale 1 2 2;
 #X text 103 96 style;
-#X text 190 94 transformation;
 #X msg 437 214 debug \$1;
 #X obj 437 193 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -34,20 +33,21 @@
 ;
 #X text 28 321 Note: no texture coordinates are implemented yet \,
 so use of.plane to use texture;
-#X connect 1 0 27 0;
+#X text 190 94 local transformation;
+#X connect 1 0 26 0;
 #X connect 2 0 13 0;
-#X connect 3 0 27 0;
-#X connect 4 0 27 0;
-#X connect 5 0 27 0;
-#X connect 6 0 27 0;
-#X connect 7 0 27 0;
-#X connect 8 0 27 1;
-#X connect 9 0 27 2;
+#X connect 3 0 26 0;
+#X connect 4 0 26 0;
+#X connect 5 0 26 0;
+#X connect 6 0 26 0;
+#X connect 7 0 26 0;
+#X connect 8 0 26 1;
+#X connect 9 0 26 2;
 #X connect 10 0 13 0;
-#X connect 16 0 27 0;
-#X connect 17 0 27 0;
-#X connect 18 0 27 0;
-#X connect 21 0 13 0;
-#X connect 22 0 21 0;
-#X connect 24 0 27 0;
-#X connect 25 0 27 0;
+#X connect 16 0 26 0;
+#X connect 17 0 26 0;
+#X connect 18 0 26 0;
+#X connect 20 0 13 0;
+#X connect 21 0 20 0;
+#X connect 23 0 26 0;
+#X connect 24 0 26 0;

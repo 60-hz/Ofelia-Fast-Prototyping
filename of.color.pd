@@ -1,18 +1,18 @@
-#N canvas 395 79 630 640 12;
-#X obj 31 24 inlet;
-#X obj 90 22 inlet;
-#X obj 160 22 inlet;
-#X obj 230 22 inlet;
-#X obj 300 22 inlet;
-#X text 466 622 RI;
-#X text 51 593 Todo: add HSB with arguments;
-#X obj 31 626 outlet;
-#X obj 579 621 outlet;
-#X msg 90 48 red \$1;
-#X msg 160 48 green \$1;
-#X msg 230 48 blue \$1;
-#X msg 300 48 alpha \$1;
-#X obj 31 75 ofelia d -c12 color-\$0 \; local log = ofLog("of.color")
+#N canvas 395 79 715 640 12;
+#X obj 31 14 inlet;
+#X obj 90 12 inlet;
+#X obj 160 12 inlet;
+#X obj 230 12 inlet;
+#X obj 300 12 inlet;
+#X text 466 592 RI;
+#X text 51 563 Todo: add HSB with arguments;
+#X obj 31 586 outlet;
+#X obj 623 571 outlet;
+#X msg 90 38 red \$1;
+#X msg 160 38 green \$1;
+#X msg 230 38 blue \$1;
+#X msg 300 38 alpha \$1;
+#X obj 31 65 ofelia d -c12 color-\$0 \; local log = ofLog("of.color")
 \; local c = ofCanvas(this) \; local args = c:getArgs() \; local color
 = ofColor() \; local outlet = ofOutlet(this) \; \; function M.new()
 \; if args[1] == nil then color.r = 255 else color.r = args[1] end

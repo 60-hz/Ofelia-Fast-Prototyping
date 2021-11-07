@@ -1,4 +1,4 @@
-#N canvas 642 84 638 625 12;
+#N canvas 559 84 718 625 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -33,11 +33,11 @@
 windows), f 68;
 #X text 400 262 background color;
 #X obj 35 374 of.window 1 640 480 30;
-#X obj 37 491 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
+#X obj 37 501 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 46 491 of.draw;
-#X obj 46 531 of.triangle;
-#X text 12 461 To draw something inside of.window \, connect of.draw
+#X obj 46 501 of.draw;
+#X obj 46 541 of.triangle;
+#X text 12 471 To draw something inside of.window \, connect of.draw
 to of.triangle:, f 68;
 #X obj 472 14 declare -lib ofelia;
 #X msg 124 337 title myWindow;
@@ -58,37 +58,46 @@ to of.triangle:, f 68;
 #X text 110 133 or;
 #X text 61 170 Window size (width height);
 #X text 35 84 Window state;
-#X text 19 40 Arguments: window-state \, width \, height \, framerate
-\, autoclear \, posX \, posY, f 78;
-#X obj 365 491 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 365 501 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#N canvas 609 203 547 369 Buffer_mouse 0;
-#X obj 48 130 of.window;
-#X msg 48 95 autoclear \$1;
-#X obj 48 44 inlet;
-#X obj 214 86 of.draw 0;
-#X obj 213 274 of.circle 10;
-#X obj 214 12 of.mouse;
-#X obj 213 214 of.color 255 255 255 100;
-#X obj 214 54 t b a b, f 15;
-#X obj 214 169 of.rectangle 640 480;
-#X msg 265 244 position \$1 \$2 0;
-#X obj 48 69 == 0;
-#X obj 214 131 of.color 60 60 60 40;
+#N canvas 441 171 671 369 Buffer_mouse 0;
+#X obj 28 130 of.window;
+#X msg 28 95 autoclear \$1;
+#X obj 28 44 inlet;
+#X obj 264 86 of.draw 0;
+#X obj 264 184 of.circle 10;
+#X obj 264 12 of.mouse;
+#X obj 264 54 t b a b, f 15;
+#X msg 316 154 position \$1 \$2 0;
+#X obj 28 69 == 0;
+#X text 337 13 draw with mouse;
+#X text 342 85 -> desactivate auto update draw \, draw on every mouse
+position update, f 38;
+#X obj 264 253 of.rectangle 640 480;
+#X obj 264 221 of.color 0 0 0 40;
+#X text 361 187 -> draw my mouse position, f 29;
+#X text 418 253 -> draw the rectangle, f 23;
+#X text 397 219 -> turn black 40 opacity, f 26;
+#X text 15 19 disable autoclear in window;
 #X connect 1 0 0 0;
-#X connect 2 0 10 0;
-#X connect 3 0 11 0;
-#X connect 5 0 7 0;
-#X connect 6 0 4 0;
-#X connect 7 0 3 0;
-#X connect 7 1 9 0;
-#X connect 8 0 6 0;
-#X connect 9 0 4 0;
-#X connect 10 0 1 0;
-#X connect 11 0 8 0;
-#X restore 365 516 pd Buffer_mouse;
-#X text 81 408 sizeX \, sizeY \, framerate \, window mode \, orientation
+#X connect 2 0 8 0;
+#X connect 3 0 4 0;
+#X connect 4 0 12 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X connect 6 1 7 0;
+#X connect 7 0 4 0;
+#X connect 8 0 1 0;
+#X connect 12 0 11 0;
+#X restore 365 526 pd Buffer_mouse;
+#X text 33 431 get: sizeX \, sizeY \, framerate \, window mode \, orientation
 ;
+#X text 19 40 Arguments: window_state \, width \, height \, framerate
+\, autoclear \, posX \, posY, f 78;
+#X text 197 371 Arguments: window_state \, width \, height \, framerate
+\, autoclear \, posX \, posY, f 28;
+#X text 151 107 = create;
+#X text 175 136 = destroy;
 #X connect 1 0 25 0;
 #X connect 2 0 25 0;
 #X connect 4 0 25 0;
@@ -107,6 +116,7 @@ to of.triangle:, f 68;
 #X connect 19 0 25 0;
 #X connect 20 0 25 0;
 #X connect 25 0 3 0;
+#X connect 27 0 28 0;
 #X connect 31 0 25 0;
 #X connect 34 0 25 0;
-#X connect 45 0 46 0;
+#X connect 44 0 45 0;

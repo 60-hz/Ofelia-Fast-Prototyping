@@ -1,19 +1,21 @@
-#N canvas 418 120 827 578 12;
-#X text 317 904 DIY obj loader: https://github.com/section14/openframeworks-WaveFront-obj-loader/blob/master/waveFrontLoader.cpp
+#N canvas 190 103 985 578 12;
+#X text 317 1044 DIY obj loader: https://github.com/section14/openframeworks-WaveFront-obj-loader/blob/master/waveFrontLoader.cpp
 ;
 #X obj 15 10 inlet;
-#X obj 15 923 outlet;
-#X obj 15 877 list trim;
-#X obj 82 923 outlet;
+#X obj 15 1063 outlet;
+#X obj 15 1017 list trim;
+#X obj 82 1063 outlet;
 #X text 601 817 RI;
-#X obj 15 900 route bang;
+#X obj 15 1040 route bang;
 #X obj 15 40 ofelia d model-\$0 \; local canvas = ofCanvas(this) \;
-local args = canvas:getArgs() \; mesh\$0 = ofMesh() \; local filename
-\, drawmode \, strokeweight \, mode = args[1] \, args[2] \, args[3]
-\, args[4] \; local loaded \, saved \, debug \, t \, func = nil \,
-nil \, 0 \; \; function M.new() \; ofWindow.addListener("setup" \,
-this) \; if args[1] == nil then print("[gl.mesh] : No file") else args[1]
-= filename end \; if args[2] == nil then drawmode = "fill" end \; if
+local args = canvas:getArgs() \; mesh\$0 \, node\$0 = ofMesh() \, ofNode()
+\; local filename \, drawmode \, strokeweight \, mode = args[1] \,
+args[2] \, args[3] \, args[4] \; local loaded \, saved \, debug \,
+t \, func = nil \, nil \, 0 \; local position \, orientation \, scale
+\, lookat = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f()
+\; \; function M.new() \; ofWindow.addListener("setup" \, this) \;
+if args[1] == nil then print("[gl.mesh] : No file") else args[1] =
+filename end \; if args[2] == nil then drawmode = "fill" end \; if
 args[3] == nil then strokeweight = 1 end \; if args[4] == nil then
 mode = 0 end \; M.setup() end \; \; function M.free() ofWindow.removeListener("setup"
 \, this) end \; function M.setup() if filename ~= nil then M.open(filename)
@@ -48,15 +50,23 @@ mesh\$0:removeIndex(i) end \; function M.settexcoord(l) mesh\$0:setTexCoord(0
 mesh\$0:removeTexCoord(i) end \; function M.mode(a) mode = a end \;
 function M.clear() mesh\$0:clear() end function M.clearcolors() mesh\$0:clearColors()
 end function M.clearindices() mesh\$0:clearIndices() end function M.cleartexcoords()
-mesh\$0:clearTexCoords() end \; function M.get() return ofTable (mesh\$0:getNumVertices()
-\, mesh\$0:getNumColors() \, mesh\$0:getNumIndices() \, mesh\$0:getNumNormals()
+mesh\$0:clearTexCoords() end \; function M.position(l) position:set
+(table.unpack(l)) node\$0:setPosition(position:vec3()) end \; function
+M.orientation(l) orientation:set (table.unpack(l)) node\$0:setOrientation(orientation:vec3())
+end \; function M.scale(l) scale:set (table.unpack(l)) node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+end \; function M.get() return ofTable (mesh\$0:getNumVertices() \,
+mesh\$0:getNumColors() \, mesh\$0:getNumIndices() \, mesh\$0:getNumNormals()
 \, mesh\$0:getNumTexCoords() \, mesh\$0:hasColors() \, mesh\$0:hasTexCoords()
 \, mesh\$0:hasNormals() \, mesh\$0:hasVertices() \, mesh\$0:hasIndices())end
-\; \; function M.bang() \; mesh\$0:setMode(mode) \; ofSetLineWidth(strokeweight)
+\; function M.texture(f) if f > 0 then mesh\$0:enableTextures() else
+mesh\$0:disableTextures() end end \; function M.texturemap(l) mesh\$0:setTexCoord(l[1]
+\, l[2] \, l[3] \, l[4]) end \; \; function M.bang() \; mesh\$0:setMode(mode)
+\; ofSetLineWidth(strokeweight) \; node\$0:transformGL() \; ofScale(10)
 \; if drawmode == "fill" then mesh\$0:drawFaces() end \; if drawmode
 == "point" then mesh\$0:drawVertices() end \; if drawmode == "line"
 then mesh\$0:drawWireframe() end \; if debug > 0 then mesh\$0:drawAxes(debug*100)
-end \; return(anything) \; end \;;
+end \; node\$0:restoreTransformGL() \; return(anything) \; end \;;
 #X f 140;
 #X connect 1 0 7 0;
 #X connect 3 0 6 0;
