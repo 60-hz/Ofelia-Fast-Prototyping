@@ -1,10 +1,9 @@
-#N canvas 521 280 637 329 12;
+#N canvas 546 174 637 355 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 462 45 declare -lib ofelia;
-#X obj 378 131 of.draw;
-#X text 21 19 Mouse position in world / screen mode;
+#X obj 378 91 of.draw;
 #X obj 378 235 of.plane;
 #X obj 448 157 of.mouse, f 18;
 #X msg 448 189 position \$1 \$2 0;
@@ -17,29 +16,59 @@
 #X floatatom 118 187 5 0 0 1 Y - -;
 #X obj 51 146 unpack 0 0;
 #X text 59 125 XY;
-#X text 21 37 Arguments: draw-order \, enable;
 #X obj 518 19 of.window 1;
-#N canvas 566 217 510 263 Pixel-Coordinate 0;
-#X text 21 15 Like of.draw:;
-#X text 20 35 if draw order is between 0 and 1000 = normalized mode
-(center coordinate = 0 \, 0 \, 0);
-#X text 21 75 if draw order is < 0 and > 1000 = pixel based coordinate
-mode (center is top left \, easier for screen GUI);
-#X obj 19 128 of.mouse -1, f 13;
-#X floatatom 19 180 5 0 0 1 X - -;
-#X floatatom 86 179 5 0 0 1 Y - -;
-#X obj 19 152 unpack 0 0;
-#X text 19 203 (O \, 0 is corner top left of window), f 67;
-#X text 123 130 -> This is PIXEL based coordinate;
-#X connect 3 0 6 0;
-#X connect 6 0 4 0;
-#X connect 6 1 5 0;
-#X restore 50 261 pd Pixel-Coordinate;
 #X text 50 215 0 \, 0 = center;
-#X connect 2 0 4 0;
-#X connect 5 0 6 0;
-#X connect 6 0 4 0;
-#X connect 7 0 14 0;
-#X connect 7 1 8 0;
+#X text 21 37 Arguments: draw-order \, normalized (fixed 0-1);
+#X obj 378 123 of.ortho 1;
+#X text 457 138 ok for position;
+#N canvas 518 75 558 642 WORLD/PIXEL/NORMALIZED_mode? 0;
+#X obj 19 238 of.mouse -1, f 13;
+#X floatatom 19 290 5 0 0 1 X - -;
+#X floatatom 86 289 5 0 0 1 Y - -;
+#X obj 19 262 unpack 0 0;
+#X text 123 240 -> This is PIXEL based coordinate;
+#X floatatom 19 120 5 0 0 1 X - -;
+#X floatatom 86 119 5 0 0 1 Y - -;
+#X obj 19 92 unpack 0 0;
+#X obj 19 68 of.mouse 1, f 13;
+#X text 19 313 (0 \, 0 is at top left corner of window), f 67;
+#X text 19 143 (0 \, 0 is at center of window), f 67;
+#X text 19 185 - if draw order is < 0 and > 1000 = get X and Y pixel
+based coordinate mode (center is top left \, easier for screen GUI)
+;
+#X floatatom 24 516 5 0 0 1 X - -;
+#X floatatom 91 515 5 0 0 1 Y - -;
+#X obj 24 488 unpack 0 0;
+#X obj 24 444 of.mouse 1 1, f 13;
+#X text 128 446 -> This is always between 0 (leftmost pixel and 1(rightmost
+pixel);
+#X text 24 539 (0 \, 0 is corner top left of window \, 1 \, 1 is maximum
+bottom right), f 67;
+#X text 24 408 Normalized to 0-1 range for X (width) and Y (height)
+for every windows size.;
+#X text 123 70 -> This is WORLD based coordinate;
+#X text 18 5 First argument: draw order in WORLD mode;
+#X text 20 27 - if draw order is between 0 and 1000 = get X and Y in
+WORLD mode (center coordinate = 0 \, 0 \, 0) \, like [of.draw] positions.
+, f 63;
+#X text 15 385 Second argument: activate NORMALIZED mode;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;
+#X connect 3 1 2 0;
+#X connect 7 0 5 0;
+#X connect 7 1 6 0;
+#X connect 8 0 7 0;
 #X connect 14 0 12 0;
 #X connect 14 1 13 0;
+#X connect 15 0 14 0;
+#X restore 50 261 pd WORLD/PIXEL/NORMALIZED_mode?;
+#X text 21 19 Mouse position in world mode / pixel mode / normalized
+mode;
+#X connect 2 0 18 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 6 0 13 0;
+#X connect 6 1 7 0;
+#X connect 13 0 11 0;
+#X connect 13 1 12 0;
+#X connect 18 0 3 0;

@@ -116,7 +116,6 @@ position update, f 38;
 #X connect 19 0 25 0;
 #X connect 20 0 25 0;
 #X connect 25 0 3 0;
-#X connect 27 0 28 0;
 #X connect 31 0 25 0;
 #X connect 34 0 25 0;
 #X connect 44 0 45 0;

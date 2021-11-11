@@ -42,17 +42,19 @@ M.free() \; videoplayer\$0:close() \; ofWindow.removeListener("setup"
 ofSetDataPathRoot(ofCanvas(this \, 1):getDir()) filename = string \;
 if ofWindow.exists then videoplayer\$0:close() videoplayer\$0:load(filename)
 end \; if start == 1 then videoplayer\$0:setSpeed(speed) else videoplayer\$0:setSpeed(0)
-end \; if (videoplayer\$0:isLoaded()) then print("loaded " .. filename)end
-\; end \; function M.update() videoplayer\$0:update() end \; function
-M.play() if speed > 0 then videoplayer\$0:setPosition(min) else videoplayer\$0:setPosition(max)
-end \; videoplayer\$0:setSpeed(speed) videoplayer\$0:play() end \;
-function M.stop() videoplayer\$0:stop() end \; function M.pause() videoplayer\$0:setPaused(true)
-end \; function M.resume() videoplayer\$0:setPaused(false) end \; function
-M.speed(f) speed = f if videoplayer\$0:isPlaying() then videoplayer\$0:setSpeed(speed)
+end \; if (videoplayer\$0:isLoaded()) then max = videoplayer\$0:getTotalNumFrames()
+print("loaded " .. filename)end \; end \; function M.update() videoplayer\$0:update()
+end \; function M.play() if speed > 0 then videoplayer\$0:setFrame(min)
+else videoplayer\$0:setFrame(max) end \; videoplayer\$0:setSpeed(speed)
+videoplayer\$0:play() end \; function M.stop() videoplayer\$0:stop()
+end \; function M.pause() videoplayer\$0:setPaused(true) end \; function
+M.resume() videoplayer\$0:setPaused(false) end \; function M.speed(f)
+speed = f if videoplayer\$0:isPlaying() then videoplayer\$0:setSpeed(speed)
 else videoplayer\$0:setPaused(true) end end \; function M.frame(float)
 videoplayer\$0:setFrame(float) end \; function M.range(list) min =
-list[1] max = list[2] if videoplayer\$0:isPlaying() then videoplayer\$0:setPosition(min)
-end end \; function M.position(f) position = f videoplayer\$0:setPosition(position)
+list[1] max = list[2] if videoplayer\$0:isPlaying() then videoplayer\$0:setFrame(min)
+end end \; function M.fullrange() min = 0 max = videoplayer\$0:getTotalNumFrames()
+end \; function M.position(f) position = f videoplayer\$0:setPosition(position)
 end \; function M.volume(float) videoplayer\$0:setVolume(float) end
 \; function M.loop(float) loop = float end \; function M.close() videoplayer\$0:close()
 end \; function M.get() outlet:outletList(1 \, ofTable(videoplayer\$0:isLoaded()
@@ -63,10 +65,10 @@ end \; function M.get() outlet:outletList(1 \, ofTable(videoplayer\$0:isLoaded()
 end \; \; function M.bang() \; if loop == 0 then videoplayer\$0:setLoopState(OF_LOOP_NONE)
 end \; if loop == 1 then videoplayer\$0:setLoopState(OF_LOOP_NORMAL)
 end \; if loop == 2 then videoplayer\$0:setLoopState(OF_LOOP_PALINDROME)
-end \; videoplayer\$0:update() \; if speed > 0 and videoplayer\$0:getPosition()
->= max then videoplayer\$0:setPaused(true) if loop == 1 then videoplayer\$0:setPosition(min)
-videoplayer\$0:setPaused(false) end end \; if speed < 0 and videoplayer\$0:getPosition()
-<= min then videoplayer\$0:setPaused(true) if loop == 1 then videoplayer\$0:setPosition(max)
+end \; videoplayer\$0:update() \; if speed > 0 and videoplayer\$0:getCurrentFrame()
+>= max then videoplayer\$0:setPaused(true) if loop == 1 then videoplayer\$0:setFrame(min)
+videoplayer\$0:setPaused(false) end end \; if speed < 0 and videoplayer\$0:getCurrentFrame()
+<= min then videoplayer\$0:setPaused(true) if loop == 1 then videoplayer\$0:setFrame(max)
 videoplayer\$0:setPaused(false) end end \; videoplayer\$0:bind() \;
 outlet:outletBang(0) \; videoplayer\$0:unbind() \; end \;;
 #X f 126;
