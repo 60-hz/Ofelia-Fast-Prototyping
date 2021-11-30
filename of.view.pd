@@ -1,4 +1,4 @@
-#N canvas 265 30 869 732 12;
+#N canvas 411 46 869 732 12;
 #X obj 27 -30 inlet;
 #X obj 27 795 outlet;
 #X text 544 747 RI, f 4;
@@ -25,9 +25,10 @@ view\$0:disableInertia() end end \; function M.drag(float) drag = float
 view\$0:setDrag(drag) end \; function M.sensitivity(float) \; view\$0:setRotationSensitivity(float
 \, float \, float) end \; function M.debug(float) debug = float end
 \; \; function M.bang() \; if ortho > 0 then view\$0:enableOrtho()
-end \; view\$0:beginCamera() \; outlet:outletBang(0) \; if debug >
-0 then ofDrawAxis(100*debug) end \; view\$0:disableOrtho() view\$0:endCamera()
-end \;;
+end \; view\$0:beginCamera() \; outlet:outletBang(0) \; if debug ==
+1 then ofDisableLighting() ofSetLineWidth(1) ofDrawAxis(100*debug)
+if _lighting == 1 then ofEnableLighting() end end view\$0:disableOrtho()
+view\$0:endCamera() end \;;
 #X f 107;
 #X connect 0 0 3 0;
 #X connect 3 0 1 0;

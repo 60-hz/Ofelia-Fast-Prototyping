@@ -1,4 +1,4 @@
-#N canvas 542 41 630 644 12;
+#N canvas 698 53 630 644 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -173,7 +173,7 @@ the path automatically creates a new path:;
 #X msg 57 43 orientation 0 0 360;
 #X text 57 25 Add transformation;
 #X msg 57 73 position 0 0 -10;
-#X obj 30 192 s \$0-path;
+#X obj 30 242 s \$0-path;
 #X text 250 116 Add transformation;
 #X obj 250 164 s \$0-path;
 #X obj 250 96 metro 40;

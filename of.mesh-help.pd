@@ -1,4 +1,4 @@
-#N canvas 433 52 648 726 12;
+#N canvas 671 35 609 726 12;
 #X declare -lib ofelia;
 #X obj 40 238 of.draw;
 #X msg 232 264 mode \$1;
@@ -14,50 +14,106 @@
 #X floatatom 286 596 5 0 0 0 Normals - -;
 #X floatatom 314 662 5 0 0 0 Texcoords - -;
 #X obj 56 443 r mesh;
-#N canvas 487 123 793 655 Add_to_mesh 0;
-#X msg 27 165 \; mesh addtriangle 1 2 3;
-#X obj 29 31 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X msg 233 321 stroke \$1;
+#X floatatom 233 291 5 0 0 0 - - -;
+#X msg 233 395 draw point;
+#X obj 9 0 cnv 15 600 200 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 155 declare -lib ofelia;
+#X text 16 172 https://openframeworks.cc/documentation/3d/ofMesh/,
+f 51;
+#X text 14 12 An of.mesh represents a set of vertices in 3D spaces
+\, and normals at those points \, colors at those points \, and texture
+coordinates at those points. Each of these different properties is
+stored in a vector. Vertices are passed to your graphics card and your
+graphics card fill in the spaces in between them in a processing usually
+called the rendering pipeline. The rendering pipeline goes more or
+less like this: - Say how you're going to connect all the points. -
+Make some points. - Say that you're done making points.;
+#X obj 474 123 of.window 1;
+#X msg 233 420 draw normal;
+#X obj 232 238 hradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 2;
+#X msg 58 343 open data/wood.jpg;
+#X obj 40 525 of.mesh data/penguin.ply;
+#X obj 40 302 of.view, f 10;
+#N canvas 492 248 292 249 local_transformation 0;
+#X msg 37 49 position 0 100 -100;
+#X msg 77 106 scale 1 2 2;
+#X text 36 27 transformation;
+#X msg 57 79 orientation 45 0 45;
+#X msg 87 133 lookat 180 120 60;
+#X obj 37 162 s mesh;
+#X connect 0 0 5 0;
+#X connect 1 0 5 0;
+#X connect 3 0 5 0;
+#X connect 4 0 5 0;
+#X restore 380 387 pd local_transformation;
+#X msg 382 443 texture \$1;
+#X obj 382 416 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 107 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 40 270 of.depth 1;
+#X text 229 217 ofPrimitiveMode;
+#X text 127 234 depth test;
+#N canvas 483 183 451 434 Textures 0;
+#X floatatom 31 243 5 0 0 0 - - -;
+#X obj 31 58 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 29 92 \; mesh addvertex \$1 \$2 \$3;
-#X msg 27 205 \; mesh addtriangle 4 5 6;
-#X msg 27 245 \; mesh addtriangle 7 8 9;
-#X msg 27 285 \; mesh addtriangle 10 11 12;
-#X msg 27 387 \; mesh addindex \$1;
-#X obj 264 235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 264 209 metro 40;
-#X obj 264 188 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 264 291 \; mesh addcolor \$1 \$2 \$3 \$4;
-#X obj 265 384 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 265 358 metro 40;
-#X obj 265 337 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 265 440 \; mesh addtexcoord \$1 \$2;
-#X floatatom 27 357 5 0 0 0 - - -;
-#X msg 477 129 \; mesh addvertex -10 10 0;
-#X msg 477 91 \; mesh addvertex 10 -10 0;
-#X msg 477 53 \; mesh addvertex -10 -10 0;
-#X msg 481 225 \; mesh addvertex 10 10 0;
-#X msg 481 185 \; mesh addvertex -10 10 0;
-#X msg 481 265 \; mesh addvertex 10 -10 0;
-#X text 469 29 A simple square is made by 2 triangles:;
-#X text 284 234 add new vertex color;
-#X text 379 274 r g b a;
-#X text 148 75 x y z;
-#X text 54 26 add new vertex position;
+#X obj 31 32 metro 40;
+#X obj 31 11 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 31 114 \; mesh addtexcoord \$1 \$2;
+#N canvas 178 426 597 300 randomlistTexture 0;
+#X obj 72 19 inlet;
+#X obj 72 151 outlet;
+#X obj 172 73 random 10;
+#X obj 72 73 random 10;
+#X obj 174 100 / 10;
+#X obj 72 100 / 10;
+#X obj 72 46 t b b, f 15;
+#X obj 72 127 pack 0 0, f 15;
+#X connect 0 0 6 0;
+#X connect 2 0 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 7 1;
+#X connect 5 0 7 0;
+#X connect 6 0 3 0;
+#X connect 6 1 2 0;
+#X connect 7 0 1 0;
+#X restore 31 82 pd randomlistTexture;
+#X msg 33 348 \; mesh cleartexcoords;
+#X text 32 328 clear all texture coordinate;
+#X msg 31 184 \; mesh addtexcoords \$1 \$2 \$3;
+#X text 73 240 remove texture coordinate by index;
+#X msg 31 268 \; mesh removetexcoord \$1;
+#X text 52 55 add new random texture coordinate;
+#X text 26 161 add an array of texture coordinate (not implemented)
+;
+#X connect 0 0 10 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 5 0 4 0;
+#X restore 380 288 pd Textures;
+#N canvas 347 69 749 642 Vertex 0;
+#X obj 25 53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 25 114 \; mesh addvertex \$1 \$2 \$3;
+#X text 144 97 x y z;
 #N canvas 230 315 450 300 randomlistXYZ 0;
 #X obj 72 19 inlet;
 #X obj 72 46 t b b b, f 33;
 #X obj 72 147 pack 0 0 0, f 33;
 #X obj 72 171 outlet;
-#X obj 72 73 random 20;
+#X obj 72 83 random 20;
 #X obj 72 110 - 10;
-#X obj 182 73 random 20;
-#X obj 184 110 - 10;
-#X obj 302 73 random 20;
-#X obj 301 110 - 10;
+#X obj 186 83 random 20;
+#X obj 186 110 - 10;
+#X obj 300 83 random 20;
+#X obj 300 110 - 10;
+#X text 131 172 3 values from -10 to 10;
 #X connect 0 0 1 0;
 #X connect 1 0 4 0;
 #X connect 1 1 6 0;
@@ -69,7 +125,59 @@
 #X connect 7 0 2 1;
 #X connect 8 0 9 0;
 #X connect 9 0 2 2;
-#X restore 29 58 pd randomlistXYZ;
+#X restore 25 80 pd randomlistXYZ;
+#X msg 222 114 \; mesh mode 4;
+#X text 224 93 render mode;
+#X msg 437 348 \; mesh addvertex -10 10 0;
+#X msg 437 310 \; mesh addvertex 10 -10 0;
+#X msg 437 272 \; mesh addvertex -10 -10 0;
+#X msg 436 464 \; mesh addvertex 10 10 0;
+#X msg 436 424 \; mesh addvertex -10 10 0;
+#X msg 436 504 \; mesh addvertex 10 -10 0;
+#X text 431 214 A simple square is made by 2 triangles:;
+#X text 433 249 Triangle 1:;
+#X text 433 402 Triangle 2:;
+#X msg 434 31 \; mesh addtriangle 1 2 3;
+#X msg 434 71 \; mesh addtriangle 4 5 6;
+#X msg 434 111 \; mesh addtriangle 7 8 9;
+#X msg 434 151 \; mesh addtriangle 10 11 12;
+#X floatatom 27 232 5 0 0 0 - - -;
+#X msg 27 267 \; mesh removevertex \$1;
+#X floatatom 28 400 5 0 0 0 - - -;
+#X msg 28 425 \; mesh removeindex \$1;
+#X msg 27 358 \; mesh addindex \$1;
+#X floatatom 27 328 5 0 0 0 - - -;
+#X text 75 233 remove vertex position by index;
+#X msg 28 495 \; mesh clearvertices;
+#X text 30 476 clear all vertices;
+#X msg 236 495 \; mesh clear;
+#X text 47 52 add new random vertex position one by one;
+#X msg 27 186 \; mesh addtexcoords \$1 \$2 \$3;
+#X text 22 163 add an array of vertices coordinate (not implemented)
+;
+#X obj 26 29 metro 40;
+#X obj 26 8 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X text 233 469 clear the mesh;
+#X text 433 9 add a triangle one by one:;
+#X msg 27 559 setupindicesauto;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;
+#X connect 19 0 20 0;
+#X connect 21 0 22 0;
+#X connect 24 0 23 0;
+#X connect 32 0 0 0;
+#X connect 33 0 32 0;
+#X restore 380 241 pd Vertex;
+#N canvas 408 109 358 557 Color 0;
+#X obj 36 71 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 36 45 metro 40;
+#X obj 36 24 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 36 137 \; mesh addcolor \$1 \$2 \$3 \$4;
+#X text 56 70 add new vertex color;
+#X text 226 149 r g b a;
 #N canvas 219 503 597 300 randomlistRGBA 0;
 #X obj 72 19 inlet;
 #X obj 72 151 outlet;
@@ -97,62 +205,82 @@
 #X connect 9 0 7 2;
 #X connect 10 0 7 1;
 #X connect 11 0 7 0;
-#X restore 264 263 pd randomlistRGBA;
-#X msg 226 92 \; mesh mode 4;
-#X text 228 71 render mode;
-#N canvas 0 23 597 300 randomlistTexture 0;
+#X restore 36 99 pd randomlistRGBA;
+#X floatatom 35 192 5 0 0 0 - - -;
+#X msg 35 224 \; mesh removecolor \$1;
+#X msg 35 296 \; mesh clearcolors;
+#X text 80 194 remove vertex color by index;
+#X text 34 274 remove all vertex colors;
+#X floatatom 35 352 5 0 0 0 - - -;
+#X text 77 351 bug!;
+#X msg 35 377 \; mesh setcolor 1 0.5 0.5 0.5 1;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 6 0 3 0;
+#X connect 7 0 8 0;
+#X connect 12 0 14 0;
+#X restore 380 264 pd Color;
+#N canvas 216 316 407 443 Normals 0;
+#X msg 45 265 \; mesh removenormal \$1;
+#X floatatom 45 240 5 0 0 0 - - -;
+#X msg 45 353 \; mesh clearnormals;
+#X obj 44 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 44 26 metro 40;
+#X obj 44 5 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#N canvas 219 478 597 300 randomlistRGBA 0;
 #X obj 72 19 inlet;
 #X obj 72 151 outlet;
-#X obj 172 73 random 10;
+#X obj 302 73 random 10;
+#X obj 182 73 random 10;
 #X obj 72 73 random 10;
-#X obj 174 100 / 10;
+#X obj 302 100 / 10;
+#X obj 184 100 / 10;
 #X obj 72 100 / 10;
-#X obj 72 46 t b b, f 15;
-#X obj 72 127 pack 0 0, f 15;
-#X connect 0 0 6 0;
-#X connect 2 0 4 0;
-#X connect 3 0 5 0;
-#X connect 4 0 7 1;
-#X connect 5 0 7 0;
-#X connect 6 0 3 0;
-#X connect 6 1 2 0;
-#X connect 7 0 1 0;
-#X restore 265 408 pd randomlistTexture;
-#X connect 1 0 27 0;
-#X connect 7 0 28 0;
-#X connect 8 0 7 0;
-#X connect 9 0 8 0;
-#X connect 11 0 31 0;
-#X connect 12 0 11 0;
-#X connect 13 0 12 0;
-#X connect 15 0 6 0;
-#X connect 27 0 2 0;
-#X connect 28 0 10 0;
-#X connect 31 0 14 0;
-#X restore 378 242 pd Add_to_mesh;
-#N canvas 721 49 407 443 Remove_from_mesh 0;
-#X floatatom 91 100 5 0 0 0 - - -;
-#X floatatom 91 230 5 0 0 0 - - -;
-#X floatatom 89 36 5 0 0 0 - - -;
-#X msg 89 68 \; mesh removecolor \$1;
-#X msg 91 135 \; mesh removevertex \$1;
-#X msg 91 195 \; mesh removenormal \$1;
-#X msg 91 255 \; mesh removeindex \$1;
-#X msg 91 315 \; mesh removetextcoord \$1;
-#X floatatom 91 290 5 0 0 0 - - -;
-#X floatatom 91 170 5 0 0 0 - - -;
-#X connect 0 0 4 0;
-#X connect 1 0 6 0;
-#X connect 2 0 3 0;
-#X connect 8 0 7 0;
-#X connect 9 0 5 0;
-#X restore 378 268 pd Remove_from_mesh;
-#X obj 379 403 r mesh;
-#X obj 379 426 print;
-#X msg 233 321 stroke \$1;
-#X floatatom 233 291 5 0 0 0 - - -;
-#X msg 233 395 draw point;
-#N canvas 771 332 460 428 Models_examples 0;
+#X obj 72 46 t b b b, f 33;
+#X obj 72 127 pack 0 0 0, f 34;
+#X connect 0 0 8 0;
+#X connect 2 0 5 0;
+#X connect 3 0 6 0;
+#X connect 4 0 7 0;
+#X connect 5 0 9 2;
+#X connect 6 0 9 1;
+#X connect 7 0 9 0;
+#X connect 8 0 4 0;
+#X connect 8 1 3 0;
+#X connect 8 2 2 0;
+#X connect 9 0 1 0;
+#X restore 44 80 pd randomlistRGBA;
+#X text 44 330 clear all normals;
+#X text 85 237 remove normal by index;
+#X msg 44 118 \; mesh addnormal \$1 \$2 \$3;
+#X msg 44 184 \; mesh addNormals \$1 \$2 \$3;
+#X text 39 161 add an array of normals coordinate (not implemented)
+;
+#X text 64 51 add new normal one by one;
+#X connect 1 0 0 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 9 0;
+#X restore 380 314 pd Normals;
+#N canvas 632 135 555 437 Import_Primitives_examples 0;
+#X msg 18 55 \; mesh prim ofSpherePrimitive 10 4;
+#X msg 18 95 \; mesh prim ofBoxPrimitive 10 10 10;
+#X msg 18 135 \; mesh prim ofConePrimitive 10 10 10 10 10 0;
+#X text 350 182 pb: cap need to set as bool;
+#X msg 18 255 \; mesh prim ofIcosahedron 1;
+#X text 274 220 ?;
+#X text 205 261 ?;
+#X text 283 303 not working?;
+#X msg 18 295 \; mesh append ofBoxPrimitive 10 10 10;
+#X msg 18 15 \; mesh prim ofPlanePrimitive 10 10 10 10 0;
+#X msg 18 175 \; mesh prim ofCylinderPrimitive 10 10 10 10 10;
+#X msg 18 215 \; mesh prim oficospherePrimitive 10;
+#X restore 380 338 pd Import_Primitives_examples;
+#N canvas 771 332 460 428 Import_3d_Models_examples 0;
 #X msg 20 110 \; mesh open data/penguin.ply;
 #X text 17 5 Loads a mesh from a file located at the provided path
 into the mesh. This will replace any existing data within the mesh.
@@ -172,105 +300,33 @@ Triangle faces.;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
 #X connect 5 0 2 0;
-#X restore 378 344 pd Models_examples;
-#N canvas 632 135 555 437 Primitives_examples 0;
-#X msg 18 55 \; mesh prim ofSpherePrimitive 10 4;
-#X msg 18 95 \; mesh prim ofBoxPrimitive 10 10 10;
-#X msg 18 135 \; mesh prim ofConePrimitive 10 10 10 10 10 0;
-#X text 350 182 pb: cap need to set as bool;
-#X msg 18 255 \; mesh prim ofIcosahedron 1;
-#X text 274 220 ?;
-#X text 205 261 ?;
-#X text 283 303 not working?;
-#X msg 18 295 \; mesh append ofBoxPrimitive 10 10 10;
-#X msg 18 15 \; mesh prim ofPlanePrimitive 10 10 10 10 0;
-#X msg 18 175 \; mesh prim ofCylinderPrimitive 10 10 10 10 10;
-#X msg 18 215 \; mesh prim oficospherePrimitive 10;
-#X restore 378 319 pd Primitives_examples;
-#X obj 9 0 cnv 15 600 200 empty empty empty 20 12 0 14 -233017 -66577
-0;
-#X obj 462 155 declare -lib ofelia;
-#X text 16 172 https://openframeworks.cc/documentation/3d/ofMesh/,
-f 51;
-#N canvas 426 414 313 276 Clear_from_mesh 0;
-#X msg 22 7 \; mesh clear;
-#X msg 21 51 \; mesh clearcolors;
-#X msg 21 95 \; mesh clearindices;
-#X msg 21 139 \; mesh clearvertices;
-#X msg 21 182 \; mesh clearnormals;
-#X msg 21 226 \; mesh cleartexcoords;
-#X restore 378 295 pd Clear_from_mesh;
-#N canvas 139 431 450 300 Set 0;
-#X obj 27 141 metro 40;
-#X obj 27 120 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X floatatom 23 41 5 0 0 0 - - -;
-#X msg 23 66 \; mesh setcolor 0.5 0.5 0.5 1;
-#X msg 27 169 \; mesh setcolor 1 1 1 0.5;
-#X text 65 40 bug!;
-#X connect 0 0 4 0;
-#X connect 1 0 0 0;
-#X connect 2 0 3 0;
-#X restore 378 368 pd Set;
-#X text 14 12 An of.mesh represents a set of vertices in 3D spaces
-\, and normals at those points \, colors at those points \, and texture
-coordinates at those points. Each of these different properties is
-stored in a vector. Vertices are passed to your graphics card and your
-graphics card fill in the spaces in between them in a processing usually
-called the rendering pipeline. The rendering pipeline goes more or
-less like this: - Say how you're going to connect all the points. -
-Make some points. - Say that you're done making points.;
-#X obj 474 123 of.window 1;
-#X msg 233 420 draw normal;
-#X obj 232 238 hradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X msg 372 471 setupindicesauto;
-#X msg 58 333 open data/wood.jpg;
-#X obj 40 363 of.image data/penguin.jpg;
-#X obj 40 525 of.mesh data/penguin.ply;
-#X obj 40 302 of.view, f 10;
-#N canvas 0 23 292 249 local_transformation 0;
-#X msg 37 49 position 0 100 -100;
-#X msg 37 92 scale 1 2 2;
-#X text 36 27 transformation;
-#X msg 37 70 orientation 45 0 45;
-#X msg 37 113 lookat 180 120 60;
-#X obj 37 137 s mesh;
-#X connect 0 0 5 0;
-#X connect 4 0 5 0;
-#X restore 379 215 pd local_transformation;
-#X msg 377 563 texturemap 0 0 1 1;
-#X msg 377 538 texture \$1;
-#X obj 377 511 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X text 516 563 not implemented;
-#X obj 40 270 of.depth 0;
-#X obj 107 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X connect 0 0 42 0;
-#X connect 1 0 35 0;
-#X connect 2 0 35 0;
-#X connect 3 0 35 0;
-#X connect 4 0 35 0;
+#X restore 380 363 pd Import_3d_Models_examples;
+#X text 119 299 move cam;
+#X text 60 325 change texture;
+#X obj 40 373 of.image data/penguin.jpg;
+#X connect 0 0 31 0;
+#X connect 1 0 25 0;
+#X connect 2 0 25 0;
+#X connect 3 0 25 0;
+#X connect 4 0 25 0;
 #X connect 5 0 4 0;
-#X connect 6 0 35 0;
+#X connect 6 0 25 0;
 #X connect 7 0 8 0;
 #X connect 7 1 9 0;
 #X connect 7 2 10 0;
 #X connect 7 3 11 0;
 #X connect 7 4 12 0;
-#X connect 13 0 35 0;
-#X connect 16 0 17 0;
-#X connect 18 0 35 0;
-#X connect 19 0 18 0;
-#X connect 20 0 35 0;
-#X connect 30 0 35 0;
-#X connect 31 0 1 0;
-#X connect 32 0 35 0;
-#X connect 33 0 34 0;
-#X connect 34 0 35 0;
-#X connect 35 1 7 0;
-#X connect 36 0 34 0;
-#X connect 40 0 39 0;
-#X connect 42 0 36 0;
-#X connect 43 0 42 1;
+#X connect 13 0 25 0;
+#X connect 14 0 25 0;
+#X connect 15 0 14 0;
+#X connect 16 0 25 0;
+#X connect 22 0 25 0;
+#X connect 23 0 1 0;
+#X connect 24 0 42 0;
+#X connect 25 1 7 0;
+#X connect 26 0 42 0;
+#X connect 28 0 25 0;
+#X connect 29 0 28 0;
+#X connect 30 0 31 1;
+#X connect 31 0 26 0;
+#X connect 42 0 25 0;

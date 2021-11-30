@@ -1,0 +1,18 @@
+#N canvas 612 319 482 459 12;
+#X obj 20 16 inlet;
+#X obj 20 342 outlet;
+#X text 423 165 RI;
+#X msg 90 81 active \$1;
+#X obj 90 54 inlet;
+#X obj 20 113 ofelia d pushmatrix-\$0 \; local canvas = ofCanvas(this)
+\; local outlet = ofOutlet(this) \; local args = canvas:getArgs() \;
+local active = 1 \; function M.new() \; if #args == 0 then active =
+1 else active = args[1] \; end end \; function M.active(f) active =
+f end \; function M.bang() \; if active == 1 then ofPushMatrix() ofPushStyle()
+end \; outlet:outletBang(0) \; if active == 1 then ofPopMatrix() ofPopStyle()
+end \; end \;;
+#X f 61;
+#X connect 0 0 5 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 1 0;

@@ -1,0 +1,9 @@
+#N canvas 249 446 482 232 12;
+#X obj 20 16 inlet;
+#X obj 20 139 outlet;
+#X text 425 131 RI;
+#X obj 20 53 ofelia d pophmatrix-\$0 \; function M.bang() \; ofPopMatrix()
+\; return (anything) \; end \;;
+#X f 61;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

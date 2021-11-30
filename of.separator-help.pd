@@ -1,0 +1,70 @@
+#N canvas 431 55 653 644 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 462 45 declare -lib ofelia;
+#X obj 518 19 of.window 1;
+#X obj 41 409 cnv 15 250 40 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X obj 338 408 cnv 15 210 40 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X obj 49 174 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1 1
+;
+#X obj 343 231 == 0;
+#X text 70 169 toggle between separated/unseparated rendering;
+#X obj 49 383 t a a;
+#X obj 343 380 t a a;
+#X obj 49 273 of.draw;
+#X obj 343 283 of.draw;
+#X obj 49 343 of.color 255 0 0;
+#X obj 343 343 of.color 0 0 255;
+#X obj 49 458 of.color 0 255 255;
+#X obj 192 458 of.rotate 0 45 0;
+#X obj 343 458 of.color 255 255 0;
+#X obj 489 458 of.rotate 0 45 0;
+#X obj 343 488 of.box 50 50 50;
+#X obj 489 487 of.rectangle 100 100;
+#X obj 49 308 of.depth 1;
+#X obj 343 313 of.depth 1;
+#X obj 49 421 of.separator;
+#X obj 192 421 of.separator;
+#X text 19 78 [separator] isolates parallel render-chains with regard
+to transformation effects (translation \, rotation \, ...) \, so you
+don't get side-effects;
+#X obj 49 483 of.box 50 50 50;
+#X obj 192 488 of.rectangle 100 100;
+#X text 26 548 If you did not use a [separator] in the example \, then
+one of the chains would have an extra rotation (depending on which
+subchain is rendered first).;
+#X text 25 586 With the [separator] \, both objects will by translated
+\, but the rotation in one branch will not effect the other branch.
+;
+#X obj 343 257 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 263 325 5 0 0 0 - - -;
+#X text 255 306 rotate;
+#X text 25 30 separate matrix on the rendering chain;
+#X text 119 273 red (with separator);
+#X text 407 283 blue (without separator);
+#X connect 5 0 10 0;
+#X connect 5 0 6 0;
+#X connect 6 0 29 0;
+#X connect 8 0 22 0;
+#X connect 8 1 23 0;
+#X connect 9 0 16 0;
+#X connect 9 1 17 0;
+#X connect 10 0 20 0;
+#X connect 11 0 21 0;
+#X connect 12 0 8 0;
+#X connect 13 0 9 0;
+#X connect 14 0 25 0;
+#X connect 15 0 26 0;
+#X connect 16 0 18 0;
+#X connect 17 0 19 0;
+#X connect 20 0 12 0;
+#X connect 21 0 13 0;
+#X connect 22 0 14 0;
+#X connect 23 0 15 0;
+#X connect 29 0 11 0;
+#X connect 30 0 15 2;
+#X connect 30 0 17 2;

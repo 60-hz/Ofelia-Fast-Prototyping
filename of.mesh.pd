@@ -1,12 +1,10 @@
-#N canvas 190 103 985 578 12;
-#X text 317 1044 DIY obj loader: https://github.com/section14/openframeworks-WaveFront-obj-loader/blob/master/waveFrontLoader.cpp
-;
+#N canvas 398 -774 985 634 12;
 #X obj 15 10 inlet;
-#X obj 15 1063 outlet;
-#X obj 15 1017 list trim;
-#X obj 82 1063 outlet;
+#X obj 15 1143 outlet;
+#X obj 15 1097 list trim;
+#X obj 82 1143 outlet;
 #X text 601 817 RI;
-#X obj 15 1040 route bang;
+#X obj 15 1120 route bang;
 #X obj 15 40 ofelia d model-\$0 \; local canvas = ofCanvas(this) \;
 local args = canvas:getArgs() \; mesh\$0 \, node\$0 = ofMesh() \, ofNode()
 \; local filename \, drawmode \, strokeweight \, mode = args[1] \,
@@ -30,6 +28,7 @@ loaded = mesh\$0:load(filename) end \; if loaded then print("loaded
 then saved = mesh\$0:save(string) end if saved then print("saved "
 .. string) end end \; function M.draw(s) drawmode = s end \; function
 M.stroke(f) strokeweight = f end \; function M.normalsize(float) normalsize=float
+end \; function M.addnormal(l) mesh\$0:addNormal(ofVec3f(table.unpack(l)):vec3())
 end \; function M.setupindicesauto() mesh\$0:setupIndicesAuto() end
 \; function M.addtriangle(l) mesh\$0:addTriangle(l[1] \, l[2] \, l[3])
 end \; function M.smoothnormals(f) mesh\$0:smoothNormals(f) end \;
@@ -50,11 +49,12 @@ mesh\$0:removeIndex(i) end \; function M.settexcoord(l) mesh\$0:setTexCoord(0
 mesh\$0:removeTexCoord(i) end \; function M.mode(a) mode = a end \;
 function M.clear() mesh\$0:clear() end function M.clearcolors() mesh\$0:clearColors()
 end function M.clearindices() mesh\$0:clearIndices() end function M.cleartexcoords()
-mesh\$0:clearTexCoords() end \; function M.position(l) position:set
-(table.unpack(l)) node\$0:setPosition(position:vec3()) end \; function
-M.orientation(l) orientation:set (table.unpack(l)) node\$0:setOrientation(orientation:vec3())
-end \; function M.scale(l) scale:set (table.unpack(l)) node\$0:setScale(scale:vec3())
-end \; function M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+mesh\$0:clearTexCoords() end \; function M.clearvertices() mesh\$0:clearVertices()
+end \; function M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation:set (table.unpack(l))
+node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function
+M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
 end \; function M.get() return ofTable (mesh\$0:getNumVertices() \,
 mesh\$0:getNumColors() \, mesh\$0:getNumIndices() \, mesh\$0:getNumNormals()
 \, mesh\$0:getNumTexCoords() \, mesh\$0:hasColors() \, mesh\$0:hasTexCoords()
@@ -65,11 +65,12 @@ mesh\$0:disableTextures() end end \; function M.texturemap(l) mesh\$0:setTexCoor
 \; ofSetLineWidth(strokeweight) \; node\$0:transformGL() \; ofScale(10)
 \; if drawmode == "fill" then mesh\$0:drawFaces() end \; if drawmode
 == "point" then mesh\$0:drawVertices() end \; if drawmode == "line"
-then mesh\$0:drawWireframe() end \; if debug > 0 then mesh\$0:drawAxes(debug*100)
-end \; node\$0:restoreTransformGL() \; return(anything) \; end \;;
+then mesh\$0:drawWireframe() end \; if drawmode == "normal" then mesh\$0:enableNormals()
+end \; if debug > 0 then mesh\$0:drawAxes(debug*100) end \; node\$0:restoreTransformGL()
+\; return(anything) \; end \;;
 #X f 140;
-#X connect 1 0 7 0;
-#X connect 3 0 6 0;
+#X connect 0 0 6 0;
+#X connect 2 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 3 0;
 #X connect 6 0 2 0;
-#X connect 6 1 4 0;
-#X connect 7 0 3 0;

@@ -1,0 +1,24 @@
+#N canvas 516 276 626 379 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 27 89 of.draw;
+#X obj 462 45 declare -lib ofelia;
+#X obj 518 19 of.window 1;
+#X obj 27 221 of.rectangle 100 100 line;
+#X obj 27 128 of.pushmatrix;
+#X floatatom 68 156 5 0 0 0 - - -;
+#X obj 27 255 of.popmatrix;
+#X obj 27 288 of.circle;
+#X obj 27 184 of.translate 100 0;
+#X text 128 126 -> push matrix at this step;
+#X text 25 30 pushmatrix / pop matrix;
+#X text 126 257 -> pull matrix back;
+#X text 173 187 -> add transformations...;
+#X text 106 288 -> circle is not translated;
+#X connect 1 0 5 0;
+#X connect 4 0 7 0;
+#X connect 5 0 9 0;
+#X connect 6 0 9 1;
+#X connect 7 0 8 0;
+#X connect 9 0 4 0;
