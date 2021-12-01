@@ -1,4 +1,4 @@
-#N canvas 308 23 870 755 12;
+#N canvas 342 23 870 755 12;
 #X obj 31 4 inlet;
 #X obj 31 809 outlet;
 #X obj 90 2 inlet;
@@ -12,25 +12,30 @@
 #X msg 420 28 corner3 \$1 \$2;
 #X text 673 813 R.I;
 #X obj 31 57 ofelia d quad-\$0 \; local mesh \, node\$0 = ofMesh()
-\, ofNode() \; local mode = OF_PRIMITIVE_TRIANGLE_FAN \; p0 = ofVec3f(-100
-\, 100 \, 0) p1 = ofVec3f(100 \, 100 \, 0) p2 = ofVec3f(100 \, -100
-\, 0) p3 = ofVec3f(-100 \, -100 \, 0) \; t0 = ofVec2f(1.0 \, 0.0) t1
-= ofVec2f(0.0 \, 0.0) t2 = ofVec2f(0.0 \, 1.0) t3 = ofVec2f(1.0 \,
-1.0) \; c0 = ofFloatColor() c1 = ofFloatColor() c2 = ofFloatColor()
-c3 = ofFloatColor() \; local drawmode \, strokeweight \, debug = "fill"
-\, 1 \, 0 \; local position \, orientation \, scale \, lookat = ofVec3f()
-\, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; function M.new()
-\; ofWindow.addListener("setup" \, this) \; M.setup() end \; function
-M.free() \; ofWindow.removeListener("setup" \, this) end \; \; function
-M.setup() \; mesh:setMode(mode) \; mesh:addVertex(p0:vec3()) mesh:addColor(c0)
-mesh:addTexCoord(t0:vec2()) \; mesh:addVertex(p1:vec3()) mesh:addColor(c1)
-mesh:addTexCoord(t1:vec2()) \; mesh:addVertex(p2:vec3()) mesh:addColor(c2)
-mesh:addTexCoord(t2:vec2()) \; mesh:addVertex(p3:vec3()) mesh:addColor(c3)
-mesh:addTexCoord(t3:vec2()) \; mesh:addIndex(0) mesh:addIndex(1) mesh:addIndex(2)
-mesh:addIndex(1) mesh:addIndex(2) mesh:addIndex(3) end \; function
-M.corner0(l) p0:set(table.unpack(l)) mesh:setVertex(0 \, p0:vec3())
-end \; function M.corner1(l) p1:set(table.unpack(l)) mesh:setVertex(1
-\, p1:vec3()) end \; function M.corner2(l) p2:set(table.unpack(l))
+\, ofNode() \; local mode = OF_PRIMITIVE_TRIANGLE_FAN \; local args
+= ofCanvas(this):getArgs() \; p0 = ofVec3f(-100 \, 100 \, 0) p1 = ofVec3f(100
+\, 100 \, 0) p2 = ofVec3f(100 \, -100 \, 0)p3 = ofVec3f(-100 \, -100
+\, 0) \; if args[1] ~= nil then p0.x = args[1] end if args[2] ~= nil
+then p0.y = args[2] end \; if args[3] ~= nil then p1.x = args[3] end
+if args[4] ~= nil then p1.y = args[4] end \; if args[5] ~= nil then
+p2.x = args[5] end if args[6] ~= nil then p2.y = args[6] end \; if
+args[7] ~= nil then p3.x = args[7] end if args[8] ~= nil then p3.y
+= args[8] end \; t0 = ofVec2f(1.0 \, 0.0) t1 = ofVec2f(0.0 \, 0.0)
+t2 = ofVec2f(0.0 \, 1.0) t3 = ofVec2f(1.0 \, 1.0) \; c0 = ofFloatColor()
+c1 = ofFloatColor() c2 = ofFloatColor() c3 = ofFloatColor() \; local
+drawmode \, strokeweight \, debug = "fill" \, 1 \, 0 \; local position
+\, orientation \, scale \, lookat = ofVec3f() \, ofVec3f() \, ofVec3f(1
+\, 1 \, 1) \, ofVec3f() \; function M.new() \; ofWindow.addListener("setup"
+\, this) \; M.setup() end \; function M.free() \; ofWindow.removeListener("setup"
+\, this) end \; \; function M.setup() \; mesh:setMode(mode) \; mesh:addVertex(p0:vec3())
+mesh:addColor(c0) mesh:addTexCoord(t0:vec2()) \; mesh:addVertex(p1:vec3())
+mesh:addColor(c1) mesh:addTexCoord(t1:vec2()) \; mesh:addVertex(p2:vec3())
+mesh:addColor(c2) mesh:addTexCoord(t2:vec2()) \; mesh:addVertex(p3:vec3())
+mesh:addColor(c3) mesh:addTexCoord(t3:vec2()) \; mesh:addIndex(0) mesh:addIndex(1)
+mesh:addIndex(2) mesh:addIndex(1) mesh:addIndex(2) mesh:addIndex(3)
+end \; function M.corner0(l) p0:set(table.unpack(l)) mesh:setVertex(0
+\, p0:vec3()) end \; function M.corner1(l) p1:set(table.unpack(l))
+mesh:setVertex(1 \, p1:vec3()) end \; function M.corner2(l) p2:set(table.unpack(l))
 mesh:setVertex(2 \, p2:vec3()) end \; function M.corner3(l) p3:set(table.unpack(l))
 mesh:setVertex(3 \, p3:vec3()) end \; function M.color0(l) c0:set(table.unpack(l))
 mesh:setColor(0 \, c0) end \; function M.color1(l) c1:set(table.unpack(l))
@@ -47,12 +52,11 @@ M.corner1 (ofTable(table.unpack(l \, 4 \, 6))) M.corner2 (ofTable(table.unpack(l
 \, 7 \, 9))) M.corner3 (ofTable(table.unpack(l \, 10 \, 12))) end \;
 function M.draw(s) drawmode = s end \; function M.debug(f) debug =
 f end \; function M.stroke(f) strokeweight = f end \; function M.mode(f)
-mode = f end \; function M.mode(f) mesh:setMode(f) end \; function
-M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
-end \; function M.orientation(l) orientation:set (table.unpack(l))
-node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
-scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function
-M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
+mode = f mesh:setMode(f) end \; function M.position(l) position:set
+(table.unpack(l)) node\$0:setPosition(position:vec3()) end \; function
+M.orientation(l) orientation:set (table.unpack(l)) node\$0:setOrientation(orientation:vec3())
+end \; function M.scale(l) scale:set (table.unpack(l)) node\$0:setScale(scale:vec3())
+end \; function M.lookat(l) lookat:set (table.unpack(l)) node\$0:lookAt(lookat:vec3())
 end \; \; function M.bang() \; ofSetLineWidth(strokeweight) node\$0:transformGL()
 \; if drawmode == "fill" then mesh:drawFaces() end \; if drawmode ==
 "point" then mesh:drawVertices() end \; if drawmode == "line" then

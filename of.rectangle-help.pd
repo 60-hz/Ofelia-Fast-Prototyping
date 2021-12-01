@@ -27,27 +27,30 @@
 #X text 457 191 Show center axis;
 #X msg 60 268 stroke 4;
 #X msg 190 181 lookat 180 120 60;
-#X obj 518 19 of.window 1;
 #X obj 27 301 of.rectangle 100 100 line 1 center, f 37;
 #X text 24 40 Args: width \, height \, drawmode \, strokewidth \, rectmode
 ;
 #X text 28 321 Note: no texture coordinates are implemented yet \,
 so use of.plane to use texture;
 #X text 190 94 local transformation;
-#X connect 1 0 26 0;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 1 0 25 0;
 #X connect 2 0 13 0;
-#X connect 3 0 26 0;
-#X connect 4 0 26 0;
-#X connect 5 0 26 0;
-#X connect 6 0 26 0;
-#X connect 7 0 26 0;
-#X connect 8 0 26 1;
-#X connect 9 0 26 2;
+#X connect 3 0 25 0;
+#X connect 4 0 25 0;
+#X connect 5 0 25 0;
+#X connect 6 0 25 0;
+#X connect 7 0 25 0;
+#X connect 8 0 25 1;
+#X connect 9 0 25 2;
 #X connect 10 0 13 0;
-#X connect 16 0 26 0;
-#X connect 17 0 26 0;
-#X connect 18 0 26 0;
+#X connect 16 0 25 0;
+#X connect 17 0 25 0;
+#X connect 18 0 25 0;
 #X connect 20 0 13 0;
 #X connect 21 0 20 0;
-#X connect 23 0 26 0;
-#X connect 24 0 26 0;
+#X connect 23 0 25 0;
+#X connect 24 0 25 0;
+#X connect 30 0 29 0;

@@ -13,7 +13,6 @@
 #X msg 57 256 position -100 0 0;
 #X text 24 40 Args: repetition-cycles;
 #X floatatom 61 173 5 0 0 2 translate_scale - -;
-#X obj 518 19 of.window 1;
 #X obj 300 172 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #N canvas 542 330 450 401 Shuriken_example 0;
@@ -44,6 +43,9 @@
 #X connect 12 0 4 3;
 #X restore 300 195 pd Shuriken_example;
 #X text 322 172 activate;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 1 0 5 0;
 #X connect 2 0 5 1;
 #X connect 4 0 6 0;
@@ -51,4 +53,5 @@
 #X connect 8 0 9 0;
 #X connect 9 0 6 0;
 #X connect 11 0 4 1;
-#X connect 13 0 14 0;
+#X connect 12 0 13 0;
+#X connect 16 0 15 0;

@@ -9,12 +9,12 @@
 0;
 #X floatatom 78 158 5 0 0 0 - - -;
 #X msg 58 130 active \$1;
-#X obj 58 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 58 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X floatatom 79 208 5 0 10 0 - - -;
 #X msg 79 231 attenuation \$1;
 #X msg 113 379 debug \$1;
-#X obj 113 357 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 113 357 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 130 406 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -41,10 +41,7 @@
 #X msg 245 177 orientation 0 \$1 0;
 #X obj 26 488 of.spotlight;
 #X msg 78 181 position \$1 0 0;
-#X obj 470 11 declare -lib ofelia;
-#X msg 413 30 lighting \$1;
-#X obj 413 12 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 470 50 declare -lib ofelia;
 #X floatatom 487 163 5 0 0 0 size - -;
 #X floatatom 569 164 5 0 0 0 geo - -;
 #X obj 446 195 of.plane 400 400 100 100;
@@ -72,9 +69,14 @@ spreads outward in a cone of variable diameter and length, f 81;
 #X text 284 155 orientation Y;
 #X text 117 159 position X;
 #X obj 446 129 of.translate 0 0 -200;
-#X obj 518 49 of.window 1;
 #X obj 446 98 of.draw 1 1;
 #X obj 26 84 of.draw 2;
+#X msg 403 19 lighting \$1;
+#X obj 380 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 1 0 30 0;
 #X connect 2 0 29 0;
 #X connect 3 0 2 0;
@@ -96,15 +98,16 @@ spreads outward in a cone of variable diameter and length, f 81;
 #X connect 27 0 28 0;
 #X connect 28 0 29 0;
 #X connect 30 0 29 0;
-#X connect 32 0 51 0;
-#X connect 33 0 32 0;
-#X connect 34 0 36 1;
-#X connect 34 0 36 2;
-#X connect 35 0 36 3;
-#X connect 35 0 36 4;
-#X connect 36 0 39 0;
-#X connect 37 0 39 1;
-#X connect 38 0 39 2;
-#X connect 50 0 36 0;
-#X connect 52 0 50 0;
-#X connect 53 0 29 0;
+#X connect 32 0 34 1;
+#X connect 32 0 34 2;
+#X connect 33 0 34 3;
+#X connect 33 0 34 4;
+#X connect 34 0 37 0;
+#X connect 35 0 37 1;
+#X connect 36 0 37 2;
+#X connect 48 0 34 0;
+#X connect 49 0 48 0;
+#X connect 50 0 29 0;
+#X connect 51 0 53 0;
+#X connect 52 0 51 0;
+#X connect 54 0 53 0;

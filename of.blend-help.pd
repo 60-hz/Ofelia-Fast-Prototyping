@@ -10,7 +10,6 @@
 #X text 89 187 4: MULTIPLY;
 #X text 89 202 5: SCREEN;
 #X text 89 142 1: ALPHA(Default);
-#X obj 518 19 of.window 1;
 #X obj 14 265 of.image data/rgb.jpg;
 #X obj 14 231 of.blend;
 #X obj 14 346 of.image data/image.jpg;
@@ -27,10 +26,14 @@
 #X text 177 265 load an image;
 #X text 189 347 load another image;
 #X text 141 381 put it on a plane;
-#X connect 2 0 10 1;
-#X connect 9 0 13 0;
-#X connect 10 0 9 0;
-#X connect 11 0 12 0;
-#X connect 13 0 18 0;
-#X connect 14 0 10 0;
-#X connect 18 0 11 0;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 2 0 9 1;
+#X connect 8 0 12 0;
+#X connect 9 0 8 0;
+#X connect 10 0 11 0;
+#X connect 12 0 17 0;
+#X connect 13 0 9 0;
+#X connect 17 0 10 0;
+#X connect 25 0 24 0;

@@ -31,7 +31,6 @@
 #X obj 38 294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 60 294 browse...;
-#X obj 518 19 of.window 1;
 #X msg 35 142 open data/wood.jpg;
 #N canvas 627 188 653 565 draw 0;
 #X floatatom 41 9 5 0 0 0 - - -;
@@ -173,20 +172,24 @@ a library called "freeImage" under the hood.;
 #X text 26 40 arg(6): path/file.ext draw posX posY posZ width height
 ;
 #X obj 19 98 of.draw;
-#X connect 8 0 38 0;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 8 0 37 0;
 #X connect 12 0 2 0;
 #X connect 12 1 9 0;
 #X connect 12 2 10 0;
 #X connect 12 3 11 0;
-#X connect 18 0 38 0;
+#X connect 18 0 37 0;
 #X connect 23 0 24 0;
-#X connect 24 0 38 0;
+#X connect 24 0 37 0;
 #X connect 25 0 23 0;
-#X connect 28 0 38 0;
-#X connect 29 0 38 0;
-#X connect 32 0 38 0;
-#X connect 34 0 38 0;
-#X connect 35 0 38 0;
-#X connect 38 0 1 0;
-#X connect 38 2 12 0;
-#X connect 40 0 38 0;
+#X connect 27 0 37 0;
+#X connect 28 0 37 0;
+#X connect 31 0 37 0;
+#X connect 33 0 37 0;
+#X connect 34 0 37 0;
+#X connect 37 0 1 0;
+#X connect 37 2 12 0;
+#X connect 39 0 37 0;
+#X connect 41 0 40 0;

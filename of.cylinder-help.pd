@@ -33,11 +33,13 @@
 1;
 #X text 454 246 Show center axis;
 #X text 25 20 Draw a cylinder, f 45;
-#X obj 518 19 of.window 1;
 #X text 179 94 local transformation;
 #X msg 81 300 texturemap 0 0 1 1;
 #X msg 81 275 texture \$1;
 #X obj 81 258 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X connect 1 0 16 0;
 #X connect 2 0 16 0;
@@ -59,6 +61,7 @@
 #X connect 25 0 16 0;
 #X connect 26 0 17 0;
 #X connect 27 0 26 0;
+#X connect 31 0 16 0;
 #X connect 32 0 16 0;
-#X connect 33 0 16 0;
-#X connect 34 0 33 0;
+#X connect 33 0 32 0;
+#X connect 35 0 34 0;

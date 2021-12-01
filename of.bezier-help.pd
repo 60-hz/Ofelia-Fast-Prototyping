@@ -1,4 +1,4 @@
-#N canvas 374 166 700 380 12;
+#N canvas 601 166 633 380 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -6,7 +6,7 @@
 #X floatatom 85 239 5 0 0 2 x1 - -;
 #X floatatom 130 238 5 0 0 2 y1 - -;
 #X text 402 89 list of all parameters;
-#X text 419 134 Single parameter;
+#X text 419 144 Single parameter;
 #X msg 110 104 stroke 10;
 #X floatatom 176 238 5 0 0 2 z1 - -;
 #X obj 462 45 declare -lib ofelia;
@@ -17,7 +17,7 @@
 #X msg 200 150 scale 1 2 2;
 #X text 108 85 style;
 #X text 199 84 transformation;
-#X msg 423 155 x1 50;
+#X msg 423 165 x1 50;
 #X msg 200 128 orientation 45 0 45;
 #X msg 437 214 debug \$1;
 #X obj 437 193 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -30,10 +30,12 @@
 #X text 25 20 Draw a Bezier Shape;
 #X obj 403 270 of.bezier, f 21;
 #X obj 27 271 of.bezier -100 100 0 0 0 0 0 0 0 100 -100 0 line 2;
-#X msg 403 106 -100 100 0 0 100 0 100 0 0 -100 0 0 line 10;
+#X msg 403 106 -100 100 0 0 100 0 100 0 0 -100 0 0 line 10, f 28;
 #X text 24 40 Args X1 \, Y1 \, Z1 \, ... x4 \, y4 \, z4 \, drawmode
 \, stroke;
 #X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 1 0 27 0;
 #X connect 2 0 27 1;
 #X connect 3 0 27 2;
@@ -53,3 +55,4 @@
 #X connect 23 0 27 0;
 #X connect 24 0 27 0;
 #X connect 28 0 26 0;
+#X connect 31 0 30 0;

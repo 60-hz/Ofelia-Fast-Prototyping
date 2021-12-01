@@ -1,4 +1,4 @@
-#N canvas 233 23 1047 755 12;
+#N canvas 233 61 1047 755 12;
 #X obj 27 15 inlet;
 #X obj 153 16 inlet;
 #X obj 213 16 inlet;
@@ -39,9 +39,9 @@ end \; if args[5] ~= nil then _c_orientation.y = args[5] end \; if
 args[6] ~= nil then _c_orientation.z = args[6] end \; if args[7] ~=
 nil then fov = args[7] end \; M.setup() end \; function M.free() \;
 ofWindow.removeListener("setup" \, this) end \; \; function M.setup()
-\; if type (_maincamera) == "nil" then _maincamera = ofCamera() end
-\; _maincamera:setPosition(_c_position:vec3()) _maincamera:setOrientation(_c_orientation:vec3())
-_maincamera:setFov(fov) end \; \; function M.tX(float) _c_position.x
+\; if type (_maincamera) == "nil" then _maincamera = ofCamera() \;
+_maincamera:setPosition(_c_position:vec3()) _maincamera:setOrientation(_c_orientation:vec3())
+_maincamera:setFov(fov) end end \; \; function M.tX(float) _c_position.x
 = float _maincamera:setPosition(_c_position:vec3()) end \; function
 M.tY(float) _c_position.y = float _maincamera:setPosition(_c_position:vec3())
 end \; function M.tZ(float) _c_position.z = float _maincamera:setPosition(_c_position:vec3())

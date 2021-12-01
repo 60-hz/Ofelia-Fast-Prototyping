@@ -8,7 +8,6 @@
 #X text 188 142 -> focus the of.window and type;
 #X symbolatom 94 166 10 0 0 0 - - -;
 #X text 21 19 Keyboard output in the of.window;
-#X obj 518 19 of.window 1;
 #X obj 94 143 of.keyboard;
 #X text 201 196 -> display last letter;
 #X msg 94 196 text key:\$1;
@@ -288,7 +287,11 @@
 #X connect 5 0 6 0;
 #X restore 39 316 pd Text_in_background;
 #X text 21 47 (arguments: order \, enable \, keycode mode);
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 2 0 3 0;
-#X connect 5 0 10 0;
-#X connect 8 0 5 0;
-#X connect 10 0 3 0;
+#X connect 5 0 9 0;
+#X connect 7 0 5 0;
+#X connect 9 0 3 0;
+#X connect 13 0 12 0;

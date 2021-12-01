@@ -7,17 +7,19 @@
 #X msg 162 41 y \$1;
 #X msg 102 41 x \$1;
 #X msg 224 41 z \$1;
-#X text 438 410 RI;
+#X text 438 450 RI;
 #X obj 21 78 ofelia d translate-\$0 \; local c = ofCanvas(this) \;
-local args = c:getArgs() \; local t = ofVec3f() \; \; function M.new()
-\; if args[1] == nil then t.x = 0 else t.x = args[1] end \; if args[2]
-== nil then t.y = 0 else t.y = args[2] end \; if args[3] == nil then
-t.z = 0 else t.z = args[3] end \; end \; function M.x(float) t.x=float
-end \; function M.y(float) t.y=float end \; function M.z(float) t.z=float
-\; end \; \; function M.list(l) t:set(table.unpack(l)) \; end \; \;
-function M.bang() \; ofTranslate(t:vec3()) \; return (anything) \;
-end \;;
-#X f 61;
+local args = c:getArgs() \; local t \, debug = ofVec3f() \, 0 \; \;
+function M.new() \; if args[1] == nil then t.x = 0 else t.x = args[1]
+end \; if args[2] == nil then t.y = 0 else t.y = args[2] end \; if
+args[3] == nil then t.z = 0 else t.z = args[3] end \; end \; function
+M.x(float) t.x=float end \; function M.y(float) t.y=float end \; function
+M.z(float) t.z=float end \; function M.debug(float) debug=float end
+\; \; function M.list(l) t:set(table.unpack(l)) \; end \; \; function
+M.bang() \; ofTranslate(t:vec3()) \; if debug > 0 then ofDisableLighting()
+ofDrawAxis(debug*100) end if _lighting == 1 then ofEnableLighting()
+end \; return (anything) \; end \;;
+#X f 69;
 #X connect 0 0 9 0;
 #X connect 2 0 6 0;
 #X connect 3 0 5 0;

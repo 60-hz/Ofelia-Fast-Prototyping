@@ -1,9 +1,9 @@
-#N canvas 346 33 881 745 12;
+#N canvas 112 33 881 745 12;
 #X obj 15 0 inlet;
-#X obj 15 681 outlet;
-#X text 695 651 RI;
-#X obj 430 684 outlet;
-#X obj 845 682 outlet;
+#X obj 15 731 outlet;
+#X text 695 701 RI;
+#X obj 430 734 outlet;
+#X obj 845 732 outlet;
 #X obj 15 30 ofelia d -c13 fbo-\$0 \; local canvas = ofCanvas(this)
 \; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
 fbo\$0 = ofFbo() \; local width \, height \, type \, autoclear = 256
@@ -11,7 +11,7 @@ fbo\$0 = ofFbo() \; local width \, height \, type \, autoclear = 256
 \; \; function M.new() \; ofWindow.addListener("setup" \, this) \;
 if args[1] == nil then width = 256 else width = args[1] end \; if args[2]
 == nil then height = 256 else height = args[2] end \; if args[3] ==
-nil then atoclear = 1 else autoclear = args[3] end \; M.setup() end
+nil then autoclear = 1 else autoclear = args[3] end \; M.setup() end
 \; \; function M.free() \; ofWindow.removeListener("setup" \, this)
 \; end \; \; function M.setup() \; if ofWindow.exists then fbo\$0:allocate(width
 \, height \, type) fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo()

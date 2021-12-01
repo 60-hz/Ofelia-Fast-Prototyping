@@ -8,7 +8,7 @@
 #X msg 109 198 fov \$1;
 #X floatatom 109 175 5 0 0 0 - - -;
 #X msg 108 247 debug \$1;
-#X obj 108 228 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 108 228 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X floatatom 239 445 5 0 0 2 rotY - -;
 #X floatatom 281 445 5 0 0 2 rotZ - -;
@@ -126,7 +126,6 @@ centerY \, centerZ;
 #X text 387 377 Reset (need to add near/farclip \, ratio and lensoffset)
 ;
 #X text 345 92 other possible messages:;
-#X obj 518 19 of.window 1;
 #X text 230 146 x \, y \, z \, rx \, ry \, rz;
 #X text 18 36 Arguments: positionX \, posistionY \, positionZ \, orientationX
 \, orientationY \, orientationZ \, field-of-view);
@@ -134,28 +133,32 @@ centerY \, centerZ;
 #X text 151 330 size (default 100);
 #X text 151 273 steps (default 10);
 #X text 154 176 field-of-view (default 60);
-#X connect 1 0 46 1;
-#X connect 2 0 46 2;
-#X connect 3 0 46 4;
-#X connect 4 0 46 0;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 1 0 45 1;
+#X connect 2 0 45 2;
+#X connect 3 0 45 4;
+#X connect 4 0 45 0;
 #X connect 5 0 4 0;
-#X connect 6 0 46 0;
+#X connect 6 0 45 0;
 #X connect 7 0 6 0;
-#X connect 8 0 46 5;
-#X connect 9 0 46 6;
-#X connect 11 0 46 0;
-#X connect 13 0 46 3;
+#X connect 8 0 45 5;
+#X connect 9 0 45 6;
+#X connect 11 0 45 0;
+#X connect 13 0 45 3;
 #X connect 14 0 17 0;
-#X connect 15 0 46 0;
+#X connect 15 0 45 0;
 #X connect 16 0 15 0;
-#X connect 17 0 46 0;
-#X connect 18 0 46 0;
+#X connect 17 0 45 0;
+#X connect 18 0 45 0;
 #X connect 20 0 21 0;
-#X connect 21 0 46 0;
-#X connect 22 0 46 0;
+#X connect 21 0 45 0;
+#X connect 22 0 45 0;
 #X connect 28 0 29 0;
-#X connect 31 0 46 0;
-#X connect 32 0 46 0;
-#X connect 34 0 46 0;
-#X connect 36 0 46 0;
-#X connect 40 0 46 0;
+#X connect 31 0 45 0;
+#X connect 32 0 45 0;
+#X connect 34 0 45 0;
+#X connect 36 0 45 0;
+#X connect 40 0 45 0;
+#X connect 50 0 49 0;

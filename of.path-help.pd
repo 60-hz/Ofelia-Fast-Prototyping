@@ -1,4 +1,4 @@
-#N canvas 698 53 630 644 12;
+#N canvas 650 53 630 644 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -38,7 +38,6 @@
 #X text 159 405 0 = OF_POLY_WINDING_ODD \; 1 = OF_POLY_WINDING_NONZERO
 \; 2 = OF_POLY_WINDING_POSITIVE \; 3 = OF_POLY_WINDING_NEGATIVE \;
 4 = OF_POLY_WINDING_ABS_GEQ_TWO;
-#X obj 517 19 of.window 1;
 #N canvas 379 373 829 333 shape 0;
 #X msg 63 72 circle 0 0 0 200;
 #X msg 63 132 triangle 0 100 100 0 -100 0;
@@ -190,20 +189,24 @@ the path automatically creates a new path:;
 #X connect 10 0 9 0;
 #X connect 11 0 8 0;
 #X restore 373 277 pd local_transformation;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 1 0 3 0;
-#X connect 3 0 20 0;
+#X connect 3 0 19 0;
 #X connect 4 0 3 2;
-#X connect 5 0 20 0;
+#X connect 5 0 19 0;
 #X connect 8 0 5 0;
-#X connect 11 0 20 0;
+#X connect 11 0 19 0;
 #X connect 12 0 11 0;
-#X connect 13 0 20 0;
-#X connect 18 0 20 0;
-#X connect 21 0 20 0;
-#X connect 25 0 20 0;
-#X connect 26 0 20 0;
-#X connect 27 0 20 0;
-#X connect 28 0 20 0;
-#X connect 32 0 20 0;
-#X connect 33 0 20 0;
-#X connect 35 0 20 0;
+#X connect 13 0 19 0;
+#X connect 17 0 19 0;
+#X connect 20 0 19 0;
+#X connect 24 0 19 0;
+#X connect 25 0 19 0;
+#X connect 26 0 19 0;
+#X connect 27 0 19 0;
+#X connect 31 0 19 0;
+#X connect 32 0 19 0;
+#X connect 34 0 19 0;
+#X connect 37 0 36 0;

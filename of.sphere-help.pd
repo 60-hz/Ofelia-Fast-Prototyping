@@ -34,9 +34,11 @@
 1;
 #X msg 210 189 lookat 180 120 60;
 #X msg 210 168 scale 3 1 2;
-#X obj 518 19 of.window 1;
 #X obj 403 360 of.box;
 #X text 209 104 local transformation;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 1 0 8 0;
 #X connect 2 0 8 0;
 #X connect 3 0 8 0;
@@ -45,10 +47,10 @@
 #X connect 6 0 8 2;
 #X connect 10 0 8 0;
 #X connect 11 0 8 0;
-#X connect 14 0 31 0;
+#X connect 14 0 30 0;
 #X connect 15 0 14 0;
-#X connect 18 0 31 0;
-#X connect 21 0 31 0;
+#X connect 18 0 30 0;
+#X connect 21 0 30 0;
 #X connect 22 0 8 0;
 #X connect 23 0 8 0;
 #X connect 24 0 8 0;
@@ -57,3 +59,4 @@
 #X connect 27 0 26 0;
 #X connect 28 0 8 0;
 #X connect 29 0 8 0;
+#X connect 33 0 32 0;
