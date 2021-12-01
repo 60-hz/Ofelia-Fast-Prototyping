@@ -1,0 +1,24 @@
+#N canvas 92 93 887 658 12;
+#X obj 22 604 outlet;
+#X obj 22 566 select \$1;
+#X obj 22 8 ofelia d -c12 \$0-keyboard \; local log = ofLog("ofKeyPressed")
+\; local outlet = ofOutlet(this) \; local canvas = ofCanvas(this) \;
+local args = canvas:getArgs() \; local keycode = args[2] \; \; function
+M.new() \; if args[2] == 1 then keycode = 1 end \; ofWindow.addListener("keyReleased"
+\, this) \; end \; \; function M.free() \; ofWindow.removeListener("keyReleased"
+\, this) \; end \; \; function M.keyReleased(e) \; if keycode then
+return(e.key) \; else if e.key == 57357 then return ("Up") \; elseif
+e.key == 57359 then return ("Down") \; elseif e.key == 57356 then return
+("Left") \; elseif e.key == 57358 then return ("Right") \; elseif e.key
+== 8 then return ("Return") \; elseif e.key == 9 then return ("Tab")
+\; elseif e.key == 13 then return ("Enter") \; elseif e.key == 32 then
+return ("Space") \; elseif e.key == 3680 then return ("L_Shift") \;
+elseif e.key == 3681 then return ("R_Shift") \; elseif e.key == 3682
+then return ("Ctrl") \; elseif e.key == 3684 then return ("L_alt")
+\; elseif e.key == 3685 then return ("R_alt") \; elseif e.key == 3686
+then return ("L_cmd") \; elseif e.key == 3687 then return ("R_cmd")
+\; elseif e.key == 27 then return ("Esc") \; else outlet:outletList(0
+\, ofTable(utf8.char(e.key))) end end \; end \;;
+#X f 115;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;

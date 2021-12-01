@@ -1,4 +1,4 @@
-#N canvas 521 209 637 389 12;
+#N canvas 567 195 637 389 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -11,20 +11,25 @@
 #X obj 94 143 of.keyboard;
 #X text 201 196 -> display last letter;
 #X msg 94 196 text key:\$1;
-#N canvas 517 116 685 296 Text_in_background 0;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 462 163 5 0 0 0 - - -;
+#X text 505 165 -> mode keycode;
+#X obj 462 139 of.keyboard 1;
+#X text 21 47 arguments: 0 = symbol \, 1 = keycode mode;
+#N canvas 517 116 685 296 Text_in_background_using_keycode 0;
 #X obj 83 37 of.draw;
 #X obj 83 99 of.translate -200 150 0;
-#X obj 307 115 of.keyboard 1 1 1;
 #X obj 83 150 of.color 255 255 255 100;
-#X text 445 114 -> order \, enable \, ascii mode;
-#N canvas 538 210 488 473 type_some_lines 0;
-#X obj 90 29 inlet;
+#N canvas 674 386 488 384 type_some_lines 0;
+#X obj 90 -1 inlet;
 #X obj 90 289 outlet;
 #X obj 127 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 90 132 10;
 #X text 125 131 -> carriage return should be ascii 10 \, not 13?;
-#X obj 90 67 sel 13 8, f 11;
+#X obj 90 37 sel 13 8, f 11;
 #X text 151 101 -> ascii 8 (return) \, clear the list;
 #X obj 90 202 list;
 #X obj 90 231 list prepend string;
@@ -265,12 +270,14 @@
 #X connect 23 0 17 0;
 #X connect 23 1 18 0;
 #X restore 292 257 pd codenumber2utf8;
+#X obj 164 63 moses 127;
+#X text 239 60 -> avoid special characters;
 #X connect 0 0 5 0;
 #X connect 2 0 7 0;
 #X connect 3 0 10 0;
 #X connect 5 0 3 0;
 #X connect 5 1 2 0;
-#X connect 5 2 10 0;
+#X connect 5 2 15 0;
 #X connect 7 0 8 0;
 #X connect 7 0 10 1;
 #X connect 8 0 9 0;
@@ -278,20 +285,22 @@
 #X connect 10 0 7 0;
 #X connect 11 0 14 0;
 #X connect 14 0 12 0;
+#X connect 15 0 10 0;
 #X restore 307 155 pd type_some_lines;
 #X obj 83 201 of.text Type-here;
+#X obj 307 85 of.keyboard 1;
+#X floatatom 307 123 5 0 0 0 - - -;
+#X text 417 84 -> mode keycode;
 #X connect 0 0 1 0;
-#X connect 1 0 3 0;
-#X connect 2 0 5 0;
-#X connect 3 0 6 0;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 3 0 4 0;
 #X connect 5 0 6 0;
-#X restore 39 316 pd Text_in_background;
-#X text 21 47 (arguments: order \, enable \, keycode mode);
-#X obj 518 19 of.window 1;
-#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X connect 6 0 3 0;
+#X restore 39 316 pd Text_in_background_using_keycode;
 #X connect 2 0 3 0;
 #X connect 5 0 9 0;
 #X connect 7 0 5 0;
 #X connect 9 0 3 0;
-#X connect 13 0 12 0;
+#X connect 11 0 10 0;
+#X connect 14 0 12 0;
