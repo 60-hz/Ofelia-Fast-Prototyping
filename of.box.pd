@@ -39,7 +39,7 @@ M.depth(f) depth = f box\$0:setDepth(f) end \; function M.resw(f) resw
 box\$0:setResolutionHeight(f) end \; function M.resd(f) resd = f box\$0:setResolutionDepth(f)
 end \; function M.draw(s) drawmode = s end \; function M.stroke(f)
 strokeweight = f end \; function M.normalsize(float) normalsize=float
-end \; function M.debug(f) debug = f end \; function M.position(l)
+end \; function M.debug(f) debug = f*100 end \; function M.position(l)
 position:set (l[1] \, l[2] \, l[3]) box\$0:setPosition(position:vec3())
 end \; function M.orientation(l) orientation:set (l[1] \, l[2] \, l[3])
 box\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
@@ -51,7 +51,7 @@ else box\$0:disableTextures() end end \; function M.texturemap(l) box\$0:mapTexC
 \; if drawmode == "fill" then box\$0:drawFaces() end \; if drawmode
 == "point" then box\$0:drawVertices() end \; if drawmode == "line"
 then box\$0:drawWireframe() end \; if drawmode == "normal" then box\$0:drawNormals(normalsize)
-end \; if debug > 0 then box\$0:drawAxes(debug*100) end \; return (anything)
+end \; if debug > 0 then box\$0:drawAxes(debug) end \; return (anything)
 \; end \;;
 #X f 144;
 #X connect 0 0 15 0;

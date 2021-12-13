@@ -1,4 +1,4 @@
-#N canvas 370 133 745 649 12;
+#N canvas 370 129 745 649 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -91,6 +91,7 @@ empty font);
 #X connect 8 0 7 0;
 #X connect 9 0 11 0;
 #X connect 10 0 46 0;
+#X connect 11 0 46 0;
 #X connect 12 0 46 0;
 #X connect 13 0 12 0;
 #X connect 14 0 46 0;

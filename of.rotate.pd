@@ -1,4 +1,4 @@
-#N canvas 554 126 724 532 12;
+#N canvas 771 126 724 532 12;
 #X obj 20 16 inlet;
 #X obj 20 499 outlet;
 #X obj 101 16 inlet;
@@ -14,11 +14,11 @@ args = c:getArgs() \; local x \, y \, z \, debug = args[1] \, args[2]
 = 0 end \; if args[2] == nil then y = 0 end \; if args[3] == nil then
 z = 0 end \; end \; function M.x(float) x=float end \; function M.y(float)
 y=float end \; function M.z(float) z=float end \; function M.debug(float)
-debug=float end \; \; function M.list(mylist) \; x=mylist[1] \; y=mylist[2]
-\; z=mylist[3] \; end \; \; function M.bang() \; ofRotateXDeg(x) \;
-ofRotateYDeg(y) \; ofRotateZDeg(z) \; if debug > 0 then ofDisableLighting()
-ofDrawRotationAxes(debug*100 \, 1 \, 30) end if _lighting == 1 then
-ofEnableLighting() end \; return (anything) \; end \;;
+debug=float*100 end \; \; function M.list(l) \; x=l[1] \; y=l[2] \;
+z=l[3] \; end \; \; function M.bang() \; ofRotateXDeg(x) \; ofRotateYDeg(y)
+\; ofRotateZDeg(z) \; if debug > 0 then ofDisableLighting() ofDrawRotationAxes(debug
+\, 1 \, 30) end if _lighting == 1 then ofEnableLighting() end \; return
+(anything) \; end \;;
 #X f 91;
 #X connect 0 0 9 0;
 #X connect 2 0 6 0;

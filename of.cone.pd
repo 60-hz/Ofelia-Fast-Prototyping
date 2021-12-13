@@ -1,4 +1,4 @@
-#N canvas 309 24 944 755 12;
+#N canvas 309 23 944 755 12;
 #X obj 31 24 inlet;
 #X obj 31 776 outlet;
 #X obj 90 22 inlet;
@@ -35,7 +35,7 @@ cone\$0:setResolutionRadius(f) end \; function M.hseg(f) hseg = f cone\$0:setRes
 end \; function M.cseg(f) cseg = f cone\$0:setResolutionCap(f) end
 \; function M.draw(string) drawmode = string end \; function M.stroke(f)
 stroke=f end \; function M.normalsize(float) normalsize=float end \;
-function M.debug(f) debug = f end \; function M.position(l) position.x=l[1]
+function M.debug(f) debug = f*100 end \; function M.position(l) position.x=l[1]
 position.y=l[2] position.z=l[3] cone\$0:setPosition(position:vec3())
 end \; function M.orientation(l) orientation.x=l[1] orientation.y=l[2]
 orientation.z=l[3] cone\$0:setOrientation(orientation:vec3()) end \;
@@ -48,8 +48,8 @@ then cone\$0:enableTextures() else cone\$0:disableTextures() end end
 == "fill" then cone\$0:drawFaces() end \; if drawmode == "point" then
 cone\$0:drawVertices() end \; if drawmode == "line" then cone\$0:drawWireframe()
 end \; if drawmode == "normal" then cone\$0:drawNormals(normalsize)
-end \; if debug > 0 then cone\$0:drawAxes(debug*100) end \; return
-anything \; end \;;
+end \; if debug > 0 then cone\$0:drawAxes(debug) end \; return anything
+\; end \;;
 #X f 131;
 #X connect 0 0 13 0;
 #X connect 2 0 7 0;
