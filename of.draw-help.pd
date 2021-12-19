@@ -105,7 +105,7 @@ of faces matters:, f 86;
 #X text 385 537 - If order < 0 : Rendering is out of camera and point
 0 \, 0 \, 0 is bottom left. If order > 1000 : Rendering is out of camera
 on TOP (Nice for rendering GUI on screen):, f 29;
-#X obj 17 574 of.draw 0 1;
+#X obj 17 574 of.draw 0, f 12;
 #X connect 3 0 2 0;
 #X connect 4 0 2 1;
 #X connect 6 0 22 0;

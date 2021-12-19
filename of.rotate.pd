@@ -1,4 +1,4 @@
-#N canvas 771 126 724 532 12;
+#N canvas 259 124 724 532 12;
 #X obj 20 16 inlet;
 #X obj 20 499 outlet;
 #X obj 101 16 inlet;
@@ -9,14 +9,15 @@
 #X msg 223 36 z \$1;
 #X text 424 454 RI;
 #X obj 20 73 ofelia d rotate-\$0 \; local c = ofCanvas(this) \; local
-args = c:getArgs() \; local x \, y \, z \, debug = args[1] \, args[2]
-\, args[3] \, 0 \; \; function M.new() \; if args[1] == nil then x
-= 0 end \; if args[2] == nil then y = 0 end \; if args[3] == nil then
-z = 0 end \; end \; function M.x(float) x=float end \; function M.y(float)
-y=float end \; function M.z(float) z=float end \; function M.debug(float)
-debug=float*100 end \; \; function M.list(l) \; x=l[1] \; y=l[2] \;
-z=l[3] \; end \; \; function M.bang() \; ofRotateXDeg(x) \; ofRotateYDeg(y)
-\; ofRotateZDeg(z) \; if debug > 0 then ofDisableLighting() ofDrawRotationAxes(debug
+args = c:getArgs() \; local rot \, debug = ofVec3f() \, 0 \; \; function
+M.new() \; if args[1] == nil then x = 0 else rot.x = args[1] end \;
+if args[2] == nil then y = 0 else rot.y = args[2] end \; if args[3]
+== nil then z = 0 else rot.z = args[3] end \; end \; function M.x(float)
+rot.x=float end \; function M.y(float) rot.y=float end \; function
+M.z(float) rot.z=float end \; function M.debug(float) debug=float*100
+end \; \; function M.list(l) rot:set(table.unpack(l)) \; end \; \;
+function M.bang() \; ofRotateXDeg(rot.x) \; ofRotateYDeg(rot.y) \;
+ofRotateZDeg(rot.z) \; if debug > 0 then ofDisableLighting() ofDrawRotationAxes(debug
 \, 1 \, 30) end if _lighting == 1 then ofEnableLighting() end \; return
 (anything) \; end \;;
 #X f 91;

@@ -5,7 +5,6 @@
 #X obj 462 45 declare -lib ofelia;
 #X obj 61 187 of.dragged;
 #X text 24 40 Arguments: draw-order \, enable;
-#X obj 27 284 of.text Drag-file-here center 14;
 #X msg 61 229 text \$1;
 #X text 25 304 Display the path;
 #X obj 27 140 of.draw;
@@ -17,8 +16,9 @@
 1;
 #X text 32 88 Drag a file or folder over the of.window and check the
 window;
-#X connect 2 0 5 0;
-#X connect 2 1 8 0;
-#X connect 5 0 4 0;
-#X connect 7 0 4 0;
-#X connect 11 0 10 0;
+#X obj 27 284 of.text Drag-file-here center 18;
+#X connect 2 0 4 0;
+#X connect 2 1 7 0;
+#X connect 4 0 12 0;
+#X connect 6 0 12 0;
+#X connect 10 0 9 0;

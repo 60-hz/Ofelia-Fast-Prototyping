@@ -1,4 +1,4 @@
-#N canvas 233 61 1047 755 12;
+#N canvas 251 88 1047 755 12;
 #X obj 27 15 inlet;
 #X obj 153 16 inlet;
 #X obj 213 16 inlet;
@@ -28,7 +28,7 @@ be out of camera with default openframeworks starting point 0 \, 0
 #X obj 27 73 ofelia d camera-\$0 \; local c = ofCanvas(this) \; local
 v = ofVec3f(0 \, 1 \, 0) \; local args = c:getArgs() \; local debug
 \, ortho \, gridsteps \, gridsize \, fov = 0 \, 0 \, 10 \, 100 \, 60
-\; \; function M.new() \; ofWindow.addListener("setup" \, this \, -1)
+\; function M.new() \; ofWindow.addListener("setup" \, this \, -1)
 \; if type (_c_position) == "nil" then _c_position = ofVec3f(0 \, 0
 \, 400) end \; if type (_c_orientation) == "nil" then _c_orientation
 = ofVec3f() end \; if type (_c_lookat) == "nil" then _c_lookat = ofVec3f()
@@ -39,9 +39,8 @@ end \; if args[5] ~= nil then _c_orientation.y = args[5] end \; if
 args[6] ~= nil then _c_orientation.z = args[6] end \; if args[7] ~=
 nil then fov = args[7] end \; M.setup() end \; function M.free() \;
 ofWindow.removeListener("setup" \, this) end \; \; function M.setup()
-\; if type (_maincamera) == "nil" then _maincamera = ofCamera() \;
-_maincamera:setPosition(_c_position:vec3()) _maincamera:setOrientation(_c_orientation:vec3())
-_maincamera:setFov(fov) end end \; \; function M.tX(float) _c_position.x
+\; _maincamera:setPosition(_c_position:vec3()) _maincamera:setOrientation(_c_orientation:vec3())
+_maincamera:setFov(fov) end \; \; function M.tX(float) _c_position.x
 = float _maincamera:setPosition(_c_position:vec3()) end \; function
 M.tY(float) _c_position.y = float _maincamera:setPosition(_c_position:vec3())
 end \; function M.tZ(float) _c_position.z = float _maincamera:setPosition(_c_position:vec3())
@@ -59,10 +58,10 @@ function M.aspectratio(f) _maincamera:setAspectRatio(f) end \; function
 M.farclip(f) _maincamera:setFarClip(f) end \; function M.lensoffset(l)
 _maincamera:setLensOffset(ofVec2f(l[1] \, l[2]):vec2())end \; function
 M.nearclip(f) _maincamera:setNearClip(f) end \; function M.position(l)
-_c_position:set (l[1] \, l[2] \, l[3]) _maincamera:setPosition(_c_position:vec3())
-end \; function M.orientation(l) _c_orientation:set (l[1] \, l[2] \,
-l[3]) _maincamera:setOrientation(_c_orientation:vec3()) end \; function
-M.lookat(l) _c_lookat:set (l[1] \, l[2] \, l[3]) _maincamera:lookAt(_c_lookat:vec3()
+_c_position:set(table.unpack(l)) _maincamera:setPosition(_c_position:vec3())
+end \; function M.orientation(l) _c_orientation:set (table.unpack(l))
+_maincamera:setOrientation(_c_orientation:vec3()) end \; function M.lookat(l)
+_c_lookat:set (table.unpack(l)) _maincamera:lookAt(_c_lookat:vec3()
 \, v:vec3()) end \; function M.orbit(l) _maincamera:orbitDeg(l[1] \,
 l[2] \, l[3] \, ofVec3f(l[4] \, l[5] \, l[6]):vec3())end \; function
 M.list(l) _c_position.x=l[1] _c_position.y=l[2] _c_position.z=l[3]
