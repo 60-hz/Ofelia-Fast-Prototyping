@@ -1,4 +1,4 @@
-#N canvas 517 235 632 406 12;
+#N canvas 517 235 629 406 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -7,7 +7,7 @@
 #X obj 32 116 of.draw;
 #X obj 32 335 of.box 100 100 100 5 5 5 line;
 #X msg 137 129 active \$1;
-#X msg 233 251 reset;
+#X msg 234 257 reset;
 #X obj 234 209 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 234 229 debug \$1;
@@ -25,13 +25,15 @@
 \, drag;
 #X text 27 22 Interactive 3d view (Experimental);
 #X obj 461 46 declare -lib ofelia;
-#X text 104 292 Note: reset all matrix transformations;
+#X text 94 290 Note: reset all matrix transformations;
 #X msg 343 256 ortho \$1;
 #X obj 343 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X text 336 130 Double-clic in window = reset view;
+#X text 335 107 Drag mouse in window = rotate camera;
 #X connect 1 0 4 0;
 #X connect 2 0 13 0;
 #X connect 4 0 13 0;

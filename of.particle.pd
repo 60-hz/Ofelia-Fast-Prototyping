@@ -1,0 +1,48 @@
+#N canvas 294 23 916 748 12;
+#X obj 22 499 ofelia f \; local particle = a \; function M.new(position)
+\; local o = ofTable() \; o.origin = position \; o.particles = ofTable()
+\; function o.addParticle() \; o.particles[#o.particles + 1] = particle.new(o.origin)
+\; end \; function o.run() \; for i = #o.particles \, 1 \, -1 do \;
+local p = o.particles[i] \; p.run() \; if p.isDead() then \; table.remove(o.particles
+\, i) end end end \; return o end \; return M \;;
+#X f 96;
+#X msg 140 -15 bang;
+#X msg 203 -15 size 10;
+#X msg 280 -15 life 10;
+#X msg 744 89 add;
+#X obj 730 128 ofelia f \; function M.add() \; ps.addParticle() end
+\; ps.run() \;;
+#X msg 357 -15 acceleration 0 0;
+#X obj 22 -17 loadbang;
+#X obj 714 494 outlet;
+#X obj 730 56 inlet;
+#X msg 487 -15 velocity 0 0;
+#X obj 22 749 ofelia f \; local particleSystem = a \; ps = particleSystem.new(ofVec3f(0
+\, 0 \, 0)) \;;
+#X f 96;
+#X obj 22 51 ofelia f -c12 \; local outlet = ofOutlet(this) \; local
+size \, life \, accel = 1 \, 255 \, ofVec3f(0 \, 0 \, 0) \; function
+M.new(l) \; local o = ofTable() \; o.acceleration = accel \; o.velocity
+= ofVec3f(ofRandom(-2 \, 2) \, ofRandom(-2 \, 2) \, ofRandom(-2 \,
+2)) \; o.position = l \; o.lifespan = life \; function o.run() \; o.update()
+\; o.display() end \; function M.size(f) size = f end function M.life(f)
+life = f end \; function M.acceleration(l) o.acceleration:set (table.unpack(l))
+end \; \; function o.update() \; o.velocity = o.velocity + o.acceleration
+\; o.position = o.position + o.velocity \; o.lifespan = o.lifespan
+- 1 \; end \; function o.display() ofSetColor(255 \, 255 \, 255 \,
+o.lifespan) \; ofPushMatrix() ofTranslate(o.position.x \, o.position.y
+\, o.position.z) ofScale(size) outlet:outletBang(1) ofPopMatrix() \;
+end \; function o.isDead() \; if o.lifespan < 0 then \; return true
+\; else \; return false end end \; return o end \; return M \;;
+#X f 96;
+#X connect 0 0 11 0;
+#X connect 1 0 12 0;
+#X connect 2 0 12 0;
+#X connect 3 0 12 0;
+#X connect 4 0 5 0;
+#X connect 6 0 12 0;
+#X connect 7 0 12 0;
+#X connect 9 0 5 0;
+#X connect 10 0 12 0;
+#X connect 12 0 0 0;
+#X connect 12 1 8 0;
