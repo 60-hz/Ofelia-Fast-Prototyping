@@ -1,21 +1,18 @@
-#N canvas 271 30 1009 748 12;
+#N canvas 123 23 942 755 12;
 #X obj 22 509 ofelia f \; local particle = a \; function M.new(position)
 \; local o = ofTable() \; o.origin = position \; o.particles = ofTable()
 \; function o.addParticle() \; o.particles[#o.particles + 1] = particle.new(o.origin)
 \; end \; function o.run() \; for i = #o.particles \, 1 \, -1 do \;
 local p = o.particles[i] \; p.run() \; if p.isDead() then \; table.remove(o.particles
 \, i) end end end \; return o end \; return M \;;
-#X f 117;
-#X msg 42 -9 bang;
-#X msg 183 -52 add;
-#X obj 22 -57 loadbang;
-#X obj 859 502 outlet;
-#X obj 138 -111 inlet;
-#X obj 22 759 ofelia f \; local particleSystem = a \; ps = particleSystem.new()
-\;;
-#X f 117;
-#X obj 138 -75 route reset add bang;
-#X obj 22 41 ofelia f -c12 \$0-particle \; local outlet = ofOutlet(this)
+#X f 120;
+#X msg 98 -29 bang;
+#X msg 143 -29 add;
+#X obj 22 -87 loadbang;
+#X obj 859 488 outlet;
+#X obj 98 -88 inlet;
+#X obj 98 -62 route reset add bang;
+#X obj 22 31 ofelia f -c12 \$0-particle \; local outlet = ofOutlet(this)
 \; local size \, life \, pos \, vel \, accel \, color = 1 \, 255 \,
 ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \, ofColor(255 \, 255
 \, 255) \; \; function M.new(l) \; local o = ofTable() \; o.acceleration
@@ -34,17 +31,23 @@ vel:set (table.unpack(l)) end \; \; function o.update() \; o.velocity
 \; end \; function o.isDead() \; if o.lifespan < 0 then \; return true
 \; else \; return false end end \; return o end \; return M \;;
 #X f 120;
-#X obj 229 -27 ofelia f \; local auto = \$1 \; function M.add() \;
-ps.addParticle() end ps.run() \;;
-#X f 97;
-#X connect 0 0 6 0;
-#X connect 1 0 8 0;
-#X connect 2 0 9 0;
-#X connect 3 0 8 0;
-#X connect 5 0 7 0;
-#X connect 7 0 1 0;
-#X connect 7 1 2 0;
-#X connect 7 2 9 0;
-#X connect 7 3 8 0;
-#X connect 8 0 0 0;
-#X connect 8 1 4 0;
+#X obj 143 7 s \$0-draw;
+#X obj 53 755 r \$0-draw;
+#X msg 189 -28 draw;
+#X obj 22 779 ofelia f \; local particleSystem = a \; local ps = particleSystem.new()
+\; function M.add() \; ps.addParticle() end \; function M.draw() ps.run()
+end \;;
+#X f 120;
+#X connect 0 0 11 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 7 0;
+#X connect 5 0 6 0;
+#X connect 6 0 1 0;
+#X connect 6 1 2 0;
+#X connect 6 2 10 0;
+#X connect 6 3 7 0;
+#X connect 7 0 0 0;
+#X connect 7 1 4 0;
+#X connect 9 0 11 0;
+#X connect 10 0 8 0;
