@@ -47,6 +47,7 @@
 #X obj 17 351 of.noiseplane 10 line, f 37;
 #X text 207 207 Mesh Mode;
 #X msg 91 192 stroke 5;
+#X text 373 152 animate;
 #X connect 1 0 38 0;
 #X connect 2 0 29 0;
 #X connect 3 0 38 1;
