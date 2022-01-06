@@ -1,6 +1,6 @@
-#N canvas 367 74 898 626 12;
+#N canvas 382 73 898 626 12;
 #X obj 31 14 inlet;
-#X obj 31 906 outlet;
+#X obj 31 1026 outlet;
 #X obj 93 14 inlet;
 #X obj 163 14 inlet;
 #X text 812 583 RI;
@@ -17,38 +17,46 @@
 #X obj 31 75 ofelia d plane-\$0 \; local c = ofCanvas(this) \; local
 args = c:getArgs() \; local outlet = ofOutlet(this) \; local size \,
 drawmode \, strokeweight \, mode \, debug = args[1] \, args[2] \, args[3]
-\, 1 \, 0 \; local position \, orientation \, scale \, lookat = ofVec3f()
+\, 1 \, 0 \; local position \, orientation \, scaler \, lookat = ofVec3f()
 \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; local ix \, iy
-\, iz \, dx \, dy \, dz \, rx \, ry \, rz = 10 \, 10 \, 0 \, 10 \,
-10 \, 10 \, 0 \, 0 \, 0 \; local node\$0 = ofNode() \; \; function
-M.new() \; ofWindow.addListener("setup" \, this) \; if args[1] == nil
-then ix = 10 else ix = args[1] end \; if args[2] == nil then iy = 10
-else iy = args[2] end \; if args[3] == nil then iz = 0 else iz = args[3]
-end \; if args[4] == nil then dx = 10 else dx = args[4] end \; if args[5]
-== nil then dy = 10 else dy = args[5] end \; if args[6] == nil then
-dz = 10 else dz = args[6] end \; if args[7] == nil then rx = 0 else
-rx = args[7] end \; if args[8] == nil then ry = 0 else ry = args[8]
-end \; if args[9] == nil then rz = 0 else rz = args[9] end \; M.setup()
-\; end \; \; function M.free() \; ofWindow.removeListener("setup" \,
-this) end \; \; function M.setup() end \; \; function M.list(l) M.width(l[1])
-M.height(l[2]) M.columns(l[3]) M.rows(l[4]) M.draw(l[5]) M.stroke(l[6])
-end \; function M.step(l) ix = l[1] iy = l[2] iz = l[3] end \; function
-M.stepx(f) ix = f -1 end \; function M.stepy(f) iy = f -1 end \; function
-M.stepz(f) iz = f -1 end \; function M.offset(l) dx = l[1] dy = l[2]
-dz = l[3] end \; function M.offsetx(f) dx = f end \; function M.offsety(f)
-dy = f end \; function M.offsetz(f) dz = f end \; function M.rotate(l)
-rx = l[1] ry = l[2] rz = l[3] end \; function M.rotatex(f) rx = f end
-\; function M.rotatey(f) ry = f end \; function M.rotatez(f) rz = f
-end \; function M.position(l) position:set(table.unpack(l)) node\$0:setPosition(position:vec3())
+\, iz \, dx \, dy \, dz \, rx \, ry \, rz \, sx \, sy \, sz = 10 \,
+10 \, 0 \, 10 \, 10 \, 10 \, 0 \, 0 \, 0 \, 1 \, 1 \, 1 \; local node\$0
+= ofNode() \; \; function M.new() \; ofWindow.addListener("setup" \,
+this) \; if args[1] == nil then ix = 10 else ix = args[1] end \; if
+args[2] == nil then iy = 10 else iy = args[2] end \; if args[3] ==
+nil then iz = 1 else iz = args[3] end \; if args[4] == nil then dx
+= 10 else dx = args[4] end \; if args[5] == nil then dy = 10 else dy
+= args[5] end \; if args[6] == nil then dz = 10 else dz = args[6] end
+\; if args[7] == nil then rx = 0 else rx = args[7] end \; if args[8]
+== nil then ry = 0 else ry = args[8] end \; if args[9] == nil then
+rz = 0 else rz = args[9] end \; if args[10] == nil then sx = 1 else
+sx = args[10] end \; if args[11] == nil then sy = 1 else sy = args[11]
+end \; if args[12] == nil then sz = 1 else sz = args[12] end \; M.setup()
+end \; \; function M.free() \; ofWindow.removeListener("setup" \, this)
+end \; \; function M.setup() end \; \; function M.list(l) M.stepx(l[1])
+M.stepy(l[2]) M.stepz(l[3]) M.offsetx(l[4]) M.offsety(l[5]) M.offsetz(l[6])
+M.rotatex(l[7]) M.rotatey(l[8]) M.rotatez(l[9]) M.sizex(l[10]) M.sizey(l[11])
+M.sizez(l[12]) end \; function M.step(l) ix = l[1] iy = l[2] iz = l[3]
+end \; function M.stepx(f) ix = f end \; function M.stepy(f) iy = f
+end \; function M.stepz(f) iz = f end \; function M.offset(l) dx =
+l[1] dy = l[2] dz = l[3] end \; function M.offsetx(f) dx = f end \;
+function M.offsety(f) dy = f end \; function M.offsetz(f) dz = f end
+\; function M.rotate(l) rx = l[1] ry = l[2] rz = l[3] end \; function
+M.rotatex(f) rx = f end \; function M.rotatey(f) ry = f end \; function
+M.rotatez(f) rz = f end \; function M.scale(l) sx = l[1] sy = l[2]
+sz = l[3] end \; function M.scalex(f) sx = f end \; function M.scaley(f)
+sy = f end \; function M.scalez(f) sz = f end \; function M.position(l)
+position:set(table.unpack(l)) node\$0:setPosition(position:vec3())
 end \; function M.orientation(l) orientation:set(table.unpack(l)) node\$0:setOrientation(orientation:vec3())
-end \; function M.scale(l) scale:set(table.unpack(l)) node\$0:setScale(scale:vec3())
+end \; function M.scaler(l) scaler:set(table.unpack(l)) node\$0:setScale(scale:vec3())
 end \; function M.lookat(l) lookat:set(table.unpack(l)) node\$0:lookAt(lookat:vec3())
 end \; function M.debug(f) debug = f * 100 end \; \; function M.bang()
-\; ofTranslate(ix*-dx/2 \, iy*-dy/2 \, iz*-dz/2) \; for x = 0 \, ix
-do \; for y = 0 \, iy do \; for z = 0 \, iz do \; ofPushMatrix() \;
-ofTranslate(x*dx \, y*dy \, z*dz) \; ofRotateXDeg(x*rx) ofRotateYDeg(y*ry)
-ofRotateZDeg(z+1*rz) \; outlet:outletBang(0) \; ofPopMatrix() \; end
-end end \; end \;;
+node\$0:transformGL() \; ofTranslate(ix*-dx/2 \, iy*-dy/2 \, iz*-dz/2)
+\; for x = 0 \, ix -1 do \; for y = 0 \, iy -1 do \; for z = 0 \, iz
+-1 do \; ofPushMatrix() \; ofTranslate(x*dx+5 \, y*dy+5 \, z*dz) \;
+ofRotateXDeg(x*rx) ofRotateYDeg(y*ry) ofRotateZDeg(z+1*rz) \; ofScale(sx
+\, sy \, sz) \; outlet:outletBang(0) \; ofPopMatrix() \; end end end
+node\$0:restoreTransformGL() \; end \;;
 #X f 121;
 #X connect 0 0 15 0;
 #X connect 2 0 5 0;
