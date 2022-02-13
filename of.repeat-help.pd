@@ -46,6 +46,42 @@
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X obj 300 232 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 322 232 activate;
+#N canvas 542 330 450 401 Spiral_example 0;
+#X obj 85 11 of.draw;
+#X floatatom 166 166 5 0 0 2 repetition_cycles - -;
+#X obj 85 93 spigot;
+#X obj 124 70 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 141 68 -> activate;
+#X obj 124 40 inlet;
+#X obj 85 230 of.rotate, f 29;
+#X floatatom 285 201 5 0 0 0 - - -;
+#X obj 85 316 of.rectangle 200 200 line;
+#X obj 85 274 of.scale 0.9 0.9;
+#X obj 85 124 t a b, f 29;
+#X obj 285 171 f;
+#X obj 321 171 + 0.05;
+#X obj 85 196 of.repeat 20;
+#X connect 0 0 2 0;
+#X connect 1 0 13 1;
+#X connect 2 0 10 0;
+#X connect 3 0 2 1;
+#X connect 5 0 3 0;
+#X connect 6 0 9 0;
+#X connect 7 0 6 3;
+#X connect 9 0 8 0;
+#X connect 10 0 13 0;
+#X connect 10 1 11 0;
+#X connect 11 0 7 0;
+#X connect 11 0 12 0;
+#X connect 12 0 11 1;
+#X connect 13 0 6 0;
+#X restore 300 255 pd Spiral_example;
+#X text 444 193 -> open to learn more;
+#X text 431 255 -> open to learn more;
 #X connect 1 0 5 0;
 #X connect 2 0 5 1;
 #X connect 4 0 6 0;
@@ -55,3 +91,4 @@
 #X connect 11 0 4 1;
 #X connect 12 0 13 0;
 #X connect 16 0 15 0;
+#X connect 17 0 19 0;

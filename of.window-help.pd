@@ -1,4 +1,4 @@
-#N canvas 590 59 635 625 12;
+#N canvas 511 85 643 625 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -23,30 +23,20 @@
 #X msg 287 235 autoclear \$1;
 #X msg 73 224 position 100 100;
 #X msg 86 255 framerate 30;
-#X obj 91 286 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
--1 0;
+#X obj 101 286 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
 #X msg 62 189 dimen 320 240;
-#X msg 91 308 orientation \$1 0;
-#X text 330 291 get current size and framerate;
+#X msg 101 308 orientation \$1 0;
 #X text 360 107 show / hide cursor in window;
 #X text 400 262 background color;
-#X obj 35 374 of.window 1 640 480 30;
-#X obj 37 501 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
+#X obj 27 501 cnv 15 20 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 46 501 of.draw;
-#X text 12 471 To draw something inside of.window \, connect of.draw
-to of.triangle:, f 68;
+#X obj 36 501 of.draw;
 #X obj 470 74 declare -lib ofelia;
 #X msg 124 337 title myWindow;
 #X msg 288 315 vsync 1;
 #X text 348 311 activate vertical sync;
 #X msg 288 338 clear;
-#N canvas 892 443 200 181 Gl_Version 0;
-#X msg 30 61 glversion 3 2;
-#X text 135 60 set openGL version;
-#X text 135 90 set openGLES version;
-#X msg 30 91 glesversion 2;
-#X restore 413 367 pd Gl_Version;
 #X text 334 339 clear buffer;
 #X text 380 236 autoclear the buffer (default 1);
 #X msg 114 107 1;
@@ -77,6 +67,8 @@ position update, f 38;
 #X text 397 219 -> turn black 40 opacity, f 26;
 #X text 15 19 disable autoclear in window;
 #X obj 264 125 of.ortho 1;
+#X obj 86 42 closebang;
+#X msg 86 66 1;
 #X connect 1 0 0 0;
 #X connect 2 0 8 0;
 #X connect 3 0 17 0;
@@ -88,37 +80,49 @@ position update, f 38;
 #X connect 8 0 1 0;
 #X connect 12 0 11 0;
 #X connect 17 0 4 0;
+#X connect 18 0 19 0;
+#X connect 19 0 1 0;
 #X restore 365 526 pd Buffer_mouse;
 #X text 33 431 get: sizeX \, sizeY \, framerate \, window mode \, orientation
 ;
 #X text 19 43 Arguments: window_state \, width \, height \, framerate
 \, autoclear \, posX \, posY, f 78;
-#X text 197 371 Arguments: window_state \, width \, height \, framerate
-\, autoclear \, posX \, posY, f 28;
 #X text 151 107 = create;
 #X text 175 136 = destroy;
 #X text 19 20 Make a window rendering context (same object interface
 for all windows), f 73;
-#X obj 46 541 of.text :) center;
-#X connect 1 0 24 0;
-#X connect 2 0 24 0;
-#X connect 4 0 24 0;
+#X text 320 291 get: size framerate \, window mode \, orientation;
+#X obj 35 374 of.window 1 640 480;
+#X text 187 371 -> Arguments: window_state \, width \, height \, framerate
+\, autoclear \, posX \, posY, f 28;
+#X text 33 444 On resizing window with mouse: sizeX \, sizeY;
+#X text 97 489 To draw something inside of.window \, connect of.draw
+to a shape or a text:, f 32;
+#X text 390 498 draw without autoclear test, f 32;
+#X msg 419 367 glversion 3 2;
+#X text 524 363 set openGL version, f 12;
+#X text 524 396 set openGLES version, f 12;
+#X msg 419 397 glesversion 2;
+#X obj 36 541 of.text of.window-help 32 center;
+#X connect 1 0 46 0;
+#X connect 2 0 46 0;
+#X connect 4 0 46 0;
 #X connect 5 0 4 0;
 #X connect 6 0 7 0;
-#X connect 7 0 24 0;
+#X connect 7 0 46 0;
 #X connect 8 0 9 0;
-#X connect 9 0 24 0;
-#X connect 10 0 24 0;
-#X connect 11 0 24 0;
+#X connect 9 0 46 0;
+#X connect 10 0 46 0;
+#X connect 11 0 46 0;
 #X connect 14 0 15 0;
-#X connect 15 0 24 0;
-#X connect 16 0 24 0;
-#X connect 17 0 24 0;
+#X connect 15 0 46 0;
+#X connect 16 0 46 0;
+#X connect 17 0 46 0;
 #X connect 18 0 20 0;
-#X connect 19 0 24 0;
-#X connect 20 0 24 0;
-#X connect 24 0 3 0;
-#X connect 26 0 50 0;
-#X connect 29 0 24 0;
-#X connect 32 0 24 0;
-#X connect 42 0 43 0;
+#X connect 19 0 46 0;
+#X connect 20 0 46 0;
+#X connect 24 0 55 0;
+#X connect 26 0 46 0;
+#X connect 29 0 46 0;
+#X connect 38 0 39 0;
+#X connect 46 0 3 0;

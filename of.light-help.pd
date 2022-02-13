@@ -1,4 +1,4 @@
-#N canvas 577 56 703 594 12;
+#N canvas 526 54 622 594 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -10,7 +10,6 @@
 #X obj 20 345 of.translate 0 0 -200;
 #X obj 20 393 of.sphere 100 50;
 #X obj 20 186 of.light 0;
-#X obj 20 254 of.text Unlighted center;
 #X obj 20 220 of.rectrounded 250 80 50 center line 5;
 #X text 16 19 Exclude subsequents objects from light;
 #X obj 20 310 of.light 1;
@@ -25,14 +24,15 @@
 , f 81;
 #X obj 521 50 of.window 1;
 #X obj 20 98 of.draw 10 1;
-#X connect 2 0 18 0;
+#X obj 20 254 of.text Unlighted 20 center;
+#X connect 2 0 17 0;
 #X connect 3 0 2 0;
 #X connect 4 0 7 0;
 #X connect 5 0 6 0;
-#X connect 7 0 9 0;
-#X connect 8 0 11 0;
-#X connect 9 0 8 0;
-#X connect 11 0 5 0;
-#X connect 12 0 7 1;
-#X connect 13 0 11 1;
-#X connect 19 0 4 0;
+#X connect 7 0 8 0;
+#X connect 8 0 19 0;
+#X connect 10 0 5 0;
+#X connect 11 0 7 1;
+#X connect 12 0 10 1;
+#X connect 18 0 4 0;
+#X connect 19 0 10 0;

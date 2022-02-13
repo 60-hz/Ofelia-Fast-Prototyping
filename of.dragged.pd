@@ -1,7 +1,7 @@
-#N canvas 327 250 1090 427 12;
+#N canvas 190 250 1090 427 12;
 #X obj 23 13 inlet;
-#X obj 23 561 outlet;
-#X obj 742 569 outlet;
+#X obj 23 601 outlet;
+#X obj 741 599 outlet;
 #X obj 763 13 inlet;
 #X obj 763 55 s \$0-of;
 #X msg 763 34 order \$1;

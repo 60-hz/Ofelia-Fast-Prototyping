@@ -1,4 +1,4 @@
-#N canvas 138 34 936 755 12;
+#N canvas 208 23 936 755 12;
 #X obj 15 3 inlet;
 #X obj 15 867 outlet;
 #X obj 94 2 inlet;
@@ -33,23 +33,23 @@ local filename \, start \, loop \, speed \, position = args[1] \, args[2]
 \, args[3] \, args[4] \, args[5] \; local loaded \, play \, min \,
 max = 0 \, 0 \, 0 \, 1 \; local videoplayer\$0 = ofVideoPlayer() \;
 \; function M.new() \; ofWindow.addListener("setup" \, this) \; if
-args[1] == nil then print("[of.movie] : No file") else M.open(filename)
-end \; if args[4] == nil then speed = 1 end \; if args[2] == nil then
-start = 0 end \; if args[3] == nil then loop = 0 end end \; \; function
-M.free() \; videoplayer\$0:close() \; ofWindow.removeListener("setup"
-\, this) end \; \; function M.setup() if ofWindow.exists then if filename
-~= nil then M.open(filename) end end end \; \; function M.open(string)
+args[4] == nil then speed = 1 end \; if args[1] == nil then print("[of.movie]
+: No file") else M.open(filename) end \; if args[2] == nil then start
+= 0 end \; if args[3] == nil then loop = 0 end end \; \; function M.free()
+\; videoplayer\$0:close() \; ofWindow.removeListener("setup" \, this)
+end \; \; function M.setup() if ofWindow.exists then if filename ~=
+nil then M.open(filename) end end end \; \; function M.open(string)
 ofSetDataPathRoot(ofCanvas(this \, 1):getDir()) filename = string \;
 if ofWindow.exists then videoplayer\$0:close() videoplayer\$0:load(filename)
-end \; if start == 1 then videoplayer\$0:setSpeed(speed) else videoplayer\$0:setSpeed(0)
-end \; if (videoplayer\$0:isLoaded()) then max = videoplayer\$0:getTotalNumFrames()
-print("loaded " .. filename)end \; end \; function M.update() videoplayer\$0:update()
-end \; function M.play() if speed > 0 then videoplayer\$0:setFrame(min)
-else videoplayer\$0:setFrame(max) end \; videoplayer\$0:setSpeed(speed)
-videoplayer\$0:play() end \; function M.stop() videoplayer\$0:stop()
-end \; function M.pause() videoplayer\$0:setPaused(true) end \; function
-M.resume() videoplayer\$0:setPaused(false) end \; function M.speed(f)
-speed = f if videoplayer\$0:isPlaying() then videoplayer\$0:setSpeed(speed)
+end \; if start == 1 then print(speed) videoplayer\$0:setSpeed(speed)
+else videoplayer\$0:setSpeed(0) end \; if (videoplayer\$0:isLoaded())
+then max = videoplayer\$0:getTotalNumFrames() print("loaded " .. filename)end
+\; end \; function M.update() videoplayer\$0:update() end \; function
+M.play() if speed > 0 then videoplayer\$0:setFrame(min) else videoplayer\$0:setFrame(max)
+end \; videoplayer\$0:setSpeed(speed) videoplayer\$0:play() end \;
+function M.stop() videoplayer\$0:stop() end \; function M.pause() videoplayer\$0:setPaused(true)
+end \; function M.resume() videoplayer\$0:setPaused(false) end \; function
+M.speed(f) speed = f if videoplayer\$0:isPlaying() then videoplayer\$0:setSpeed(speed)
 else videoplayer\$0:setPaused(true) end end \; function M.frame(float)
 videoplayer\$0:setFrame(float) end \; function M.range(list) min =
 list[1] max = list[2] if videoplayer\$0:isPlaying() then videoplayer\$0:setFrame(min)

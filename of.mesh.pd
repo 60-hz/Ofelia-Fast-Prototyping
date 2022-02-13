@@ -1,10 +1,10 @@
-#N canvas 215 67 985 634 12;
+#N canvas 295 116 985 634 12;
 #X obj 15 10 inlet;
-#X obj 15 1143 outlet;
-#X obj 15 1097 list trim;
-#X obj 82 1143 outlet;
+#X obj 15 1163 outlet;
+#X obj 15 1117 list trim;
+#X obj 82 1163 outlet;
 #X text 601 817 RI;
-#X obj 15 1120 route bang;
+#X obj 15 1140 route bang;
 #X obj 15 40 ofelia d model-\$0 \; local canvas = ofCanvas(this) \;
 local args = canvas:getArgs() \; mesh\$0 \, node\$0 = ofMesh() \, ofNode()
 \; local filename \, drawmode \, strokeweight \, mode = args[1] \,
@@ -35,23 +35,25 @@ end \; function M.setupindicesauto() mesh\$0:setupIndicesAuto() end
 end \; function M.smoothnormals(f) mesh\$0:smoothNormals(f) end \;
 function M.addcolor(l) mesh\$0:addColor(ofFloatColor(table.unpack(l)))end
 \; function M.addtexcoord(l) mesh\$0:addTexCoord(ofVec2f(table.unpack(l)):vec2())end
-\; function M.addindex(f) mesh\$0:addIndex(f) end \; function M.addvertex(l)
-mesh\$0:addVertex(ofPoint(table.unpack(l)):vec3())end \; function M.addvertices(l)
-mesh\$0:addVertices(ofVec3f(table.unpack(l)):vec3() \, #l) end \; function
-M.setcolor(l) mesh\$0:setColor(1 \, ofFloatColor(table.unpack(l)))end
-\; function M.texture(f) if f > 0 then mesh\$0:enableTextures() else
-mesh\$0:disableTextures() end end \; function M.textcoord(l) mesh\$0:setTexCoord(l[1]
+\; function M.addindex(f) mesh\$0:addIndex(f) end \; function M.setindex(l)
+mesh\$0:setIndex(table.unpack(l)) end \; function M.addvertex(l) mesh\$0:addVertex(ofPoint(table.unpack(l)):vec3())end
+\; function M.addvertices(l) mesh\$0:addVertices(ofVec3f(table.unpack(l)):vec3()
+\, #l) end \; function M.setcolor(l) mesh\$0:setColor(ofClamp(l[1]
+\, 0 \, mesh\$0:getNumColors()) \, ofFloatColor(l[2] \, l[3] \, l[4]
+\, l[5]))end \; function M.texture(f) if f > 0 then mesh\$0:enableTextures()
+else mesh\$0:disableTextures() end end \; function M.textcoord(l) mesh\$0:setTexCoord(l[1]
 \, l[2]) end \; function M.texturemap(l) mesh\$0:setTexCoord(l[1] \,
 l[2] \, l[3] \, l[4]) end \; function M.removevertex(i) mesh\$0:removeVertex(i)
 end \; function M.removecolor(i) mesh\$0:removeColor(i) end \; function
 M.removenormal(i) mesh\$0:removeNormal(i) end \; function M.removeindex(i)
-mesh\$0:removeIndex(i) end \; function M.settexcoord(l) mesh\$0:setTexCoord(0
-\, ofVec2f(table.unpack(l)):vec2()) end \; function M.removetexcoord(i)
-mesh\$0:removeTexCoord(i) end \; function M.mode(a) mode = a end \;
-function M.clear() mesh\$0:clear() end function M.clearcolors() mesh\$0:clearColors()
-end function M.clearindices() mesh\$0:clearIndices() end function M.cleartexcoords()
-mesh\$0:clearTexCoords() end \; function M.clearvertices() mesh\$0:clearVertices()
-end \; function M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
+mesh\$0:removeIndex(i) end \; function M.settexcoord(l) mesh\$0:setTexCoord(ofClamp(l[1]
+\, 0 \, mesh\$0:getNumTexCoords()) \, ofVec2f(l[1] \, l[2]):vec2())
+end \; function M.removetexcoord(i) mesh\$0:removeTexCoord(i) end \;
+function M.mode(a) mode = a end \; function M.clear() mesh\$0:clear()
+end function M.clearcolors() mesh\$0:clearColors() end function M.clearindices()
+mesh\$0:clearIndices() end function M.cleartexcoords() mesh\$0:clearTexCoords()
+end \; function M.clearvertices() mesh\$0:clearVertices() end \; function
+M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
 end \; function M.orientation(l) orientation:set (table.unpack(l))
 node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
 scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function

@@ -41,10 +41,10 @@ local p = image\$0:getColor(l[1] \, l[2]) outlet:outletList(1 \, ofTable(
 p.r \, p.g \, p.b \, p.a)) end \; function M.get() outlet:outletList(2
 \, ofTable(loaded \, image\$0:getWidth() \, image\$0:getHeight() \,
 image\$0:getImageType() \, image\$0:getTexture() \, image\$0:getPixels()))
-end \; \; function M.bang() \; if dimg[1] == 1 then image\$0:draw(table.unpack(dimg
-\, 2 \, #dimg)) end \; if dsimg[1] == 1 then image\$0:drawSubsection(table.unpack(dsimg
-\, 2 \, #dsimg)) end \; image\$0:bind() \; outlet:outletBang(0) \;
-image\$0:unbind() end \;;
+end \; \; function M.bang() \; image\$0:bind() \; outlet:outletBang(0)
+\; if dimg[1] == 1 then image\$0:draw(table.unpack(dimg \, 2 \, #dimg))
+end \; if dsimg[1] == 1 then image\$0:drawSubsection(table.unpack(dsimg
+\, 2 \, #dsimg)) end \; image\$0:unbind() end \;;
 #X f 132;
 #X connect 0 0 5 0;
 #X connect 5 0 1 0;

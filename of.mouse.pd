@@ -1,11 +1,11 @@
-#N canvas 269 23 869 736 12;
-#X obj 49 -22 inlet;
-#X obj 49 699 list split 2;
-#X obj 49 745 outlet;
-#X obj 156 745 outlet;
-#X obj 89 722 route bang;
-#X text 739 656 R.I;
-#X obj 49 11 ofelia d mouse\$0 \; local log = ofLog("ofMouseMoved")
+#N canvas 0 78 849 700 12;
+#X obj 22 -22 inlet;
+#X obj 22 689 list split 2;
+#X obj 22 735 outlet;
+#X obj 129 735 outlet;
+#X obj 62 712 route bang;
+#X text 709 656 R.I;
+#X obj 22 11 ofelia d mouse\$0 \; local log = ofLog("ofMouseMoved")
 \; local canvas = ofCanvas(this) \; local order \, normalized = 50
 \, false \; local x \, y \, z \; \; function M.new() \; local args
 = canvas:getArgs() \; if #args == 1 then order = args[1] end \; if
@@ -13,7 +13,6 @@
 \; ofWindow.addListener("mouseMoved" \, this \, order) \; ofWindow.addListener("mousePressed"
 \, this \, order) \; ofWindow.addListener("mouseReleased" \, this \,
 order) \; ofWindow.addListener("mouseDragged" \, this \, order) \;
-if _c_position == nil then _c_position = ofVec3f(0 \, 0 \, 0) end \;
 end \; \; function M.setOrder(f) \; order = f \; end \; \; function
 M.setEnabled(b) \; enabled = b ~= 0 \; end \; \; function M.free()
 \; ofWindow.removeListener("mouseMoved" \, this) \; ofWindow.removeListener("mousePressed"
@@ -23,10 +22,10 @@ M.setEnabled(b) \; enabled = b ~= 0 \; end \; \; function M.free()
 \, e.y))) end \; function M.mousePressed(e) \; return (M.mapxy(ofTable(e.x
 \, e.y \, e.button + 1))) end \; function M.mouseReleased(e) \; return
 (M.mapxy(ofTable(e.x \, e.y \, 0))) end \; function M.mapxy(l) \; if
-not normalized then if order < 0 or order > 1000 then x = l[1] y =
-l[2] else \; x= _c_position.x +(ofMap (l[1] \, 0 \, ofGetWidth() \,
--ofGetWidth()*0.5 \, ofGetWidth()*0.5)) \; y= _c_position.y +(ofMap
-(l[2] \, 0 \, ofGetHeight() \, ofGetHeight()*0.5 \, -ofGetHeight()*0.5))
+not normalized then if order < 0 or order > 1000 then x = math.floor(l[1])
+y = math.floor(l[2]) else \; x= (math.floor(ofMap (l[1] \, 0 \, ofGetWidth()
+\, -ofGetWidth()*0.5 \, ofGetWidth()*0.5))) \; y= (math.floor(ofMap
+(l[2] \, 0 \, ofGetHeight() \, ofGetHeight()*0.5 \, -ofGetHeight()*0.5)))
 end \; z = l[3] else \; x=ofClamp(ofMap (l[1] \, 0 \, ofGetWidth()
 \, 0 \, 1) \, 0 \, 1) \; y=ofClamp(ofMap (l[2] \, 0 \, ofGetHeight()
 \, 0 \, 1) \, 0 \, 1) end \; return ofTable(x \, y \, z)end \;;

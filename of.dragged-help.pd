@@ -1,24 +1,30 @@
-#N canvas 584 298 626 355 12;
+#N canvas 584 206 626 357 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 462 45 declare -lib ofelia;
-#X obj 61 187 of.dragged;
+#X obj 154 167 of.dragged;
 #X text 24 40 Arguments: draw-order \, enable;
-#X msg 61 229 text \$1;
-#X text 25 304 Display the path;
-#X obj 27 140 of.draw;
-#X obj 128 230 print mouse_position_pixel;
-#X text 25 20 Get informations from dragged files/folder on screen
-;
+#X msg 154 209 text \$1;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X text 32 88 Drag a file or folder over the of.window and check the
-window;
-#X obj 27 284 of.text Drag-file-here center 18;
+#X obj 221 210 unpack f f;
+#X floatatom 221 234 5 0 0 1 X - -;
+#X floatatom 288 235 5 0 0 1 Y - -;
+#X text 158 187 -> path;
+#X text 25 20 Get path and position from dragged files/folder on screen
+;
+#X text 17 88 Drag a file or a folder over the of.window and check
+the displayed informations:, f 47;
+#X obj 27 140 of.draw;
+#X text 229 187 -> sceen coordinate in pixel;
+#X text 25 304 Display the path on screen;
+#X obj 27 284 of.text Drag-file-here 18 center;
 #X connect 2 0 4 0;
 #X connect 2 1 7 0;
-#X connect 4 0 12 0;
-#X connect 6 0 12 0;
-#X connect 10 0 9 0;
+#X connect 4 0 16 0;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 13 0 16 0;

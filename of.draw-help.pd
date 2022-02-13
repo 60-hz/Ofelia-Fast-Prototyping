@@ -1,4 +1,4 @@
-#N canvas 604 23 638 748 12;
+#N canvas 598 23 638 748 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -42,70 +42,74 @@
 #X obj 390 643 tgl 15 0 empty empty Show_GUI 17 7 0 10 -262144 -1 -1
 0 1;
 #X floatatom 499 642 5 0 0 2 rotY - -;
-#X obj 22 265 cnv 15 200 200 empty empty empty 20 12 0 14 -258113 -66577
+#X obj 12 258 cnv 15 200 200 empty empty empty 20 12 0 14 -258113 -66577
 0;
-#X obj 39 358 of.color 255 0 0 127;
-#X obj 213 265 cnv 15 200 200 empty empty empty 20 12 0 14 -23169 -66577
+#X obj 29 351 of.color 255 0 0 127;
+#X obj 203 258 cnv 15 200 200 empty empty empty 20 12 0 14 -23169 -66577
 0;
-#X text 239 332 Green;
-#X obj 237 358 of.color 0 255 0 127;
-#X obj 237 384 of.translate 0;
-#X obj 237 408 of.rectangle 200 200;
-#X obj 414 265 cnv 15 200 200 empty empty empty 20 12 0 14 -18560 -66577
+#X text 229 325 Green;
+#X obj 227 351 of.color 0 255 0 127;
+#X obj 227 377 of.translate 0;
+#X obj 227 401 of.rectangle 200 200;
+#X obj 404 258 cnv 15 200 200 empty empty empty 20 12 0 14 -18560 -66577
 0;
-#X text 439 332 Blue;
-#X obj 427 358 of.color 0 0 255 127;
-#X obj 427 408 of.rectangle 200 200;
-#X obj 427 383 of.translate 100 50;
+#X text 429 325 Blue;
+#X obj 417 351 of.color 0 0 255 127;
+#X obj 417 401 of.rectangle 200 200;
+#X obj 417 376 of.translate 100 50;
 #X obj 518 19 of.window 1;
 #X msg 555 644 reset;
 #X text 559 627 cam;
 #X text 21 49 Arguments: draw-order \, depthtest (default 1 \, 0);
-#X obj 39 408 of.rectangle 200 200;
-#X obj 39 384 of.translate -100 -100;
-#X text 41 332 Red;
+#X obj 29 401 of.rectangle 200 200;
+#X obj 29 377 of.translate -100 -100;
+#X text 31 325 Red;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 39 308 of.draw 2;
-#X obj 237 308 of.draw 3;
-#X obj 427 308 of.draw 4;
-#X text 426 281 Draw-Order = 4 (top);
-#X text 236 278 Draw-Order = 3 (middle);
-#X text 36 280 Draw-Order = 2 (bottom);
-#X obj 131 540 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 29 301 of.draw 2;
+#X obj 227 301 of.draw 3;
+#X text 416 274 Draw-Order = 4 (top);
+#X text 226 271 Draw-Order = 3 (middle);
+#X text 26 273 Draw-Order = 2 (bottom);
+#X obj 98 581 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 17 607 of.rotate 0 45 0, f 24;
-#X floatatom 127 577 5 0 0 0 - - -;
-#X obj 217 106 cnv 15 150 150 empty empty empty 20 12 0 14 -262144
+#X obj 217 103 cnv 15 150 150 empty empty empty 20 12 0 14 -262144
 -66577 0;
-#X floatatom 237 131 5 -1 5 2 Draw-Order_white - -;
-#X obj 237 161 of.draw 4;
+#X floatatom 237 131 5 -1 5 2 Draw-Order - -;
 #X obj 237 198 of.rectangle, f 17;
 #X text 373 113 Draw order = time of drawing. Like a painter \, last
 draw order (greater number) will cover others., f 33;
-#X obj 17 634 of.image data/rgb.jpg;
-#X floatatom 17 536 5 -1 6 2 Draw-Order-box - -;
-#X text 10 81 - Default "depth 0 mode": Don't care about Depth \, only
-arguments execution order priority matters:, f 86;
-#X text 374 171 0 = off, f 33;
-#X obj 17 661 of.box 100 100 100 10 10 10;
+#X floatatom 17 536 5 -1 6 1 Draw_Order_number - -;
+#X text 374 171 0 = off, f 9;
 #X obj 15 709 of.depth 1;
 #X text 21 15 Start a new rendering with layering (draw order) at point
 0 \, 0 \, 0 (center);
-#X msg 59 536 0;
-#X text 168 579 rotation Y;
-#X text 215 660 -> box with image;
-#X text 92 709 -> "depth 1 mode" can be activated anywhere in the rendering
-;
-#X text 88 536 off;
-#X text 151 537 "depth 1": better for 3d;
-#X text 16 485 - "depth 1 mode": Care about Depth test \, z position
-of faces matters:, f 86;
+#X msg 17 506 0;
+#X text 118 578 "depth 1": better for 3d;
 #X text 519 678 -> click;
 #X text 385 537 - If order < 0 : Rendering is out of camera and point
 0 \, 0 \, 0 is bottom left. If order > 1000 : Rendering is out of camera
 on TOP (Nice for rendering GUI on screen):, f 29;
-#X obj 17 574 of.draw 0, f 12;
+#X obj 17 604 of.draw 0, f 12;
+#X obj 17 634 of.image data/background.jpg;
+#X text 46 506 off;
+#X text 111 605 -> 0 = default order number;
+#X text 89 664 -> sphere with picture;
+#X text 10 81 1 - Default "depth 0 mode": Don't care about Depth \,
+only arguments execution order priority matters:, f 86;
+#X text 13 475 2 - "depth 1 mode": Care about Depth test \, z position
+of faces matters:, f 86;
+#X text 374 185 -1 = draw from top left corner;
+#X text 238 231 White rectangle;
+#X text 57 434 Red rectangle;
+#X text 252 434 Green rectangle;
+#X text 442 434 Blue rectangle;
+#X text 17 689 or...;
+#X text 94 705 -> "depth 1 mode" can be activated / desactivated anywhere
+in the rendering;
+#X obj 417 301 of.draw 4;
+#X obj 237 161 of.draw 4;
+#X obj 17 661 of.sphere;
 #X connect 3 0 2 0;
 #X connect 4 0 2 1;
 #X connect 6 0 22 0;
@@ -118,13 +122,11 @@ on TOP (Nice for rendering GUI on screen):, f 29;
 #X connect 24 0 17 0;
 #X connect 25 0 6 0;
 #X connect 26 0 9 0;
-#X connect 27 0 14 0;
-#X connect 31 0 55 1;
-#X connect 32 0 39 0;
-#X connect 33 0 32 2;
-#X connect 35 0 36 0;
-#X connect 36 0 37 0;
-#X connect 39 0 43 0;
-#X connect 40 0 55 0;
-#X connect 46 0 40 0;
-#X connect 55 0 32 0;
+#X connect 30 0 43 1;
+#X connect 32 0 58 0;
+#X connect 35 0 43 0;
+#X connect 39 0 35 0;
+#X connect 43 0 44 0;
+#X connect 44 0 59 0;
+#X connect 57 0 14 0;
+#X connect 58 0 33 0;

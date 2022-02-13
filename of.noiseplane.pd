@@ -1,4 +1,4 @@
-#N canvas 424 141 784 261 12;
+#N canvas 496 72 784 350 12;
 #X obj 31 24 inlet;
 #X obj 31 1154 outlet;
 #X obj 90 22 inlet;
@@ -13,18 +13,21 @@ args = c:getArgs() \; local size \, drawmode \, strokeweight \, mode
 ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; local amount \, time
 \, debug = 10 \, 0 \, 0 \; local node\$0 = ofNode() \; \; function
 M.new() \; ofWindow.addListener("setup" \, this) \; if args[1] == nil
-then size = 10 end \; if args[2] == nil then drawmode = "fill" end
-\; if args[3] == nil then strokeweight = 1 end \; if args[4] == nil
-then mode = 0 end \; M.setup() \; end \; \; function M.free() \; ofWindow.removeListener("setup"
-\, this) end \; \; function M.setup() \; plane\$0 = ofMesh() \; for
-x = 1 \, size do \; for y = 1 \, size do \; plane\$0:addVertex(ofPoint(x
-- size/2 \, y - size/2):vec3()) \; end \; end \; \; for x = 0 \, size
-- 2 do \; for y = 0 \, size - 2 do \; plane\$0:addIndex(x + y * size)
-\; plane\$0:addIndex((x + 1) + y * size) \; plane\$0:addIndex(x + (y
-+ 1) * size) \; plane\$0:addIndex((x + 1) + y * size) \; plane\$0:addIndex((x
-+ 1) + (y + 1) * size) \; plane\$0:addIndex(x + (y + 1) * size) \;
-end end \; for i = 0 \, plane\$0:getNumVertices() do \; plane\$0:addTexCoord(ofVec2f(plane\$0:getVertex(i)):vec2())
-end end \; \; function M.list(l) M.width(l[1]) M.height(l[2]) M.columns(l[3])
+then size = 10 else size = args[1] end \; if args[2] == nil then amount
+= 10 else amount = args[2] end \; if args[3] == nil then drawmode =
+"fill" else drawmode = args[3] end \; if args[4] == nil then strokeweight
+= 1 else strokeweight = args[4] end \; if args[5] == nil then mode
+= 0 else mode = args[5] end \; M.setup() \; end \; \; function M.free()
+\; ofWindow.removeListener("setup" \, this) end \; \; function M.setup()
+\; plane\$0 = ofMesh() \; for x = 1 \, size do \; for y = 1 \, size
+do \; plane\$0:addVertex(ofPoint(x - size/2 \, y - size/2):vec3())
+\; end \; end \; \; for x = 0 \, size - 2 do \; for y = 0 \, size -
+2 do \; plane\$0:addIndex(x + y * size) \; plane\$0:addIndex((x + 1)
++ y * size) \; plane\$0:addIndex(x + (y + 1) * size) \; plane\$0:addIndex((x
++ 1) + y * size) \; plane\$0:addIndex((x + 1) + (y + 1) * size) \;
+plane\$0:addIndex(x + (y + 1) * size) \; end end \; for i = 0 \, plane\$0:getNumVertices()
+do \; plane\$0:addTexCoord(ofVec2f(plane\$0:getVertex(i)):vec2()) end
+end \; \; function M.list(l) M.width(l[1]) M.height(l[2]) M.columns(l[3])
 M.rows(l[4]) M.draw(l[5]) M.stroke(l[6]) end \; function M.time(f)
 time = f*0.01 end \; function M.width(f) width = f end \; function
 M.height(f) height = f end \; function M.mode(f) mode = f end \; function

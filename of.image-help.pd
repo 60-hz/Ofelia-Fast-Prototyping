@@ -1,13 +1,13 @@
-#N canvas 590 86 690 609 12;
+#N canvas 531 55 690 609 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 19 538 of.plane 200 200 5 5;
-#X obj 233 528 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 233 528 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 462 45 declare -lib ofelia;
 #X text 32 123 open relative to patch;
-#X text 34 169 open png with alpha channel;
+#X text 44 169 open png with alpha channel;
 #X text 232 556 0 = load fail;
 #X text 231 543 1 = load success;
 #X msg 181 388 get;
@@ -18,21 +18,21 @@
 #X text 215 388 get infos from right outlet;
 #X text 306 517 width;
 #X text 336 497 height;
-#X text 152 365 save to file;
+#X text 295 352 save to file;
 #X text 26 519 2: draw center plane;
-#X msg 37 239 open https://puredata.info/portal_css/Plone%20Default/logo.png
+#X msg 57 239 open https://puredata.info/portal_css/Plone%20Default/logo.png
 , f 68;
 #X text 469 487 1 = rgb;
 #X text 469 477 0 = grayscale;
 #X text 469 497 3 = rgba;
 #X text 376 477 Image type:;
-#X obj 38 315 openpanel;
-#X msg 38 338 open \$1;
-#X obj 38 294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 68 305 openpanel;
+#X msg 68 328 open \$1;
+#X obj 68 284 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X text 60 294 browse...;
+#X text 90 284 browse...;
 #X msg 35 142 open data/wood.jpg;
-#N canvas 627 188 653 565 draw 0;
+#N canvas 555 137 667 368 draw 0;
 #X floatatom 41 9 5 0 0 0 - - -;
 #X msg 70 94 drawsubsection 1 100 0 100 100 120 200;
 #X obj 74 135 of.mouse;
@@ -45,28 +45,28 @@
 #X text 117 263 change anchor point;
 #X text 361 186 active \, posX \, posY \, witdh \, height \, cropfromX
 \, cropfromY \, posCropX \, posCropY, f 42;
-#X msg 41 34 draw 1 0 -100 \$1 100 100;
-#X msg 59 63 draw 0 0 0;
-#X msg 73 227 drawsubsection 0 0 0 0 0 0 0;
 #X text 288 227 Desactivate drawsubsection;
 #X text 149 63 Desactivate draw;
 #X obj 20 319 outlet;
 #X obj 74 162 spigot;
-#X obj 149 147 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 149 147 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 74 190 drawsubsection 1 -100 110 200 100 \$1 \$2;
 #X text 175 144 -> acivate this to sroll in image with mouse;
-#X connect 0 0 10 0;
-#X connect 1 0 15 0;
-#X connect 2 0 16 0;
-#X connect 5 0 15 0;
+#X msg 41 34 draw 1 \$1 0 0 100 100;
+#X msg 59 63 draw 0 0;
+#X msg 73 227 drawsubsection 0 0;
+#X connect 0 0 17 0;
+#X connect 1 0 12 0;
+#X connect 2 0 13 0;
+#X connect 5 0 12 0;
 #X connect 6 0 5 0;
-#X connect 10 0 15 0;
-#X connect 11 0 15 0;
-#X connect 12 0 15 0;
-#X connect 16 0 18 0;
-#X connect 17 0 16 1;
-#X connect 18 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 13 1;
+#X connect 15 0 12 0;
+#X connect 17 0 12 0;
+#X connect 18 0 12 0;
+#X connect 19 0 12 0;
 #X restore 181 275 pd draw;
 #X text 259 73 The ofImage is a useful object for loading \, saving
 and drawing images. ofImage is a convenient class that lets you both
@@ -162,9 +162,9 @@ a library called "freeImage" under the hood.;
 #X connect 25 0 26 0;
 #X connect 26 0 3 0;
 #X restore 283 305 pd Get_&_Set_Pixels;
-#X msg 36 191 open data/transparency.png;
-#X msg 37 365 save export.png;
-#X text 38 220 works also with online files if connected to internet
+#X msg 46 191 open data/transparency.png;
+#X msg 180 352 save export.png;
+#X text 58 220 works also with online files if connected to internet
 ;
 #X text 28 22 A powerful Image loader using memory and gpu based pixels.
 ;
