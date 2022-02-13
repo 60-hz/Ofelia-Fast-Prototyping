@@ -1,4 +1,4 @@
-#N canvas 475 144 626 366 12;
+#N canvas 454 311 626 366 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -6,20 +6,17 @@
 #X msg 60 147 draw line;
 #X msg 60 170 draw point;
 #X msg 60 193 draw fill;
-#X floatatom 155 208 5 0 0 2 radius - -;
-#X floatatom 283 213 5 0 0 2 geometry - -;
+#X floatatom 155 258 5 0 0 2 radius - -;
+#X floatatom 283 263 5 0 0 2 geometry - -;
 #X msg 403 116 100 400 center line 3;
 #X text 402 89 list of all parameters;
 #X text 419 144 Single parameter;
-#X text 24 40 Args: width \, height \, rectmode \, drawmode \, strokewidth
-;
 #X text 25 20 Draw a circle;
 #X msg 423 165 size 50;
 #X msg 60 124 stroke 10;
-#X obj 403 240 of.circle, f 21;
-#X obj 27 251 of.circle 50 20 line 1, f 37;
+#X obj 27 301 of.circle 50 20 line 1, f 37;
 #X obj 462 45 declare -lib ofelia;
-#X text 88 85 style;
+#X text 74 105 style;
 #X msg 437 214 debug \$1;
 #X obj 437 193 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -27,24 +24,31 @@
 #X msg 154 127 orientation -45 50 0;
 #X msg 154 105 position 20 50 -100;
 #X msg 154 149 scale 4 2 2;
-#X msg 155 170 lookat 180 120 60;
+#X msg 155 172 lookat 180 120 60;
 #X text 153 83 local transformation;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X connect 1 0 15 0;
-#X connect 2 0 15 0;
-#X connect 3 0 15 0;
-#X connect 4 0 15 0;
-#X connect 5 0 15 1;
-#X connect 6 0 15 2;
-#X connect 7 0 14 0;
-#X connect 12 0 14 0;
-#X connect 13 0 15 0;
-#X connect 18 0 14 0;
-#X connect 19 0 18 0;
-#X connect 21 0 15 0;
-#X connect 22 0 15 0;
-#X connect 23 0 15 0;
-#X connect 24 0 15 0;
-#X connect 27 0 26 0;
+#X text 24 40 Args: width \, height \, drawmode \, strokewidth \, rectmode
+;
+#X obj 403 275 of.circle;
+#X msg 155 197 mode corner;
+#X msg 155 219 mode center;
+#X connect 1 0 13 0;
+#X connect 2 0 13 0;
+#X connect 3 0 13 0;
+#X connect 4 0 13 0;
+#X connect 5 0 13 1;
+#X connect 6 0 13 2;
+#X connect 7 0 27 0;
+#X connect 11 0 27 0;
+#X connect 12 0 13 0;
+#X connect 16 0 27 0;
+#X connect 17 0 16 0;
+#X connect 19 0 13 0;
+#X connect 20 0 13 0;
+#X connect 21 0 13 0;
+#X connect 22 0 13 0;
+#X connect 25 0 24 0;
+#X connect 28 0 13 0;
+#X connect 29 0 13 0;

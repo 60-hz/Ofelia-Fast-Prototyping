@@ -16,7 +16,7 @@ width = 100 end \; if args[2] == nil then height = 100 end \; if args[4]
 == nil then strokeweight = 1 end \; if args[3] == "line" then drawmode
 = "line" end \; if args[5] == nil then rectmode = "center" end \; end
 \; \; function M.width(f) width = f end \; function M.height(f) height
-= f end \; function M.rectmode(s) rectmode = s end \; function M.draw(s)
+= f end \; function M.mode(s) rectmode = s end \; function M.draw(s)
 drawmode = s end \; function M.stroke(f) strokeweight = f end \; function
 M.list(l) width = l[1] height = l[2] rectmode = l[3] drawmode = l[4]
 strokeweight = l[5] end \; function M.debug(f) debug = f end \; function
