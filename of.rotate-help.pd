@@ -1,4 +1,4 @@
-#N canvas 565 117 626 323 12;
+#N canvas 565 117 626 395 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -25,6 +25,11 @@
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text 440 181 show axis;
+#X floatatom 77 280 5 0 0 0 - - -;
+#X msg 77 302 orientation \$1 0 0;
+#X text 118 282 -> local orientation, f 23;
+#X text 194 167 -> global rotation;
+#X obj 27 335 of.circle 10;
 #X connect 1 0 16 1;
 #X connect 3 0 16 2;
 #X connect 5 0 16 3;
@@ -32,5 +37,8 @@
 #X connect 10 0 12 0;
 #X connect 11 0 12 0;
 #X connect 16 0 17 0;
+#X connect 17 0 27 0;
 #X connect 19 0 12 0;
 #X connect 21 0 20 0;
+#X connect 23 0 24 0;
+#X connect 24 0 27 0;

@@ -1,4 +1,4 @@
-#N canvas 382 73 898 626 12;
+#N canvas 464 93 898 626 12;
 #X obj 31 14 inlet;
 #X obj 31 1026 outlet;
 #X obj 93 14 inlet;
@@ -53,10 +53,10 @@ end \; function M.lookat(l) lookat:set(table.unpack(l)) node\$0:lookAt(lookat:ve
 end \; function M.debug(f) debug = f * 100 end \; \; function M.bang()
 node\$0:transformGL() \; ofTranslate(ix*-dx/2 \, iy*-dy/2 \, iz*-dz/2)
 \; for x = 0 \, ix -1 do \; for y = 0 \, iy -1 do \; for z = 0 \, iz
--1 do \; ofPushMatrix() \; ofTranslate(x*dx+5 \, y*dy+5 \, z*dz) \;
-ofRotateXDeg(x*rx) ofRotateYDeg(y*ry) ofRotateZDeg(z+1*rz) \; ofScale(sx
-\, sy \, sz) \; outlet:outletBang(0) \; ofPopMatrix() \; end end end
-node\$0:restoreTransformGL() \; end \;;
+-1 do \; ofPushMatrix() \; ofTranslate(x*dx+(dx*0.5) \, y*dy+(dy*0.5)
+\, z*dz+(dz*0.5)) \; ofRotateXDeg(x*rx) ofRotateYDeg(y*ry) ofRotateZDeg(z+1*rz)
+\; ofScale(sx \, sy \, sz) \; outlet:outletBang(0) \; ofPopMatrix()
+\; end end end node\$0:restoreTransformGL() \; end \;;
 #X f 121;
 #X connect 0 0 15 0;
 #X connect 2 0 5 0;

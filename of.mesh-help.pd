@@ -1,4 +1,4 @@
-#N canvas 621 52 627 726 12;
+#N canvas 488 52 627 726 12;
 #X declare -lib ofelia;
 #X obj 40 238 of.draw;
 #X msg 232 264 mode \$1;
@@ -49,9 +49,9 @@ Make some points. - Say that you're done making points.;
 #X connect 4 0 5 0;
 #X restore 410 385 pd local_transformation;
 #X msg 412 441 texture \$1;
-#X obj 412 414 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 412 414 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 107 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 107 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 40 270 of.depth 1;
 #X text 229 217 ofPrimitiveMode;
@@ -101,17 +101,14 @@ Make some points. - Say that you're done making points.;
 #X connect 5 0 4 0;
 #X connect 6 0 9 0;
 #X restore 410 312 pd Normals;
-#N canvas 489 157 785 507 Import_Primitives_examples 0;
-#X text 274 220 ?;
-#X text 235 261 ?;
-#X msg 18 215 \; mesh prim oficospherePrimitive 10;
+#N canvas 495 204 785 507 Import_Primitives_examples 0;
 #X msg 18 135 \; mesh prim ofConePrimitive 10 20 5 4 1 0;
 #X text 328 138 radius \, height \, radiusSegments \, heightSegments
 \, capSegments \, ofPrimitiveMode mode;
 #X text 331 101 width \, height \, depth \, resX \, resY \, resZ;
 #X msg 26 384 mode \$1;
 #X obj 26 358 hradio 15 1 0 11 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 3;
 #X text 23 337 ofPrimitiveMode;
 #X obj 26 408 s mesh;
 #X msg 18 95 \; mesh prim ofBoxPrimitive 10 10 10 10 10 10;
@@ -120,14 +117,16 @@ Make some points. - Say that you're done making points.;
 #X text 311 20 width \, height \, columns \, rows \, ofPrimitiveMode
 mode;
 #X msg 18 15 \; mesh prim ofPlanePrimitive 10 10 10 5 0;
-#X msg 18 255 \; mesh prim ofIcosahedron 10 10;
 #X text 350 182 radius \, height \, radiusSegments \, heightSegments
 \, numCapSegments;
 #X msg 18 175 \; mesh prim ofCylinderPrimitive 10 10 10 10 1;
-#X msg 18 295 \; mesh append ofBoxPrimitive 10 10 10 10 10 10;
-#X text 346 301 append a shape = not working now...;
-#X connect 6 0 9 0;
-#X connect 7 0 6 0;
+#X msg 18 255 \; mesh append ofBoxPrimitive 100 100 100 10 10 10;
+#X msg 18 292 \; mesh append ofSpherePrimitive 100 4 0;
+#X msg 111 381 clear;
+#X text 370 263 append a shape to the current one (bug?);
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 16 0 6 0;
 #X restore 410 336 pd Import_Primitives_examples;
 #N canvas 771 332 460 428 Import_3d_Models_examples 0;
 #X msg 20 110 \; mesh open data/penguin.ply;
@@ -141,18 +140,22 @@ Triangle faces.;
 #X obj 263 201 s mesh;
 #X obj 263 125 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 20 254 \; mesh open data/circle.ply;
-#X text 18 237 big circle;
-#X msg 20 150 \; mesh open data/teapot.ply;
-#X msg 20 190 \; mesh open data/torusknot.ply;
-#X msg 20 304 \; mesh open data/cube.ply;
+#X msg 20 294 \; mesh open data/circle.ply;
+#X msg 20 170 \; mesh open data/teapot.ply;
+#X msg 20 230 \; mesh open data/torusknot.ply;
+#X msg 20 344 \; mesh open data/cube.ply;
+#X text 18 277 circle;
+#X text 18 327 cube;
+#X text 18 92 penguin;
+#X text 18 152 teapot;
+#X text 18 212 torusknot;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
 #X connect 5 0 2 0;
 #X restore 410 361 pd Import_3d_Models_examples;
 #X text 119 299 move cam;
 #X text 60 325 change texture;
-#X obj 467 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 467 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 412 494 debug \$1;
 #X obj 412 474 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -220,7 +223,7 @@ that have already been added to create a triangle;
 #X msg 204 460 \; mesh setindex \$1 10;
 #X msg 29 571 \; mesh addvertices \$1 \$2 \$3;
 #X obj 205 23 hradio 15 1 0 11 empty empty empty 0 -8 0 10 -262144
--1 -1 2;
+-1 -1 0;
 #X text 298 55 ofPrimitiveMode;
 #X msg 205 47 \; mesh mode \$1;
 #X msg 432 37 \; mesh clear \; mesh mode 0;
@@ -342,18 +345,20 @@ fill \; mesh mode 0;
 #X msg 33 -7 \; mesh prim ofPlanePrimitive 40 40 8 8 0 \; mesh cleartexcoords
 \; mesh clearcolors \; mesh mode 0;
 #X floatatom 31 373 5 0 0 0 - - -;
-#X text 215 401 (careful \, add color first!);
 #X text 73 370 index of vertex coordinate;
 #X text 229 416 index \, x \, y;
 #X msg 31 398 \; mesh settexcoord \$1 0 0;
+#X text 215 401 (careful \, add coordinates first!);
 #X connect 0 0 10 0;
 #X connect 1 0 5 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
 #X connect 5 0 4 0;
-#X connect 15 0 19 0;
+#X connect 15 0 18 0;
 #X restore 410 286 pd Textures_coordinate;
 #X obj 467 44 of.window 1;
+#X msg 53 405 clear;
+#X text 98 404 clearall;
 #X connect 0 0 30 0;
 #X connect 1 0 24 0;
 #X connect 2 0 24 0;
@@ -383,3 +388,4 @@ fill \; mesh mode 0;
 #X connect 39 0 24 0;
 #X connect 40 0 39 0;
 #X connect 42 0 24 0;
+#X connect 47 0 24 0;

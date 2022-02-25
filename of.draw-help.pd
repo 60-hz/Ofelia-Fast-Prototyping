@@ -7,8 +7,7 @@
 #X obj 27 144 of.rectangle;
 #X obj 27 48 spigot;
 #X obj 240 33 tgl 15 0 empty empty Show_GUI 17 7 0 10 -262144 -1 -1
-0 1;
-#X obj 26 192 of.text GUI center;
+1 1;
 #X obj 27 117 of.color 0 0 0 100;
 #X obj 240 11 inlet;
 #X floatatom 387 161 5 0 0 2 rotY - -;
@@ -24,23 +23,24 @@
 #X text 126 21 TOP of camera;
 #X obj 27 12 of.draw 1001;
 #X text 193 72 from top left corner, f 10;
-#X connect 0 0 8 0;
-#X connect 1 0 9 0;
+#X obj 26 192 of.text GUI 20 center;
+#X connect 0 0 7 0;
+#X connect 1 0 8 0;
 #X connect 2 0 1 1;
-#X connect 4 0 0 0;
-#X connect 5 0 2 0;
-#X connect 6 0 13 5;
-#X connect 7 0 12 0;
+#X connect 3 0 0 0;
+#X connect 4 0 2 0;
+#X connect 5 0 12 5;
+#X connect 6 0 11 0;
+#X connect 7 0 18 0;
 #X connect 8 0 3 0;
-#X connect 9 0 4 0;
-#X connect 10 0 13 0;
-#X connect 12 0 10 0;
-#X connect 12 1 6 0;
-#X connect 14 0 10 0;
-#X connect 17 0 1 0;
+#X connect 9 0 12 0;
+#X connect 11 0 9 0;
+#X connect 11 1 5 0;
+#X connect 13 0 9 0;
+#X connect 16 0 1 0;
 #X restore 390 675 pd GUI_ON_SCREEN;
 #X obj 390 643 tgl 15 0 empty empty Show_GUI 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X floatatom 499 642 5 0 0 2 rotY - -;
 #X obj 12 258 cnv 15 200 200 empty empty empty 20 12 0 14 -258113 -66577
 0;
@@ -71,7 +71,7 @@
 #X text 416 274 Draw-Order = 4 (top);
 #X text 226 271 Draw-Order = 3 (middle);
 #X text 26 273 Draw-Order = 2 (bottom);
-#X obj 98 581 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 98 581 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 217 103 cnv 15 150 150 empty empty empty 20 12 0 14 -262144
 -66577 0;

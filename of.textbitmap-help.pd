@@ -1,0 +1,55 @@
+#N canvas 584 227 642 500 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X msg 105 214 text;
+#X text 105 247 local transformation;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 462 45 declare -lib ofelia;
+#X msg 103 137 string 111 107;
+#X text 100 121 new string;
+#X text 103 155 codepoint allows comma etc;
+#X msg 103 172 string 97 44 10 98 59 10 99;
+#X text 102 194 empty text;
+#X msg 310 97 bitmapmode \$1;
+#X text 24 42 Args: text \, bitmapmode, f 24;
+#X obj 310 78 hradio 15 1 0 5 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X msg 103 103 text Hello how are you?;
+#X text 101 85 new text as list;
+#X msg 104 363 fgcolor 255 0 0;
+#X msg 104 388 bgcolor 0 0 100;
+#X text 102 342 colors;
+#X obj 27 89 of.draw;
+#X text 306 125 0 (OF_BITMAPMODE_SCREEN): this is the default mode.
+It projects the 3d prosition onto the screen so the letters always
+look the same size but can be positioned in any 3d coordinate. \; 1
+(OF_BITMAPMODE_VIEWPORT): does the same as screen but uses the current
+viewport instead of the full window if it's different. \; 2 (OF_BITMAPMODE_MODEL):
+uses real 3d coordinates so the text will look scaled if it's not in
+z=0 \; 3 (OF_BITMAPMODE_MODEL_BILLBOARD): uses real 3d coordinates
+but the text always faces the camera. \; 4 (OF_BITMAPMODE_SIMPLE):
+only does 2d and the z coordinate is just discarded \, so if z is not
+0 the position in which it'll be drawn will be wrong., f 43;
+#X text 306 412 Issues: bgrectangle has a wrong position when using
+camera. Use [draw -1] to fix., f 43;
+#X text 25 20 Draw a Text as bitmap;
+#X obj 27 431 of.textbitmap of.textbitmap;
+#X msg 106 313 scale 1 4 2;
+#X msg 106 291 orientation -65 0 0;
+#X msg 106 269 position -70 10 200;
+#X connect 1 0 23 0;
+#X connect 4 0 3 0;
+#X connect 6 0 23 0;
+#X connect 9 0 23 0;
+#X connect 11 0 23 0;
+#X connect 13 0 11 0;
+#X connect 14 0 23 0;
+#X connect 16 0 23 0;
+#X connect 17 0 23 0;
+#X connect 19 0 23 0;
+#X connect 24 0 23 0;
+#X connect 25 0 23 0;
+#X connect 26 0 23 0;

@@ -1,12 +1,11 @@
 #N canvas 119 43 878 735 12;
 #X obj 31 24 inlet;
-#X obj 31 712 outlet;
+#X obj 31 772 outlet;
 #X obj 90 22 inlet;
 #X obj 170 22 inlet;
 #X msg 90 48 radius \$1;
 #X msg 170 48 res \$1;
-#X text 815 617 RI;
-#X text 803 713 R.I;
+#X text 803 783 R.I;
 #X obj 31 75 ofelia d sphere-\$0 \; local c = ofCanvas(this) \; local
 outlet = ofOutlet(this) \; local args = c:getArgs() \; local radius
 \, res \, drawmode \, strokeweight \, primode \, debug \, normalsize
@@ -34,17 +33,17 @@ orientation.z=l[3] sphere\$0:setOrientation(orientation:vec3()) end
 end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
 sphere\$0:lookAt(lookat:vec3()) end \; function M.texture(f) if f >
 0 then sphere\$0:enableTextures() else sphere\$0:disableTextures()
-end end \; function M.texturemap(l) sphere\$0:mapTexCoords(l[1] \,
-l[2] \, l[3] \, l[4]) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
-\; if drawmode == "fill" then sphere\$0:drawFaces() end \; if drawmode
-== "point" then sphere\$0:drawVertices() end \; if drawmode == "line"
-then sphere\$0:drawWireframe() end \; if drawmode == "normal" then
-sphere\$0:drawNormals(normalsize) end \; if debug > 0 then sphere\$0:drawAxes(debug)
-end \; outlet:outletBang(0) end \;;
+end end \; function M.texturemap(l) sphere\$0:mapTexCoords(table.unpack(l))
+end \; \; function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode
+== "fill" then sphere\$0:drawFaces() end \; if drawmode == "point"
+then sphere\$0:drawVertices() end \; if drawmode == "line" then sphere\$0:drawWireframe()
+end \; if drawmode == "normal" then sphere\$0:drawNormals(normalsize)
+end \; if debug > 0 then sphere\$0:drawAxes(debug) end \; outlet:outletBang(0)
+end \;;
 #X f 116;
-#X connect 0 0 8 0;
+#X connect 0 0 7 0;
 #X connect 2 0 4 0;
 #X connect 3 0 5 0;
-#X connect 4 0 8 0;
-#X connect 5 0 8 0;
-#X connect 8 0 1 0;
+#X connect 4 0 7 0;
+#X connect 5 0 7 0;
+#X connect 7 0 1 0;

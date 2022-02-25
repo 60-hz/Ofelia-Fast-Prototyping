@@ -1,16 +1,13 @@
-#N canvas 565 117 626 325 12;
+#N canvas 565 117 626 395 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X floatatom 75 146 5 0 0 0 - - -;
-#X text 74 131 valueX;
 #X floatatom 123 146 5 0 0 0 - - -;
-#X text 122 131 valueY;
 #X floatatom 171 146 5 0 0 0 - - -;
-#X text 170 131 valueZ;
 #X obj 27 99 of.draw;
 #X text 412 175 Single axis;
-#X text 449 145 list of xyz;
+#X text 391 143 list of xyz;
 #X obj 343 210 of.scale 2 1 1, f 21;
 #X msg 343 145 1 2 3;
 #X msg 363 175 x 4;
@@ -18,16 +15,28 @@
 #X obj 27 241 of.box 100 100 100 1 1 1 line;
 #X obj 27 178 of.scale 1 1 1, f 21;
 #X text 25 22 Scale matrix;
-#X text 24 47 Args: scaleX \, scaleY \, scaleZ;
 #X text 38 198 -> all sub-tree shapes will be rescaled, f 25;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X connect 1 0 15 1;
-#X connect 3 0 15 2;
-#X connect 5 0 15 3;
-#X connect 7 0 15 0;
-#X connect 11 0 10 0;
-#X connect 12 0 10 0;
-#X connect 15 0 14 0;
-#X connect 20 0 19 0;
+#X text 74 131 scaleX;
+#X text 122 131 scaleY;
+#X text 170 130 scaleZ;
+#X text 24 47 Arguments: scaleX \, scaleY \, scaleZ (default 1 \, 1
+\, 1);
+#X floatatom 77 280 5 0 0 0 - - -;
+#X obj 27 335 of.sphere 20 5 line;
+#X msg 77 302 scale \$1 1 1;
+#X text 118 282 -> local dimension, f 23;
+#X text 194 177 -> global scale;
+#X connect 1 0 12 1;
+#X connect 2 0 12 2;
+#X connect 3 0 12 3;
+#X connect 4 0 12 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X connect 11 0 22 0;
+#X connect 12 0 11 0;
+#X connect 16 0 15 0;
+#X connect 21 0 23 0;
+#X connect 23 0 22 0;

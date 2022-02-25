@@ -1,0 +1,39 @@
+#N canvas 332 84 881 678 12;
+#X obj 15 0 inlet;
+#X obj 15 731 outlet;
+#X text 695 701 RI;
+#X obj 845 732 outlet;
+#X obj 15 30 ofelia d -c12 fbo-\$0 \; local canvas = ofCanvas(this)
+\; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
+fbo\$0 = ofFbo() \; local width \, height \, type \, autoclear \, gradientmode
+= 16 \, 16 \, GL_RGBA \, 1 \, 0 \; local clear \, startcolor \, endcolor
+= ofColor(0 \, 0 \, 0 \, 255) \, ofColor(255 \, 255 \, 255 \, 255)
+\, ofColor(0 \, 0 \, 0 \, 255) \; \; function M.new() \; ofWindow.addListener("setup"
+\, this) ofWindow.addListener("update" \, this) \; \; if args[1] ==
+nil then width = 16 else width = args[1] end \; if args[2] == nil then
+height = 16 else height = args[2] end \; if args[3] == nil then autoclear
+= 1 else autoclear = args[3] end \; M.setup() end \; \; function M.free()
+\; ofWindow.removeListener("setup" \, this) ofWindow.removeListener("update"
+\, this) \; \; end \; \; function M.setup() \; if ofWindow.exists then
+fbo\$0:allocate(16 \, 16 \, GL_RGBA) fbo\$0:beginFbo() ofClear(255
+\, 0) fbo\$0:endFbo() end end \; \; function M.allocate(l) width=l[1]
+height=l[2] fbo\$0:allocate(width \, height \, type) end \; function
+M.clear() if ofWindow.exists then fbo\$0:clear() end end \; function
+M.fill(l) clear.r=l[1] clear.g=l[2] clear.b=l[3] clear.a=l[4] fbo\$0:beginFbo()
+ofClear(clear) fbo\$0:endFbo() end \; function M.startcolor(l) startcolor:set(table.unpack(l))
+end \; function M.endcolor(l) endcolor:set(table.unpack(l)) end \;
+function M.gradientmode(f) gradientmode = f end \; function M.draw(list)
+fbo\$0:draw(list[1] \, list[2] \, list[3]) end \; function M.crop(l)
+fbo\$0:crop(l[1] \, l[2] \, l[3] \, l[4]) end \; function M.cropfrom(l)
+fbo\$0:cropfrom(image\$0 \, l[1] \, l[2] \, l[3] \, l[4]) end \; function
+M.drawsubsection(l) fbo\$0:drawSubsection(l[1] \, l[2] \, l[3] \, l[4]
+\, l[5] \, l[6]) end \; function M.get() outlet:outletList(1 \, ofTable
+(fbo\$0:isAllocated() \, fbo\$0:getWidth() \, fbo\$0:getHeight() \,
+fbo\$0:getNumTextures())) end \; \; function M.update() \; fbo\$0:beginFbo()
+\; ofBackgroundGradient(startcolor \, endcolor \, gradientmode) \;
+fbo\$0:endFbo() \; end \; function M.bang() \; fbo\$0:getTexture():bind()
+\; outlet:outletBang(0) \; fbo\$0:getTexture():unbind() \; end \;;
+#X f 119;
+#X connect 0 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 1 3 0;

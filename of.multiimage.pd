@@ -36,9 +36,9 @@ then ofDisableArbTex() image\$0[i]:clear() \; loaded = image\$0[i]:load(ofFile(f
 \; saved = image\$0[index]:save(string) end if saved then print("saved
 " .. string) end \; end \; function M.get() outlet:outletList(1 \,
 ofTable (loaded \, image\$0[index]:getWidth() \, image\$0[index]:getHeight()
-\, image\$0[index]:getImageType() \, image\$0[index]:getTexture() \,
-image\$0[index]:getPixels())) end \; \; function M.bang() \; if drawimage
-== 1 then image\$0:draw(X \, Y \, Z \, H \, W) end \; image\$0[index]:bind()
+\, image\$0[index]:getImageType() \, #image\$0 \, image\$0[index]:getTexture()
+\, image\$0[index]:getPixels())) end \; \; function M.bang() \; if
+drawimage == 1 then image\$0:draw(X \, Y \, Z \, H \, W) end \; image\$0[index]:bind()
 \; outlet:outletBang(0) \; image\$0[index]:unbind() end \;;
 #X f 103;
 #X connect 0 0 6 0;

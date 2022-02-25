@@ -1,21 +1,25 @@
-#N canvas 650 53 630 644 12;
+#N canvas 568 23 666 732 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 17 101 of.draw;
+#X obj 17 111 of.draw;
 #X obj 462 45 declare -lib ofelia;
-#X obj 17 184 of.rotate;
-#X floatatom 57 154 5 0 0 1 Rotation - -;
-#X msg 53 492 mode \$1;
-#N canvas 683 367 339 268 draw_with_mouse 0;
-#X obj 10 15 of.mouse;
-#X obj 10 88 spigot;
-#X obj 63 44 t a a;
-#X msg 95 93 close;
-#X obj 95 68 sel 0;
-#X msg 10 118 curveto \$1 \$2 0;
-#X obj 10 161 s \$0-path;
-#X text 141 68 on click release \, close the last shape, f 19;
+#X obj 17 174 of.rotate;
+#X floatatom 57 144 5 0 0 1 Rotation - -;
+#X msg 63 482 mode \$1;
+#N canvas 776 360 411 332 draw_with_mouse 0;
+#X obj 44 87 of.mouse;
+#X obj 44 160 spigot, f 8;
+#X obj 97 116 t a a;
+#X msg 129 165 close;
+#X obj 129 140 sel 0;
+#X msg 44 200 curveto \$1 \$2 0;
+#X obj 19 251 s \$0-path;
+#X msg 19 47 filled 0 \, stroke 1;
+#X text 169 205 draw curve shape at x \, y \, z;
+#X text 175 130 -> on click release \, close the last shape (will start
+another shape), f 19;
+#X text 19 26 better for a line:;
 #X connect 0 0 1 0;
 #X connect 0 1 2 0;
 #X connect 1 0 5 0;
@@ -24,95 +28,24 @@
 #X connect 3 0 6 0;
 #X connect 4 0 3 0;
 #X connect 5 0 6 0;
-#X restore 373 324 pd draw_with_mouse;
+#X connect 7 0 6 0;
+#X restore 393 324 pd draw_with_mouse;
 #X text 25 20 Draw a path (experimental);
-#X obj 53 468 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 63 458 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X text 74 462 0 COMMANDS 1 POLYLINES, f 11;
+#X text 84 452 0 COMMANDS 1 POLYLINES, f 11;
 #X text 24 40 Args: mode (0 = COMMANDS 1 = POLYLINES);
-#X msg 50 430 polywinding \$1;
-#X obj 50 409 hradio 15 1 0 5 empty empty empty 0 -8 0 10 -262144 -1
+#X msg 60 420 polywinding \$1;
+#X obj 60 399 hradio 15 1 0 5 empty empty empty 0 -8 0 10 -262144 -1
 -1 1;
-#X msg 54 518 get;
-#X text 85 519 to do...;
-#X text 159 405 0 = OF_POLY_WINDING_ODD \; 1 = OF_POLY_WINDING_NONZERO
-\; 2 = OF_POLY_WINDING_POSITIVE \; 3 = OF_POLY_WINDING_NEGATIVE \;
-4 = OF_POLY_WINDING_ABS_GEQ_TWO;
-#N canvas 646 54 554 699 shape 0;
-#X msg 63 362 triangle 0 100 100 0 -100 0;
-#X msg 63 142 rectangle 30 20 0 100 100;
-#X msg 63 102 rectrounded -100 -50 0 100 100 10 20 100 60;
-#X obj 27 629 s \$0-path;
-#X msg 400 76 clear;
-#X msg 400 176 outline;
-#X msg 400 102 close;
-#X msg 400 151 append;
-#X msg 400 127 newsubpath;
-#X obj 361 312 s \$0-path;
-#X msg 403 227 circleresolution 10;
-#X msg 402 201 tessellate;
-#X msg 403 250 curveresolution 100;
-#X msg 63 28 rectrounded 0 0 100 100 20;
-#X text 64 54 x \, y \, z \, width \, height \, topLeftRadius \, float
-topRightRadius \, float bottomRightRadius \, float bottomLeftRadius
-, f 54;
-#X text 64 4 x \, y \, width \, height \, rardius;
-#X text 65 121 x \, y \, width \, height;
-#X text 65 158 x \, y \, z \, width \, height;
-#X msg 63 175 rectangle 30 20 100 100 100;
-#X text 65 227 x \, y \, z \, width \, height;
-#X text 65 193 x \, y \, width \, height;
-#X msg 63 212 circle 0 0 200;
-#X msg 63 246 circle -100 0 0 50;
-#X text 65 304 x \, y \, z \, width \, height;
-#X text 65 265 x \, y \, width \, height;
-#X msg 63 282 ellipse -50 40 50 200;
-#X msg 63 321 ellipse 50 40 -50 50 200;
-#X text 65 344 x1 \, y1 \, x2 \, y2 \, x3 \, y3;
-#X text 65 379 x1 \, y1 \, z1 x2 \, y2 \, z2 \, x3 \, y3 \, z3;
-#X msg 63 397 triangle -100 -100 -100 100 -100 0 100 100 -300;
-#X text 65 454 x \, y \, z \, radiusX \, radiusY \, angleBegin \, angleEnd
-;
-#X text 65 419 x \, y \, radiusX \, radiusY \, angleBegin \, angleEnd
-;
-#X msg 63 472 arc 0 0 0 100 100 60 290;
-#X msg 64 436 arc 50 50 100 100 90 -90;
-#X text 65 494 x \, y \, radiusX \, radiusY \, angleBegin \, angleEnd)
-;
-#X text 65 534 x \, y \, z \, radiusX \, radiusY \, angleBegin \, angleEnd)
-;
-#X msg 63 552 arcnegative 0 0 100 -100 50 30 190;
-#X msg 63 512 arcnegative 0 0 100 50 30 98;
-#X connect 0 0 3 0;
-#X connect 1 0 3 0;
-#X connect 2 0 3 0;
-#X connect 4 0 9 0;
-#X connect 5 0 9 0;
-#X connect 6 0 9 0;
-#X connect 7 0 9 0;
-#X connect 8 0 9 0;
-#X connect 10 0 9 0;
-#X connect 11 0 9 0;
-#X connect 12 0 9 0;
-#X connect 13 0 3 0;
-#X connect 18 0 3 0;
-#X connect 21 0 3 0;
-#X connect 22 0 3 0;
-#X connect 25 0 3 0;
-#X connect 26 0 3 0;
-#X connect 29 0 3 0;
-#X connect 32 0 3 0;
-#X connect 33 0 3 0;
-#X connect 36 0 3 0;
-#X connect 37 0 3 0;
-#X restore 373 227 pd shape;
-#X obj 52 558 r \$0-path;
-#X text 376 206 more...;
-#X obj 17 589 of.path, f 18;
-#X msg 46 386 clear;
-#X text 29 208 x \, y \, z \, radiusX \, radiusY \, angleBegin \, angleEnd
+#X msg 64 508 get;
+#X obj 66 546 r \$0-path;
+#X text 396 206 more...;
+#X obj 17 579 of.path, f 18;
+#X msg 60 375 clear;
+#X text 29 198 x \, y \, z \, radiusX \, radiusY \, angleBegin \, angleEnd
 , f 27;
-#N canvas 958 224 322 379 Style_&_Color 0;
+#N canvas 848 231 311 351 Style_&_Color 0;
 #X text 44 4 style;
 #X msg 47 106 color 255 55 0;
 #X msg 47 136 strokecolor 5 140 130;
@@ -126,6 +59,9 @@ topRightRadius \, float bottomRightRadius \, float bottomLeftRadius
 #X obj 44 28 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X text 60 27 -> if 0 \, need stroke > 0;
+#X text 70 194 if set to 0 \, use :;
+#X obj 210 195 of.color;
+#X text 154 106 -> stroke and fill;
 #X connect 1 0 7 0;
 #X connect 2 0 7 0;
 #X connect 3 0 7 0;
@@ -135,8 +71,8 @@ topRightRadius \, float bottomRightRadius \, float bottomLeftRadius
 #X connect 6 0 7 0;
 #X connect 8 0 7 0;
 #X connect 9 0 8 0;
-#X restore 373 252 pd Style_&_Color;
-#N canvas 87 442 1120 336 move_&_draw 0;
+#X restore 393 252 pd Style_&_Color;
+#N canvas 399 364 1063 278 move_&_draw 0;
 #X msg 51 147 quadbezierto -100 300 0 -100 0 10 200 20 20;
 #X msg 51 7 moveto 0 0 0;
 #X obj 22 206 s \$0-path;
@@ -181,11 +117,11 @@ topRightRadius \, float bottomRightRadius \, float bottomLeftRadius
 #X connect 23 0 3 0;
 #X connect 24 0 3 0;
 #X connect 25 0 24 0;
-#X restore 373 300 pd move_&_draw;
-#X msg 41 273 triangle -200 0 0 200 200 0;
-#X msg 31 243 arc 0 -50 0 100 100 0 180;
-#X msg 49 299 rectangle -100 -100 0 200 200;
-#X msg 123 361 filled 1;
+#X restore 393 300 pd move_&_draw;
+#X msg 41 263 triangle -200 0 0 200 200 0;
+#X msg 31 233 arc 0 -50 0 100 100 0 180;
+#X msg 49 289 rectangle -100 -100 0 200 200;
+#X msg 133 346 filled 1;
 #X text 184 82 [of.path] is a way to create a path or multiple paths
 consisting of points. It allows you to combine multiple paths consisting
 of points into a single vector data object that can be drawn to the
@@ -193,12 +129,10 @@ screen \, manipulated point by point \, or manipulated with it's child
 subpaths.;
 #X text 186 155 By default ofPath uses ofSubPath instances. Closing
 the path automatically creates a new path:;
-#X text 163 493 https://openframeworks.cc/documentation/graphics/winding_modes.gif
-;
-#X msg 49 361 filled 0;
-#X msg 49 326 stroke 1;
-#X text 176 326 need this if not filled;
-#X msg 119 326 stroke 5;
+#X msg 59 346 filled 0;
+#X msg 49 316 stroke 1;
+#X text 189 316 need this if not filled;
+#X msg 122 316 stroke 5;
 #N canvas 647 374 565 332 local_transformation 0;
 #X msg 57 133 simplify 6;
 #X msg 57 163 tessellate 3;
@@ -222,25 +156,133 @@ the path automatically creates a new path:;
 #X connect 9 0 11 0;
 #X connect 10 0 9 0;
 #X connect 11 0 8 0;
-#X restore 373 277 pd local_transformation;
+#X restore 393 277 pd local_transformation;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X text 95 509 get infos from right outlet;
+#X text 146 396 -> https://openframeworks.cc/documentation/graphics/winding_modes.gif
+, f 69;
+#N canvas 250 79 1030 699 shapes 0;
+#X msg 63 362 triangle 0 100 100 0 -100 0;
+#X msg 63 142 rectangle 30 20 0 100 100;
+#X msg 63 102 rectrounded -100 -50 0 100 100 10 20 100 60;
+#X obj 27 629 s \$0-path;
+#X msg 460 16 clear;
+#X msg 446 236 outline;
+#X msg 460 52 close;
+#X msg 450 211 append;
+#X msg 420 127 newsubpath;
+#X obj 382 169 s \$0-path;
+#X msg 426 282 tessellate;
+#X msg 363 331 curveresolution 100;
+#X msg 63 28 rectrounded 0 0 100 100 20;
+#X text 64 54 x \, y \, z \, width \, height \, topLeftRadius \, float
+topRightRadius \, float bottomRightRadius \, float bottomLeftRadius
+, f 47;
+#X text 64 4 x \, y \, width \, height \, rardius;
+#X text 65 121 x \, y \, width \, height;
+#X text 65 158 x \, y \, z \, width \, height;
+#X msg 63 175 rectangle 30 20 100 100 100;
+#X msg 63 212 circle 0 0 200;
+#X msg 63 246 circle -100 0 0 50;
+#X text 65 304 x \, y \, z \, width \, height;
+#X text 65 265 x \, y \, width \, height;
+#X msg 63 282 ellipse -50 40 50 200;
+#X msg 63 321 ellipse 50 40 -50 50 200;
+#X text 65 344 x1 \, y1 \, x2 \, y2 \, x3 \, y3;
+#X text 65 379 x1 \, y1 \, z1 x2 \, y2 \, z2 \, x3 \, y3 \, z3;
+#X msg 63 397 triangle -100 -100 -100 100 -100 0 100 100 -300;
+#X text 65 454 x \, y \, z \, radiusX \, radiusY \, angleBegin \, angleEnd
+;
+#X text 65 419 x \, y \, radiusX \, radiusY \, angleBegin \, angleEnd
+;
+#X msg 63 472 arc 0 0 0 100 100 60 290;
+#X msg 64 436 arc 50 50 100 100 90 -90;
+#X text 65 494 x \, y \, radiusX \, radiusY \, angleBegin \, angleEnd)
+;
+#X text 65 534 x \, y \, z \, radiusX \, radiusY \, angleBegin \, angleEnd)
+;
+#X msg 63 552 arcnegative 0 0 100 -100 50 30 190;
+#X msg 63 512 arcnegative 0 0 100 50 30 98;
+#X text 534 128 Creates a new subpath \, either an ofPolyline instance
+or an ofSubPath instance. All points added after a call to ofSubPath
+will be done in the newly created subpath. Calling close() automatically
+calls create newSubPath() \, ensuring that the closed path doesn't
+have new points added to it.;
+#X text 534 18 Removes all subpaths from the ofPath instance.;
+#X text 534 48 Closes the current subpath and creates a new subpath
+\, either an ofPolyline or ofSubPath by calling newSubPath() \, ensuring
+that the closed path doesn't have new points added to it.;
+#X obj 275 309 s \$0-path;
+#X msg 412 259 simplify 0.2;
+#X msg 73 581 clear;
+#X msg 363 308 circleresolution 10;
+#X text 534 308 Resolution for circle \, ellipse \, arc and arcnegative
+;
+#X text 65 193 x \, y \, size;
+#X text 65 227 x \, y \, z \, size;
+#X text 534 328 Resolution for circle \, ellipse \, arc and arcnegative
+;
+#X connect 0 0 3 0;
 #X connect 1 0 3 0;
-#X connect 3 0 19 0;
+#X connect 2 0 3 0;
+#X connect 4 0 9 0;
+#X connect 5 0 38 0;
+#X connect 6 0 9 0;
+#X connect 7 0 38 0;
+#X connect 8 0 9 0;
+#X connect 10 0 38 0;
+#X connect 11 0 38 0;
+#X connect 12 0 3 0;
+#X connect 17 0 3 0;
+#X connect 18 0 3 0;
+#X connect 19 0 3 0;
+#X connect 22 0 3 0;
+#X connect 23 0 3 0;
+#X connect 26 0 3 0;
+#X connect 29 0 3 0;
+#X connect 30 0 3 0;
+#X connect 33 0 3 0;
+#X connect 34 0 3 0;
+#X connect 39 0 38 0;
+#X connect 40 0 3 0;
+#X connect 41 0 38 0;
+#X restore 393 227 pd shapes;
+#X obj 17 663 of.path, f 18;
+#X msg 201 621 clear \, fillcolor 255 140 200 100 \, circle \$1 0 30
+\, close \, arc 0 0 0 100 100 90 270;
+#X floatatom 201 593 5 0 0 0 - - -;
+#X text 293 505 :getMode \, getWindingMode \, getFillColor \, getStrokeColor
+\, getStrokeWidth \, getCurveResolution \, getCircleResolution \, hasOutline
+\, isFilled \, getOutline \, getTessellation;
+#X msg 88 628 polywinding \$1;
+#X obj 88 607 hradio 15 1 0 5 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X text 204 412 0 = WINDING_ODD \; 1 = WINDING_NONZERO \; 2 = WINDING_POSITIVE
+\; 3 = WINDING_NEGATIVE \; 4 = WINDING_ABS_GEQ_TWO;
+#X msg 34 607 clear;
+#X connect 1 0 3 0;
+#X connect 3 0 16 0;
 #X connect 4 0 3 2;
-#X connect 5 0 19 0;
+#X connect 5 0 16 0;
 #X connect 8 0 5 0;
-#X connect 11 0 19 0;
+#X connect 11 0 16 0;
 #X connect 12 0 11 0;
-#X connect 13 0 19 0;
-#X connect 17 0 19 0;
-#X connect 20 0 19 0;
-#X connect 24 0 19 0;
-#X connect 25 0 19 0;
-#X connect 26 0 19 0;
-#X connect 27 0 19 0;
-#X connect 31 0 19 0;
-#X connect 32 0 19 0;
-#X connect 34 0 19 0;
-#X connect 37 0 36 0;
+#X connect 13 0 16 0;
+#X connect 14 0 16 0;
+#X connect 16 0 37 0;
+#X connect 17 0 16 0;
+#X connect 21 0 16 0;
+#X connect 22 0 16 0;
+#X connect 23 0 16 0;
+#X connect 24 0 16 0;
+#X connect 27 0 16 0;
+#X connect 28 0 16 0;
+#X connect 30 0 16 0;
+#X connect 33 0 32 0;
+#X connect 38 0 37 0;
+#X connect 39 0 38 0;
+#X connect 41 0 37 0;
+#X connect 42 0 41 0;
+#X connect 44 0 37 0;

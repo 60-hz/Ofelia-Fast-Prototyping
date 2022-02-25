@@ -1,11 +1,11 @@
-#N canvas 295 116 985 634 12;
+#N canvas 295 67 985 634 12;
 #X obj 15 10 inlet;
 #X obj 15 1163 outlet;
 #X obj 15 1117 list trim;
 #X obj 82 1163 outlet;
 #X text 601 817 RI;
 #X obj 15 1140 route bang;
-#X obj 15 40 ofelia d model-\$0 \; local canvas = ofCanvas(this) \;
+#X obj 15 42 ofelia d model-\$0 \; local canvas = ofCanvas(this) \;
 local args = canvas:getArgs() \; mesh\$0 \, node\$0 = ofMesh() \, ofNode()
 \; local filename \, drawmode \, strokeweight \, mode = args[1] \,
 args[2] \, args[3] \, args[4] \; local loaded \, saved \, debug \,
@@ -17,10 +17,10 @@ filename end \; if args[2] == nil then drawmode = "fill" end \; if
 args[3] == nil then strokeweight = 1 end \; if args[4] == nil then
 mode = 0 end \; M.setup() end \; \; function M.free() ofWindow.removeListener("setup"
 \, this) end \; function M.setup() if filename ~= nil then M.open(filename)
-end end \; function M.prim(a) func = a[1] t = a table.remove(t \, 1)
-mesh\$0 = _G[func](table.unpack(t)):getMesh() end \; function M.append(a)
-func = a[1] t = a table.remove(t \, 1) mesh\$0.append(_G[func](table.unpack(t)):getMesh()
-\, mesh\$0) print(table.unpack(t)) end \; function M.clear() image\$0:clear()
+end end \; function M.prim(a) pfunc = a[1] t = a table.remove(a \,
+1) mesh\$0 = _G[pfunc](table.unpack(t)):getMesh() end \; function M.append(a)
+afunc = a[1] at = a table.remove(at \, 1) local shape=_G[afunc](table.unpack(at)):getMesh()
+\, mesh\$0 mesh\$0:append(shape) end \; function M.clear() mesh\$0:clear()
 end \; function M.debug(f) debug = f * 100 end \; function M.open(string)
 ofSetDataPathRoot(ofCanvas(this \, 1):getDir()) filename = string \;
 if ofWindow.exists then ofDisableArbTex() mesh\$0:clear() loaded =

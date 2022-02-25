@@ -1,0 +1,54 @@
+#N canvas 576 139 630 554 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 29 43 Arguments: red \, green \, blue \, alpha;
+#X obj 462 45 declare -lib ofelia;
+#X text 274 43 (0...255 / channel);
+#X text 28 338 -> all sub-tree shapes will get the color, f 25;
+#X obj 11 119 of.draw 1;
+#X text 9 96 Big square;
+#X text 85 119 draw order 1st (back);
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 52 144 startcolor 255 0 0;
+#X msg 52 174 endcolor 0 0 255 100;
+#X msg 75 234 gradientmode \$1;
+#X obj 75 211 hradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144 -1
+-1 2;
+#X obj 11 411 of.plane;
+#X text 195 143 r \, g \, b \, a;
+#X text 201 174 r \, g \, b \, a;
+#X text 29 19 Gradient color;
+#X text 194 211 Gradient mode: 0:Circular \; 1:Linear \; 2:Bar, f
+15;
+#X msg 79 274 get;
+#X obj 127 469 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X floatatom 158 457 5 0 0 0 - - -;
+#X floatatom 190 437 5 0 0 0 - - -;
+#X floatatom 222 417 5 0 0 0 - - -;
+#X obj 127 391 unpack 0 0 0 0;
+#X text 200 458 width;
+#X text 230 438 height;
+#X text 125 484 1 = is allocated;
+#X text 126 497 0 = is not allocated;
+#X text 270 418 Texture nb;
+#X text 336 301 crash under OSX after screen rebuit!;
+#X obj 11 308 of.pixgradient, f 17;
+#X msg 173 286 allocate 32 32 0;
+#X connect 5 0 31 0;
+#X connect 9 0 8 0;
+#X connect 10 0 31 0;
+#X connect 11 0 31 0;
+#X connect 12 0 31 0;
+#X connect 13 0 12 0;
+#X connect 19 0 31 0;
+#X connect 24 0 20 0;
+#X connect 24 1 21 0;
+#X connect 24 2 22 0;
+#X connect 24 3 23 0;
+#X connect 31 0 14 0;
+#X connect 31 1 24 0;
+#X connect 32 0 31 0;
