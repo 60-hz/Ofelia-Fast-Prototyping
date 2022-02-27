@@ -1,4 +1,4 @@
-#N canvas 280 76 962 588 12;
+#N canvas 318 190 962 588 12;
 #X obj 27 20 inlet;
 #X obj 27 676 outlet;
 #X text 116 10 http://openframeworks.kr/doxygen/classof_light.html#a511fcf1d033fd005ecdd5d0eb9c5811f
@@ -7,6 +7,7 @@
 , f 100;
 #X text 723 6 https://forum.openframeworks.cc/t/3-point-light-in-of/22075/2
 , f 100;
+#X obj 962 676 outlet;
 #X obj 27 47 ofelia d -c12 light\$0 \; \; local c = ofCanvas(this)
 \; local args = c:getArgs() \; local outlet = ofOutlet(this) \; local
 active \, attenuation \, cutoff \, concentration \, smooth \, debug
@@ -15,7 +16,7 @@ local position \, orientation \, scale = ofVec3f(0 \, 0 \, 0) \, ofVec3f(0
 \, 0 \, 0) \, ofVec3f(1 \, 1 \, 1) \; local ambient \, diffuse \, specular
 = ofFloatColor(0.2 \, 0.2 \, 0.2) \, ofFloatColor() \, ofFloatColor()
 \; \; function M.new() \; ofWindow.addListener("setup" \, this) \;
-if args[1] == nil then active = 1 else active = args[1] end \; if args[2]
+if args[1] == nil then active = 0 else active = args[1] end \; if args[2]
 == nil then attenuation = 1 end \; if args[3] == nil then cutoff =
 40 end \; if args[4] == nil then concentration = 20 end \; if args[5]
 == nil then smooth = 1 end \; M.setup() end \; \; function M.setup()
@@ -40,12 +41,11 @@ M.smooth(f) smooth = f end \; function M.debug(f) debug = f _lighting
 = 1 end \; function M.get() outlet:outletList(1 \, ofTable(light\$0:getIsEnabled()
 \, light\$0:getType() \, light\$0:getLightID() \, light\$0:getIsPointLight()))
 end \; \; function M.bang() \; ofSetSmoothLighting(smooth ~= 0) \;
-if debug == 1 then ofDisableLighting() light\$0:draw() if _lighting
-== 1 then ofEnableLighting() end end \; outlet:outletBang(0) end \;
-function M.free() \; light\$0:disable() ofWindow.removeListener("setup"
+if debug == 1 then ofDisableLighting() ofNoFill() light\$0:draw() if
+_lighting == 1 then ofEnableLighting() end end \; outlet:outletBang(0)
+ofFill() end \; function M.free() \; light\$0:disable() ofWindow.removeListener("setup"
 \, this) light\$0 = nil collectgarbage() \; end \;;
 #X f 134;
-#X obj 962 676 outlet;
-#X connect 0 0 5 0;
-#X connect 5 0 1 0;
-#X connect 5 1 6 0;
+#X connect 0 0 6 0;
+#X connect 6 0 1 0;
+#X connect 6 1 5 0;

@@ -3,13 +3,13 @@
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 462 45 declare -lib ofelia;
-#X text 200 193 -> rendering priority set by draw order;
-#X text 201 181 depthTest "Off": Easier for 2d;
+#X text 200 203 -> rendering priority set by draw order;
+#X text 201 191 depthTest "Off": Easier for 2d;
 #X text 198 162 -> rendering priority set by Z-position;
-#X text 198 150 depthTest "On" (default): Better for 3d;
+#X text 198 143 depthTest "On" (default): Better for 3d;
 #X obj 14 98 of.draw;
 #X obj 14 263 of.box, f 15;
-#X obj 109 149 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 109 149 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 14 123 of.image data/image.jpg;
 #X text 128 147 on/off;

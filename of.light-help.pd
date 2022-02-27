@@ -1,17 +1,15 @@
-#N canvas 526 54 622 594 12;
+#N canvas 496 89 622 525 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 474 76 declare -lib ofelia;
 #X msg 521 27 lighting \$1;
-#X obj 521 9 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 521 9 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 20 128 of.pointlight;
 #X obj 20 345 of.translate 0 0 -200;
 #X obj 20 393 of.sphere 100 50;
 #X obj 20 186 of.light 0;
-#X obj 20 220 of.rectrounded 250 80 50 center line 5;
-#X text 16 19 Exclude subsequents objects from light;
 #X obj 20 310 of.light 1;
 #X obj 87 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -20,19 +18,22 @@
 #X text 16 39 Arguments: light-allowance (default: 1);
 #X text 103 310 -> turn light on again;
 #X text 103 186 -> turn off light;
-#X text 25 529 More infos on lighting: https://openframeworks.cc/documentation/gl/ofLight/
+#X text 25 444 More infos on lighting: https://openframeworks.cc/documentation/gl/ofLight/
 , f 81;
 #X obj 521 50 of.window 1;
 #X obj 20 98 of.draw 10 1;
-#X obj 20 254 of.text Unlighted 20 center;
-#X connect 2 0 17 0;
+#X obj 20 220 of.rectrounded 250 80 50 50 50 50 line 5 center;
+#X obj 20 254 of.text Unlighted 20 center line;
+#X text 16 19 Activate / desactivate subsequents objects for light
+;
+#X connect 2 0 15 0;
 #X connect 3 0 2 0;
 #X connect 4 0 7 0;
 #X connect 5 0 6 0;
-#X connect 7 0 8 0;
-#X connect 8 0 19 0;
-#X connect 10 0 5 0;
-#X connect 11 0 7 1;
-#X connect 12 0 10 1;
-#X connect 18 0 4 0;
-#X connect 19 0 10 0;
+#X connect 7 0 17 0;
+#X connect 8 0 5 0;
+#X connect 9 0 7 1;
+#X connect 10 0 8 1;
+#X connect 16 0 4 0;
+#X connect 17 0 18 0;
+#X connect 18 0 8 0;

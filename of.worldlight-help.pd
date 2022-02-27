@@ -1,10 +1,10 @@
-#N canvas 577 175 703 594 12;
+#N canvas 577 135 703 594 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X floatatom 76 218 5 0 0 0 - - -;
-#X msg 58 130 active \$1;
-#X obj 58 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X floatatom 86 238 5 0 0 0 - - -;
+#X msg 58 140 active \$1;
+#X obj 58 117 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 113 359 debug \$1;
 #X obj 113 337 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
@@ -17,7 +17,7 @@
 #X floatatom 461 346 5 0 0 0 - - -;
 #X text 25 539 More infos on basic lighting: https://learnopengl.com/Lighting/Basic-Lighting
 , f 81;
-#X text 76 105 light on/off (default 1);
+#X text 76 115 light on/off (default 1);
 #X text 499 345 red ambient color;
 #X floatatom 461 378 5 0 0 0 - - -;
 #X msg 461 430 diffuse 0 0.2 \$1;
@@ -26,11 +26,10 @@
 #X text 457 326 color control:;
 #X text 16 39 Arguments: active \, attenuation \, cutoff \, concentration
 \, smooth \, debug (default: 1 1 40 20 1 0);
-#X obj 26 488 of.worldlight;
-#X msg 76 241 orientation 0 \$1 0;
+#X msg 86 261 orientation 0 \$1 0;
 #X obj 469 49 declare -lib ofelia;
 #X msg 403 19 lighting \$1;
-#X obj 380 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 380 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X floatatom 487 153 5 0 0 0 size - -;
 #X floatatom 569 154 5 0 0 0 geo - -;
@@ -39,50 +38,52 @@
 #X floatatom 500 215 5 0 0 0 size - -;
 #X floatatom 555 216 5 0 0 0 geo - -;
 #X obj 446 247 of.sphere 100 50;
-#X text 525 96 draw objects;
 #X text 16 19 Create a "world" or directional light;
 #X text 25 509 Directional light : Light comes evenly from a given
 direction \, as if coming from a plan of infinite size and distance
 from the lit object, f 81;
-#X text 115 219 orientation Y;
+#X text 125 239 orientation Y;
 #X text 588 452 (default 1 \, 1 \, 1);
 #X text 588 430 (default 1 \, 1 \, 1);
 #X text 598 407 (default 0.2 \, 0.2 \, 0.2);
-#X obj 446 98 of.draw 1 1;
-#X obj 76 156 loadbang;
-#X msg 76 180 200;
+#X obj 86 186 loadbang;
+#X msg 86 210 200;
 #X obj 113 306 loadbang;
 #X text 135 338 show light source;
-#X obj 26 84 of.draw 2;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X connect 1 0 21 0;
-#X connect 2 0 20 0;
+#X obj 446 98 of.draw 1 1;
+#X obj 26 84 of.draw 2 1;
+#X text 111 80 draw with depth;
+#X text 529 96 draw with depth;
+#X obj 26 488 of.worldlight 1;
+#X connect 1 0 20 0;
+#X connect 2 0 47 0;
 #X connect 3 0 2 0;
-#X connect 4 0 20 0;
+#X connect 4 0 47 0;
 #X connect 5 0 4 0;
 #X connect 6 0 7 0;
-#X connect 7 0 20 0;
-#X connect 9 0 20 0;
+#X connect 7 0 47 0;
+#X connect 9 0 47 0;
 #X connect 10 0 9 0;
 #X connect 14 0 15 0;
-#X connect 15 0 20 0;
-#X connect 16 0 20 0;
-#X connect 21 0 20 0;
-#X connect 23 0 45 0;
-#X connect 24 0 23 0;
-#X connect 25 0 28 1;
-#X connect 25 0 28 2;
-#X connect 26 0 28 3;
-#X connect 26 0 28 4;
-#X connect 27 0 28 0;
-#X connect 28 0 31 0;
-#X connect 29 0 31 1;
-#X connect 30 0 31 2;
-#X connect 39 0 27 0;
-#X connect 40 0 41 0;
-#X connect 41 0 1 0;
-#X connect 42 0 5 0;
-#X connect 44 0 20 0;
-#X connect 46 0 45 0;
+#X connect 15 0 47 0;
+#X connect 16 0 47 0;
+#X connect 20 0 47 0;
+#X connect 22 0 41 0;
+#X connect 23 0 22 0;
+#X connect 24 0 27 1;
+#X connect 24 0 27 2;
+#X connect 25 0 27 3;
+#X connect 25 0 27 4;
+#X connect 26 0 27 0;
+#X connect 27 0 30 0;
+#X connect 28 0 30 1;
+#X connect 29 0 30 2;
+#X connect 37 0 38 0;
+#X connect 38 0 1 0;
+#X connect 39 0 5 0;
+#X connect 42 0 41 0;
+#X connect 43 0 26 0;
+#X connect 44 0 47 0;

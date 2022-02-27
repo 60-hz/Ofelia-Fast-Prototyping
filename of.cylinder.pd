@@ -46,12 +46,13 @@ end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
 cylinder\$0:lookAt(lookat:vec3()) end \; function M.texture(f) if f
 > 0 then cylinder\$0:enableTextures() else cylinder\$0:disableTextures()
 end end \; function M.texturemap(l) cylinder\$0:mapTexCoords(l[1] \,
-l[2] \, l[3] \, l[4]) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
-\; if drawmode == "fill" then cylinder\$0:drawFaces() end \; if drawmode
-== "point" then cylinder\$0:drawVertices() end \; if drawmode == "line"
-then cylinder\$0:drawWireframe() end \; if drawmode == "normal" then
-cylinder\$0:drawNormals(normalsize) end \; if debug > 0 then cylinder\$0:drawAxes(debug)
-end \; return anything \; end \;;
+l[2] \, math.max(l[3] \, 0.01) \, math.max(l[4] \, 0.01)) end \; \;
+function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode ==
+"fill" then cylinder\$0:drawFaces() end \; if drawmode == "point" then
+cylinder\$0:drawVertices() end \; if drawmode == "line" then cylinder\$0:drawWireframe()
+end \; if drawmode == "normal" then cylinder\$0:drawNormals(normalsize)
+end \; if debug > 0 then cylinder\$0:drawAxes(debug) end \; return
+anything \; end \;;
 #X f 130;
 #X connect 0 0 13 0;
 #X connect 2 0 7 0;

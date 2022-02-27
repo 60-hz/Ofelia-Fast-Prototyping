@@ -1,0 +1,37 @@
+#N canvas 580 23 700 722 12;
+#X declare -lib ofelia;
+#X declare -path of;
+#X obj 358 53 declare -lib ofelia;
+#X text 26 182 Rendering;
+#X obj 20 50 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 20 68 fullscreen \$1;
+#X obj 358 85 declare -path of;
+#X obj 20 150 of.window 1 640 480;
+#X obj 126 226 loadbang;
+#X obj 21 220 of.draw -1;
+#X obj 21 319 ofelia d videoplane \; local mov = ofVideoPlayer() \;
+local dir = ofCanvas(this):getDir() \; \; function M.free() \; mov:stop()
+mov = nil end \; function M.open(string) \; mov:close() \; mov:load(dir
+.. "/" .. string) \; mov:play() \; ofSetBackgroundAuto(false) \; ofSetFrameRate
+(30) \; x = 0 \; y = 0 \; end \; \; function M.bang() \; mov:update()
+\; mov:draw(x \, y) \; if mov:isFrameNew() then \; x = x + mov:getWidth()
+\; if (x > ofGetWidth()) then \; x = 0 \; y = y + mov:getHeight() \;
+end \; if (y > ofGetHeight()) then \; x = 0 \; y = 0 \; end \; end
+\; end \;;
+#X f 75;
+#X msg 41 96 dimen 1280 720;
+#X msg 165 96 framerate 60;
+#X msg 166 67 create;
+#X text 195 226 open and play;
+#X text 23 27 diplay a new frame in line until the botom of the screen
+;
+#X msg 126 260 open len-lye.mov;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 6 0 14 0;
+#X connect 7 0 8 0;
+#X connect 9 0 5 0;
+#X connect 10 0 5 0;
+#X connect 11 0 5 0;
+#X connect 14 0 8 0;

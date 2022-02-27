@@ -1,0 +1,73 @@
+#N canvas 1 96 757 682 12;
+#X declare -lib ceammc;
+#X declare -stdpath ofelia;
+#X declare -stdpath ceammc;
+#X declare -stdpath of;
+#N canvas 671 136 435 113 INIT 0;
+#X obj 5 9 declare -lib ceammc;
+#X obj 5 52 declare -stdpath ofelia;
+#X obj 5 30 declare -stdpath ceammc;
+#X obj 5 73 declare -stdpath of;
+#X text 149 8 charge librarie ceammc;
+#X text 179 28 chemin dossier librairie ceammc;
+#X text 177 50 chemin dossier librairie ofelia;
+#X text 147 75 chemin dossier vers abstractions of;
+#X restore 548 18 pd INIT;
+#X obj 27 194 of.draw;
+#X text 53 291 demander un nombre entre -320 et 320;
+#X obj 53 496 fade 1000;
+#X obj 219 498 fade 1000;
+#X obj 26 551 of.translate, f 35;
+#X text 78 530 x;
+#X text 222 528 y;
+#X msg 86 451 0;
+#X obj 388 273 r tempo;
+#X text 466 270 -> Note: peut être résumé en "r" pour "receive":
+, f 34;
+#X text 128 450 -> retour à zero;
+#X obj 86 417 r centre;
+#X text 151 426 -> écoute tout ce qu'on lui envoie "sans fils" avec
+le mot clé "centre";
+#X text 31 8 Ce patch est une "ABSTRACTION" : un patch "enfant" destiné
+à être appelé ou cité en tant qu'objet \, par un patch "parent"
+qui s'appelle: 5-piscine.pd;
+#X text 30 60 Si on modifie ce patch \, chaque occurence de ce programme
+sera modifié dans 5-piscine.pd;
+#X obj 53 311 receive tempo;
+#X obj 219 312 receive tempo;
+#X obj 387 221 s tempo;
+#X obj 387 193 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 388 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 53 335 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 219 336 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 26 598 of.sphere 100 20;
+#X obj 27 245 of.depth 1;
+#X text 110 246 -> calculer la profondeur;
+#X text 30 116 -> N'importe quel programme peut être cité en tant
+qu'objet par un autre programme. Cela permet de réalser un programme
+plus MODULAIRE.;
+#X text 301 500 -> glisser vers la nouvelle position;
+#X obj 53 367 expr random(-320 \, 320);
+#X obj 219 369 expr random(-240 \, 240);
+#X text 469 222 s ou send: envoie sans fil à travers le mot clé "tempo"
+, f 29;
+#X connect 1 0 24 0;
+#X connect 3 0 5 1;
+#X connect 4 0 5 2;
+#X connect 5 0 23 0;
+#X connect 8 0 4 0;
+#X connect 8 0 3 0;
+#X connect 9 0 20 0;
+#X connect 12 0 8 0;
+#X connect 16 0 21 0;
+#X connect 17 0 22 0;
+#X connect 19 0 18 0;
+#X connect 21 0 28 0;
+#X connect 22 0 29 0;
+#X connect 24 0 5 0;
+#X connect 28 0 3 0;
+#X connect 29 0 4 0;

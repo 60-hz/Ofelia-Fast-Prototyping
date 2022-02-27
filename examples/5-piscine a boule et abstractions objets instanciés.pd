@@ -1,0 +1,88 @@
+#N canvas 596 49 684 683 12;
+#X declare -lib ceammc;
+#X declare -stdpath ofelia;
+#X declare -stdpath ceammc;
+#X declare -stdpath of;
+#N canvas 671 136 435 113 INIT 0;
+#X obj 5 9 declare -lib ceammc;
+#X obj 5 52 declare -stdpath ofelia;
+#X obj 5 30 declare -stdpath ceammc;
+#X obj 5 73 declare -stdpath of;
+#X text 149 8 charge librarie ceammc;
+#X text 179 28 chemin dossier librairie ceammc;
+#X text 177 50 chemin dossier librairie ofelia;
+#X text 147 75 chemin dossier vers abstractions of;
+#X restore 968 20 pd INIT;
+#X obj 50 10 of.window 1 640 480;
+#X obj 48 388 loadbang;
+#X obj 54 211 boule;
+#X obj 55 243 boule;
+#X obj 102 211 boule;
+#X obj 103 243 boule;
+#X obj 150 210 boule;
+#X obj 151 242 boule;
+#X obj 44 690 metro 1000;
+#X obj 44 746 send tempo;
+#X obj 58 280 clone boule 10;
+#X text 48 137 Définitions du mot « instancier » en Programmation
+informatique: fabriquer un exemplaire d'un élément à partir d'un
+modèle qui lui sert en quelque sorte de moule.;
+#X text 166 280 -> clone permet de dupliquer rapidement une abstraction!
+;
+#X text 48 355 On positionne un point de lumière (à la position caméra)
+pour donner du volume:;
+#X obj 42 817 receive tempo;
+#X text 199 212 -> on cite plusieurs fois le programme boule écrit
+grâce à un nouvel objet!, f 42;
+#X text 64 713 Demander une position aléatoire pour chaque boule;
+#X text 198 12 -> gestionnaire de fenêtre;
+#X text 200 248 Click en mode ACTION ouvre le programme boule!;
+#X text 178 415 -> la lumière en un peu devant la sphere pour éclairer
+la boule par devant, f 36;
+#X obj 44 545 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 44 714 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 42 841 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 74 644 send centre;
+#X obj 44 512 of.keypress Space;
+#X text 92 610 envoie l'orde de retourner au centre dans chaque boule
+, f 37;
+#X obj 74 588 select 0;
+#X obj 74 616 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 48 491 touche espace dans fenetre = activer / desactiver;
+#X msg 48 414 position 0 0 300;
+#X obj 9 40 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 10 47 Piscine à boule: on créer un modèle de boule "boule.pd"
+et on la cite plusieurs fois, f 85;
+#X text 48 96 - Appelle d'abstractions "boule.pd" \, on dit qu'on créer
+une "instance". Dans PureData cela s'appelle une ABSTRACTION.;
+#X text 44 764 envoie sans fil à "tempo" dans chaque boule;
+#X obj 9 310 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 39 321 Lumière pour ajouter du relief avec des ombres;
+#X text 64 838 -> on reçoit ici et dans chaque instance "boule.pd"
+;
+#X obj 48 447 of.pointlight 1;
+#N canvas 871 178 307 187 Press_Space_bar_text_layer 0;
+#X obj 30 30 of.draw;
+#X obj 30 57 of.translate 0 -200 0;
+#X obj 30 85 of.color 0 0 0;
+#X obj 30 114 of.text press\ Space\ bar\ here 20 center;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X restore 430 507 pd Press_Space_bar_text_layer;
+#X connect 2 0 30 0;
+#X connect 9 0 22 0;
+#X connect 15 0 23 0;
+#X connect 21 0 9 0;
+#X connect 21 0 27 0;
+#X connect 22 0 10 0;
+#X connect 25 0 21 0;
+#X connect 27 0 28 0;
+#X connect 28 0 24 0;
+#X connect 30 0 38 0;

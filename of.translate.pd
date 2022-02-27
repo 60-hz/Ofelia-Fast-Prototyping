@@ -1,13 +1,13 @@
-#N canvas 444 149 544 559 12;
-#X obj 21 21 inlet;
-#X obj 21 481 outlet;
-#X obj 102 21 inlet;
-#X obj 162 20 inlet;
-#X obj 224 20 inlet;
+#N canvas 444 149 531 513 12;
+#X obj 21 11 inlet;
+#X obj 21 441 outlet;
+#X obj 102 11 inlet;
+#X obj 162 10 inlet;
+#X obj 224 10 inlet;
 #X msg 162 41 y \$1;
 #X msg 102 41 x \$1;
 #X msg 224 41 z \$1;
-#X text 438 450 RI;
+#X text 438 420 RI;
 #X obj 21 78 ofelia d translate-\$0 \; local c = ofCanvas(this) \;
 local args = c:getArgs() \; local pos \, debug = ofVec3f() \, 0 \;
 \; function M.new() \; if args[1] == nil then pos.x = 0 else pos.x

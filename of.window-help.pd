@@ -45,9 +45,38 @@
 #X text 110 133 or;
 #X text 61 170 Window size (width height);
 #X text 35 84 Window state;
-#X obj 365 501 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 365 491 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#N canvas 441 171 671 369 Buffer_mouse 0;
+#X text 33 431 get: sizeX \, sizeY \, framerate \, window mode \, orientation
+;
+#X text 19 43 Arguments: window_state \, width \, height \, framerate
+\, autoclear \, posX \, posY, f 78;
+#X text 151 107 = create;
+#X text 175 136 = destroy;
+#X text 19 20 Make a window rendering context (same object interface
+for all windows), f 73;
+#X text 320 291 get: size framerate \, window mode \, orientation;
+#X obj 35 374 of.window 1 640 480;
+#X text 187 371 -> Arguments: window_state \, width \, height \, framerate
+\, autoclear \, posX \, posY, f 28;
+#X text 33 444 On resizing window with mouse: sizeX \, sizeY;
+#X text 97 489 To draw something inside of.window \, connect of.draw
+to a shape or a text:, f 32;
+#X text 390 488 draw without autoclear test, f 32;
+#X msg 419 367 glversion 3 2;
+#X text 524 363 set openGL version, f 12;
+#X text 524 396 set openGLES version, f 12;
+#X msg 419 397 glesversion 2;
+#X obj 36 541 of.text of.window-help 32 center;
+#N canvas 0 23 450 177 camera 0;
+#X text 18 14 The default camera is positioned at (0 \, 0 \, 0) with
+a 60 degree field of view. Its up vector is the positive y-axis \,
+and it is looking down the negative z-axis. Near and far planes are
+determined by the current viewport size.;
+#X obj 22 94 of.camera;
+#X text 98 93 -> more infos;
+#X restore 365 544 pd camera;
+#N canvas 441 171 671 369 Buffer_mouse_example 0;
 #X obj 28 130 of.window;
 #X msg 28 95 autoclear \$1;
 #X obj 28 44 inlet;
@@ -82,47 +111,26 @@ position update, f 38;
 #X connect 17 0 4 0;
 #X connect 18 0 19 0;
 #X connect 19 0 1 0;
-#X restore 365 526 pd Buffer_mouse;
-#X text 33 431 get: sizeX \, sizeY \, framerate \, window mode \, orientation
-;
-#X text 19 43 Arguments: window_state \, width \, height \, framerate
-\, autoclear \, posX \, posY, f 78;
-#X text 151 107 = create;
-#X text 175 136 = destroy;
-#X text 19 20 Make a window rendering context (same object interface
-for all windows), f 73;
-#X text 320 291 get: size framerate \, window mode \, orientation;
-#X obj 35 374 of.window 1 640 480;
-#X text 187 371 -> Arguments: window_state \, width \, height \, framerate
-\, autoclear \, posX \, posY, f 28;
-#X text 33 444 On resizing window with mouse: sizeX \, sizeY;
-#X text 97 489 To draw something inside of.window \, connect of.draw
-to a shape or a text:, f 32;
-#X text 390 498 draw without autoclear test, f 32;
-#X msg 419 367 glversion 3 2;
-#X text 524 363 set openGL version, f 12;
-#X text 524 396 set openGLES version, f 12;
-#X msg 419 397 glesversion 2;
-#X obj 36 541 of.text of.window-help 32 center;
-#X connect 1 0 46 0;
-#X connect 2 0 46 0;
-#X connect 4 0 46 0;
+#X restore 365 516 pd Buffer_mouse_example;
+#X connect 1 0 45 0;
+#X connect 2 0 45 0;
+#X connect 4 0 45 0;
 #X connect 5 0 4 0;
 #X connect 6 0 7 0;
-#X connect 7 0 46 0;
+#X connect 7 0 45 0;
 #X connect 8 0 9 0;
-#X connect 9 0 46 0;
-#X connect 10 0 46 0;
-#X connect 11 0 46 0;
+#X connect 9 0 45 0;
+#X connect 10 0 45 0;
+#X connect 11 0 45 0;
 #X connect 14 0 15 0;
-#X connect 15 0 46 0;
-#X connect 16 0 46 0;
-#X connect 17 0 46 0;
+#X connect 15 0 45 0;
+#X connect 16 0 45 0;
+#X connect 17 0 45 0;
 #X connect 18 0 20 0;
-#X connect 19 0 46 0;
-#X connect 20 0 46 0;
-#X connect 24 0 55 0;
-#X connect 26 0 46 0;
-#X connect 29 0 46 0;
-#X connect 38 0 39 0;
-#X connect 46 0 3 0;
+#X connect 19 0 45 0;
+#X connect 20 0 45 0;
+#X connect 24 0 54 0;
+#X connect 26 0 45 0;
+#X connect 29 0 45 0;
+#X connect 38 0 56 0;
+#X connect 45 0 3 0;

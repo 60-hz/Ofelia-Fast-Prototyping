@@ -18,7 +18,7 @@
 args = c:getArgs() \; local width \, height \, depth \, resw \, resh
 \, resd \, drawmode \, strokeweight \, debug \, normalsize = args[1]
 \, args[2] \, args[3] \, args[4] \, args[5] \, args[6] \, args[7] \,
-args[8] \, 0 \, 1 \; local position \, orientation \, scale \, lookat
+args[8] \, 0 \, 10 \; local position \, orientation \, scale \, lookat
 = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \; \;
 function M.new() \; ofWindow.addListener("setup" \, this) \; if args[1]
 == nil then width = 100 end \; if args[2] == nil then height = 100
@@ -47,10 +47,11 @@ scale:set (l[1] \, l[2] \, l[3]) box\$0:setScale(scale:vec3()) end
 \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3] box\$0:lookAt(lookat:vec3())
 end \; function M.texture(f) if f > 0 then box\$0:enableTextures()
 else box\$0:disableTextures() end end \; function M.texturemap(l) box\$0:mapTexCoords(l[1]
-\, l[2] \, l[3] \, l[4]) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
-\; if drawmode == "fill" then box\$0:drawFaces() end \; if drawmode
-== "point" then box\$0:drawVertices() end \; if drawmode == "line"
-then box\$0:drawWireframe() end \; if drawmode == "normal" then box\$0:drawNormals(normalsize)
+\, l[2] \, math.max(l[3] \, 0.01) \, math.max(l[4] \, 0.01)) end \;
+\; function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode
+== "fill" then box\$0:drawFaces() end \; if drawmode == "point" then
+box\$0:drawVertices() end \; if drawmode == "line" then box\$0:drawWireframe()
+end \; if drawmode == "normal" then box\$0:drawNormals(normalsize)
 end \; if debug > 0 then box\$0:drawAxes(debug) end \; return (anything)
 \; end \;;
 #X f 144;

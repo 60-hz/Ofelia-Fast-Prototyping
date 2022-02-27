@@ -33,10 +33,11 @@ orientation.z=l[3] sphere\$0:setOrientation(orientation:vec3()) end
 end \; function M.lookat(l) lookat.x=l[1] lookat.y=l[2] lookat.z=l[3]
 sphere\$0:lookAt(lookat:vec3()) end \; function M.texture(f) if f >
 0 then sphere\$0:enableTextures() else sphere\$0:disableTextures()
-end end \; function M.texturemap(l) sphere\$0:mapTexCoords(table.unpack(l))
-end \; \; function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode
-== "fill" then sphere\$0:drawFaces() end \; if drawmode == "point"
-then sphere\$0:drawVertices() end \; if drawmode == "line" then sphere\$0:drawWireframe()
+end end \; function M.texturemap(l) sphere\$0:mapTexCoords(l[1] \,
+l[2] \, math.max(l[3] \, 0.01) \, math.max(l[4] \, 0.01)) end \; \;
+function M.bang() \; ofSetLineWidth(strokeweight) \; if drawmode ==
+"fill" then sphere\$0:drawFaces() end \; if drawmode == "point" then
+sphere\$0:drawVertices() end \; if drawmode == "line" then sphere\$0:drawWireframe()
 end \; if drawmode == "normal" then sphere\$0:drawNormals(normalsize)
 end \; if debug > 0 then sphere\$0:drawAxes(debug) end \; outlet:outletBang(0)
 end \;;

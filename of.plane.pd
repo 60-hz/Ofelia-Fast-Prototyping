@@ -1,4 +1,4 @@
-#N canvas 398 41 870 755 12;
+#N canvas 398 23 870 755 12;
 #X obj 31 24 inlet;
 #X obj 31 784 outlet;
 #X obj 90 22 inlet;
@@ -39,12 +39,13 @@ end \; function M.scale(l) scale:set(table.unpack(l)) plane\$0:setScale(scale:ve
 end \; function M.lookat(l) lookat:set(table.unpack(l)) plane\$0:lookAt(lookat:vec3())
 end \; function M.texture(f) if f > 0 then plane\$0:enableTextures()
 else plane\$0:disableTextures() end end \; function M.texturemap(l)
-plane\$0:mapTexCoords(table.unpack(l)) end \; \; function M.bang()
-\; ofSetLineWidth(strokeweight) \; if drawmode == "fill" then plane\$0:drawFaces()
-end \; if drawmode == "point" then plane\$0:drawVertices() end \; if
-drawmode == "line" then plane\$0:drawWireframe() end \; if drawmode
-== "normal" then plane\$0:drawNormals(normalsize) end \; if debug >
-0 then plane\$0:drawAxes(debug) end \; return anything \; end \;;
+plane\$0:mapTexCoords(l[1] \, l[2] \, math.max(l[3] \, 0.01) \, math.max(l[4]
+\, 0.01)) end \; \; function M.bang() \; ofSetLineWidth(strokeweight)
+\; if drawmode == "fill" then plane\$0:drawFaces() end \; if drawmode
+== "point" then plane\$0:drawVertices() end \; if drawmode == "line"
+then plane\$0:drawWireframe() end \; if drawmode == "normal" then plane\$0:drawNormals(normalsize)
+end \; if debug > 0 then plane\$0:drawAxes(debug) end \; return anything
+\; end \;;
 #X f 115;
 #X connect 0 0 11 0;
 #X connect 2 0 6 0;

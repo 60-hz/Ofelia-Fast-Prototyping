@@ -1,4 +1,4 @@
-#N canvas 219 51 919 669 12;
+#N canvas 361 109 919 669 12;
 #X obj 31 -46 inlet;
 #X obj 31 619 outlet;
 #X text 862 613 RI;
@@ -8,7 +8,7 @@
 #X obj 31 50 r \$0-all;
 #X obj 82 1 s \$0-update;
 #X obj 134 23 s \$0-buffer;
-#N canvas 618 77 453 330 buffer 0;
+#N canvas 723 192 482 321 buffer 0;
 #X obj 20 20 inlet~;
 #X obj 20 127 tabwrite~ \$0-array;
 #X obj 99 86 metro 40;
@@ -20,11 +20,16 @@
 #X msg 279 66 start;
 #X msg 334 67 stop;
 #X obj 152 43 r \$0-updatetime;
-#X obj 35 45 loadbang;
-#X obj 35 68 \$1;
+#X obj 383 16 loadbang;
+#X obj 383 39 \$1;
 #X obj 179 135 loadbang;
 #X obj 179 158 \$2;
 #X obj 179 181 sel 0;
+#X obj 277 131 r \$0-resize;
+#X msg 277 162 set \$1 1 1;
+#X obj 305 183 r \$0-update;
+#X obj 383 63 s \$0-update;
+#X obj 277 210 switch~;
 #X connect 0 0 1 0;
 #X connect 2 0 1 0;
 #X connect 4 0 5 0;
@@ -35,10 +40,13 @@
 #X connect 9 0 1 0;
 #X connect 10 0 2 1;
 #X connect 11 0 12 0;
-#X connect 12 0 2 0;
+#X connect 12 0 19 0;
 #X connect 13 0 14 0;
 #X connect 14 0 15 0;
 #X connect 15 1 5 0;
+#X connect 16 0 17 0;
+#X connect 17 0 20 0;
+#X connect 18 0 20 0;
 #X restore 345 8 pd buffer;
 #X obj 31 -21 route resize float buffer time;
 #X obj 186 46 s \$0-updatetime;

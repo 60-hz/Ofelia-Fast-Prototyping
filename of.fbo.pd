@@ -1,40 +1,44 @@
-#N canvas 112 33 881 745 12;
+#N canvas 137 641 881 745 12;
 #X obj 15 0 inlet;
-#X obj 15 731 outlet;
+#X obj 15 741 outlet;
 #X text 695 701 RI;
 #X obj 430 734 outlet;
 #X obj 845 732 outlet;
 #X obj 15 30 ofelia d -c13 fbo-\$0 \; local canvas = ofCanvas(this)
 \; local args = canvas:getArgs() \; local outlet = ofOutlet(this) \;
-fbo\$0 = ofFbo() \; local clear = ofColor(0 \, 0 \, 0 \, 255) \; local
-width \, height \, type \, autoclear = 256 \, 256 \, GL_RGBA \, 1 \;
+local clear = ofColor(0 \, 0 \, 0 \, 255) \; local width \, height
+\, type \, autoclear \, dimg = 256 \, 256 \, 0 \, 1 \, ofTable() \;
 \; function M.new() \; ofWindow.addListener("setup" \, this) ofWindow.addListener("update"
 \, this) \; if args[1] == nil then width = 256 else width = args[1]
 end \; if args[2] == nil then height = 256 else height = args[2] end
-\; if args[3] == nil then autoclear = 1 else autoclear = args[3] end
-\; M.setup() end \; \; function M.free() \; ofWindow.removeListener("setup"
-\, this) ofWindow.removeListener("update" \, this) \; end \; \; function
-M.setup() \; if ofWindow.exists then fbo\$0:allocate(width \, height
-\, type) fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo() end end \;
-\; function M.allocate(l) width=l[1] height=l[2] fbo\$0:allocate(width
-\, height \, type) end \; function M.garbage(l) width=l[1] height=l[2]
-fbo\$0:allocate(width \, height \, type) fbo\$0:beginFbo() ofClear(0
-\, 0 \, 0 \, 255) fbo\$0:endFbo() end \; function M.clear() if ofWindow.exists
-then fbo\$0:clear() end end \; function M.autoclear(f) autoclear =
-f end \; function M.fill(l) clear.r=l[1] clear.g=l[2] clear.b=l[3]
-clear.a=l[4] fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo() end \;
-function M.updatetexture() fbo\$0:updateTexture() end \; function M.draw(list)
-fbo\$0:draw(list[1] \, list[2] \, list[3]) end \; function M.crop(l)
-fbo\$0:crop(l[1] \, l[2] \, l[3] \, l[4]) end \; function M.cropfrom(l)
-fbo\$0:cropfrom(image\$0 \, l[1] \, l[2] \, l[3] \, l[4]) end \; function
-M.drawsubsection(l) fbo\$0:drawSubsection(l[1] \, l[2] \, l[3] \, l[4]
-\, l[5] \, l[6]) end \; function M.get() outlet:outletList(2 \, ofTable
-(fbo\$0:isAllocated() \, fbo\$0:getWidth() \, fbo\$0:getHeight() \,
-fbo\$0:getNumTextures())) end \; \; function M.update() \; fbo\$0:beginFbo()
-\; ofTranslate(width*0.5 \, height*0.5 \, 0) \; if autoclear == 1 and
-ofWindow.exists then ofClear(clear) end \; outlet:outletBang(1) \;
-fbo\$0:endFbo() end \; function M.bang() \; fbo\$0:getTexture():bind()
-\; outlet:outletBang(0) \; fbo\$0:getTexture():unbind() \; end \;;
+\; if args[3] == nil then type = 0 else type = args[3] end \; if args[4]
+== nil then autoclear = 1 else autoclear = args[4] end \; M.setup()
+end \; \; function M.free() \; ofWindow.removeListener("setup" \, this)
+ofWindow.removeListener("update" \, this) \; end \; \; function M.setup()
+fbo\$0 = ofFbo() \; if ofWindow.exists then if type < 1 then fbo\$0:allocate(width
+\, height \, GL_RGB) else fbo\$0:allocate(width \, height \, GL_RGBA)
+end fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo() end end \; \;
+function M.allocate(l) width=l[1] height=l[2] type=l[3] M.setup() end
+\; function M.garbage(l) width=l[1] height=l[2] fbo\$0:allocate(width
+\, height \, type) fbo\$0:beginFbo() ofClear(0 \, 0 \, 0 \, 255) fbo\$0:endFbo()
+end \; function M.clear() if ofWindow.exists then fbo\$0:clear() end
+end \; function M.autoclear(f) autoclear = f end \; function M.color(l)
+clear:set(table.unpack(l)) fbo\$0:beginFbo() ofClear(clear) fbo\$0:endFbo()
+end \; function M.updatetexture() fbo\$0:updateTexture() end \; function
+M.draw(l) dimg = ofTable(table.unpack(l)) end \; function M.crop(l)
+image\$0:crop(table.unpack(l)) end \; function M.cropfrom(l) fbo\$0:cropfrom(image\$0
+\, (table.unpack(l))) end \; function M.drawsubsection(l) fbo\$0:drawSubsection((table.unpack(l)))
+end \; function M.mirror(l) fbo\$0:mirror(l[1]==1 \, l[2]==1) end \;
+function M.rotate(i) fbo\$0:rotate90(i) end \; function M.resize(l)
+fbo\$0:resize(l[1] \, l[2]) end \; function M.crop(l) fbo\$0:crop(table.unpack(l))
+end \; function M.get() outlet:outletList(2 \, ofTable (fbo\$0:isAllocated()
+\, fbo\$0:getWidth() \, fbo\$0:getHeight() \, fbo\$0:getNumTextures()))
+end \; \; function M.update() \; fbo\$0:beginFbo() \; ofTranslate(width*0.5
+\, height*0.5 \, 0) \; if autoclear == 1 and ofWindow.exists then ofClear(clear)
+end \; outlet:outletBang(1) \; fbo\$0:endFbo() end \; function M.bang()
+\; fbo\$0:getTexture():bind() \; outlet:outletBang(0) \; fbo\$0:getTexture():unbind()
+\; if dimg[1] == 1 then fbo\$0:draw(table.unpack(dimg \, 2 \, #dimg))
+end \; end \;;
 #X f 119;
 #X connect 0 0 5 0;
 #X connect 5 0 1 0;

@@ -1,4 +1,4 @@
-#N canvas 465 158 626 454 12;
+#N canvas 634 172 626 454 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -35,13 +35,13 @@
 #X obj 433 350 of.noiseplane;
 #X msg 210 254 mode \$1;
 #X obj 210 228 hradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144
--1 -1 4;
+-1 -1 0;
 #X msg 356 269 time \$1;
 #X floatatom 356 245 5 0 0 0 - - -;
 #X obj 356 212 i;
 #X obj 390 214 + 1;
 #X obj 356 184 metro 40;
-#X obj 356 155 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 356 155 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X text 207 207 Mesh Mode;
 #X msg 91 192 stroke 5;

@@ -88,6 +88,7 @@ offsetZ \, rotX \, rotY \, rotZ, f 56;
 #X text 225 146 Y:5 steps with offset 100;
 #X text 225 166 Z:1 step with offset 1;
 #X text 128 24 -> show example;
+#X text 92 91 -> no perspective deformation;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 2 0 1 1;

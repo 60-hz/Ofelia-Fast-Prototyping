@@ -39,6 +39,10 @@
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X msg 182 251 texturemap 0 0 1 1;
+#X msg 181 226 texture \$1;
+#X obj 181 209 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 1 0 14 0;
 #X connect 2 0 14 0;
 #X connect 3 0 14 0;
@@ -61,3 +65,6 @@
 #X connect 30 0 14 0;
 #X connect 31 0 14 0;
 #X connect 34 0 33 0;
+#X connect 35 0 14 0;
+#X connect 36 0 14 0;
+#X connect 37 0 36 0;

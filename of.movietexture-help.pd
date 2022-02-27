@@ -1,0 +1,313 @@
+#N canvas 438 97 842 681 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X msg 95 245 get;
+#X floatatom 244 354 5 0 0 0 - - -;
+#X obj 467 42 declare -lib ofelia;
+#X obj 30 93 of.draw;
+#X msg 93 145 pause;
+#X obj 170 144 openpanel;
+#X obj 170 122 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 170 173 open \$1;
+#X msg 93 216 close;
+#X msg 298 306 speed -1;
+#X floatatom 298 138 5 0 0 0 - - -;
+#X msg 298 162 position \$1;
+#X obj 301 119 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X text 348 215 loop on;
+#X msg 298 189 frame 30;
+#X text 363 189 jump to frame...;
+#X msg 171 203 update;
+#X msg 93 122 play;
+#X msg 93 192 stop;
+#X msg 93 168 resume;
+#X msg 298 283 speed 0.5;
+#X text 192 122 open file...;
+#X msg 537 140 position 0 \, speed 1 \, play;
+#X text 533 113 play from start at speed 1;
+#X obj 537 293 t a;
+#X msg 298 260 speed 2;
+#X text 358 259 double speed;
+#X text 371 284 half speed;
+#X text 368 306 play backward;
+#X text 127 246 get infos;
+#X text 250 396 <- get infos as list;
+#X text 338 138 go to position from 0 to 1;
+#X text 284 355 Go to frame... need to "pause" or "play" with some
+codec (no audio), f 68;
+#X text 383 160 (no audio);
+#X msg 582 245 fullrange;
+#X text 660 244 from 0 to totalframe;
+#X text 563 158 Set a part to play (in frame);
+#X msg 572 183 range 0 20;
+#X obj 447 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 468 589 Note: the movie player might behave a bit differently
+under different systems, f 39;
+#X msg 298 214 loop 1;
+#X text 348 238 loop off;
+#X msg 298 237 loop 0;
+#N canvas 834 326 305 230 Play_from...to...with_[line] 0;
+#X obj 24 85 line;
+#X floatatom 24 119 5 0 0 0 - - -;
+#X text 65 120 go to frame...;
+#X msg 24 54 0 \, 100 2000;
+#X text 20 30 ex: play from frame 0 to 100 in 2sec;
+#X connect 0 0 1 0;
+#X connect 3 0 0 0;
+#X restore 463 443 pd Play_from...to...with_[line];
+#N canvas 530 102 646 542 Encoding_information_for_smooth_playback
+0;
+#X text 45 214 -t duration (input/output), f 75;
+#X text 45 243 -to hh:mm:ss, f 75;
+#X text 45 171 -ss hh:mm:ss (secs_to_skip) When used as an input option
+(before -i) \, seeks in this input file to position., f 75;
+#X text 45 312 -vf scale=640:480 (change resolution \, 640:-1 to keep
+aspect ratio), f 75;
+#X text 45 341 -preset slow -crf 18 (Very high quality), f 75;
+#X text 45 361 -ar 44100 (audiorate), f 75;
+#X text 46 485 -filter:v "setpts=0.5*PTS";
+#X text 45 16 For smooth playback (frame by frame) \, set every frame
+as keyframe in your video exporter. On Apple computer \, use Apple
+ProRes if possible., f 72;
+#X text 45 98 ffmpeg -i input.mp4 -preset slow -crf 18 -vcodec libx264
+-x264-params keyint=1 output.mp4, f 75;
+#X text 45 419 ffmpeg -ss hh:mm:ss -to hh:mm:ss -i input.mp4 -vf scale=640:480
+-preset slow -crf 18 -vcodec libx264 -x264-params keyint=1 output.mp4
+, f 75;
+#X text 45 69 ffmpeg encoding with smooth framerate command:;
+#X text 45 142 ffmpeg Cut a sequence command (before -i):;
+#X text 45 282 ffmpeg resize:;
+#X text 45 390 ffmpeg rxample:, f 75;
+#X text 46 465 Play two times faster:;
+#X restore 464 476 pd Encoding_information_for_smooth_playback;
+#N canvas 577 303 386 409 loop_with_no_cut_with_[counter] 0;
+#X obj 212 154 metro 40;
+#X obj 212 123 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 212 279 5 0 0 0 - - -;
+#X text 61 18 using this may remove any cuts of the "play" and "loop
+1" message, f 32;
+#X obj 66 188 i, f 6;
+#X obj 66 214 + 1, f 6;
+#X obj 66 238 mod 99;
+#X floatatom 66 283 5 0 0 0 - - -;
+#X obj 66 154 metro 40;
+#X obj 66 123 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 78 326 frame loop from 0 to 99;
+#X obj 212 211 counter 0 99;
+#X text 208 100 counter object:;
+#X text 4 102 native PureData count:;
+#X text 158 153 or;
+#X connect 0 0 11 0;
+#X connect 1 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 4 1;
+#X connect 6 0 7 0;
+#X connect 8 0 4 0;
+#X connect 9 0 8 0;
+#X connect 11 0 2 0;
+#X restore 463 413 pd loop_with_no_cut_with_[counter];
+#X text 30 555 draw video on a plane;
+#X obj 468 19 of.window 1 640 360;
+#X obj 30 528 of.plane 640 360;
+#X obj 30 473 of.ortho 1;
+#X text 656 185 from frame 0 to 20;
+#X msg 582 213 range 40 60;
+#X text 676 214 from frame 40 to 60;
+#X msg 300 88 volume 0.5;
+#X text 384 88 sound volume 0-1;
+#X text 284 368 encode every keyframe for smooth playback, f 68;
+#X text 467 558 https://codecguide.com/, f 52;
+#X text 467 518 Note: Windows user might need to install the free "k-lite
+codec pack" to read movies:, f 52;
+#X msg 93 92 open data/video.mp4;
+#X text 28 47 Arguments: filename \, autostart \, loopmode \, speed
+;
+#N canvas 533 317 660 361 draw_on_screen 0;
+#X floatatom 41 29 5 0 0 0 - - -;
+#X msg 70 114 drawsubsection 1 100 0 100 100 120 200;
+#X msg 76 251 anchorpoint \$1 \$1;
+#X floatatom 76 223 5 0 0 0 - - -;
+#X text 117 223 change anchor point;
+#X text 217 187 Desactivate drawsubsection;
+#X text 149 83 Desactivate draw;
+#X msg 41 54 draw 1 \$1 0 0 100 100;
+#X msg 59 83 draw 0 0;
+#X msg 73 187 drawsubsection 0 0;
+#X text 201 53 activation \, X \, Y \, Z \, width \, height;
+#X text 82 27 pos X;
+#X text 37 4 draw image buffer on screen;
+#X text 349 112 active \, posX \, posY \, witdh \, height \, cropfromX
+\, cropfromY, f 42;
+#N canvas 502 246 589 401 Click_here_to_learn_more_about_draw_subsection
+0;
+#X obj 25 231 of.mouse;
+#X obj 25 258 spigot;
+#X obj 100 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 312 282 active \, posX \, posY \, witdh \, height \, cropfromX
+\, cropfromY \,, f 42;
+#X text 126 240 -> activate this to scroll image with mouse on window
+;
+#X obj 25 310 outlet;
+#X text 17 67 0/1: active \; X: position to draw cropped image at \;
+Y: position to draw cropped image at \; W: Width of subsection to draw
+\; H: Height of subsection to draw \; X: position in image to begin
+cropping from \; Y: position in image to begin cropping from \;, f
+49;
+#X text 15 14 Draws a subsection of the image \;, f 80;
+#X text 15 44 This functions like a clipping mask. Does not altering
+any pixel data \;, f 80;
+#X msg 25 286 drawsubsection 1 -100 0 200 100 \$1 \$2;
+#X text 21 198 Exemple:;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 2 0 1 1;
+#X connect 9 0 5 0;
+#X restore 73 151 pd Click_here_to_learn_more_about_draw_subsection
+;
+#X obj 20 279 send movietexture;
+#X connect 0 0 7 0;
+#X connect 1 0 15 0;
+#X connect 2 0 15 0;
+#X connect 3 0 2 0;
+#X connect 7 0 15 0;
+#X connect 8 0 15 0;
+#X connect 9 0 15 0;
+#X connect 14 0 15 0;
+#X restore 647 21 pd draw_on_screen;
+#N canvas 816 141 464 290 pixels_process 0;
+#X msg 39 168 crop 100 100 100 100;
+#X msg 39 194 cropfrom img 100 100 300 300;
+#X msg 40 90 mirror 1 0;
+#X text 124 90 vertical \, horizontal;
+#X msg 40 115 rotate 1;
+#X text 124 115 rotate by 90°;
+#X text 144 141 resize width \, height;
+#X text 152 65 0= Grayscale \, 1 =rgb \, 2 = rgba;
+#X text 245 193 to do...;
+#X text 190 168 width \, height \, posX \, posY (careful);
+#X msg 40 65 setimagetype \$1;
+#X obj 40 42 hradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144 -1
+-1 1;
+#X text 35 12 Careful: Cannot be undone!;
+#X msg 40 141 resize 100 100;
+#X obj 8 241 send movietexture;
+#X connect 0 0 14 0;
+#X connect 1 0 14 0;
+#X connect 2 0 14 0;
+#X connect 4 0 14 0;
+#X connect 10 0 14 0;
+#X connect 11 0 10 0;
+#X connect 13 0 14 0;
+#X restore 647 49 pd pixels_process;
+#X obj 137 415 print pixels;
+#X text 28 15 A simple movie player with pixel access (soon replaced
+by external [of.pixel] and [of.texture] objects);
+#X obj 30 379 of.movietexture data/video.mp4, f 31;
+#X obj 580 269 receive movietexture;
+#N canvas 527 48 651 683 Set_buffer_&_Pixels 0;
+#X obj 18 7 cnv 15 400 20 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#X msg 96 100 fill 0 0 0;
+#X obj 19 154 cnv 15 400 20 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#X floatatom 119 187 5 0 0 0 - - -;
+#X msg 135 237 update;
+#X floatatom 157 282 5 0 0 0 - - -;
+#X text 163 184 Set pixels X \, Y \, r \, g \, b \, a;
+#X msg 119 212 setpixel \$1 0 255 255 255 255;
+#X floatatom 174 329 5 0 0 0 - - -;
+#X text 220 327 set XY \, and update (carefull of the values!);
+#X text 203 282 set X -> end \, and update (carefull of the values!)
+;
+#X text 68 10 Allocate pixel buffer size and clear color;
+#X text 95 82 2 fill (clear);
+#X text 182 101 -> fill rgb (black). fill rgb or rgba if colortype
+=2;
+#X text 162 155 Set pixels;
+#X msg 157 308 setpixel \$1 0 255 0 0;
+#X msg 174 353 setpixel \$1 \$1 255 0 0;
+#X text 192 236 need if video stop;
+#X text 65 36 1/ allocate Width \, Height \, colortype -> need TO BE
+FIXED;
+#X obj 22 622 send movietexture;
+#X text 195 54 (0= Grayscale \, 1 =rgb \, 2 = rgba -> default);
+#X msg 71 54 allocate 10 10 1;
+#X connect 1 0 19 0;
+#X connect 3 0 7 0;
+#X connect 4 0 19 0;
+#X connect 5 0 15 0;
+#X connect 7 0 19 0;
+#X connect 8 0 16 0;
+#X connect 15 0 19 0;
+#X connect 16 0 19 0;
+#X connect 21 0 19 0;
+#X restore 647 76 pd Set_buffer_&_Pixels;
+#X obj 49 133 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 45 114 play;
+#N canvas 671 297 450 363 get_infos 0;
+#X obj 100 20 inlet;
+#X floatatom 123 110 5 0 0 0 isplaying - -;
+#X floatatom 146 133 5 0 0 0 currentframe - -;
+#X floatatom 193 185 5 0 0 0 pixel_width - -;
+#X floatatom 216 205 5 0 0 0 pixel_height - -;
+#X floatatom 169 160 5 0 0 0 totalframes - -;
+#X floatatom 100 83 5 0 0 0 isloaded - -;
+#X floatatom 262 250 5 0 0 0 duration - -;
+#X floatatom 286 272 5 0 0 0 frame/sec - -;
+#X obj 100 59 unpack 0 0 0 0 0 0 0 0 0, f 27;
+#X floatatom 239 228 5 0 0 0 ratio - -;
+#X connect 0 0 9 0;
+#X connect 9 0 6 0;
+#X connect 9 1 1 0;
+#X connect 9 2 2 0;
+#X connect 9 3 5 0;
+#X connect 9 4 3 0;
+#X connect 9 5 4 0;
+#X connect 9 6 10 0;
+#X connect 9 7 7 0;
+#X connect 9 8 8 0;
+#X restore 244 418 pd get_infos;
+#X text 111 475 ortho = no perspective;
+#X connect 1 0 65 0;
+#X connect 2 0 65 1;
+#X connect 4 0 65 0;
+#X connect 5 0 65 0;
+#X connect 6 0 8 0;
+#X connect 7 0 6 0;
+#X connect 8 0 65 0;
+#X connect 9 0 65 0;
+#X connect 10 0 65 0;
+#X connect 11 0 12 0;
+#X connect 12 0 65 0;
+#X connect 13 0 11 0;
+#X connect 15 0 65 0;
+#X connect 18 0 65 0;
+#X connect 19 0 65 0;
+#X connect 20 0 65 0;
+#X connect 21 0 65 0;
+#X connect 23 0 25 0;
+#X connect 25 0 65 0;
+#X connect 26 0 65 0;
+#X connect 35 0 25 0;
+#X connect 38 0 25 0;
+#X connect 39 0 48 0;
+#X connect 41 0 65 0;
+#X connect 43 0 65 0;
+#X connect 50 0 49 0;
+#X connect 52 0 25 0;
+#X connect 54 0 65 0;
+#X connect 59 0 65 0;
+#X connect 65 0 50 0;
+#X connect 65 1 63 0;
+#X connect 65 2 70 0;
+#X connect 66 0 25 0;
+#X connect 68 0 65 0;

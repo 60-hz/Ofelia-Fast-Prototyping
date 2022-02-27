@@ -1,16 +1,19 @@
-#N canvas 123 23 942 755 12;
+#N canvas 338 23 942 755 12;
 #X msg 22 -29 bang;
 #X msg 67 -29 add;
 #X obj 234 6 loadbang;
-#X obj 877 484 outlet;
+#X obj 877 554 outlet;
 #X obj 22 -78 inlet;
 #X obj 22 -52 route reset add bang;
 #X msg 113 -28 draw;
-#X obj 22 779 ofelia f \; local particleSystem = a \; local ps = particleSystem.new()
+#X obj 22 849 ofelia f \; local particleSystem = a \; local ps = particleSystem.new()
 \; function M.add() \; ps.addParticle() end \; function M.draw() ps.run()
 end \;;
 #X f 120;
-#X obj 22 489 ofelia f -c12 \; local outlet = ofOutlet(this) \; local
+#X obj 884 816 outlet;
+#X obj 67 7 s \$0-part;
+#X obj 53 825 r \$0-part;
+#X obj 22 559 ofelia f -c12 \; local outlet = ofOutlet(this) \; local
 particle = a \; function M.new(position) \; local o = ofTable() \;
 o.origin = position \; o.particles = ofTable() \; function o.addParticle()
 \; o.particles[#o.particles + 1] = particle.new(o.origin) outlet:outletList(1
@@ -19,18 +22,17 @@ o.origin = position \; o.particles = ofTable() \; function o.addParticle()
 then \; table.remove(o.particles \, i) outlet:outletList(1 \, ofTable(#o.particles))
 end end end \; return o end \; return M \;;
 #X f 120;
-#X obj 884 746 outlet;
-#X obj 67 7 s \$0-part;
-#X obj 53 755 r \$0-part;
 #X obj 22 31 ofelia f -c12 \$0-particle \; local outlet = ofOutlet(this)
-\; local size \, life \, pos \, vel \, accel \, color = 1 \, 100 \,
-ofVec3f() \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \, ofColor(255 \, 255
-\, 255) \; \; function M.new(l) \; local o = ofTable() \; o.acceleration
-= accel \; o.velocity = ofVec3f(ofRandom(-vel.x \, vel.x) \, ofRandom(-vel.y
-\, vel.y) \, ofRandom(-vel.z \, vel.z)) \; o.position = pos o.lifespan
-= life * 2.55 o.size = size \; function o.run() \; o.update() o.display()
-end \; function M.size(f) size = f end function M.life(f) life = f
-end function M.color(l) color:set (table.unpack(l)) end \; function
+\; local canvas = ofCanvas(this) \; local args = canvas:getArgs() \;
+local size \, life \, pos \, vel \, accel \, color = 1 \, 100 \, ofVec3f()
+\, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \, ofColor(255 \, 255 \, 255)
+\; \; function M.new(l) \; if args[1] == nil then life = 100 else life
+= args[1] end \; local o = ofTable() \; o.acceleration = accel \; o.velocity
+= ofVec3f(ofRandom(-vel.x \, vel.x) \, ofRandom(-vel.y \, vel.y) \,
+ofRandom(-vel.z \, vel.z)) \; o.position = pos o.lifespan = life *
+2.55 o.size = size \; function o.run() \; o.update() o.display() end
+\; function M.life(f) life = f end \; function M.size(f) size = f end
+\; function M.color(l) color:set (table.unpack(l)) end \; function
 M.acceleration(l) o.acceleration:set (table.unpack(l)) end \; function
 M.position(l) pos:set (table.unpack(l)) end \; function M.velocity(l)
 vel:set (table.unpack(l)) end \; \; function o.update() \; o.velocity
@@ -43,16 +45,16 @@ ofPopMatrix() \; end \; function o.isDead() \; if o.lifespan < 0 then
 M \;;
 #X f 120;
 #X connect 0 0 12 0;
-#X connect 1 0 10 0;
+#X connect 1 0 9 0;
 #X connect 2 0 12 0;
 #X connect 4 0 5 0;
 #X connect 5 0 0 0;
 #X connect 5 1 1 0;
 #X connect 5 2 6 0;
 #X connect 5 3 12 0;
-#X connect 6 0 10 0;
-#X connect 8 0 7 0;
-#X connect 8 1 9 0;
+#X connect 6 0 9 0;
+#X connect 10 0 7 0;
 #X connect 11 0 7 0;
-#X connect 12 0 8 0;
+#X connect 11 1 8 0;
+#X connect 12 0 11 0;
 #X connect 12 1 3 0;

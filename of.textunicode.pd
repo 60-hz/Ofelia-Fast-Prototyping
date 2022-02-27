@@ -1,0 +1,69 @@
+#N canvas 14 25 1266 753 12;
+#X obj 21 14 inlet;
+#X text 988 750 RI;
+#X obj 21 887 outlet;
+#X obj 1009 880 outlet;
+#X text 323 20 TODO: 3d extrusion text https://forum.openframeworks.cc/t/extrude-text-into-3d/6938/2
+, f 64;
+#X obj 21 64 ofelia d -c12 \$0-text \; local c = ofCanvas(this) \;
+local args = c:getArgs() \; local outlet = ofOutlet(this) \; local
+text \, fontname \, fontsize \, antialias \, fullchar \, contours \,
+simplify \, dpi \, drawmode \, posX \, posY \, align \, range \, debug
+= "of.text" \, "font.ttf" \, 32 \, true \, true \, true \, 0 \, 96
+\, "pix" \, 0 \, 0 \, "center" \, ofAlphabet_Latin \; local position
+\, orientation \, scale = ofVec3f() \, ofVec3f() \, ofVec3f(1 \, 1
+\, 1) \; \; function M.new() \; ofWindow.addListener("setup" \, this)
+\; if args[1] == nil then text = "of.text" else text = args[1] end
+\; if args[2] == nil then fontsize = 32 else fontsize = args[2] end
+\; if args[3] == nil then align = "left" else align = args[3] end \;
+if args[4] == nil then drawmode = "pix" else drawmode = args[4] end
+\; font\$0 = ofTrueTypeFont() node\$0 = ofNode() mesh\$0 = ofVboMesh()
+\; fontname = (c:getDir() .. "/" .. fontname) M.load() M.align(align)
+end \; function M.free() \; ofWindow.removeListener("setup" \, this)
+end \; \; function M.setup() M.load() M.align(align) \; node\$0:setPosition(position:vec3())
+node\$0:setOrientation(orientation:vec3()) node\$0:setScale(scale:vec3())
+end \; \; function M.open(s) fontname = (ofCanvas(this \, 1):getDir()
+.. "/" .. s) if (io.type(io.open(fontname \, "r"))) then M.load() end
+end \; function M.draw(s) drawmode = s end \; function M.text(l) if
+type(l)=="table" then text=(table.concat (l \, " ")) elseif type(l)=="string"
+then text=l else text="" end M.align(align) end \; function M.string(l)
+if type(l)=="table" then text=(string.char(table.unpack(l))) elseif
+type(l)=="number" then text = (string.char(l)) else text="" end M.align(align)
+end \; function M.list(l) if type(l) =="table" then text=(string.char(table.unpack(l)))
+elseif type(l)=="number" then text=(string.char(l)) else text="" end
+M.align(align) end \; function M.load() if ofWindow.exists then settings
+= ofTrueTypeFontSettings(fontname \, fontsize) settings:addRanges(range)
+settings.contours=contours settings.dpi=dpi settings.antialiased=antialias
+settings.simplifyAmt=simplify font\$0:load(settings) if font\$0:isLoaded()
+then print ("loaded " .. fontname) end end end \; function M.fontsize(f)
+fontsize = f M.load() end \; function M.align(s) align = s if align
+== "center" then posX = 0-font\$0:stringWidth(text)/2 end if align
+== "left" then posX=0 end if align == "right" then posX = 0-font\$0:stringWidth(text)
+end end \; function M.letterspace(f) font\$0:setLetterSpacing(f) end
+\; function M.lineheight(f) font\$0:setLineHeight(f) end \; function
+M.spacesize(f) font\$0:setSpaceSize(f) end \; function M.direction(f)
+font\$0:setDirection(f) end \; function M.aliasing(f) antialias = (f
+~= 0) M.load() end \; function M.simplify(f) simplify = f M.load()
+end \; function M.dpi(f) dpi = (f) M.load() end \; function M.fullchar(f)
+fullchar = (f ~= 0) M.load() end \; function M.debug(f) debug = f end
+\; function M.range(s) range = s end \; function M.position(l) position:set
+(table.unpack(l)) node\$0:setPosition(position:vec3()) end \; function
+M.orientation(l) orientation:set (table.unpack(l)) node\$0:setOrientation(orientation:vec3())
+end \; function M.scale(l) scale:set (table.unpack(l)) node\$0:setScale(scale:vec3())
+end \; function M.get() outlet:outletList(1 \, ofTable(font\$0:isLoaded()
+\, string.len(text) \, font\$0:stringWidth(text) \, font\$0:stringHeight(text)
+\, font\$0:getNumCharacters())) end \; \; function M.bang() \; node\$0:transformGL()
+\; if drawmode == "pix" then font\$0:drawString(text \, posX \, posY)
+end \; if drawmode == "shape" then font\$0:drawStringAsShapes(text
+\, posX \, posY+(fontsize/32*25)) end \; if drawmode == "line" then
+ofNoFill() ofScale(1 \, -1 \, 1) font\$0:drawStringAsShapes(text \,
+posX \, posY) ofFill() end \; if drawmode == "mesh" then mesh\$0 =
+font\$0:getStringMesh(text \, posX \, posY \, false) font\$0:getFontTexture():bind()
+mesh\$0:setMode(0) mesh\$0:draw() font\$0:getFontTexture():unbind()
+end \; node\$0:restoreTransformGL() \; if debug == 1 then ofDisableLighting()
+node\$0:draw() end if _lighting == 1 then ofEnableLighting() end \;
+outlet:outletBang(0) \; end \;;
+#X f 169;
+#X connect 0 0 5 0;
+#X connect 5 0 2 0;
+#X connect 5 1 3 0;

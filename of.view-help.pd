@@ -1,52 +1,57 @@
-#N canvas 517 235 629 406 12;
+#N canvas 422 152 642 467 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 137 110 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 105 115 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 32 116 of.draw;
-#X obj 32 335 of.box 100 100 100 5 5 5 line;
-#X msg 137 129 active \$1;
-#X msg 234 257 reset;
-#X obj 234 209 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 32 146 of.draw;
+#X obj 32 395 of.box 100 100 100 5 5 5 line;
+#X msg 105 154 active \$1;
+#X msg 234 326 reset;
+#X obj 234 279 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 234 229 debug \$1;
-#X msg 233 127 inertia \$1;
-#X obj 233 106 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 234 299 debug \$1;
+#X msg 104 214 inertia \$1;
+#X obj 104 193 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 233 183 sensitivity 2;
-#X floatatom 137 157 5 0 0 0 - - -;
-#X msg 137 177 distance \$1;
-#X obj 32 292 of.view;
-#X obj 431 336 of.view 1 400 0 0.5 1;
-#X text 432 315 default;
-#X msg 234 155 drag 0.8;
+#X msg 104 270 sensitivity 2;
+#X floatatom 235 230 5 0 0 0 - - -;
+#X msg 235 253 distance \$1;
+#X msg 105 242 drag 0.8;
 #X text 25 49 Arguments: active \, distance \, sensitivity \, inertia
 \, drag;
-#X text 27 22 Interactive 3d view (Experimental);
 #X obj 461 46 declare -lib ofelia;
-#X text 94 290 Note: reset all matrix transformations;
-#X msg 343 256 ortho \$1;
-#X obj 343 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X text 285 328 Note: reset all matrix transformations;
+#X msg 235 200 ortho \$1;
+#X obj 235 178 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 518 19 of.window 1;
-#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X text 336 130 Double-clic in window = reset view;
-#X text 335 107 Drag mouse in window = rotate camera;
+#X text 124 123 Double-clic in window = reset view;
+#X text 124 108 Drag mouse in window = rotate camera;
+#X text 253 392 (default 1 400 0 0.5 1);
+#X obj 32 362 of.view 0 100;
+#X text 259 175 -> orthogonal view: remove perspective deformation
+, f 51;
+#X text 274 229 -> view distance, f 17;
+#X text 102 95 activate interactive mouse view in window:;
+#X text 122 191 mouse physic;
+#X text 124 133 mouse wheel: zoom in / zoom out;
+#X text 27 22 Interactive 3d view;
 #X connect 1 0 4 0;
-#X connect 2 0 13 0;
-#X connect 4 0 13 0;
-#X connect 5 0 13 0;
+#X connect 2 0 24 0;
+#X connect 4 0 24 0;
+#X connect 5 0 24 0;
 #X connect 6 0 7 0;
-#X connect 7 0 13 0;
-#X connect 8 0 13 0;
+#X connect 7 0 24 0;
+#X connect 8 0 24 0;
 #X connect 9 0 8 0;
-#X connect 10 0 13 0;
+#X connect 10 0 24 0;
 #X connect 11 0 12 0;
-#X connect 12 0 13 0;
-#X connect 13 0 3 0;
-#X connect 16 0 13 0;
-#X connect 21 0 13 0;
-#X connect 22 0 21 0;
-#X connect 24 0 23 0;
+#X connect 12 0 24 0;
+#X connect 13 0 24 0;
+#X connect 17 0 24 0;
+#X connect 18 0 17 0;
+#X connect 20 0 19 0;
+#X connect 24 0 3 0;

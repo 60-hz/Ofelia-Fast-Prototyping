@@ -1,4 +1,4 @@
-#N canvas 436 23 936 755 12;
+#N canvas 344 23 936 755 12;
 #X obj 15 3 inlet;
 #X obj 15 937 outlet;
 #X obj 94 2 inlet;
@@ -45,6 +45,7 @@ videoplayer\$0:load(filename) end \; if start == 1 then print(speed)
 videoplayer\$0:setSpeed(speed) else videoplayer\$0:setSpeed(0) end
 \; if (videoplayer\$0:isLoaded()) then max = videoplayer\$0:getTotalNumFrames()
 print("loaded " .. filename)end end \; function M.update() videoplayer\$0:update()
+end \; function M.float(f) if f == 1 then M.play() else M.stop() end
 end \; function M.play() if speed > 0 then videoplayer\$0:setFrame(min)
 else videoplayer\$0:setFrame(max) end \; videoplayer\$0:setSpeed(speed)
 videoplayer\$0:play() end \; function M.stop() videoplayer\$0:stop()
@@ -63,8 +64,8 @@ M.anchorpoint(l) videoplayer\$0:setAnchorPoint(table.unpack(l)) end
 \; function M.get() outlet:outletList(1 \, ofTable(videoplayer\$0:isLoaded()
 \, videoplayer\$0:isPlaying() \, ofClamp(videoplayer\$0:getCurrentFrame()
 \, 0 \, videoplayer\$0:getTotalNumFrames()) \, videoplayer\$0:getTotalNumFrames()
-\, videoplayer\$0:getWidth() \, videoplayer\$0:getHeight() \, videoplayer\$0:getDuration()
-\, videoplayer\$0:getTotalNumFrames()/videoplayer\$0:getDuration()))
+\, videoplayer\$0:getWidth() \, videoplayer\$0:getHeight() \, videoplayer\$0:getWidth()/videoplayer\$0:getHeight()
+\, videoplayer\$0:getDuration() \, videoplayer\$0:getTotalNumFrames()/videoplayer\$0:getDuration()))
 end \; \; function M.bang() \; if loop == 0 then videoplayer\$0:setLoopState(OF_LOOP_NONE)
 end \; if loop == 1 then videoplayer\$0:setLoopState(OF_LOOP_NORMAL)
 end \; if loop == 2 then videoplayer\$0:setLoopState(OF_LOOP_PALINDROME)

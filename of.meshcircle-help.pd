@@ -1,0 +1,64 @@
+#N canvas 649 168 626 480 12;
+#X declare -lib ofelia;
+#X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 27 79 of.draw;
+#X msg 60 197 draw line;
+#X msg 60 220 draw point;
+#X msg 60 243 draw fill;
+#X floatatom 155 343 5 0 0 2 radius - -;
+#X floatatom 283 343 5 0 0 2 geometry - -;
+#X msg 403 116 100 400 center line 3;
+#X text 402 89 list of all parameters;
+#X text 419 144 Single parameter;
+#X msg 423 165 size 50;
+#X msg 60 174 stroke 10;
+#X obj 462 45 declare -lib ofelia;
+#X text 74 155 style;
+#X msg 437 214 debug \$1;
+#X obj 437 193 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 457 191 Show center axis;
+#X msg 154 177 orientation -45 50 0;
+#X msg 154 155 position 20 50 -100;
+#X msg 155 222 lookat 180 120 60;
+#X text 153 133 local transformation;
+#X obj 518 19 of.window 1;
+#X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 60 270 draw;
+#X obj 27 371 of.meshcircle 50 20 line 1, f 37;
+#X text 25 20 Draw a meshed circle with texture coordinate;
+#X obj 155 279 hradio 15 1 0 11 empty empty empty 0 -8 0 10 -262144
+-1 -1 7;
+#X text 152 258 ofPrimitiveMode;
+#X obj 27 110 of.image data/rgb.jpg;
+#X obj 403 325 of.meshcircle;
+#X text 24 40 Args: width \, height \, drawmode \, strokewidth \, mode
+;
+#X msg 155 300 mode \$1;
+#X obj 21 405 cnv 15 600 20 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 147 404 might be unstable under MacOS after screen rebuild
+;
+#X msg 154 199 scale 3 2 1;
+#X connect 1 0 28 0;
+#X connect 2 0 24 0;
+#X connect 3 0 24 0;
+#X connect 4 0 24 0;
+#X connect 5 0 24 1;
+#X connect 6 0 24 2;
+#X connect 7 0 29 0;
+#X connect 10 0 29 0;
+#X connect 11 0 24 0;
+#X connect 14 0 29 0;
+#X connect 15 0 14 0;
+#X connect 17 0 24 0;
+#X connect 18 0 24 0;
+#X connect 19 0 24 0;
+#X connect 22 0 21 0;
+#X connect 23 0 24 0;
+#X connect 26 0 31 0;
+#X connect 28 0 24 0;
+#X connect 31 0 24 0;
+#X connect 34 0 24 0;

@@ -1,27 +1,26 @@
-#N canvas 455 44 690 641 12;
+#N canvas 547 48 690 679 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 19 558 of.plane 200 200 5 5;
-#X obj 233 548 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 253 538 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 462 45 declare -lib ofelia;
 #X text 44 169 open png with alpha channel;
-#X text 232 576 0 = load fail;
-#X text 231 563 1 = load success;
-#X msg 261 386 get;
-#X floatatom 264 536 5 0 0 0 - - -;
-#X floatatom 296 516 5 0 0 0 - - -;
-#X floatatom 328 496 5 0 0 0 - - -;
-#X obj 233 470 unpack 0 0 0 0;
-#X text 295 386 get infos from right outlet;
+#X text 252 566 0 = load fail;
+#X text 251 553 1 = load success;
+#X msg 267 366 get;
+#X floatatom 284 526 5 0 0 0 - - -;
+#X floatatom 316 506 5 0 0 0 - - -;
+#X floatatom 348 486 5 0 0 0 - - -;
+#X obj 253 460 unpack 0 0 0 0;
+#X text 301 366 get infos from right outlet;
 #X text 72 329 save to file;
 #X msg 57 239 open https://puredata.info/portal_css/Plone%20Default/logo.png
 , f 68;
-#X text 469 507 1 = rgb;
-#X text 469 497 0 = grayscale;
-#X text 469 517 3 = rgba;
-#X text 376 497 Image type:;
+#X text 489 497 1 = rgb;
+#X text 489 487 0 = grayscale;
+#X text 489 507 3 = rgba;
+#X text 396 487 Image type:;
 #X obj 71 284 openpanel;
 #X msg 71 307 open \$1;
 #X obj 71 263 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -37,10 +36,6 @@ object and creates the ofTexture to display the pixels. ofImage uses
 a library called "freeImage" under the hood.;
 #X msg 46 191 open data/transparency.png;
 #X msg 73 348 save export.png;
-#X text 58 220 works also with online files if connected to internet
-;
-#X text 28 22 A powerful Image loader using memory and gpu based pixels.
-;
 #X obj 19 422 of.image data/rgb.jpg;
 #X obj 19 98 of.draw;
 #X obj 518 19 of.window 1;
@@ -50,15 +45,9 @@ a library called "freeImage" under the hood.;
 #X text 92 263 browse for a file...;
 #X text 26 40 Arguments: path \, draw \, posX \, posY \, posZ \, width
 \, height;
-#N canvas 629 114 589 566 Set_buffer_&_Pixels 0;
-#X floatatom 119 147 5 0 0 0 - - -;
-#X msg 135 207 update;
-#X msg 183 356 clear;
-#X text 203 54 (0= Grayscale \, 1 =rgb \, 2 = rgba);
-#X msg 96 110 fill 0 0 0;
-#X floatatom 157 252 5 0 0 0 - - -;
-#X text 230 356 clear all pixels = careful \, need re-allocate!;
-#X text 183 111 fill all black (rgb or rgba if colortype =2);
+#N canvas 527 48 651 683 Set_buffer_&_Pixels 0;
+#X msg 185 594 clear;
+#X text 232 594 clear all pixels = careful \, need re-allocate!;
 #N canvas 418 393 528 305 Work_with_alpha 0;
 #X obj 56 207 outlet;
 #X floatatom 85 116 5 0 0 0 - - -;
@@ -73,68 +62,113 @@ a library called "freeImage" under the hood.;
 #X connect 1 0 5 0;
 #X connect 2 0 0 0;
 #X connect 5 0 0 0;
-#X restore 184 325 pd Work_with_alpha;
-#X msg 71 44 allocate 10 10 1;
-#X floatatom 205 395 5 0 0 0 - - -;
-#X msg 205 419 grab \$1 100 100 100;
-#X obj 22 452 outlet;
-#X text 107 88 2/ fill it (clear) al pixels to black;
-#X msg 119 172 setpixel \$1 0 255 255 255 255;
-#X text 163 144 Set pixels X \, Y \, r \, g \, b \, a;
-#X msg 157 278 setpixel \$1 0 255 0 0 \, update;
-#X text 203 252 set \, and update (carefull of the values!);
-#X text 205 39 Width \, Height \, colortype;
-#X text 68 10 1/ allocate pixel buffer size;
-#X text 192 206 need after set pixel;
-#X connect 0 0 14 0;
-#X connect 1 0 12 0;
-#X connect 2 0 12 0;
-#X connect 4 0 12 0;
-#X connect 5 0 16 0;
-#X connect 8 0 12 0;
-#X connect 9 0 12 0;
-#X connect 10 0 11 0;
-#X connect 11 0 12 0;
-#X connect 14 0 12 0;
-#X connect 16 0 12 0;
+#X restore 102 118 pd Work_with_alpha;
+#X obj 22 622 outlet;
+#X msg 180 564 save \$1;
+#X obj 180 540 savepanel;
+#X obj 180 515 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 176 429 Grabs pixels from the opengl window specified by the
+region (x \, y \, w \, h) and turns them into an image. It resizes
+or allocates the ofImage if it's necessary.;
+#X text 203 511 export the image buffer;
+#X msg 182 479 grab 250 250 100 100;
+#X obj 18 7 cnv 15 400 20 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#X text 195 54 (0= Grayscale \, 1 =rgb \, 2 = rgba);
+#X msg 96 90 fill 0 0 0;
+#X msg 71 54 allocate 10 10 1;
+#X obj 19 154 cnv 15 400 20 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#X floatatom 119 187 5 0 0 0 - - -;
+#X msg 135 237 update;
+#X floatatom 157 282 5 0 0 0 - - -;
+#X text 163 184 Set pixels X \, Y \, r \, g \, b \, a;
+#X text 192 236 need after set pixel;
+#X msg 119 212 setpixel \$1 0 255 255 255 255;
+#X msg 157 308 setpixel \$1 0 255 0 0 \, update;
+#X floatatom 174 329 5 0 0 0 - - -;
+#X msg 174 353 setpixel \$1 \$1 255 0 0 \, update;
+#X text 220 327 set XY \, and update (carefull of the values!);
+#X text 203 282 set X -> end \, and update (carefull of the values!)
+;
+#X text 68 10 Allocate pixel buffer size and clear color;
+#X text 65 36 1/ allocate Width \, Height \, colortype;
+#X text 95 72 2 fill (clear);
+#X text 182 91 -> fill rgb (black). fill rgb or rgba if colortype =2
+;
+#X text 162 155 Set pixels;
+#X obj 28 406 cnv 15 400 20 empty empty empty 20 12 0 14 -191407 -66577
+0;
+#X text 171 407 Grab etc;
+#X connect 0 0 3 0;
+#X connect 2 0 3 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 9 0 3 0;
+#X connect 12 0 3 0;
+#X connect 13 0 3 0;
+#X connect 15 0 20 0;
+#X connect 16 0 3 0;
+#X connect 17 0 21 0;
+#X connect 20 0 3 0;
+#X connect 21 0 3 0;
+#X connect 22 0 23 0;
+#X connect 23 0 3 0;
 #X restore 265 321 pd Set_buffer_&_Pixels;
-#N canvas 598 139 667 421 draw_on_screen 0;
+#N canvas 598 139 634 366 draw_on_screen 0;
 #X floatatom 41 29 5 0 0 0 - - -;
 #X msg 70 114 drawsubsection 1 100 0 100 100 120 200;
-#X obj 74 155 of.mouse;
-#X text 349 112 active \, posX \, posY \, witdh \, height \, cropfromX
-\, cropfromY \, posCropX \, posCropY, f 42;
-#X msg 76 311 anchorpoint \$1 \$1;
-#X floatatom 76 283 5 0 0 0 - - -;
-#X text 117 283 change anchor point;
-#X text 361 206 active \, posX \, posY \, witdh \, height \, cropfromX
-\, cropfromY \, posCropX \, posCropY, f 42;
-#X text 217 247 Desactivate drawsubsection;
+#X msg 76 261 anchorpoint \$1 \$1;
+#X floatatom 76 233 5 0 0 0 - - -;
+#X text 117 233 change anchor point;
+#X text 217 197 Desactivate drawsubsection;
 #X text 149 83 Desactivate draw;
-#X obj 20 339 outlet;
-#X obj 74 182 spigot;
-#X obj 149 167 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 74 210 drawsubsection 1 -100 110 200 100 \$1 \$2;
+#X obj 20 289 outlet;
 #X msg 41 54 draw 1 \$1 0 0 100 100;
 #X msg 59 83 draw 0 0;
-#X msg 73 247 drawsubsection 0 0;
+#X msg 73 197 drawsubsection 0 0;
 #X text 201 53 activation \, X \, Y \, Z \, width \, height;
 #X text 82 27 pos X;
-#X text 175 164 -> acivate this to scroll image with mouse on window
-;
 #X text 37 4 draw image buffer on screen;
-#X connect 0 0 14 0;
-#X connect 1 0 10 0;
-#X connect 2 0 11 0;
-#X connect 4 0 10 0;
-#X connect 5 0 4 0;
-#X connect 11 0 13 0;
-#X connect 12 0 11 1;
-#X connect 13 0 10 0;
-#X connect 14 0 10 0;
-#X connect 15 0 10 0;
-#X connect 16 0 10 0;
+#N canvas 502 246 589 401 Click_here_to_learn_more_about_draw_subsection
+0;
+#X obj 25 231 of.mouse;
+#X obj 25 258 spigot;
+#X obj 100 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 126 240 -> activate this to scroll image with mouse on window
+;
+#X obj 25 310 outlet;
+#X text 17 67 0/1: active \; X: position to draw cropped image at \;
+Y: position to draw cropped image at \; W: Width of subsection to draw
+\; H: Height of subsection to draw \; X: position in image to begin
+cropping from \; Y: position in image to begin cropping from \;, f
+49;
+#X text 15 14 Draws a subsection of the image \;, f 80;
+#X text 15 44 This functions like a clipping mask. Does not altering
+any pixel data \;, f 80;
+#X text 21 198 Exemple:;
+#X msg 25 286 drawsubsection 1 -100 110 200 100 \$1 \$2;
+#X text 312 282 active \, posX \, posY \, witdh \, height \, cropfromX
+\, cropfromY, f 42;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 2 0 1 1;
+#X connect 9 0 4 0;
+#X restore 73 143 pd Click_here_to_learn_more_about_draw_subsection
+;
+#X text 349 112 active \, posX \, posY \, witdh \, height \, cropfromX
+\, cropfromY, f 42;
+#X connect 0 0 8 0;
+#X connect 1 0 7 0;
+#X connect 2 0 7 0;
+#X connect 3 0 2 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X connect 10 0 7 0;
+#X connect 14 0 7 0;
 #X restore 265 268 pd draw_on_screen;
 #N canvas 816 141 464 290 pixels_process 0;
 #X msg 39 168 crop 100 100 100 100;
@@ -161,29 +195,38 @@ a library called "freeImage" under the hood.;
 #X connect 12 0 9 0;
 #X connect 13 0 12 0;
 #X restore 265 296 pd pixels_process;
-#X floatatom 53 497 5 0 0 1 width - -;
-#X floatatom 87 527 5 0 0 1 height - -;
-#X text 21 579 draw to plane;
-#X text 306 537 width px;
-#X text 336 517 height px;
-#X connect 7 0 28 0;
-#X connect 11 0 2 0;
-#X connect 11 1 8 0;
-#X connect 11 2 9 0;
-#X connect 11 3 10 0;
-#X connect 14 0 28 0;
-#X connect 19 0 20 0;
-#X connect 20 0 28 0;
-#X connect 21 0 19 0;
-#X connect 22 0 28 0;
-#X connect 24 0 28 0;
-#X connect 25 0 28 0;
-#X connect 28 0 1 0;
-#X connect 28 1 11 0;
-#X connect 29 0 28 0;
-#X connect 31 0 30 0;
-#X connect 35 0 28 0;
-#X connect 36 0 28 0;
-#X connect 37 0 28 0;
-#X connect 38 0 1 1;
-#X connect 39 0 1 2;
+#X floatatom 53 537 5 0 0 1 width - -;
+#X floatatom 87 567 5 0 0 1 height - -;
+#X text 326 527 width px;
+#X text 356 507 height px;
+#X msg 50 503 texturemap 0 0 2 2;
+#X msg 40 482 texturemap 0 0 0.5 0.5;
+#X text 28 22 Image loader using memory and gpu based pixels.;
+#X text 26 462 texture map (default 0 0 1 1);
+#X obj 19 598 of.plane 200 200, f 20;
+#X text 21 619 draw to plane primitive (width \, height);
+#X text 58 220 works also with online files if connected to internet
+(wait...might takes time), f 88;
+#X connect 6 0 25 0;
+#X connect 10 0 1 0;
+#X connect 10 1 7 0;
+#X connect 10 2 8 0;
+#X connect 10 3 9 0;
+#X connect 13 0 25 0;
+#X connect 18 0 19 0;
+#X connect 19 0 25 0;
+#X connect 20 0 18 0;
+#X connect 21 0 25 0;
+#X connect 23 0 25 0;
+#X connect 24 0 25 0;
+#X connect 25 0 43 0;
+#X connect 25 1 10 0;
+#X connect 26 0 25 0;
+#X connect 28 0 27 0;
+#X connect 32 0 25 0;
+#X connect 33 0 25 0;
+#X connect 34 0 25 0;
+#X connect 35 0 43 1;
+#X connect 36 0 43 2;
+#X connect 39 0 43 0;
+#X connect 40 0 43 0;
