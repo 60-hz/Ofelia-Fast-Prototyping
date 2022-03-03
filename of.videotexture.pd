@@ -46,12 +46,13 @@ vtex\$0:loadData(vpix\$0) end \; function M.getpixel(l) local p = vpix\$0:getCol
 end \; function M.setpixel(l) vpix\$0:setColor(l[1] \, l[2] \, ofColor(table.unpack(l
 \, 3 \, #l))) vtex\$0:loadData(vpix\$0) end \; function M.get() outlet:outletList(2
 \, ofTable (video\$0:isInitialized() \, vpix\$0:getWidth() \, vpix\$0:getHeight()
-\, video\$0:listDevices())) end \; \; function M.bang() \; video\$0:update()
-\; if video\$0:isFrameNew() and auto == 1 then \; vpix\$0 = video\$0:getPixels()
-vtex\$0:loadData(vpix\$0) end \; vtex\$0:bind() \; outlet:outletBang(0)
-\; if dimg[1] == 1 then vtex\$0:draw(table.unpack(dimg \, 2 \, #dimg))
-end \; if dsimg[1] == 1 then vtex\$0:drawSubsection(table.unpack(dsimg
-\, 2 \, #dsimg)) end \; vtex\$0:unbind() \; end \;;
+\, vpix\$0:getWidth()/vpix\$0:getHeight() \, video\$0:listDevices()))
+end \; \; function M.bang() \; video\$0:update() \; if video\$0:isFrameNew()
+and auto == 1 then \; vpix\$0 = video\$0:getPixels() vtex\$0:loadData(vpix\$0)
+end \; vtex\$0:bind() \; outlet:outletBang(0) \; if dimg[1] == 1 then
+vtex\$0:draw(table.unpack(dimg \, 2 \, #dimg)) end \; if dsimg[1] ==
+1 then vtex\$0:drawSubsection(table.unpack(dsimg \, 2 \, #dsimg)) end
+\; vtex\$0:unbind() \; end \;;
 #X f 132;
 #X connect 0 0 5 0;
 #X connect 5 0 1 0;

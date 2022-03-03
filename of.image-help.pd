@@ -2,41 +2,20 @@
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X obj 253 538 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
 #X obj 462 45 declare -lib ofelia;
 #X text 44 169 open png with alpha channel;
-#X text 252 566 0 = load fail;
-#X text 251 553 1 = load success;
-#X msg 267 366 get;
-#X floatatom 284 526 5 0 0 0 - - -;
-#X floatatom 316 506 5 0 0 0 - - -;
-#X floatatom 348 486 5 0 0 0 - - -;
-#X obj 253 460 unpack 0 0 0 0;
-#X text 301 366 get infos from right outlet;
+#X msg 114 393 get;
+#X text 148 393 get infos from right outlet;
 #X text 72 329 save to file;
 #X msg 57 239 open https://puredata.info/portal_css/Plone%20Default/logo.png
 , f 68;
-#X text 489 497 1 = rgb;
-#X text 489 487 0 = grayscale;
-#X text 489 507 3 = rgba;
-#X text 396 487 Image type:;
 #X obj 71 284 openpanel;
 #X msg 71 307 open \$1;
 #X obj 71 263 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 35 142 open data/wood.jpg;
-#X text 259 73 The ofImage is a useful object for loading \, saving
-and drawing images. ofImage is a convenient class that lets you both
-draw images to the screen and manipulate their pixel data. The ofImage
-allows you to load an image from disk \, manipulate the pixels \, and
-create an OpenGL texture that you can display and manipulate on the
-graphics card. Loading a file into the ofImage allocates an ofPixels
-object and creates the ofTexture to display the pixels. ofImage uses
-a library called "freeImage" under the hood.;
 #X msg 46 191 open data/transparency.png;
 #X msg 73 348 save export.png;
-#X obj 19 422 of.image data/rgb.jpg;
 #X obj 19 98 of.draw;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -116,7 +95,7 @@ or allocates the ofImage if it's necessary.;
 #X connect 21 0 3 0;
 #X connect 22 0 23 0;
 #X connect 23 0 3 0;
-#X restore 265 321 pd Set_buffer_&_Pixels;
+#X restore 265 338 pd Set_buffer_&_Pixels;
 #N canvas 598 139 634 366 draw_on_screen 0;
 #X floatatom 41 29 5 0 0 0 - - -;
 #X msg 70 114 drawsubsection 1 100 0 100 100 120 200;
@@ -169,7 +148,7 @@ any pixel data \;, f 80;
 #X connect 9 0 7 0;
 #X connect 10 0 7 0;
 #X connect 14 0 7 0;
-#X restore 265 268 pd draw_on_screen;
+#X restore 265 285 pd draw_on_screen;
 #N canvas 816 141 464 290 pixels_process 0;
 #X msg 39 168 crop 100 100 100 100;
 #X msg 39 194 cropfrom img 100 100 300 300;
@@ -194,39 +173,68 @@ any pixel data \;, f 80;
 #X connect 5 0 9 0;
 #X connect 12 0 9 0;
 #X connect 13 0 12 0;
-#X restore 265 296 pd pixels_process;
-#X floatatom 53 537 5 0 0 1 width - -;
+#X restore 265 313 pd pixels_process;
+#X floatatom 53 543 5 0 0 1 width - -;
 #X floatatom 87 567 5 0 0 1 height - -;
-#X text 326 527 width px;
-#X text 356 507 height px;
-#X msg 50 503 texturemap 0 0 2 2;
-#X msg 40 482 texturemap 0 0 0.5 0.5;
 #X text 28 22 Image loader using memory and gpu based pixels.;
-#X text 26 462 texture map (default 0 0 1 1);
+#X text 180 491 texture map (default 0 0 1 1);
 #X obj 19 598 of.plane 200 200, f 20;
-#X text 21 619 draw to plane primitive (width \, height);
+#X text 18 620 draw to plane primitive (width \, height);
 #X text 58 220 works also with online files if connected to internet
 (wait...might takes time), f 88;
-#X connect 6 0 25 0;
-#X connect 10 0 1 0;
-#X connect 10 1 7 0;
-#X connect 10 2 8 0;
-#X connect 10 3 9 0;
-#X connect 13 0 25 0;
-#X connect 18 0 19 0;
-#X connect 19 0 25 0;
-#X connect 20 0 18 0;
-#X connect 21 0 25 0;
-#X connect 23 0 25 0;
-#X connect 24 0 25 0;
-#X connect 25 0 43 0;
-#X connect 25 1 10 0;
-#X connect 26 0 25 0;
-#X connect 28 0 27 0;
-#X connect 32 0 25 0;
-#X connect 33 0 25 0;
-#X connect 34 0 25 0;
-#X connect 35 0 43 1;
-#X connect 36 0 43 2;
-#X connect 39 0 43 0;
-#X connect 40 0 43 0;
+#X obj 19 422 of.image data/rgb.jpg, f 34;
+#X floatatom 36 462 5 0 0 0 - - -;
+#X text 264 438 -> get infos as a list:;
+#N canvas 799 518 302 276 get_infos 0;
+#X obj 20 20 inlet;
+#X obj 32 158 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 31 186 0 = load fail;
+#X text 30 173 1 = load success;
+#X floatatom 59 146 5 0 0 0 - - -;
+#X floatatom 86 126 5 0 0 0 - - -;
+#X floatatom 141 83 5 0 0 0 - - -;
+#X text 282 94 1 = rgb;
+#X text 282 84 0 = grayscale;
+#X text 189 84 Image type:;
+#X text 101 147 width px;
+#X text 126 127 height px;
+#X obj 32 60 unpack 0 0 0 0 0;
+#X floatatom 113 104 5 0 0 0 - - -;
+#X text 155 105 Ratio;
+#X text 282 104 2 = rgba;
+#X connect 0 0 12 0;
+#X connect 12 0 1 0;
+#X connect 12 1 4 0;
+#X connect 12 2 5 0;
+#X connect 12 3 13 0;
+#X connect 12 4 6 0;
+#X restore 254 457 pd get_infos;
+#X text 77 464 texture coordinate;
+#X msg 36 489 texturemap \$1 0 1 1;
+#X text 259 73 of.Image is a convenient object that lets you both draw
+images to the screen and manipulate their pixel data. The ofImage allows
+you to load/save an image from/to disk \, \, manipulate the pixels
+\, and create an OpenGL texture that you can display on any shape with
+texture coordinate. Loading a file into the ofImage allocates an ofPixels
+object and creates the ofTexture to display the pixels. ofImage uses
+a library called "freeImage" under the hood.;
+#X connect 3 0 29 0;
+#X connect 6 0 29 0;
+#X connect 7 0 8 0;
+#X connect 8 0 29 0;
+#X connect 9 0 7 0;
+#X connect 10 0 29 0;
+#X connect 11 0 29 0;
+#X connect 12 0 29 0;
+#X connect 13 0 29 0;
+#X connect 15 0 14 0;
+#X connect 19 0 29 0;
+#X connect 20 0 29 0;
+#X connect 21 0 29 0;
+#X connect 22 0 26 1;
+#X connect 23 0 26 2;
+#X connect 29 0 26 0;
+#X connect 29 1 32 0;
+#X connect 30 0 34 0;
+#X connect 34 0 26 0;

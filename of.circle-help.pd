@@ -5,8 +5,8 @@
 #X obj 27 89 of.draw;
 #X msg 60 147 draw line;
 #X msg 60 168 draw fill;
-#X floatatom 155 258 5 0 0 2 radius - -;
-#X floatatom 283 263 5 0 0 2 geometry - -;
+#X floatatom 155 268 5 0 0 2 size - -;
+#X floatatom 283 273 5 0 0 2 resolution - -;
 #X msg 403 116 100 400 center line 3;
 #X text 402 89 list of all parameters;
 #X text 419 144 Single parameter;
@@ -31,11 +31,11 @@
 #X obj 403 275 of.circle;
 #X msg 155 197 mode corner;
 #X msg 155 219 mode center;
-#X text 24 40 Arguments(5): width \, height \, drawmode \, strokewidth
-\, rectmode;
 #X text 295 299 default: 50 \, 20 \, line \, 1 \, center;
 #X text 28 341 Note: circle primitive have no texture coordinates.
 Use of.meshcircle to use image on circular shape., f 84;
+#X text 24 40 Arguments(5): size \, resolution \, drawmode \, strokewidth
+\, rectmode;
 #X connect 1 0 12 0;
 #X connect 2 0 12 0;
 #X connect 3 0 12 0;

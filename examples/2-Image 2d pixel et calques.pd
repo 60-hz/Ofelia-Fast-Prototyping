@@ -1,76 +1,72 @@
-#N canvas 628 66 723 682 12;
-#X declare -lib ceammc;
-#X declare -stdpath ofelia;
-#X declare -stdpath ceammc;
-#X declare -stdpath of;
-#N canvas 671 136 435 113 INIT 0;
-#X obj 5 9 declare -lib ceammc;
-#X obj 5 52 declare -stdpath ofelia;
-#X obj 5 30 declare -stdpath ceammc;
-#X obj 5 73 declare -stdpath of;
-#X text 149 8 charge librarie ceammc;
-#X text 179 28 chemin dossier librairie ceammc;
-#X text 177 50 chemin dossier librairie ofelia;
-#X text 147 75 chemin dossier vers abstractions of;
-#X restore 442 111 pd INIT;
+#N canvas 524 66 723 682 12;
+#X declare -lib ofelia;
+#X declare -path of;
 #X obj 16 117 of.window 1 640 480;
-#X text 164 116 Gestionnaire de fentere;
 #X obj 23 281 of.plane 640 480, f 17;
-#X obj 23 224 of.ortho 1;
-#X obj 37 653 of.plane 320 240;
-#X obj 64 407 of.mouse;
-#X obj 37 561 of.translate;
-#X obj 64 460 unpack 0 0;
-#X text 45 504 X;
-#X text 115 496 Y;
-#X obj 37 589 of.blend 2, f 15;
+#X obj 27 653 of.plane 320 240;
+#X obj 54 407 of.mouse;
+#X obj 27 561 of.translate;
+#X obj 54 460 unpack 0 0;
+#X text 35 494 X;
+#X text 105 496 Y;
+#X obj 27 589 of.blend 2, f 15;
 #X text 10 135 arguments: creation \, largeur \, hauteur;
-#X text 133 398 -> coordonnée souris (liste X Y dans fenetre), f
+#X text 123 398 -> coordonnée souris (liste X Y dans fenetre), f
 25;
-#X floatatom 64 494 5 0 0 0 - - -;
-#X floatatom 131 496 5 0 0 0 - - -;
-#X obj 92 436 print souris;
-#X text 185 436 -> voir la liste;
-#X text 152 460 -> séparer des listes;
+#X floatatom 54 494 5 0 0 0 - - -;
+#X floatatom 121 496 5 0 0 0 - - -;
+#X obj 82 436 print souris;
 #X obj 23 188 of.draw 1;
-#X obj 37 364 of.draw 3;
-#X text 19 64 Si on veut travailler en 2d \, on va utiliser [of.ortho
-1] qui va supprimer la perspective et un chiffre qui modifiera l'ordre
-d'affichage des calques dans [of.draw] (regarder aide de cet objet).
-, f 101;
-#X text 16 169 Calque mire (calque 1 = premier dessiné = dessous)
-;
-#X text 103 217 -> pas de perspective \, on peut utiliser la taille
-en pixel de a fenetre pour la remplir.;
-#X text 155 582 -> fusion des pixels;
-#X text 152 595 (2 = additif);
-#X text 26 340 Calque image (position 3 = dessiné après les autres
-\, donc au dessus), f 69;
+#X text 145 582 -> fusion des pixels;
+#X text 142 595 (2 = additif);
 #X obj 23 251 of.image ../data/mire4-3.png;
-#X obj 37 618 of.image ../data/glitch.jpg;
-#X obj 352 426 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
--1 -1 2;
-#X text 374 455 2: ADD;
-#X text 374 470 3: SUBTRACT;
-#X text 374 485 4: MULTIPLY;
-#X text 374 500 5: SCREEN;
-#X text 374 440 1: ALPHA(Default);
-#X text 354 405 blending mode:;
-#X text 374 424 0: OFF (no transparency);
+#X obj 342 426 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
+-1 -1 1;
+#X text 364 455 2: ADD;
+#X text 364 470 3: SUBTRACT;
+#X text 364 485 4: MULTIPLY;
+#X text 364 500 5: SCREEN;
+#X text 364 440 1: ALPHA(Default);
+#X text 344 405 blending mode:;
+#X text 364 424 0: OFF (no transparency);
 #X obj 9 10 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
 0;
-#X text 39 21 Placement d'une image à la taille de la fenêtre;
-#X connect 4 0 27 0;
-#X connect 6 0 8 0;
-#X connect 6 0 16 0;
-#X connect 7 0 11 0;
-#X connect 8 0 14 0;
-#X connect 8 1 15 0;
-#X connect 11 0 28 0;
-#X connect 14 0 7 1;
-#X connect 15 0 7 2;
-#X connect 19 0 4 0;
-#X connect 20 0 7 0;
-#X connect 27 0 3 0;
-#X connect 28 0 5 0;
-#X connect 29 0 11 1;
+#X obj 472 10 declare -lib ofelia;
+#X obj 472 31 declare -path of;
+#X text 175 436 -> voir la liste X Y;
+#X text 142 460 -> séparer la liste X Y;
+#X obj 27 618 of.image ../data/transparency.png;
+#X obj 27 372 of.ortho;
+#X obj 27 344 of.draw 2;
+#X obj 108 200 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 23 224 of.ortho 1;
+#X text 16 169 Calque mire (calque 1 = premier dessiné \, = au dessous)
+;
+#X text 16 320 Calque image (position 2 = dessiné après la mire \,
+= au dessus), f 69;
+#X text 103 224 1: mode orthographique \, la taille à l'écran est
+exactement celle inscrite dans plane., f 85;
+#X text 129 198 si 0 \, le mode perspective est actif (comportemnt
+par defaut)., f 69;
+#X text 19 64 Si on souhaite travailler en 2d \, on utilise [of.ortho
+1] qui va supprimer la perspective et une valeur qui modifiera l'ordre
+d'affichage des calques dans [of.draw]., f 101;
+#X text 39 21 Affichage d'une image à une taille fixe;
+#X text 164 116 Gestionnaire de fenêtre 640 * 480 pixels;
+#X connect 3 0 5 0;
+#X connect 3 0 13 0;
+#X connect 4 0 8 0;
+#X connect 5 0 11 0;
+#X connect 5 1 12 0;
+#X connect 8 0 31 0;
+#X connect 11 0 4 1;
+#X connect 12 0 4 2;
+#X connect 14 0 35 0;
+#X connect 17 0 1 0;
+#X connect 18 0 8 1;
+#X connect 31 0 2 0;
+#X connect 32 0 4 0;
+#X connect 33 0 32 0;
+#X connect 34 0 35 1;
+#X connect 35 0 17 0;

@@ -1,4 +1,4 @@
-#N canvas 501 143 627 451 12;
+#N canvas 501 167 627 427 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -6,8 +6,8 @@
 #X msg 71 113 draw line;
 #X msg 71 135 draw point;
 #X msg 71 157 draw fill;
-#X floatatom 134 324 5 0 0 2 size - -;
-#X floatatom 241 325 5 0 0 2 resolution(keepItLow!) - -;
+#X floatatom 134 324 5 0 0 1 size - -;
+#X floatatom 241 325 5 0 0 1 resolution(keepItLow!) - -;
 #X text 402 99 list of all parameters;
 #X text 24 40 Args: size \, resolution \, drawmode \, strokeweight
 , f 47;

@@ -1,18 +1,6 @@
-#N canvas 475 90 840 603 12;
-#X declare -lib ceammc;
-#X declare -stdpath ofelia;
-#X declare -stdpath ceammc;
-#X declare -stdpath of;
-#N canvas 671 136 435 113 INIT 0;
-#X obj 5 9 declare -lib ceammc;
-#X obj 5 52 declare -stdpath ofelia;
-#X obj 5 30 declare -stdpath ceammc;
-#X obj 5 73 declare -stdpath of;
-#X text 149 8 charge librarie ceammc;
-#X text 179 28 chemin dossier librairie ceammc;
-#X text 177 50 chemin dossier librairie ofelia;
-#X text 147 75 chemin dossier vers abstractions of;
-#X restore 652 44 pd INIT;
+#N canvas 440 90 840 603 12;
+#X declare -lib ofelia;
+#X declare -path of;
 #X text 866 733 - Clic droit sur objet -> AIDE;
 #X msg 36 105 autoclear 0;
 #X msg 86 189 clear;
@@ -22,15 +10,15 @@
 #X msg 49 159 autoclear 1;
 #X obj 24 258 cnv 15 450 250 empty empty empty 20 12 0 14 -191407 -66577
 0;
-#X obj 68 332 of.mouse;
-#X obj 41 405 of.translate;
-#X obj 68 366 unpack 0 0;
-#X text 47 380 X;
-#X text 154 382 Y;
+#X obj 68 358 of.mouse;
+#X obj 41 419 of.translate;
+#X obj 68 380 unpack 0 0;
+#X text 47 394 X;
+#X text 154 396 Y;
 #X obj 41 474 of.plane 100 100;
 #X obj 41 298 of.draw 1;
-#X text 227 441 -> importer une image (jpg \, png...);
-#X text 235 461 argument: chemin relatif vers image (a partir du patch
+#X text 227 445 -> importer une image (jpg \, png...);
+#X text 235 465 argument: chemin relatif vers image (a partir du patch
 .pd), f 33;
 #X obj 507 258 cnv 15 250 250 empty empty empty 20 12 0 14 -191407
 -66577 0;
@@ -40,9 +28,9 @@
 #X text 662 408 opacité 10;
 #X text 525 274 DEUXIEME TEMPS : carré noir repeint par dessus avec
 une opacité 10, f 34;
-#X obj 41 442 of.image ../data/part.png;
-#X text 135 330 -> coordonnées souris XY dans l'image;
-#X text 144 363 -> séparer la liste X et Y;
+#X obj 41 446 of.image ../data/part.png;
+#X text 135 356 -> coordonnées souris XY dans l'image;
+#X text 144 377 -> séparer la liste X et Y;
 #X text 218 218 -> Gestionnaire de fenêtre globale;
 #X text 25 274 PREMIER TEMPS : affchage image non effacée;
 #X text 40 508 Note: plane possède des textures contrairement à [of.rectangle]
@@ -57,16 +45,21 @@ d'affichage), f 67;
 ne pas effacer l'écran entre chaque rendu graphique, f 73;
 #X text 126 134 A la fermeture du patch... remettre autoclear à 1
 ;
-#X connect 2 0 5 0;
-#X connect 3 0 5 0;
-#X connect 4 0 2 0;
-#X connect 6 0 7 0;
-#X connect 7 0 5 0;
-#X connect 9 0 11 0;
-#X connect 10 0 24 0;
-#X connect 11 0 10 1;
-#X connect 11 1 10 2;
-#X connect 15 0 10 0;
-#X connect 19 0 21 0;
-#X connect 21 0 20 0;
-#X connect 24 0 14 0;
+#X obj 620 20 declare -lib ofelia;
+#X obj 621 41 declare -path of;
+#X obj 41 331 of.ortho 1;
+#X text 122 328 -> pas de perspective;
+#X connect 1 0 4 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 5 0 6 0;
+#X connect 6 0 4 0;
+#X connect 8 0 10 0;
+#X connect 9 0 23 0;
+#X connect 10 0 9 1;
+#X connect 10 1 9 2;
+#X connect 14 0 36 0;
+#X connect 18 0 20 0;
+#X connect 20 0 19 0;
+#X connect 23 0 13 0;
+#X connect 36 0 9 0;
