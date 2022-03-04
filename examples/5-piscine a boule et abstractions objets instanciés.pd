@@ -1,6 +1,6 @@
 #N canvas 596 49 684 683 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X obj 52 60 of.window 1 640 480;
 #X obj 48 388 loadbang;
 #X obj 54 201 boule;
@@ -56,7 +56,6 @@ la boule par devant, f 36;
 #X connect 2 0 3 0;
 #X restore 201 512 pd Press_Space_bar_text_layer;
 #X obj 473 0 declare -lib ofelia;
-#X obj 474 21 declare -path of;
 #X text 48 96 Ce patch Appelle l'abstractions "boule.pd" \, on dit
 qu'on créer une "instance". Dans PureData cela s'appelle une ABSTRACTION.
 , f 80;
@@ -65,7 +64,9 @@ informatique: fabriquer un exemplaire d'un élément à partir d'un
 modèle qui lui sert de moule., f 80;
 #X text 199 202 -> on cite plusieurs fois le programme "boule.pd" écrit
 et placé à coté du patch parent., f 57;
-#X text 51 10 Une piscine à boules, f 64;
+#X obj 474 21 declare -path ../;
+#X text 31 10 Piscine à boules : utilisation d'une "abstraction",
+f 64;
 #X connect 1 0 27 0;
 #X connect 8 0 19 0;
 #X connect 13 0 20 0;

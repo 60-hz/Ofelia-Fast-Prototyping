@@ -1,6 +1,6 @@
 #N canvas 1 96 757 682 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X obj 27 194 of.draw;
 #X text 53 291 demander un nombre entre -320 et 320;
 #X obj 53 496 fade 1000;
@@ -44,7 +44,7 @@ plus MODULAIRE.;
 #X text 469 222 s ou send: envoie sans fil à travers le mot clé "tempo"
 , f 29;
 #X obj 597 8 declare -lib ofelia;
-#X obj 598 29 declare -path of;
+#X obj 598 29 declare -path ../;
 #X connect 0 0 23 0;
 #X connect 2 0 4 1;
 #X connect 3 0 4 2;

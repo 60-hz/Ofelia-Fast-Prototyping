@@ -1,6 +1,6 @@
 #N canvas 580 23 627 722 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X obj 20 60 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X msg 20 88 fullscreen \$1;
@@ -16,9 +16,6 @@
 #X text 21 243 Rendering top left corner;
 #X text 238 316 ofelia lua code for openframeworks in a box:;
 #X obj 462 10 declare -lib ofelia;
-#X obj 463 31 declare -path of;
-#X text 19 21 diplay a new frame in line until filling the screen,
-f 60;
 #X msg 260 278 open ../data/len-lye.mov;
 #X obj 21 339 ofelia d videoplane \; local mov = ofVideoPlayer() \;
 \; function M.free() \; mov:stop() mov = nil end \; function M.open(string)
@@ -29,11 +26,14 @@ x = x + mov:getWidth() \; if (x > ofGetWidth()) then \; x = 0 \; y
 = y + mov:getHeight() \; end \; if (y > ofGetHeight()) then \; x =
 0 \; y = 0 \; end \; end \; end \;;
 #X f 75;
+#X obj 463 31 declare -path ../;
+#X text 19 21 diplay new frames of a video in line until filling the
+screen, f 61;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
-#X connect 3 0 15 0;
-#X connect 4 0 16 0;
+#X connect 3 0 13 0;
+#X connect 4 0 14 0;
 #X connect 5 0 2 0;
 #X connect 6 0 2 0;
 #X connect 7 0 2 0;
-#X connect 15 0 16 0;
+#X connect 13 0 14 0;

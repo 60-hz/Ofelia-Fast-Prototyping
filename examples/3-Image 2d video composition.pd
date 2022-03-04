@@ -1,6 +1,6 @@
-#N canvas 513 75 599 683 12;
+#N canvas 513 75 632 683 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X obj 61 185 of.ortho 1;
 #X obj 61 318 of.plane 320 240;
 #X obj 61 294 of.translate -160 120;
@@ -36,12 +36,12 @@ chaîne à partir d'ici, f 39;
 #X obj 9 -20 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 472 -20 declare -lib ofelia;
-#X obj 472 1 declare -path of;
 #X text 347 354 -> le message position est LOCAL \, il s'adresse uniquement
 à ce "of.plane", f 29;
 #X text 59 624 taille négatif = inversé;
 #X text 19 -11 Composition dans une seule chaîne d'affichage + Local/global
 ;
+#X obj 472 1 declare -path ../;
 #X connect 0 0 3 0;
 #X connect 1 0 5 0;
 #X connect 2 0 1 0;

@@ -1,6 +1,6 @@
 #N canvas 601 68 636 615 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X floatatom 83 470 5 0 0 0 - - -;
@@ -37,7 +37,7 @@ texture), f 69;
 #X msg 74 240 color 255 255 255 10;
 #X text 231 239 -> background color to white with 10% opacity;
 #X obj 469 16 declare -lib ofelia;
-#X obj 470 37 declare -path of;
+#X obj 470 37 declare -path ../;
 #X connect 1 0 12 1;
 #X connect 1 0 12 2;
 #X connect 2 0 10 0;

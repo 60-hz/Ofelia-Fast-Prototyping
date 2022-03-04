@@ -1,6 +1,6 @@
 #N canvas 570 101 637 659 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X text 846 653 - Clic droit sur un objet -> AIDE;
 #X floatatom 205 223 5 0 0 0 - - -;
 #X obj 205 40 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
@@ -53,7 +53,7 @@
 #X obj 37 538 of.text ... 50, f 16;
 #X text 129 288 draw 5 times;
 #X obj 471 14 declare -lib ofelia;
-#X obj 472 35 declare -path of;
+#X obj 472 35 declare -path ../;
 #X connect 1 0 8 1;
 #X connect 2 0 6 0;
 #X connect 3 0 5 0;

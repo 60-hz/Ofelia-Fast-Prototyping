@@ -1,6 +1,6 @@
 #N canvas 394 48 736 682 12;
 #X declare -lib ofelia;
-#X declare -path of;
+#X declare -path ../;
 #X obj 102 103 of.window;
 #X msg 102 70 create;
 #X obj 102 41 loadbang;
@@ -60,12 +60,12 @@ resolutionH resolutionP, f 42;
 #X obj 9 -30 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 472 -30 declare -lib ofelia;
-#X obj 472 -9 declare -path of;
 #X obj 9 130 cnv 2 600 2 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X text 37 -22 Affichage d'un cube avec texture;
 #X text 101 139 2/ Affichage de forme 3d avec [of.draw];
 #X obj 105 162 of.draw;
+#X obj 472 -9 declare -path ../;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
 #X connect 4 0 34 0;
@@ -102,4 +102,4 @@ resolutionH resolutionP, f 42;
 #X connect 50 0 12 0;
 #X connect 51 0 11 0;
 #X connect 51 1 48 0;
-#X connect 59 0 47 0;
+#X connect 58 0 47 0;
