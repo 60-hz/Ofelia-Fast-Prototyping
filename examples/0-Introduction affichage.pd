@@ -1,0 +1,53 @@
+#N canvas 543 103 712 582 12;
+#X declare -lib ofelia;
+#X declare -path ../;
+#X obj 102 153 of.window;
+#X msg 102 90 create;
+#X text 98 59 1/ Créer la fenêtre d'affichage;
+#X msg 123 373 draw line;
+#X msg 132 397 draw fill;
+#X text 175 153 -> gestionnaire fenêtre;
+#X msg 131 120 destroy;
+#X text 363 481 -> argument: Largeur Hauteur Profondeur resolutionL
+resolutionH resolutionP, f 42;
+#X floatatom 284 446 5 0 0 0 - - -;
+#X msg 142 421 draw point;
+#X text 222 421 -> mode points;
+#X text 194 375 -> mode lignes;
+#X text 205 397 -> mode remplissage (faces pleines);
+#X obj 105 481 of.box 200 200 200, f 31;
+#X floatatom 162 446 5 0 0 0 - - -;
+#X text 199 445 tailleXYZ;
+#X text 330 445 resolution XYZ (Attention a ne pas monter trop haut!)
+;
+#X obj 9 0 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 472 0 declare -lib ofelia;
+#X obj 9 200 cnv 2 600 2 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 101 227 2/ Affichage de forme 3d avec [of.draw];
+#X obj 105 260 of.draw;
+#X obj 472 21 declare -path ../;
+#X text 37 8 Affichage d'une forme;
+#X text 167 90 -> créer la fenêtre;
+#X text 197 120 -> détruire la fenêtre;
+#X text 3 266 debut chaîne affichage (calque), f 12;
+#X text 5 459 forme de destination affichée, f 9;
+#X obj 106 280 cnv 5 5 200 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 112 301 cnv 5 450 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X text 118 306 -> CONNECTER CES DEUX BOITES POUR DESSINER: tous les
+objet "of." utilisent la connexion à gauche pour créer une chaîne
+d'affichage, f 62;
+#X connect 1 0 0 0;
+#X connect 3 0 13 0;
+#X connect 4 0 13 0;
+#X connect 6 0 0 0;
+#X connect 8 0 13 4;
+#X connect 8 0 13 5;
+#X connect 8 0 13 6;
+#X connect 9 0 13 0;
+#X connect 14 0 13 1;
+#X connect 14 0 13 2;
+#X connect 14 0 13 3;

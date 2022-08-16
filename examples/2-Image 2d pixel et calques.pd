@@ -1,39 +1,36 @@
-#N canvas 524 66 723 682 12;
+#N canvas 751 65 723 702 12;
 #X declare -lib ofelia;
 #X declare -path ../;
-#X obj 16 117 of.window 1 640 480;
+#X obj 24 116 of.window 1 640 480;
 #X obj 23 281 of.plane 640 480, f 17;
-#X obj 27 653 of.plane 320 240;
 #X obj 54 407 of.mouse;
 #X obj 27 561 of.translate;
-#X obj 54 460 unpack 0 0;
-#X text 35 494 X;
-#X text 105 496 Y;
-#X obj 27 589 of.blend 2, f 15;
-#X text 10 135 arguments: creation \, largeur \, hauteur;
+#X obj 54 490 unpack 0 0;
+#X text 35 524 X;
+#X text 105 526 Y;
+#X obj 27 589 of.blend 2, f 45;
+#X text 172 127 arguments: creation \, largeur \, hauteur;
 #X text 123 398 -> coordonnée souris (liste X Y dans fenetre), f
 25;
-#X floatatom 54 494 5 0 0 0 - - -;
-#X floatatom 121 496 5 0 0 0 - - -;
-#X obj 82 436 print souris;
+#X floatatom 54 524 5 0 0 0 - - -;
+#X floatatom 121 526 5 0 0 0 - - -;
 #X obj 23 188 of.draw 1;
-#X text 145 582 -> fusion des pixels;
-#X text 142 595 (2 = additif);
+#X text 355 586 -> fusion des pixels;
+#X text 373 600 (2 = additif);
 #X obj 23 251 of.image ../data/mire4-3.png;
-#X obj 342 426 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
-#X text 364 455 2: ADD;
-#X text 364 470 3: SUBTRACT;
-#X text 364 485 4: MULTIPLY;
-#X text 364 500 5: SCREEN;
-#X text 364 440 1: ALPHA(Default);
-#X text 344 405 blending mode:;
-#X text 364 424 0: OFF (no transparency);
+#X obj 339 426 vradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 361 455 2: ADD;
+#X text 361 470 3: SUBTRACT;
+#X text 361 485 4: MULTIPLY;
+#X text 361 500 5: SCREEN;
+#X text 361 440 1: ALPHA(Default);
+#X text 341 405 blending mode:;
+#X text 361 424 0: OFF (no transparency);
 #X obj 9 10 cnv 15 600 40 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 472 10 declare -lib ofelia;
-#X text 175 436 -> voir la liste X Y;
-#X text 142 460 -> séparer la liste X Y;
+#X text 142 490 -> séparer la liste X Y;
 #X obj 27 618 of.image ../data/transparency.png;
 #X obj 27 372 of.ortho;
 #X obj 27 344 of.draw 2;
@@ -44,29 +41,39 @@
 ;
 #X text 16 320 Calque image (position 2 = dessiné après la mire \,
 = au dessus), f 69;
-#X text 103 224 1: mode orthographique \, la taille à l'écran est
-exactement celle inscrite dans plane., f 85;
-#X text 129 198 si 0 \, le mode perspective est actif (comportemnt
-par defaut)., f 69;
-#X text 19 64 Si on souhaite travailler en 2d \, on utilise [of.ortho
-1] qui va supprimer la perspective et une valeur qui modifiera l'ordre
-d'affichage des calques dans [of.draw]., f 101;
 #X text 39 21 Affichage d'une image à une taille fixe;
-#X text 164 116 Gestionnaire de fenêtre 640 * 480 pixels;
 #X obj 472 31 declare -path ../;
-#X connect 3 0 5 0;
-#X connect 3 0 13 0;
-#X connect 4 0 8 0;
-#X connect 5 0 11 0;
-#X connect 5 1 12 0;
-#X connect 8 0 30 0;
-#X connect 11 0 4 1;
-#X connect 12 0 4 2;
-#X connect 14 0 34 0;
-#X connect 17 0 1 0;
-#X connect 18 0 8 1;
-#X connect 30 0 2 0;
-#X connect 31 0 4 0;
-#X connect 32 0 31 0;
-#X connect 33 0 34 1;
-#X connect 34 0 17 0;
+#X text 19 64 Si on souhaite travailler en 2d \, on utilise [of.ortho
+1] qui va supprimer la perspective puis on ajoutera un chiffre dans
+[of.draw] qui déterminera l'ordre d'affichage des calques., f 101
+;
+#X text 172 113 -> Gestionnaire de fenêtre 640 * 480 pixels;
+#X obj 9 310 cnv 5 600 5 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 129 198 activer ortho, f 69;
+#X text 128 213 Mode orthographique = pas de déformation perspective
+\, la taille est exactement celle inscrite dans of.plane., f 69;
+#X obj 54 458 spigot, f 8;
+#X obj 107 437 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 130 435 -> clic souris;
+#X text 119 458 -> robinet ouvert / fermé;
+#X obj 27 653 of.plane 640 480;
+#X connect 2 0 41 0;
+#X connect 2 1 42 0;
+#X connect 3 0 7 0;
+#X connect 4 0 10 0;
+#X connect 4 1 11 0;
+#X connect 7 0 27 0;
+#X connect 10 0 3 1;
+#X connect 11 0 3 2;
+#X connect 12 0 31 0;
+#X connect 15 0 1 0;
+#X connect 16 0 7 1;
+#X connect 27 0 45 0;
+#X connect 28 0 3 0;
+#X connect 29 0 28 0;
+#X connect 30 0 31 1;
+#X connect 31 0 15 0;
+#X connect 41 0 4 0;
+#X connect 42 0 41 1;
