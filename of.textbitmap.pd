@@ -1,4 +1,4 @@
-#N canvas 440 178 1230 585 12;
+#N canvas 282 178 1230 585 12;
 #X obj 21 14 inlet;
 #X text 1188 500 RI;
 #X obj 21 527 outlet;
@@ -11,19 +11,20 @@ ofVec3f(1 \, 1 \, 1) \; \; function M.new() \; node\$0 = ofNode() ofWindow.addLi
 args[1] end \; if args[2] == nil then bitmapmode = 0 else bitmapmode
 = args[2] end \; end \; \; function M.free() \; ofWindow.removeListener("setup"
 \, this) end \; \; function M.text(l) if type(l)=="table" then text=(table.concat
-(l \, " ")) elseif type(l)=="string" then text=l else text="" end end
-\; function M.string(l) if type(l)=="table" then text=(string.char(table.unpack(l)))
-elseif type(l)=="number" then text = (string.char(l)) else text=""
-end end \; function M.list(l) if type(l)=="table" then text=(string.char(table.unpack(l)))
-elseif type(l)=="number" then text = (string.char(l)) else text=""
-end end \; function M.bitmapmode(f) bitmapmode = f end \; function
-M.bgcolor(l) bgcolor:set(table.unpack(l)) end \; function M.fgcolor(l)
-fgcolor:set(table.unpack(l)) end \; function M.position(l) position:set
-(table.unpack(l)) node\$0:setPosition(position:vec3()) end \; function
-M.orientation(l) orientation:set (table.unpack(l)) node\$0:setOrientation(orientation:vec3())
-end \; function M.scale(l) scale:set (table.unpack(l)) node\$0:setScale(scale:vec3())
-end \; function decode(t) \; for i=1 \, #t do t[i]=string.char(t[i])
-end \; return table.concat(t) end \; \; function M.bang() \; node\$0:transformGL()
+(l \, " ")) elseif type(l)=="string" or type(l)=="number" then text=l
+else text="" end end \; function M.string(l) if type(l)=="table" then
+text=(string.char(table.unpack(l))) elseif type(l)=="number" then text
+= (string.char(l)) else text="" end end \; function M.list(l) if type(l)=="table"
+then text=(string.char(table.unpack(l))) elseif type(l)=="number" then
+text = (string.char(l)) else text="" end end \; function M.bitmapmode(f)
+bitmapmode = f end \; function M.bgcolor(l) bgcolor:set(table.unpack(l))
+end \; function M.fgcolor(l) fgcolor:set(table.unpack(l)) end \; function
+M.position(l) position:set (table.unpack(l)) node\$0:setPosition(position:vec3())
+end \; function M.orientation(l) orientation:set (table.unpack(l))
+node\$0:setOrientation(orientation:vec3()) end \; function M.scale(l)
+scale:set (table.unpack(l)) node\$0:setScale(scale:vec3()) end \; function
+decode(t) \; for i=1 \, #t do t[i]=string.char(t[i]) end \; return
+table.concat(t) end \; \; function M.bang() \; node\$0:transformGL()
 \; ofSetDrawBitmapMode(bitmapmode) \; ofDrawBitmapStringHighlight(text
 \, 0 \, 0 \, bgcolor \, fgcolor) node\$0:restoreTransformGL() \; end
 \;;

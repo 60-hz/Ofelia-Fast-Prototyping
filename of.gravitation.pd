@@ -1,0 +1,63 @@
+#N canvas 714 122 728 717 12;
+#X declare -lib ceammc;
+#X declare -stdpath ofelia;
+#X declare -stdpath ceammc;
+#X declare -stdpath of;
+#N canvas 763 102 435 125 INIT 0;
+#X obj 5 9 declare -lib ceammc;
+#X obj 5 52 declare -stdpath ofelia;
+#X obj 5 30 declare -stdpath ceammc;
+#X obj 5 73 declare -stdpath of;
+#X text 149 8 charge librarie ceammc;
+#X text 179 28 chemin dossier librairie ceammc;
+#X text 177 50 chemin dossier librairie ofelia;
+#X text 147 75 chemin dossier vers abstractions of;
+#N canvas 658 257 222 189 drag&drop 0;
+#X obj 12 10 r dnd-dropped;
+#X obj 12 54 route -drop;
+#X msg 12 94 msg \$1 \$2 \$3;
+#X obj 12 130 s;
+#X msg 115 98 symbol pd-\$1;
+#X obj 115 74 canvas.top;
+#X msg 115 53 @name?;
+#X obj 12 32 t a b, f 15;
+#X connect 0 0 7 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 3 1;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 1 0;
+#X connect 7 1 6 0;
+#X restore 5 95 pd drag&drop;
+#X text 103 95 ajoute glissé/déposé de fichier vers message;
+#X restore 1010 -90 pd INIT;
+#X obj 19 565 outlet;
+#X obj 19 -25 inlet;
+#X obj 653 558 outlet;
+#X obj 19 2 ofelia d -c12 \; local outlet = ofOutlet(this) \; local
+canvas = ofCanvas(this) \; local args = canvas:getArgs() \; local time
+\, amount \, speedx \, speedy \, speedz = 1000 \, 50 \; local boundary
+= ofVec3f(400 \, 400 \, 400) \; local speedmin = ofVec2f(0.001 \, 0.9)
+\; local speedmax = ofVec2f(0.001 \, 0.9) \; \; function M.new() \;
+if args[1] ~= nil then amount = args[1] end \; if args[2] ~= nil then
+boundary.x = args[2] end \; if args[3] ~= nil then boundary.y = args[2]
+end \; if args[4] ~= nil then boundary.z = args[3] end \; speedx =
+ofTable() \; speedy = ofTable() \; speedz = ofTable() \; M.random()
+\; end \; function M.random() \; for i = 1 \, amount do \; speedx[i]
+= ofRandom(speedmin.x \, speedmax.y) \; speedy[i] = ofRandom(speedmin.x
+\, speedmax.y) \; speedz[i] = ofRandom(speedmin.x \, speedmax.y) \;
+end end \; function M.amount(f) amount = f end \; function M.time(f)
+time = f * 0.01 end \; function M.boundary(l) boundary:set(table.unpack(l))
+end \; function M.speedmin(l) speedmin:set(table.unpack(l)) print(speedmin)
+M.random() end \; function M.speedmax(l) speedmax:set(table.unpack(l))
+M.random() end \; function M.bang() \; for i = 1 \, amount do \; local
+x = -boundary.x * ofNoise(time * speedx[i])+boundary.x*0.5 \; local
+y = -boundary.y * ofNoise(time * speedy[i])+boundary.y*0.5 \; local
+z = -boundary.z * ofNoise(time * speedz[i])+boundary.z*0.5 \; ofPushMatrix()
+ofTranslate(x \, y \, z) \; outlet:outletBang(0) ofPopMatrix() \; outlet:outletList(1
+\, ofTable(x \, y \, z)) end end \;;
+#X f 91;
+#X connect 2 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 1 3 0;

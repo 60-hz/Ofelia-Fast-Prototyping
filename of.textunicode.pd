@@ -1,8 +1,8 @@
-#N canvas 14 25 1266 753 12;
+#N canvas 246 88 1266 753 12;
 #X obj 21 14 inlet;
-#X text 988 750 RI;
-#X obj 21 887 outlet;
-#X obj 1009 880 outlet;
+#X text 988 930 RI;
+#X obj 21 927 outlet;
+#X obj 1160 929 outlet;
 #X text 323 20 TODO: 3d extrusion text https://forum.openframeworks.cc/t/extrude-text-into-3d/6938/2
 , f 64;
 #X obj 21 64 ofelia d -c12 \$0-text \; local c = ofCanvas(this) \;
@@ -26,13 +26,13 @@ end \; \; function M.open(s) fontname = (ofCanvas(this \, 1):getDir()
 .. "/" .. s) if (io.type(io.open(fontname \, "r"))) then M.load() end
 end \; function M.draw(s) drawmode = s end \; function M.text(l) if
 type(l)=="table" then text=(table.concat (l \, " ")) elseif type(l)=="string"
-then text=l else text="" end M.align(align) end \; function M.string(l)
-if type(l)=="table" then text=(string.char(table.unpack(l))) elseif
-type(l)=="number" then text = (string.char(l)) else text="" end M.align(align)
-end \; function M.list(l) if type(l) =="table" then text=(string.char(table.unpack(l)))
-elseif type(l)=="number" then text=(string.char(l)) else text="" end
-M.align(align) end \; function M.load() if ofWindow.exists then settings
-= ofTrueTypeFontSettings(fontname \, fontsize) settings:addRanges(range)
+or type(l)=="number" then text=l else text="" end M.align(align) end
+\; function M.string(l) if type(l)=="table" then text=(string.char(table.unpack(l)))
+elseif type(l)=="number" then text = (string.char(l)) else text=""
+end M.align(align) end \; function M.list(l) if type(l) =="table" then
+text=(string.char(table.unpack(l))) elseif type(l)=="number" then text=(string.char(l))
+else text="" end M.align(align) end \; function M.load() if ofWindow.exists
+then settings = ofTrueTypeFontSettings(fontname \, fontsize) settings:addRanges(range)
 settings.contours=contours settings.dpi=dpi settings.antialiased=antialias
 settings.simplifyAmt=simplify font\$0:load(settings) if font\$0:isLoaded()
 then print ("loaded " .. fontname) end end end \; function M.fontsize(f)

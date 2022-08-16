@@ -1,11 +1,11 @@
-#N canvas 634 172 626 454 12;
+#N canvas 634 172 626 487 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 17 109 of.draw;
 #X msg 453 185 width 50;
-#X floatatom 145 323 5 0 50 2 grid_size - -;
-#X floatatom 273 322 5 0 0 2 noiseamount - -;
+#X floatatom 145 383 5 0 50 2 grid_size - -;
+#X floatatom 273 382 5 0 0 2 noiseamount - -;
 #X text 432 122 list of all parameters;
 #X text 449 164 Single parameter;
 #X msg 433 146 100 400 5 5 center line 3;
@@ -30,7 +30,7 @@
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X text 184 327 carefull!;
+#X text 184 387 carefull!;
 #X text 25 20 Draw a plane with noise (experimental);
 #X obj 433 350 of.noiseplane;
 #X msg 210 254 mode \$1;
@@ -48,7 +48,11 @@
 #X text 373 152 animate;
 #X text 24 40 Args: grid_size \, noiseamount \, drawmode \, strokeweight
 \, mode;
-#X obj 17 351 of.noiseplane 10 10 line, f 37;
+#X obj 17 411 of.noiseplane 10 10 line, f 37;
+#X msg 223 333 amount \$1;
+#X floatatom 223 303 0 0 0 1 noiseamount - -;
+#X floatatom 91 305 0 0 0 1 gridsize - -;
+#X msg 91 335 size \$1;
 #X connect 1 0 41 0;
 #X connect 2 0 28 0;
 #X connect 3 0 41 1;
@@ -76,3 +80,7 @@
 #X connect 35 0 33 0;
 #X connect 36 0 35 0;
 #X connect 38 0 41 0;
+#X connect 42 0 41 0;
+#X connect 43 0 42 0;
+#X connect 44 0 45 0;
+#X connect 45 0 41 0;

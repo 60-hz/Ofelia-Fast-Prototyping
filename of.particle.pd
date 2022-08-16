@@ -1,4 +1,4 @@
-#N canvas 338 23 942 755 12;
+#N canvas 338 177 942 755 12;
 #X msg 22 -29 bang;
 #X msg 67 -29 add;
 #X obj 234 6 loadbang;
@@ -26,8 +26,8 @@ end end end \; return o end \; return M \;;
 \; local canvas = ofCanvas(this) \; local args = canvas:getArgs() \;
 local size \, life \, pos \, vel \, accel \, color = 1 \, 100 \, ofVec3f()
 \, ofVec3f(1 \, 1 \, 1) \, ofVec3f() \, ofColor(255 \, 255 \, 255)
-\; \; function M.new(l) \; if args[1] == nil then life = 100 else life
-= args[1] end \; local o = ofTable() \; o.acceleration = accel \; o.velocity
+\; \; function M.new(l) \; if args[1] == not nil then life = args[1]
+end \; local o = ofTable() \; o.acceleration = accel \; o.velocity
 = ofVec3f(ofRandom(-vel.x \, vel.x) \, ofRandom(-vel.y \, vel.y) \,
 ofRandom(-vel.z \, vel.z)) \; o.position = pos o.lifespan = life *
 2.55 o.size = size \; function o.run() \; o.update() o.display() end

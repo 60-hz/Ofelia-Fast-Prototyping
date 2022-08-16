@@ -37,8 +37,8 @@
 #X text 149 235 draw height (default 100);
 #X text 149 260 strokewidth (default 1);
 #X text 136 283 refresh time (default 40ms);
-#X text 72 115 active: digital sound processing should be on! (default
-0);
+#X text 72 116 compute audio: digital sound processing (dsp) should
+be on! (default 0), f 75;
 #X connect 1 0 21 0;
 #X connect 6 0 21 0;
 #X connect 8 0 21 0;

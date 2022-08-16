@@ -1,42 +1,47 @@
-#N canvas 293 269 637 389 12;
+#N canvas 861 397 637 389 12;
 #X declare -lib ofelia;
 #X obj 9 10 cnv 15 600 60 empty empty empty 20 12 0 14 -233017 -66577
 0;
 #X obj 462 45 declare -lib ofelia;
 #X obj 40 108 of.draw;
-#X text 21 19 Keyboard output in the of.window;
 #X obj 518 19 of.window 1;
 #X obj 497 21 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 126 134 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 126 164 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 265 134 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 265 164 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 40 241 of.color;
-#X msg 126 162 rgb 255 0 0 100;
-#X msg 265 161 rgb 255 255 255 255;
-#X obj 126 110 of.keypress Space;
-#X obj 265 110 of.keyrelease Space;
+#X obj 126 140 of.keypress Space;
+#X obj 265 140 of.keyrelease Space;
+#X obj 458 247 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X text 21 51 arguments 2: 0 = symbol mode \, 1 = keycode mode;
-#X text 21 37 arguments 1: symbol;
-#X obj 458 137 of.keypress 97 1;
-#X obj 458 161 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X text 21 37 arguments 1: symbol key / float number;
+#X obj 457 310 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 457 224 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X text 457 89 keycode mode:;
-#X text 482 159 -> "a" key = 97;
-#X text 482 223 -> " \, " key = 44;
-#X obj 457 200 of.keypress 44 1;
-#X obj 40 302 of.text keyboard 20 center;
-#X connect 2 0 8 0;
-#X connect 5 0 4 0;
-#X connect 6 0 9 0;
-#X connect 7 0 10 0;
-#X connect 8 0 22 0;
-#X connect 9 0 8 0;
-#X connect 10 0 8 0;
-#X connect 11 0 6 0;
-#X connect 12 0 7 0;
-#X connect 15 0 16 0;
-#X connect 21 0 17 0;
+#X obj 457 286 of.keyrelease 44 1;
+#X text 457 198 keycode mode:;
+#X text 482 245 -> "a" key = 97;
+#X text 482 309 -> " \, " key = 44;
+#X obj 458 223 of.keyrelease 97 1;
+#X text 127 119 Press:;
+#X text 266 120 Release:;
+#X text 127 96 Bring of.window screen in front then hit Space key;
+#X text 21 19 Keyboard keypress or key release in the of.window;
+#X text 214 193 Red;
+#X text 380 193 White;
+#X msg 126 192 rgb 255 0 0;
+#X msg 265 191 rgb 255 255 255;
+#X obj 40 302 of.text Press\ Space 32 center;
+#X connect 2 0 7 0;
+#X connect 4 0 3 0;
+#X connect 5 0 25 0;
+#X connect 6 0 26 0;
+#X connect 7 0 27 0;
+#X connect 8 0 5 0;
+#X connect 9 0 6 0;
+#X connect 14 0 13 0;
+#X connect 18 0 10 0;
+#X connect 25 0 7 0;
+#X connect 26 0 7 0;
