@@ -1,6 +1,6 @@
-#N canvas 92 93 887 658 12;
-#X obj 22 604 outlet;
-#X obj 22 566 select \$1;
+#N canvas 92 93 515 648 12;
+#X obj 22 554 outlet;
+#X obj 22 526 select \$1;
 #X obj 22 8 ofelia d -c12 \$0-keyboard \; local log = ofLog("ofKeyPressed")
 \; local outlet = ofOutlet(this) \; local canvas = ofCanvas(this) \;
 local args = canvas:getArgs() \; local keycode = args[2] \; \; function
@@ -17,8 +17,8 @@ elseif e.key == 3681 then return ("R_Shift") \; elseif e.key == 3682
 then return ("Ctrl") \; elseif e.key == 3684 then return ("L_alt")
 \; elseif e.key == 3685 then return ("R_alt") \; elseif e.key == 3686
 then return ("L_cmd") \; elseif e.key == 3687 then return ("R_cmd")
-\; elseif e.key == 27 then return ("Esc") \; else outlet:outletList(0
+\; elseif e.key == 27 then return ("Escape") \; else outlet:outletList(0
 \, ofTable(utf8.char(e.key))) end end \; end \;;
-#X f 115;
+#X f 66;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
